@@ -1,6 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, modulesPath, ... }:
 
 {
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+
   # Fix Wlan after suspend or Hibernate
   environment.etc."systemd/system-sleep/fix-wifi.sh".source =
     pkgs.writeShellScript "fix-wifi.sh" ''

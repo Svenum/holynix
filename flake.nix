@@ -1,10 +1,11 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
 
     snowfall-lib = {
-        url = "github:snowfallorg/lib";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:snowfallorg/lib/dev";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
@@ -40,12 +41,30 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    #nixos-hardware = {
+    #  url = "github:NixOS/nixos-hardware/master";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
-  outputs = inputs: inputs.snowfall-lib.mkFlake {
-    inherit inputs;
-    src = ./.;
+  outputs = inputs:
+  let
+    lib = inputs.snowfall-lib.mkLib {
+      inherit inputs;
+      src = ./.;
+      snowfall = {
+        namespace = "holynix";
+        meta = {
+          name = "holynix";
+          title = "Holy Nix";
+        };
+      };
+    };
+  in
+  lib.mkFlake {
+    channels-config = {
+      allowUnfree = true;
+    };
 
     systems.modules.nixos = with inputs; [
       solaar.nixosModules.default
@@ -55,15 +74,8 @@
 
     systems.hosts.Yon.modules = with inputs; [
       lanzaboote.nixosModules.lanzaboote
-      nixos-hardware.nixosModules.framework-16-7040-amd
+      #nixos-hardware.nixosModules.framework-16-7040-amd
     ];
 
-    snowfall = {
-      namespace = "holynix";
-      meta = {
-        name = "holynix";
-        title = "Holy Nix";
-      };
-    };
   };
 }

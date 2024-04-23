@@ -5,7 +5,7 @@ let
 in
 {
   options.holynix.theme = {
-    theme = lib.mkOption {
+    name = lib.mkOption {
       type = lib.types.enum [ "catppuccin" ];
       default = "catppuccin";
     };
