@@ -21,7 +21,4 @@
   
   # Enable Waydroid
   virtualisation.waydroid.enable = true;
-
-  # Nix config
-  nixpkgs.config.allowUnfree = true;
 }
