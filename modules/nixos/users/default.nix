@@ -8,7 +8,7 @@ let
   mkUser = name: user: {
     isNormalUser = true;
     description = name;
-    shell = mkIf user.shell;
+    shell = user.shell;
     extraGroups = [
       "networkmanager"
       "network"
@@ -58,16 +58,6 @@ let
     # Import user specific modues if needed
     imports = (if builtins.pathExists ../../users/${name}/default.nix then [ ../../users/${name} ] else []);
   };
-
- # hasZsh = users: 
- #   let
- #     checkUser = user: 
- #     if user.shell == pkgs.zsh then
- #       true
- #     else
- #       false;
- #   in
- #   builtins.any checkUser (builtins.attr)
 in
 {
   options.holynix = {

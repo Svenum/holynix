@@ -6,6 +6,7 @@
   ];
 
   holynix = {
+    locale = "en_DE";
     users."sven" = {
       isGuiUser = true;
       isSudoUser = true;
