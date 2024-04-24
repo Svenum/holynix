@@ -14,6 +14,7 @@
         userEmail = "s.ziegler@holypenguin.net";
       };
     };
+    wireguard.enable = true;
   };
 
   # enable solaar
