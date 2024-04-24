@@ -6,6 +6,7 @@
   ];
 
   holynix = {
+    desktop.plasma.enable = true;
     locale = "en_DE";
     users."sven" = {
       isGuiUser = true;
