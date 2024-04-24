@@ -15,6 +15,10 @@
       };
     };
     wireguard.enable = true;
+    tools = {
+      nvim.enable = true;
+      tmux.enable = true;
+    };
   };
 
   # enable solaar

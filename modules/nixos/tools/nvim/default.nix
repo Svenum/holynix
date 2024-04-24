@@ -9,7 +9,7 @@ in
   options.holynix.tools.nvim = {
     enable = mkOption {
       type = bool;
-      default = true;
+      default = false;
     };
   };
 
