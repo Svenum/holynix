@@ -1,17 +1,19 @@
 { options, config, lib, pkgs, ... }:
 
+with lib;
+with lib.types;
 let
   cfg = config.holynix.tools.nvim;
 in
 {
   options.holynix.tools.nvim = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
+    enable = mkOption {
+      type = bool;
       default = true;
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs.neovim = {
       enable = true;
       defaultEditor = true;

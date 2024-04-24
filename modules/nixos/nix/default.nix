@@ -1,17 +1,19 @@
 { options, config, lib, ... }:
 
+with lib;
+with lib.types;
 let
   cfg = config.holynix.nix;
 in
 {
   options.holynix.nix = {
-   enable = lib.mkOption {
-      type = lib.types.bool;
+   enable = mkOption {
+      type = bool;
       default = true;
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     # Garbage collection
     nix.gc = {
       automatic = true;
