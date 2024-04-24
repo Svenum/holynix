@@ -9,6 +9,7 @@ let
     isNormalUser = true;
     description = name;
     shell = user.shell;
+    password = user.password;
     extraGroups = [
       "networkmanager"
       "network"
@@ -84,6 +85,10 @@ in
               default = null;
             };
             authorizedKeys = mkOption {
+              type = nullOr (str);
+              default = null;
+            };
+            password = mkOption {
               type = nullOr (str);
               default = null;
             };

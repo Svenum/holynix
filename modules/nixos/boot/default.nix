@@ -27,7 +27,7 @@ in
         configurationLimit = 15;
       };
       efi.canTouchEfiVariables = true;
-      timeout = 1;
+      timeout = mkDefault 1;
     };
 
     boot.initrd.systemd.enable = true;

@@ -41,10 +41,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #nixos-hardware = {
-    #  url = "github:NixOS/nixos-hardware/master";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -74,7 +79,7 @@
 
     systems.hosts.Yon.modules = with inputs; [
       lanzaboote.nixosModules.lanzaboote
-      #nixos-hardware.nixosModules.framework-16-7040-amd
+      nixos-hardware.nixosModules.framework-16-7040-amd
     ];
 
   };

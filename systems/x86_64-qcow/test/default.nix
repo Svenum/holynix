@@ -9,16 +9,11 @@
     users."sven" = {
       isGuiUser = true;
       isSudoUser = true;
+      password = "test";
       git = {
         userName = "Svenum";
         userEmail = "s.ziegler@holypenguin.net";
       };
     };
   };
-
-  # enable solaar
-  programs.solaar.enable = true;
-  
-  # Enable Waydroid
-  virtualisation.waydroid.enable = true;
 }
