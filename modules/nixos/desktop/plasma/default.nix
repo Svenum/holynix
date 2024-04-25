@@ -17,6 +17,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    # Enable default desktop settings
+    holynix.desktop.enable = true;
+
     # Enable SDDM and Plasma
     services.displayManager = {
       sddm = {

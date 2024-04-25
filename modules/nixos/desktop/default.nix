@@ -11,7 +11,7 @@ in
   options.holynix.desktop = {
     enable = mkOption {
       type = bool;
-      default = if cfg.plasma.enable then true else false;
+      default = false;
     };
 
     wayland = mkOption {
