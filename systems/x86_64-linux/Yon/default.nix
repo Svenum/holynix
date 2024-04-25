@@ -5,6 +5,7 @@
 
   holynix = {
     desktop.plasma.enable = true;
+    shell.zsh.enable = true;
     locale = "en_DE";
     users."sven" = {
       isGuiUser = true;
@@ -18,6 +19,7 @@
     tools = {
       nvim.enable = true;
       tmux.enable = true;
+      flatpak.enable = true;
     };
   };
 
