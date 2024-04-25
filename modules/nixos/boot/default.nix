@@ -11,6 +11,10 @@ in
       type = bool;
       default = true;
     };
+    secureBoot = mkOption {
+      type = bool;
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -23,7 +27,7 @@ in
     # Bootloader
     boot.loader = {
       systemd-boot = {
-        enable = true;
+        enable = mkIf (! cfg.secureBoot) true;
         configurationLimit = 15;
       };
       efi.canTouchEfiVariables = true;
@@ -43,5 +47,14 @@ in
         })
       ];
     };
+
+    boot.lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
+
+    environment.systemPackages = with pkgs; [
+      sbctl
+    ];
   };
 }

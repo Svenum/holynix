@@ -4,6 +4,7 @@
   imports = [ ./hardware.nix ];
 
   holynix = {
+    boot.secureBoot = true;
     desktop.plasma.enable = true;
     shell.zsh.enable = true;
     locale = "en_DE";
