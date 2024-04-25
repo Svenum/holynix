@@ -23,6 +23,8 @@
       cliTools.enable = true;
     };
 
+    bluetooth.enable = true;
+
     scanner.enable = true;
     printer = {
       enable = true;
