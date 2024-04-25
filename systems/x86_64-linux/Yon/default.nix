@@ -20,6 +20,7 @@
       nvim.enable = true;
       tmux.enable = true;
       flatpak.enable = true;
+      cliTools.enable = true;
     };
 
     scanner.enable = true;
