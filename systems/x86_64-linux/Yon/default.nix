@@ -47,6 +47,9 @@
     };
   };
 
+  # enable Steam input
+  hardware.steam-hardware.enable = true;
+
   # enable solaar
   programs.solaar.enable = true;
   
