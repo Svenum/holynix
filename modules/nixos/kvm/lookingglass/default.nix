@@ -37,7 +37,9 @@ in
       ]
     '';
     
-    boot.extraModulePackages = with config.boot.kernelPackages; [ holynix.kvmfr ];
+    boot.extraModulePackages = with config.boot.kernelPackages; [ (kvmfr.overrideAttrs (final: prev: {
+      patches = [];
+    })) ];
     boot.kernelModules = [ "kvmfr" ];
 
     # Lookingglass config
