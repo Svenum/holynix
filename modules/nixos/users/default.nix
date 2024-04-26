@@ -10,6 +10,7 @@ let
     description = name;
     shell = user.shell;
     password = user.password;
+    initialPassword = user.initialPassword;
     extraGroups = [
       "networkmanager"
       "network"
@@ -89,6 +90,10 @@ in
               default = null;
             };
             password = mkOption {
+              type = nullOr (str);
+              default = null;
+            };
+            initialPassword = mkOption {
               type = nullOr (str);
               default = null;
             };
