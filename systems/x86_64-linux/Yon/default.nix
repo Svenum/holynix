@@ -14,6 +14,7 @@
     users."sven" = {
       isGuiUser = true;
       isSudoUser = true;
+      isKvmUser = true;
       git = {
         userName = "Svenum";
         userEmail = "s.ziegler@holypenguin.net";
