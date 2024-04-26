@@ -83,5 +83,8 @@
       auto-cpufreq.nixosModules.default
     ];
 
+    homes.users."sven".modules = with inputs; [
+      plasma-manager.homeManagerModules.plasma-manager
+    ];
   };
 }

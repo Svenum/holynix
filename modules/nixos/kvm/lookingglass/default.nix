@@ -39,5 +39,34 @@ in
     
     boot.extraModulePackages = with config.boot.kernelPackages; [ holynix.kvmfr ];
     boot.kernelModules = [ "kvmfr" ];
+
+    # Lookingglass config
+    environment.etc."looking-glass-client.ini" = {
+      user = "root";
+      group = "root";
+      mode = "0755";
+      text = generators.toINI {}{
+        wayland = { fractionScale = "yes"; };
+        opengl = { amdPinnedMem = "yes"; };
+        input = {
+          rawMouse = "yes";
+          autoCapture = "yes";
+          captureOnly = "yes";
+          escapeKey = "KEY_F12";
+        };
+        spice = {
+          enable = "yes";
+          clipboard = "yes";
+          audio = "yes";
+        };
+        app = {
+          shmFile = "/dev/kvmfr0";
+          allowDMA = "yes";
+        };
+        win = {
+          alerts = "no"; 
+        };
+      };
+    };
   };
 }

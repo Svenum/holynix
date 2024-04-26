@@ -54,6 +54,7 @@ in
       kdePackages.skanlite
       kdePackages.sddm-kcm
       xwaylandvideobridge
+      caffeine-ng
       # Add Konsole profiles and colorshcemes
       holynix.konsole-catppuccin
       # Add plasmoids
