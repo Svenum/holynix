@@ -4,6 +4,7 @@ with lib;
 with lib.types;
 
 let
+  inherit (inputs) nixVirt;
   cfg = config.holynix.kvm.virtmanager;
   kvmCfg = config.holynix.kvm;
   usersCfg = config.holynix.users;
