@@ -26,6 +26,14 @@
 
     bluetooth.enable = true;
 
+    kvm = {
+      enable = true;
+      vfioPCIDevices = [
+        "1002:ab30"
+        "1002:7480"
+      ];
+    };
+
     scanner.enable = true;
     printer = {
       enable = true;
