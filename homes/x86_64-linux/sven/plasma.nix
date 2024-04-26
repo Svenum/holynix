@@ -62,7 +62,7 @@ in
       theme = "default";
       colorScheme = "Catppuccin${themeFlavour}${themeAccent}";
       cursorTheme = "Catppuccin-${cursorFlavour}-${themeAccent}-Cursors";
-      wallpaper = /etc/wallpaper/catppuccin-${lib.strings.toLower themeCfg.flavour}.jpg;
+      wallpaper = "/etc/wallpaper/catppuccin-${lib.strings.toLower themeCfg.flavour}.jpg";
     };
 
     hotkeys.commands."Launch-Konsole" = {

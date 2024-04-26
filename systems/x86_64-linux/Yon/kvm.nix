@@ -1,6 +1,7 @@
-{ pkgs, nixVirt, ... }:
+{ pkgs, inputs, ... }:
 
 let
+  inherit (inputs) nixVirt;
   nixvirt.lib = nixVirt.lib;
   toggle_gpu = pkgs.writeShellScriptBin "toggle_gpu" ''
     if [[ $1 == "Windows GPU Nix" ]]; then
