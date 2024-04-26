@@ -33,7 +33,7 @@ let
     home = {
       username = name;
       homeDirectory = "/home/${name}";
-      stateVersion = "23.11";
+      stateVersion = config.system.stateVersion;
     };
     programs.home-manager.enable = true;
 
