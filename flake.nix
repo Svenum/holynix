@@ -80,6 +80,7 @@
     systems.hosts.Yon.modules = with inputs; [
       lanzaboote.nixosModules.lanzaboote
       nixos-hardware.nixosModules.framework-16-7040-amd
+      auto-cpufreq.nixosModules.default
     ];
 
   };

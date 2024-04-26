@@ -34,6 +34,8 @@
       ];
     };
 
+    powerManagement.enable = true;
+
     scanner.enable = true;
     printer = {
       enable = true;
