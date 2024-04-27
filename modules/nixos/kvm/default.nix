@@ -34,11 +34,11 @@ in
   '';
 
   # Toggle GPU script
-  environment.systemPackages = mkIf (cfg.vfioPCIDevices != null) (with pkgs; [
-    (holynix.toggle-amd-gpu.override {
+  environment.systemPackages = mkIf (cfg.vfioPCIDevices != null) [
+    (pkgs.holynix.toggle-amd-gpu.override {
       dgpuPCI = cfg.vfioPCIDevices;
     })
-  ]);
+  ];
 
   security.sudo.extraRules = mkIf (cfg.vfioPCIDevices != null) [{
     groups = [
