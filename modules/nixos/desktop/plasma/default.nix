@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, inputs, ... }:
 
 with lib;
 with lib.types;
@@ -7,6 +7,11 @@ let
   cfg = config.holynix.desktop.plasma;
   desktopCfg  = config.holynix.desktop;
   themeCfg = config.holynix.theme;
+  usersCfg = config.holynix.users;
+
+  mkUserConfig = name: user: {
+    imports = (if user.isGuiUser or false then [inputs.plasma-manager.homeManagerModules.plasma-manager] else []);
+  };
 in
 {
   options.holynix.desktop.plasma = {
@@ -97,5 +102,8 @@ in
 
     # Enable XWayland
     programs.xwayland.enable = true;
+
+    # Enable plasma-manager;
+    home-manager.users = lib.mapAttrs mkUserConfig usersCfg;
   };
 }

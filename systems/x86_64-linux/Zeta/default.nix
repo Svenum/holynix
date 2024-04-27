@@ -1,47 +1,41 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 {
-  imports = [
-    ./hardware.nix
-    ./kvm.nix
-  ];
+  # Import Modules
+  imports = [ ./hardware.nix ];
 
   holynix = {
-    boot.secureBoot = true;
     desktop.plasma.enable = true;
-    shell.zsh.enable = true;
-    locale.name = "en_DE";
-    users."sven" = {
-      isGuiUser = true;
-      isSudoUser = true;
-      isKvmUser = true;
-      git = {
-        userName = "Svenum";
-        userEmail = "s.ziegler@holypenguin.net";
+    theme = {
+      accent = "peach";
+      flavour = "mocha";
+    };
+
+    users = {
+      "martinn" = {
+        isGuiUser = true;
+        isSudoUser = false;
+        uid = 1001;
+      };
+      "sumartinn" = {
+        isGuiUser = true;
+        isSudoUser = true;
+        uid = 1000;
+        authorizedKeys = [
+          "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBABz8jUkUacu8PahA+mlDCCp3780yrcpAcNZIJ1CFswAbgbWoK+FZxdQ3P43X4cBjKVtz8tthf4xHhkGe6eNC1+ofgHq5bXfIP15ba7AEncdUvreQzPx2Aao7yZFw94piTiZqlQA193SZTw8ggbYPwn3hnXkFT/6ttIEr+18xUMGFM9c1A== sven@Ni"
+        ];
       };
     };
-    wireguard.enable = true;
+
+    shell.zsh.enable = true;
     tools = {
       nvim.enable = true;
       tmux.enable = true;
       flatpak.enable = true;
       cliTools.enable = true;
-      flake.enable = true;
     };
-
-    bluetooth.enable = true;
-
-    kvm = {
-      enable = true;
-      vfioPCIDevices = [
-        "1002:ab30"
-        "1002:7480"
-      ];
-    };
-
-    gpu.amd.enable = true;
-
-    powerManagement.enable = true;
+    kvm.enable = true;
+    gpu.nvidia.enable = true;
 
     scanner.enable = true;
     printer = {
@@ -64,13 +58,12 @@
     };
   };
 
-  # enable Steam input
-  hardware.steam-hardware.enable = true;
-  programs.gamescope.enable = true;
-
   # enable solaar
   programs.solaar.enable = true;
-  
-  # Enable Waydroid
-  virtualisation.waydroid.enable = true;
+
+  # Enable ssh
+  services.openssh.enable = true;
+
+  # Enable fwupd
+  services.fwupd.enable = true;
 }

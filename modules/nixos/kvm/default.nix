@@ -1,4 +1,4 @@
-{options, config, pkgs, lib, ...}:
+{options, config, pkgs, lib, inputs, ...}:
 
 with lib;
 with lib.types;
@@ -9,6 +9,8 @@ let
   isIntel = config.hardware.cpu.intel.updateMicrocode;
 in
 {
+  imports = [ inputs.nixVirt.nixosModules.default ];
+
   options.holynix.kvm = {
     enable = mkOption {
       type = bool;
@@ -32,13 +34,13 @@ in
   '';
 
   # Toggle GPU script
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = mkIf (cfg.vfioPCIDevices != null) (with pkgs; [
     (holynix.toggle-amd-gpu.override {
       dgpuPCI = cfg.vfioPCIDevices;
     })
-  ];
+  ]);
 
-  security.sudo.extraRules = [{
+  security.sudo.extraRules = mkIf (cfg.vfioPCIDevices != null) [{
     groups = [
       "kvm"
       "libvirtd"
@@ -57,7 +59,7 @@ in
     ++ lists.optionals isAMD [ "amd_iommu=on" "kvm_amd.avic=1" "kvm_amd.npt=1"  ]
     ++ lists.optionals isIntel [ "intel_iommu=on" ];
 
-    boot.initrd.kernelModules = [
+    boot.initrd.kernelModules = mkIf (cfg.vfioPCIDevices != null) [
       "vfio"
       "vfio-pci"
     ]

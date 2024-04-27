@@ -8,6 +8,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    flake = {
+      url = "github:snowfallorg/flake?ref=v1.3.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -69,22 +74,20 @@
   lib.mkFlake {
     channels-config = {
       allowUnfree = true;
+      nvidia.acceptLicense = true;
     };
+    
+    overlays = with inputs; [
+      flake.overlays.default
+    ];
 
     systems.modules.nixos = with inputs; [
       solaar.nixosModules.default
-      nixVirt.nixosModules.default
       home-manager.nixosModules.home-manager
     ];
 
     systems.hosts.Yon.modules = with inputs; [
-      lanzaboote.nixosModules.lanzaboote
       nixos-hardware.nixosModules.framework-16-7040-amd
-      auto-cpufreq.nixosModules.default
-    ];
-
-    homes.users."sven".modules = with inputs; [
-      plasma-manager.homeManagerModules.plasma-manager
     ];
   };
 }

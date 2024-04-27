@@ -43,7 +43,6 @@ in
     # Install and enable flatpak
     services.flatpak.enable = true;
     xdg.portal.enable = true;
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
     # Add repo and add overrides for guiUsers
     home-manager.users = lib.mapAttrs mkUserConfig usersCfg;

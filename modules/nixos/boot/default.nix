@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, inputs, ... }:
 
 with lib;
 with lib.types;
@@ -6,6 +6,8 @@ let
   cfg = config.holynix.boot;
 in
 {
+  imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
+  
   options.holynix.boot = {
     enable = mkOption {
       type = bool;
@@ -13,7 +15,7 @@ in
     };
     secureBoot = mkOption {
       type = bool;
-      default = true;
+      default = false;
     };
   };
 
@@ -48,13 +50,13 @@ in
       ];
     };
 
-    boot.lanzaboote = {
+    boot.lanzaboote = mkIf cfg.secureBoot {
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
 
-    environment.systemPackages = with pkgs; [
-      sbctl
+    environment.systemPackages = mkIf cfg.secureBoot [
+      pkgs.sbctl
     ];
   };
 }

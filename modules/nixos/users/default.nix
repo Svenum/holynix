@@ -24,8 +24,8 @@ let
     ];
 
     useDefaultShell = true;
-    uid = mkIf (if builtins.hasAttr "uid" user then true else false) user.uid;
-    openssh.authorizedKeys.keys = mkIf (if builtins.hasAttr "authorizedKeys" user then true else false) user.authorizedKeys;
+    uid = user.uid;
+    openssh.authorizedKeys.keys = mkIf (user.authorizedKeys != null) user.authorizedKeys;
   };
 
   mkUserConfig = name: user: {
@@ -58,7 +58,6 @@ let
     };
 
     # Import user specific modues if needed
-    imports = (if builtins.pathExists ../../users/${name}/default.nix then [ ../../users/${name} ] else []);
   };
 in
 {
@@ -86,7 +85,11 @@ in
               default = null;
             };
             authorizedKeys = mkOption {
-              type = nullOr (str);
+              type = nullOr (listOf singleLineStr);
+              default = null;
+            };
+            uid = mkOption {
+              type = nullOr (int);
               default = null;
             };
             password = mkOption {
