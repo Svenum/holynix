@@ -59,7 +59,7 @@ in
     ++ lists.optionals isAMD [ "amd_iommu=on" "kvm_amd.avic=1" "kvm_amd.npt=1"  ]
     ++ lists.optionals isIntel [ "intel_iommu=on" ];
 
-    boot.initrd.kernelModules = mkIf (cfg.vfioPCIDevices != null) [
+    boot.initrd.kernelModules = [
       "vfio"
       "vfio-pci"
     ]
