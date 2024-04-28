@@ -37,6 +37,8 @@
     kvm.enable = true;
     gpu.nvidia.enable = true;
 
+    network.enable = true;
+
     scanner.enable = true;
     printer = {
       enable = true;

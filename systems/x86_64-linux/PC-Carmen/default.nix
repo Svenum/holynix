@@ -33,6 +33,11 @@
       cliTools.enable = true;
     };
 
+    network.enable = true;
+    bluetooth.enable = true;
+
+    powerManagement.enable = true;
+
     scanner.enable = true;
     printer = {
       enable = true;
