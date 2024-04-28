@@ -32,8 +32,8 @@ in
     # Install cusotm scripts
     environment.systemPackages = with pkgs; [
       # Theming
-      #(pkgs.writeShellScriptBin "spicetify" "exec -a $0 ${spicetify-cli}/bin/spicetify-cli $@")
       betterdiscordctl
+      spicetify-cli
       holynix.prepare-spotify
       (holynix.prepare-discord.override {
         accent = themeCfg.accent;
