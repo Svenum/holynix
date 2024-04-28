@@ -9,7 +9,7 @@ pkgs.writeShellScriptBin "prepare-spotify" ''
 
   # Prepare backupe
   echo "prepare backup ..."
-  spicetify backup apply
+  spicetify-cli backup apply
 
   # Prepare config
   echo "prepare config ..."
@@ -17,7 +17,7 @@ pkgs.writeShellScriptBin "prepare-spotify" ''
   sed -i 's,spotify_path *=.*,spotify_path = '"$HOME"'/.local/share/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/,g' $HOME/.config/spicetify/config-xpui.ini
   sed -i 's,prefs_path *=.*,prefs_path = '"$HOME"'/.var/app/com.spotify.Client/config/spotify/prefs,g' $HOME/.config/spicetify/config-xpui.ini
 
-  spicetify restart 
+  spicetify-cli restart 
 
   # Install marketplace
   # echo "install marketplace ..."
