@@ -30,6 +30,7 @@
     };
 
     bluetooth.enable = true;
+    network.enable = true;
 
     kvm = {
       enable = true;
