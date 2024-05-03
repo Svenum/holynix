@@ -64,6 +64,8 @@
       ];
     };
   };
+  # Enable fw-fanctrl
+  programs.fw-fanctrl.enable = true;
 
   # enable Steam input
   hardware.steam-hardware.enable = true;

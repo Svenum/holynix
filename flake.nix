@@ -55,6 +55,11 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    fw-fanctrl = {
+      url = "github:Svenum/fw-fanctrl/add-flake";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
   };
 
   outputs = inputs:
@@ -88,6 +93,7 @@
 
     systems.hosts.Yon.modules = with inputs; [
       nixos-hardware.nixosModules.framework-16-7040-amd
+      fw-fanctrl.nixosModules.default
     ];
   };
 }
