@@ -23,7 +23,7 @@ vmConf // {
     ];
   };
   cpu = {
-    topology = {
+    topology = vmConf.cpu.topology // {
       cores = 6;
     };
   };
