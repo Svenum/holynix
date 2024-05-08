@@ -8,8 +8,8 @@ vmConf // {
   uuid = uuid;
   description = "A Windows 10 vm define in nix with gpu passthrough";
 
-  vcpu.count = 12;
-  memory.count = 20;
+  vcpu = vmConf.vcpu // { count = 12; };
+  memory = vmConf.memory // { count = 20; };
   cputune = {
     vcpupin = vmConf.cputune.vcpupin ++ [
       {vcpu = 4; cpuset = "8";}
@@ -22,7 +22,7 @@ vmConf // {
       {vcpu = 11; cpuset = "15";}
     ];
   };
-  cpu = {
+  cpu = vmConf.cpu // {
     topology = vmConf.cpu.topology // {
       cores = 6;
     };
