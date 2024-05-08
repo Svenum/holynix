@@ -76,4 +76,8 @@
   
   # Enable Waydroid
   virtualisation.waydroid.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    holynix.tetris
+  ];
 }
