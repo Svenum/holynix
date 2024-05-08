@@ -26,22 +26,14 @@
   };
   
   # CPU and RAM
-  vcpu = { count = 12; placement = "static"; };
-  memory = { count = 20; unit = "GiB"; };
+  vcpu = { count = 4; placement = "static"; };
+  memory = { count = 8; unit = "GiB"; };
   cputune = {
     vcpupin = [
       {vcpu = 0; cpuset = "4";}
       {vcpu = 1; cpuset = "5";}
       {vcpu = 2; cpuset = "6";}
       {vcpu = 3; cpuset = "7";}
-      {vcpu = 4; cpuset = "8";}
-      {vcpu = 5; cpuset = "9";}
-      {vcpu = 6; cpuset = "10";}
-      {vcpu = 7; cpuset = "11";}
-      {vcpu = 8; cpuset = "12";}
-      {vcpu = 9; cpuset = "13";}
-      {vcpu = 10; cpuset = "14";}
-      {vcpu = 11; cpuset = "15";}
     ];
   };
   cpu = {
@@ -57,7 +49,7 @@
     topology = {
       sockets = 1;
       dies = 1;
-      cores = 6;
+      cores = 2;
       threads = 2;
     };
   };
