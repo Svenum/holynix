@@ -67,101 +67,23 @@
   # Enable fw-fanctrl
   programs.fw-fanctrl = {
     enable = true;
-    configFile = ''
-      {
-          "defaultStrategy": "lazy",
-          "strategyOnDischarging" : "",
-          "batteryChargingStatusPath" : "",
-          "strategies": {
-              "sleep": {
-                  "fanSpeedUpdateFrequency": 5,
-                  "movingAverageInterval": 40,
-                  "speedCurve": [
-                      { "temp": 0, "speed": 0 }
-                  ]
-              },
-              "lazyest": {
-                  "fanSpeedUpdateFrequency": 5,
-                  "movingAverageInterval": 40,
-                  "speedCurve": [
-                      { "temp": 0, "speed": 0 },
-                      { "temp": 45, "speed": 0 },
-                      { "temp": 65, "speed": 25 },
-                      { "temp": 70, "speed": 35 },
-                      { "temp": 75, "speed": 50 },
-                      { "temp": 85, "speed": 100 }
-                  ]
-              },
-              "lazy": {
-                  "fanSpeedUpdateFrequency": 5,
-                  "movingAverageInterval": 30,
-                  "speedCurve": [
-                      { "temp": 0, "speed": 15 },
-                      { "temp": 50, "speed": 15 },
-                      { "temp": 65, "speed": 25 },
-                      { "temp": 70, "speed": 35 },
-                      { "temp": 75, "speed": 50 },
-                      { "temp": 85, "speed": 100 }
-                  ]
-              },
-              "medium": {
-                  "fanSpeedUpdateFrequency": 5,
-                  "movingAverageInterval": 30,
-                  "speedCurve": [
-                      { "temp": 0, "speed": 15 },
-                      { "temp": 40, "speed": 15 },
-                      { "temp": 60, "speed": 30 },
-                      { "temp": 70, "speed": 40 },
-                      { "temp": 75, "speed": 80 },
-                      { "temp": 85, "speed": 100 }
-                  ]
-              },
-              "agile": {
-                  "fanSpeedUpdateFrequency": 3,
-                  "movingAverageInterval": 15,
-                  "speedCurve": [
-                      { "temp": 0, "speed": 15 },
-                      { "temp": 40, "speed": 15 },
-                      { "temp": 60, "speed": 30 },
-                      { "temp": 70, "speed": 40 },
-                      { "temp": 75, "speed": 80 },
-                      { "temp": 85, "speed": 100 }
-                  ]
-              },
-              "very-agile": {
-                  "fanSpeedUpdateFrequency": 2,
-                  "movingAverageInterval": 5,
-                  "speedCurve": [
-                      { "temp": 0, "speed": 15 },
-                      { "temp": 40, "speed": 15 },
-                      { "temp": 60, "speed": 30 },
-                      { "temp": 70, "speed": 40 },
-                      { "temp": 75, "speed": 80 },
-                      { "temp": 85, "speed": 100 }
-                  ]
-              },
-              "deaf": {
-                  "fanSpeedUpdateFrequency": 2,
-                  "movingAverageInterval": 5,
-                  "speedCurve": [
-                      { "temp": 0, "speed": 20 },
-                      { "temp": 40, "speed": 30 },
-                      { "temp": 50, "speed": 50 },
-                      { "temp": 60, "speed": 100 }
-                  ]
-              },
-              "aeolus": {
-                  "fanSpeedUpdateFrequency": 2,
-                  "movingAverageInterval": 5,
-                  "speedCurve": [
-                      { "temp": 0, "speed": 20 },
-                      { "temp": 40, "speed": 50 },
-                      { "temp": 65, "speed": 100 }
-                  ]
-              }
-          }
-      }
-    '';
+    config = {
+      defaultStrategy = "lazy";
+      strategies = {
+        "lazy" = {
+          fanSpeedUpdateFrequency = 5;
+          movingAverageInterval = 30;
+          speedCurve = [
+            { temp = 0; speed = 15; }
+            { temp = 50; speed = 15; }
+            { temp = 65; speed = 25; }
+            { temp = 70; speed = 35; }
+            { temp = 75; speed = 50; }
+            { temp = 85; speed = 100; }
+          ];
+        };
+      };
+    };
   };
 
   # enable Steam input
