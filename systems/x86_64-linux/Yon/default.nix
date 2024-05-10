@@ -67,7 +67,7 @@
   # Enable fw-fanctrl
   programs.fw-fanctrl = {
     enable = true;
-    config = ''
+    configFile = ''
       {
           "defaultStrategy": "lazy",
           "strategyOnDischarging" : "",
