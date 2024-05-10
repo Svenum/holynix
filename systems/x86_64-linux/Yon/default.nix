@@ -69,7 +69,7 @@
     enable = true;
     config = ''
       {
-          "defaultStrategy": "medium",
+          "defaultStrategy": "lazy",
           "strategyOnDischarging" : "",
           "batteryChargingStatusPath" : "",
           "strategies": {
