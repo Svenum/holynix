@@ -37,9 +37,7 @@ in
       ]
     '';
     
-    boot.extraModulePackages = with config.boot.kernelPackages; [ (kvmfr.overrideAttrs (final: prev: {
-      patches = [];
-    })) ];
+    boot.extraModulePackages = with config.boot.kernelPackages; [ kvmfr ];
     boot.kernelModules = [ "kvmfr" ];
 
     # Lookingglass config
