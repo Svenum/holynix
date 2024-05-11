@@ -1,4 +1,4 @@
-{ options, config, lib, ... }:
+{ options, config, lib, pkgs, ... }:
 
 with lib;
 with lib.types;
@@ -21,6 +21,8 @@ in
       options = "--delete-older-than 1w";
     };
     nix.settings.auto-optimise-store = true;
+
+    nix.package = pkgs.nixVersions.git;
 
     # Configure Nix
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
