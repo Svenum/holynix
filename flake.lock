@@ -658,11 +658,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1715198279,
-        "narHash": "sha256-pQ34pB4XajBhX5QF0zyr7IqZK8TUue40GACg5KS3bNo=",
+        "lastModified": 1715441983,
+        "narHash": "sha256-CWRwtvZtcK8CDQCZhmv4nNp1Qmx3JXEidFQi/JMnX/M=",
         "owner": "Svenum",
         "repo": "Solaar-Flake",
-        "rev": "4ac1c6773e76be5002b3f5774b30496173eef611",
+        "rev": "ee38dd45276fcb03174aec5301144514e66f4775",
         "type": "github"
       },
       "original": {
