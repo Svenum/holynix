@@ -33,6 +33,7 @@ in
           enable = true;
           compositor = "kwin";
         };
+        theme = "catppuccin-${themeCfg.flavour}";
         autoNumlock = true;
       };
       defaultSession = mkIf (! desktopCfg.wayland) "plasmax11";
@@ -81,6 +82,9 @@ in
         flavour = [ themeCfg.flavour ];
         accents = [ themeCfg.accent ];
         winDecStyles = [ "modern" ];
+      })
+      (catppuccin-sddm.override {
+        flavor = themeCfg.flavour;
       })
       # GTK Themes
       (catppuccin-gtk.override {
