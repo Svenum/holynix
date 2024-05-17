@@ -44,6 +44,7 @@ let
       userEmail = user.git.userEmail;
       extraConfig = {
         safe.directory = "/etc/nixos";
+        pager.branch = false;
       };
     };
 
