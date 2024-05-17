@@ -16,7 +16,7 @@ in
   environment.shellAliases = {
     pbpaste = "xsel --output --clipboard";
     pbcopy = "xsel --input --clipboard";
-  }
+  };
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
