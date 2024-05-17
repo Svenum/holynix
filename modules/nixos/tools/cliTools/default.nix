@@ -13,12 +13,12 @@ in
     };
   };
 
-  environment.shellAliases = {
-    pbpaste = "xsel --output --clipboard";
-    pbcopy = "xsel --input --clipboard";
-  };
-
   config = mkIf cfg.enable {
+    environment.shellAliases = {
+      pbpaste = "xsel --output --clipboard";
+      pbcopy = "xsel --input --clipboard";
+    };
+
     environment.systemPackages = with pkgs; [
       # CLI Packages
       git
