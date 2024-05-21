@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1715726811,
-        "narHash": "sha256-u0xULSKvPnQxkIg17NruCX0J6cBy0X5wimxl0ZK1yPA=",
+        "lastModified": 1716304387,
+        "narHash": "sha256-DLPjTyFHiE7sxtzOnw0jkP38e1mMxjLoAchtwRgYYBs=",
         "owner": "AdnanHodzic",
         "repo": "auto-cpufreq",
-        "rev": "1f911b534c078e41d02fd78decbac5dc6f3cc4ec",
+        "rev": "2b09bf7543ee181c5e5b30358cef0e1603d5fd79",
         "type": "github"
       },
       "original": {
@@ -288,11 +288,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1716066510,
-        "narHash": "sha256-KABgbMYqqYCMw0QsxE4YKn5mUyqwbmOXx6Gx57rd0wM=",
+        "lastModified": 1716305669,
+        "narHash": "sha256-/2GeBxkfuD0t3Hj6hAAVU20I6uAAMFRGZzX6soM3Omo=",
         "owner": "Svenum",
         "repo": "fw-fanctrl",
-        "rev": "f65de04b05422d09658dbcd7e655d178f36c4256",
+        "rev": "f36419e93a44e54f3c37491abaa5d6afe28f4677",
         "type": "github"
       },
       "original": {
