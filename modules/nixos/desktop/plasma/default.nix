@@ -31,7 +31,7 @@ in
         enable = true;
         wayland = {
           enable = true;
-          #compositor = "kwin";
+          compositor = "kwin";
         };
         theme = "catppuccin-${themeCfg.flavour}";
         autoNumlock = true;
