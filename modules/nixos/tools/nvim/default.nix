@@ -45,7 +45,8 @@ in
             # Theme
             catppuccin-nvim
             # Terminal
-            tmux-nvim
+            #tmux-nvim
+            vim-tmux-navigator
             # Git
             vim-gitgutter
             # Markdown Preview

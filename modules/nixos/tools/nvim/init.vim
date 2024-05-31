@@ -51,9 +51,9 @@ nnoremap <silent> <C-n> :NvimTreeToggle<CR>
 "         tmux-nvim          "
 """"""""""""""""""""""""""""""
 " Plugin Config
-lua << EOF
-  require("tmux").setup()
-EOF
+" lua << EOF
+"   require("tmux").setup()
+" EOF
 
 """"""""""""""""""""""""""""""
 "          airline           "
