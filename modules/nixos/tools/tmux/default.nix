@@ -27,17 +27,6 @@ in
         vim-tmux-navigator
       ];
       extraConfigBeforePlugins = ''
-        # TMUX
-        set -g repeat-time 700
-        set -g mouse on
-
-        bind c new-window -c "#{pane_current_path}"
-        bind '"' split-window -c "#{pane_current_path}"
-        bind % split-window -h -c "#{pane_current_path} -p 66"
-
-        bind-key ! break-pane -d -n _hidden_pane
-        bind-key @ join-pane -s $.0 -h -p 66
-
         # Catppuccin
         set -g @catppuccin_flavour '${themeCfg.flavour}'
         set -g @catppuccin_status_modules_right "application session user host date_time"
@@ -45,7 +34,7 @@ in
         
         set -g @catppuccin_window_right_separator " "
         set -g @catppuccin_window_left_separator "█"
-        set -g @catppuccin_window_middle_separator " | "
+        set -g @catppuccin_window_middle_separator " "
         
         set -g @catppuccin_status_left_separator " "
         set -g @catppuccin_status_right_separator "█"
@@ -57,6 +46,18 @@ in
         set -g @catppuccin_window_number_position "right"
         set -g @catppuccin_window_default_fill "number"
         set -g @catppuccin_window_current_fill "all"
+      '';
+      extraConfig = ''
+        # TMUX
+        set -g repeat-time 700
+        set -g mouse on
+
+        bind-key c new-window -c "#{pane_current_path}"
+        bind-key '"' split-window -c "#{pane_current_path}"
+        bind-key % split-window -h -c "#{pane_current_path} -p 33"
+
+        bind-key ! break-pane -d -n _hidden_pane
+        bind-key @ join-pane -s $.0 -h -l 33%
       '';
     };
   };
