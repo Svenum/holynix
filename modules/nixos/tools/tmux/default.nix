@@ -33,10 +33,10 @@ in
 
         bind c new-window -c "#{pane_current_path}"
         bind '"' split-window -c "#{pane_current_path}"
-        bind % split-window -h -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path} -p 66"
 
         bind-key ! break-pane -d -n _hidden_pane
-        bind-key @ join-pane -s $.0
+        bind-key @ join-pane -s $.0 -h -p 66
 
         # Catppuccin
         set -g @catppuccin_flavour '${themeCfg.flavour}'
@@ -45,7 +45,7 @@ in
         
         set -g @catppuccin_window_right_separator " "
         set -g @catppuccin_window_left_separator "█"
-        set -g @catppuccin_window_middle_separator "█"
+        set -g @catppuccin_window_middle_separator " | "
         
         set -g @catppuccin_status_left_separator " "
         set -g @catppuccin_status_right_separator "█"
