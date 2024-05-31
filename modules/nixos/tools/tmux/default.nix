@@ -54,7 +54,7 @@ in
 
         bind-key c new-window -c "#{pane_current_path}"
         bind-key '"' split-window -c "#{pane_current_path}"
-        bind-key % split-window -h -c "#{pane_current_path} -p 33"
+        bind-key % split-window -p 33 -h -c "#{pane_current_path}"
 
         bind-key ! break-pane -d -n _hidden_pane
         bind-key @ join-pane -s $.0 -h -l 33%
