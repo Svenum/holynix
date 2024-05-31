@@ -38,10 +38,10 @@ in
         set -g @catppuccin_window_left_separator_inverse "yes"
         
         set -g @catppuccin_status_left_separator " "
-        set -g @catppuccin_status_right_separator "█ "
+        set -g @catppuccin_status_right_separator "█"
 
         set -g @catppuccin_status_fill "all"
-        set -g @catppuccin_status_connect_separator "no"
+        set -g @catppuccin_status_connect_separator "yes"
 
         set -g @catppuccin_window_current_text "#{pane_current_path}"
         set -g @catppuccin_window_number_position "right"
