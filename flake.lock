@@ -285,20 +285,20 @@
       "inputs": {
         "flake-compat": "flake-compat_3",
         "nixpkgs": [
-          "nixpkgs-stable"
+          "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1717254340,
-        "narHash": "sha256-vctUKB31bGZXHo91127hQPX3o+nhKQXu+lU5rnU3/Us=",
-        "owner": "Svenum",
+        "lastModified": 1717263155,
+        "narHash": "sha256-nWWL7dYQR5NQRtZEiSG8ouzKEyRISLOCNDmuhTau52U=",
+        "owner": "TamtamHero",
         "repo": "fw-fanctrl",
-        "rev": "f8ad4b88301e05ffbb002e54215c71ec01017598",
+        "rev": "f7afb4937852980770267c6a73275fbe2007bd4a",
         "type": "github"
       },
       "original": {
-        "owner": "Svenum",
-        "ref": "add-flake",
+        "owner": "TamtamHero",
+        "ref": "packaging/nix",
         "repo": "fw-fanctrl",
         "type": "github"
       }
@@ -431,11 +431,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1716987116,
-        "narHash": "sha256-uuEkErFVsFdg2K0cKbNQ9JlFSAm/xYqPr4rbPLI91Y8=",
+        "lastModified": 1717248095,
+        "narHash": "sha256-e8X2eWjAHJQT82AAN+mCI0B68cIDBJpqJ156+VRrFO0=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "8251761f93d6f5b91cee45ac09edb6e382641009",
+        "rev": "7b49d3967613d9aacac5b340ef158d493906ba79",
         "type": "github"
       },
       "original": {
@@ -519,11 +519,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1717187140,
-        "narHash": "sha256-FBO7osTyKp6d5xFIxDrIV1DU7q9uT1B92alOUpBnwXA=",
+        "lastModified": 1717240486,
+        "narHash": "sha256-9nfK6a+TchfVje3QhZ4TmtLq5GVFYMlU/U/dheaEGjw=",
         "owner": "pjones",
         "repo": "plasma-manager",
-        "rev": "2636bb4c0646931b1d9e7a17cea19e3a04a1ea60",
+        "rev": "41f42c35f5dee303200854d1eecbcd3c5b2fa689",
         "type": "github"
       },
       "original": {
