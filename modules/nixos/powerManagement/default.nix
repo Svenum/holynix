@@ -14,10 +14,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    # Enable NixOS powermanagement + powertop
+    # Enable NixOS powermanagement
     powerManagement = {
       enable = true;
-      powertop.enable = true;
     };
 
     # Disable powerpfiles
