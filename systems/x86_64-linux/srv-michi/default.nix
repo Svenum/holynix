@@ -51,4 +51,6 @@
   };
 
   services.qemuGuest.enable = true;
+
+  services.openssh.enable = true;
 }
