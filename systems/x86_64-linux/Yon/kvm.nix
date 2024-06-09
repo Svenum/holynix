@@ -14,10 +14,18 @@ let
     fi
   '';
 
+  # Paths
   nvram_path = "/home/sven/.local/share/libvirt/qemu";
   disk_path = "/home/sven/.local/share/libvirt/images";
+
+  # Windows VMs
   win10_config = import ./vms/win10.nix { inherit nvram_path; inherit pkgs; uuid = "c08333dc-33f9-4117-969a-ac46e19ba81f"; };
   win10gpu_config = import ./vms/win10gpu.nix { inherit nvram_path; inherit pkgs; uuid = "3af8cded-1545-4ff2-87d6-d647119aa0e3"; };
+
+  # Kubernetes Nodes
+  node1_config = import ./vms/node.nix { inherit pkgs; uuid = "7fdb457d-0417-4156-95fa-92b9187219ac"; nodeID = "1"; inherit disk_path; };
+  node2_config = import ./vms/node.nix { inherit pkgs; uuid = "8b302b1d-2055-4d60-8b98-24f375de218f"; nodeID = "2"; inherit disk_path; };
+  node3_config = import ./vms/node.nix { inherit pkgs; uuid = "47847aa8-231c-4e52-9aae-fc7f4178d736"; nodeID = "3"; inherit disk_path; };
 in
 {
   virtualisation.libvirtd.hooks.qemu = {
@@ -50,8 +58,26 @@ in
         volumes = [
           {
             definition = nixvirt.lib.volume.writeXML {
-              name = "win10gpu.qcow2";
-              capacity = { count = 250; unit = "GiB"; };
+              name = "node_1.qcow2";
+              capacity = { count = 150; unit = "GiB"; };
+              target = {
+                format = { type = "qcow2"; };
+              };
+            };
+          }
+          {
+            definition = nixvirt.lib.volume.writeXML {
+              name = "node_2.qcow2";
+              capacity = { count = 150; unit = "GiB"; };
+              target = {
+                format = { type = "qcow2"; };
+              };
+            };
+          }
+          {
+            definition = nixvirt.lib.volume.writeXML {
+              name = "node_3.qcow2";
+              capacity = { count = 150; unit = "GiB"; };
               target = {
                 format = { type = "qcow2"; };
               };
@@ -77,6 +103,9 @@ in
     domains = [
       { definition = nixvirt.lib.domain.writeXML win10gpu_config; }
       { definition = nixvirt.lib.domain.writeXML win10_config; }
+      { definition = nixvirt.lib.domain.writeXML node1_config; }
+      { definition = nixvirt.lib.domain.writeXML node2_config; }
+      { definition = nixvirt.lib.domain.writeXML node3_config; }
     ];
   };
 }
