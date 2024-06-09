@@ -57,20 +57,29 @@
     emulator = "${pkgs.qemu}/bin/qemu-system-x86_64";
 
     # Disks
-    disk = {
-      type = "file";
-      device = "disk";
-      driver = {
-        name = "qemu";
-        type = "qcow2";
-        discard = "unmap";
-      };
-      source.file = "${diskPath}/node${nodeID}.qcow2";
-      target = {
-        dev = "vda";
-        bus = "virtio";
-      };
-    };
+    disk = [
+      {
+        type = "file";
+        device = "disk";
+        driver = {
+          name = "qemu";
+          type = "qcow2";
+          discard = "unmap";
+        };
+        source.file = "${diskPath}/node${nodeID}.qcow2";
+        target = {
+          dev = "vda";
+          bus = "virtio";
+        };
+      }
+      {
+        type = "file";
+        device = "cdrom";
+        target = { dev = "sda"; bus = "sata"; };
+        readonly = true;
+        address.type = "drive";
+      }
+    ];
 
     # Network
     interface = {
