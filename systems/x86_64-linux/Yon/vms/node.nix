@@ -1,4 +1,4 @@
-{ pkgs, uuid, nodeID, disk_path }:
+{ pkgs, uuid, nodeID, diskPath, nvramPath }:
 
 {
   type = "kvm";
@@ -23,6 +23,11 @@
       type = "pflash";
       path = "${pkgs.OVMFFull.fd}/FV/OVMF_CODE.ms.fd";
     };
+    nvram = {
+      template = "${pkgs.OVMFFull.fd}/FV/OVMF_VARS.ms.fd";
+      path = "${nvramPath}/node${nodeID}.nvram";
+    };
+    boot.dev = "hd";
   };
 
   features = {
@@ -59,7 +64,7 @@
         type = "qcow2";
         discard = "unmap";
       };
-      source.file = "/home/sven/.local/share/libvirt/images/node_${nodeID}.qcow2";
+      source.file = "${diskPath}/node${nodeID}.qcow2";
       target = {
         dev = "vda";
         bus = "virtio";

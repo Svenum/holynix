@@ -1,4 +1,4 @@
-{ nvram_path, pkgs, uuid }:
+{ nvramPath, pkgs, uuid }:
 
 {
   type = "kvm";
@@ -66,7 +66,7 @@
     };
     nvram = {
       template = "${pkgs.OVMFFull.fd}/FV/OVMF_VARS.ms.fd";
-      path = "${nvram_path}/win10gpu.nvram";
+      path = "${nvramPath}/win10gpu.nvram";
     };
     smbios.mode = "sysinfo";
   };

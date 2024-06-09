@@ -14,18 +14,18 @@ let
     fi
   '';
 
-  # Paths
-  nvram_path = "/home/sven/.local/share/libvirt/qemu";
-  disk_path = "/home/sven/.local/share/libvirt/images";
+  # Path
+  nvramPath = "/home/sven/.local/share/libvirt/qemu";
+  diskPath = "/home/sven/.local/share/libvirt/images";
 
   # Windows VMs
-  win10_config = import ./vms/win10.nix { inherit nvram_path; inherit pkgs; uuid = "c08333dc-33f9-4117-969a-ac46e19ba81f"; };
-  win10gpu_config = import ./vms/win10gpu.nix { inherit nvram_path; inherit pkgs; uuid = "3af8cded-1545-4ff2-87d6-d647119aa0e3"; };
+  win10Config = import ./vms/win10.nix { inherit nvramPath; inherit pkgs; uuid = "c08333dc-33f9-4117-969a-ac46e19ba81f"; };
+  win10gpuConfig = import ./vms/win10gpu.nix { inherit nvramPath; inherit pkgs; uuid = "3af8cded-1545-4ff2-87d6-d647119aa0e3"; };
 
   # Kubernetes Nodes
-  node1_config = import ./vms/node.nix { inherit pkgs; uuid = "7fdb457d-0417-4156-95fa-92b9187219ac"; nodeID = "1"; inherit disk_path; };
-  node2_config = import ./vms/node.nix { inherit pkgs; uuid = "8b302b1d-2055-4d60-8b98-24f375de218f"; nodeID = "2"; inherit disk_path; };
-  node3_config = import ./vms/node.nix { inherit pkgs; uuid = "47847aa8-231c-4e52-9aae-fc7f4178d736"; nodeID = "3"; inherit disk_path; };
+  node1Config = import ./vms/node.nix { inherit pkgs; uuid = "7fdb457d-0417-4156-95fa-92b9187219ac"; nodeID = "1"; inherit diskPath; inherit nvramPath; };
+  node2Config = import ./vms/node.nix { inherit pkgs; uuid = "8b302b1d-2055-4d60-8b98-24f375de218f"; nodeID = "2"; inherit diskPath; inherit nvramPath; };
+  node3Config = import ./vms/node.nix { inherit pkgs; uuid = "47847aa8-231c-4e52-9aae-fc7f4178d736"; nodeID = "3"; inherit diskPath; inherit nvramPath; };
 in
 {
   virtualisation.libvirtd.hooks.qemu = {
@@ -52,7 +52,7 @@ in
           uuid = "464a4f52-bbf4-479e-9b2b-ed27116aab7b";
           type = "dir";
           target = {
-            path = "${disk_path}";
+            path = "${diskPath}";
           };
         };
         volumes = [
@@ -101,11 +101,11 @@ in
 
     # Add windows Domain
     domains = [
-      { definition = nixvirt.lib.domain.writeXML win10gpu_config; }
-      { definition = nixvirt.lib.domain.writeXML win10_config; }
-      { definition = nixvirt.lib.domain.writeXML node1_config; }
-      { definition = nixvirt.lib.domain.writeXML node2_config; }
-      { definition = nixvirt.lib.domain.writeXML node3_config; }
+      { definition = nixvirt.lib.domain.writeXML win10gpuConfig; }
+      { definition = nixvirt.lib.domain.writeXML win10Config; }
+      { definition = nixvirt.lib.domain.writeXML node1Config; }
+      { definition = nixvirt.lib.domain.writeXML node2Config; }
+      { definition = nixvirt.lib.domain.writeXML node3Config; }
     ];
   };
 }
