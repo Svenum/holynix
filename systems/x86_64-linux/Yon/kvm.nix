@@ -38,6 +38,33 @@ in
     networks = [
       {
         definition = nixvirt.lib.network.writeXML {
+          name = "default";
+          uuid = "5d84e370-c682-4186-ba72-d20dfc85d432";
+          forward = {
+            mode = "nat";
+            nat = { port = { start = 1024; end = 65535; }; };
+          };
+          bridge = {
+            name = "virbr0";
+            stp = true;
+            delay = 0;
+          };
+          mac.address = "52:54:00:2d:98:61";
+          ip = {
+            address = "192.168.122.1";
+            netmask = "255.255.255.0";
+            dhcp = {
+              range = {
+                start = "192.168.122.2";
+                end = "192.168.122.255";
+              };
+            };
+          };
+        };
+        active = true;
+      }
+      {
+        definition = nixvirt.lib.network.writeXML {
           name = "kube";
           uuid = "23897c1c-b6b3-49a3-8f96-a89765ae1113";
           forward = {
@@ -51,8 +78,27 @@ in
           };
           mac.address = "52:54:00:2d:97:60";
           ip = {
-            address = "10.10.0.0";
+            address = "10.10.0.1";
             netmask = "255.255.255.0";
+            dhcp = {
+              host = [
+                {
+                  name = "node1";
+                  mac = node1Config.devices.interface.mac.address;
+                  ip = "10.10.0.11";
+                }
+                {
+                  name = "node2";
+                  mac = node2Config.devices.interface.mac.address;
+                  ip = "10.10.0.12";
+                }
+                {
+                  name = "node3";
+                  mac = node2Config.devices.interface.mac.address;
+                  ip = "10.10.0.13";
+                }
+              ];
+            };
           };
         };
         active = true;
