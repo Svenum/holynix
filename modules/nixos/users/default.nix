@@ -101,6 +101,10 @@ in
               type = nullOr (str);
               default = null;
             };
+            extraGroups = mkOption {
+              type = nullOr (listOf singleLineStr);
+              default = null;
+            };
             git = {
               userName = mkOption {
                 type = str;
