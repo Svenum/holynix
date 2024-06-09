@@ -34,6 +34,31 @@ in
 
   virtualisation.libvirt.enable = true;
   virtualisation.libvirt.connections."qemu:///system" = {
+    # Add networks 
+    networks = [
+      {
+        definition = nixvirt.lib.network.writeXML {
+          name = "kube";
+          uuid = "23897c1c-b6b3-49a3-8f96-a89765ae1113";
+          forward = {
+            mode = "nat";
+            nat = { port = { start = 1024; end = 65535; }; };
+          };
+          bridge = {
+            name = "virbr1";
+            stp = true;
+            delay = 0;
+          };
+          mac.address = "52:54:00:2d:97:60";
+          ip = {
+            address = "10.10.0.0";
+            netmask = "255.255.255.0";
+          };
+        };
+        active = true;
+      }
+    ];
+
     # Add pools
     pools = [
       {
