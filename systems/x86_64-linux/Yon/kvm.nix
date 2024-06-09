@@ -129,7 +129,7 @@ in
         volumes = [
           {
             definition = nixvirt.lib.volume.writeXML {
-              name = "node_1.qcow2";
+              name = "node1.qcow2";
               capacity = { count = 150; unit = "GiB"; };
               target = {
                 format = { type = "qcow2"; };
@@ -138,7 +138,7 @@ in
           }
           {
             definition = nixvirt.lib.volume.writeXML {
-              name = "node_2.qcow2";
+              name = "node2.qcow2";
               capacity = { count = 150; unit = "GiB"; };
               target = {
                 format = { type = "qcow2"; };
@@ -147,7 +147,7 @@ in
           }
           {
             definition = nixvirt.lib.volume.writeXML {
-              name = "node_3.qcow2";
+              name = "node3.qcow2";
               capacity = { count = 150; unit = "GiB"; };
               target = {
                 format = { type = "qcow2"; };
