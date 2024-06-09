@@ -97,9 +97,9 @@
     ];
 
     controller = [
-      { type = "usb"; index = 0; model = "qemu-xhci"; ports = 15; }
-      { type = "pci"; index = 0; model = "pcie-root"; }
-      { type = "pci"; index = 0; model = "pcie-root-port"; }
+      { type = "usb"; model = "qemu-xhci"; ports = 15; }
+      { type = "pci"; model = "pcie-root"; }
+      { type = "pci"; model = "pcie-root-port"; }
     ];
 
     serial = [
