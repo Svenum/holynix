@@ -94,7 +94,7 @@ in
                 }
                 {
                   name = "node3";
-                  mac = node2Config.devices.interface.mac.address;
+                  mac = node3Config.devices.interface.mac.address;
                   ip = "10.10.0.13";
                 }
               ];
