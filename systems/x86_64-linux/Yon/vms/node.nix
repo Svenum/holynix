@@ -4,7 +4,8 @@
   type = "kvm";
 
   # VM Infos
-  name = "Node Nix ${nodeID}";
+  title = "Node ${nodeID}";
+  name = "node${nodeID}";
   uuid = uuid;
   description = "A Kubernetes node define in nix";
 

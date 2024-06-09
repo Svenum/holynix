@@ -3,7 +3,8 @@
 {
   type = "kvm";
   # VM Infos
-  name = "Windows Nix";
+  title = "Windows 10";
+  name = "win10";
   uuid = uuid;
   description = "A Windows 10 vm define in nix";
 
