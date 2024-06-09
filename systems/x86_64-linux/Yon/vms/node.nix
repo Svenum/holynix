@@ -75,7 +75,7 @@
     interface = {
       type = "network";
       mac.address = "52:54:00:c6:2f:a${nodeID}";
-      source.network = "default";
+      source.network = "kube";
       model.type = "virtio";
     };
 
