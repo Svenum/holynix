@@ -31,9 +31,6 @@ in
     # enable as default shell
     users.defaultUserShell = mkIf cfg.defaultShell pkgs.zsh;
 
-    # Set users default shell
-    users.defaultUserShell = pkgs.zsh;
-
     programs.zsh = {
       enable = true;
       syntaxHighlighting.enable = true;
