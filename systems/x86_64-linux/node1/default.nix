@@ -15,6 +15,11 @@ lib.holynix.systems.kubeNode {
   };
   clusterCIDR = "10.11.0.0/16";
 } // {
+  
+  imports = [
+    ./hardware.nix
+  ];
+
   # Enable Guest Agents
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
