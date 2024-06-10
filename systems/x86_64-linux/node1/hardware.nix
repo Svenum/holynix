@@ -12,12 +12,12 @@
 
   # Filesystems
   fileSystems."/" = {
-    label = "NixOS";
+    device = "/dev/vda2";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    label = "Boot";
+    device = "/dev/vda1";
     fsType = "vfat";
   };
 }
