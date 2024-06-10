@@ -18,11 +18,18 @@ in
       type = bool;
       default = false;
     };
+    defaultShell = mkOption {
+      type = bool;
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {
     # Enable default settings
     holynix.shell.enable = true;
+
+    # enable as default shell
+    users.defaultUserShell = mkIf cfg.defaultShell pkgs.zsh;
 
     # Set users default shell
     users.defaultUserShell = pkgs.zsh;

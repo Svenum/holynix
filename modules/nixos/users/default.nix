@@ -83,7 +83,7 @@ in
             };
             shell = mkOption {
               type = nullOr (shellPackage);
-              default = null;
+              default = pkgs.shadow;
             };
             authorizedKeys = mkOption {
               type = nullOr (listOf singleLineStr);
