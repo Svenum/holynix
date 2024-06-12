@@ -60,6 +60,11 @@
       url = "github:TamtamHero/fw-fanctrl/packaging/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpgks.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -89,6 +94,7 @@
     systems.modules.nixos = with inputs; [
       solaar.nixosModules.default
       home-manager.nixosModules.home-manager
+      sops-nix.nixosModules.sops
     ];
 
     systems.hosts.Yon.modules = with inputs; [

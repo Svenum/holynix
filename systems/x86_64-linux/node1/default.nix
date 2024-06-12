@@ -1,6 +1,6 @@
-{ lib, ... }:
+{ ... }:
 
-lib.holynix.systems.kubeNode {
+let
   adminUser = {
     name = "sudouser";
     authorizedKeys = [
@@ -14,11 +14,45 @@ lib.holynix.systems.kubeNode {
     ];
   };
   clusterCIDR = "10.11.0.0/16";
-} // {
-  
+  tokenFile = /root/.token;
+in
+{
   imports = [
     ./hardware.nix
   ];
+
+  holynix = {
+    shell.zsh.enable = true;
+    locale.name = "en_DE";
+    users = {
+      "${adminUser.name}" = {
+        isSudoUser = true;
+        authorizedKeys = adminUser.authorizedKeys;
+      };
+      "${kubeUser.name}" = {
+        isSudoUser = false;
+        authorizedKeys = kubeUser.authorizedKeys;
+      };
+    };
+    tools = {
+      nvim.enable = true;
+      tmux.enable = true;
+      cliTools.enable = true;
+    };
+
+    network.enable = true;
+  };
+
+  # Enable SSH
+  services.openssh.enable = true;
+
+  # Enable K3S
+  services.k3s = {
+    enable = true;
+    tokenFile = tokenFile;
+    extraFlags = "--cluster-cidr ${clusterCIDR}";
+    clusterInit = true;
+  };
 
   # Enable Guest Agents
   services.qemuGuest.enable = true;

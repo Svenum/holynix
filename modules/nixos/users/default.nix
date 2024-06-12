@@ -23,7 +23,6 @@ let
       (mkIf (if builtins.hasAttr "isSudoUser" user then user.isSudoUser else false) "wheel")
     ];
 
-    useDefaultShell = true;
     uid = user.uid;
     openssh.authorizedKeys.keys = mkIf (user.authorizedKeys != null) user.authorizedKeys;
   };
