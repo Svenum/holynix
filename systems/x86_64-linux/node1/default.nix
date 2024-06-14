@@ -44,7 +44,20 @@ in
   };
 
   # Enable SSH
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    hostKeys = [
+      {
+        path = "/etc/ssh/ssh_host_ed25519_key";
+        type = "ed25519";
+      }
+      {
+        bits = 4096;
+        path = "/etc/ssh/ssh_host_rsa_key";
+        type = "rsa";
+      }
+    ];
+  };
 
   # Enable K3S
   #services.k3s = {
