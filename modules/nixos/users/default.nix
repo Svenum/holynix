@@ -8,9 +8,9 @@ let
   mkUser = name: user: {
     isNormalUser = true;
     description = name;
-    shell = user.shell;
-    password = user.password;
-    initialPassword = user.initialPassword;
+    shell = mkIf (user.shell != null) user.shell;
+    password = mkIf (user.password != null) user.password;
+    initialPassword = mkIf (user.initialPassword != null) user.initialPassword;
     extraGroups = [
       "networkmanager"
       "network"
@@ -82,7 +82,7 @@ in
             };
             shell = mkOption {
               type = nullOr (shellPackage);
-              default = pkgs.shadow;
+              default = null;
             };
             authorizedKeys = mkOption {
               type = nullOr (listOf singleLineStr);

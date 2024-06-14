@@ -1,0 +1,14 @@
+---
+keys:
+  hosts:
+    - &node1
+    - &node2
+    - &node3
+creation_rules:
+  - path_regex: secrets/kube.yaml
+    key_groups:
+      - age:
+          - *node1
+          - *node2
+          - *node3
+

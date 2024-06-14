@@ -47,12 +47,12 @@ in
   services.openssh.enable = true;
 
   # Enable K3S
-  services.k3s = {
-    enable = true;
-    tokenFile = tokenFile;
-    extraFlags = "--cluster-cidr ${clusterCIDR}";
-    clusterInit = true;
-  };
+  #services.k3s = {
+  #  enable = true;
+  #  tokenFile = tokenFile;
+  #  extraFlags = "--cluster-cidr ${clusterCIDR}";
+  #  clusterInit = true;
+  #};
 
   # Enable Guest Agents
   services.qemuGuest.enable = true;
