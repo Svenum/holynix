@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 let
   adminUser = {
@@ -14,7 +14,7 @@ let
     ];
   };
   clusterCIDR = "10.11.0.0/16";
-  tokenFile = /root/.token;
+  kubeTokenFile = config.sops.secrets."kube_token".path;
 in
 {
   imports = [
@@ -40,32 +40,27 @@ in
       cliTools.enable = true;
     };
 
+    sops = {
+      enableHostKey = true;
+      defaultSopsFile = ../../../secrets/kube.yaml;
+    };
+
     network.enable = true;
   };
 
   # Enable SSH
-  services.openssh = {
-    enable = true;
-    hostKeys = [
-      {
-        path = "/etc/ssh/ssh_host_ed25519_key";
-        type = "ed25519";
-      }
-      {
-        bits = 4096;
-        path = "/etc/ssh/ssh_host_rsa_key";
-        type = "rsa";
-      }
-    ];
-  };
+  services.openssh.enable = true;
+
+  # Sops
+  sops.secrets."kube_token" = {};
 
   # Enable K3S
-  #services.k3s = {
-  #  enable = true;
-  #  tokenFile = tokenFile;
-  #  extraFlags = "--cluster-cidr ${clusterCIDR}";
-  #  clusterInit = true;
-  #};
+  services.k3s = {
+    enable = true;
+    tokenFile = kubeTokenFile;
+    extraFlags = "--cluster-cidr ${clusterCIDR}";
+    clusterInit = true;
+  };
 
   # Enable Guest Agents
   services.qemuGuest.enable = true;

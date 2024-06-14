@@ -1,7 +1,7 @@
 ---
 keys:
   hosts:
-    - &node1
+    - &node1 age1jcp58vutz6nm0q0qe5r39v2zmspjlu7ns4jfyc6fwnezgtmtrvpq7y868z
     - &node2
     - &node3
 creation_rules:
