@@ -73,7 +73,7 @@ in
       6443   # Kube API
       10250  # Metrics
     ];
-    allowedTCPPortsRanges = [
+    allowedTCPPortRanges = [
       # etcd
       { from = 2379; to = 2380; }
     ];
