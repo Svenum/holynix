@@ -67,7 +67,7 @@ in
   services.spice-vdagentd.enable = true;
 
   # enable port
-  network.allowedTCPPorts = [
+  networking.allowedTCPPorts = [
     # Traefik
     80
     443
