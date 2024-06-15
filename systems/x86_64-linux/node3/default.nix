@@ -68,18 +68,15 @@ in
   services.spice-vdagentd.enable = true;
 
   # enable port
-  networking.firewall.allowedTCPPorts = [
-    # Traefik
-    80
-    443
-
-    # Kube API
-    6443
-
-    # Metrics
-    10250
-
-    # etcd
-    { from = 2379; to = 2380; }
-  ];
+  networking.firewall = {
+    allowedTCPPorts = [
+      80 443 # Traefik
+      6443   # Kube API
+      10250  # Metrics
+    ];
+    allowedTCPPortsRanges = [
+      # etcd
+      { from = 2379; to = 2380; }
+    ];
+  };
 }
