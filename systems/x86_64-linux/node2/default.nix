@@ -45,38 +45,23 @@ in
       defaultSopsFile = ../../../secrets/kube.yaml;
     };
 
+    k3s = {
+      enable = true;
+      clusterCIDR = "10.11.0.0/16";
+      tokenFile = config.sops.secrets."kube_token".path;
+      serverAddress = "https://10.10.0.11:6443";
+    };
+
     network.enable = true;
   };
 
   # Enable SSH
   services.openssh.enable = true;
 
-  # Sops
-  sops.secrets."kube_token" = {};
-
-  # Enable K3S
-  services.k3s = {
-    enable = true;
-    tokenFile = kubeTokenFile;
-    extraFlags = "--cluster-cidr ${clusterCIDR}";
-    clusterInit = true;
-    serverAddr = "https://10.10.0.11:6443";
-  };
+  # Initial Secrets
+  sops.secrets."kube_token".restartUnits = [ "k3s.service" ];
 
   # Enable Guest Agents
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
-
-  # enable port
-  networking.firewall = {
-    allowedTCPPorts = [
-      80 443 # Traefik
-      6443   # Kube API
-      10250  # Metrics
-    ];
-    allowedTCPPortRanges = [
-      # etcd
-      { from = 2379; to = 2380; }
-    ];
-  };
 }

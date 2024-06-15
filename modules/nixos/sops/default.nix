@@ -11,14 +11,22 @@ in
     enableHostKey = mkOption {
       type = bool;
       default = false;
+      description = "Enable the host ssh_key for sops";
     };
     defaultSopsFile = mkOption {
       type = path;
       default = ./secrets/secret.yaml;
+      description = "Default secret file";
     };
     sshKeyPaths = mkOption {
       type = nullOr (listOf (str));
       default = null;
+      description = "Path of the private ssh key to encrypt";
+    };
+    initSecrets = mkOption {
+      type = nullOr (listOf (str));
+      default = null;
+      description = "List of secrets to initial";
     };
   };
 
