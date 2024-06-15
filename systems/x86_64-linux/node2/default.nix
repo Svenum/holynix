@@ -60,10 +60,26 @@ in
     tokenFile = kubeTokenFile;
     extraFlags = "--cluster-cidr ${clusterCIDR}";
     clusterInit = true;
-    serverAddr = "10.10.0.11";
+    serverAddr = "https://10.10.0.11:6443";
   };
 
   # Enable Guest Agents
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
+
+  # enable port
+  network.allowedTCPPorts = [
+    # Traefik
+    80
+    443
+
+    # Kube API
+    6443
+
+    # Metrics
+    10250
+
+    # etcd
+    { from = 2379; to = 2380; }
+  ];
 }

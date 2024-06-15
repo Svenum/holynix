@@ -65,4 +65,20 @@ in
   # Enable Guest Agents
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
+
+  # enable port
+  network.allowedTCPPorts = [
+    # Traefik
+    80
+    443
+
+    # Kube API
+    6443
+
+    # Metrics
+    10250
+
+    # etcd
+    { from = 2379; to = 2380; }
+  ];
 }
