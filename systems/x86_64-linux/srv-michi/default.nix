@@ -49,8 +49,13 @@
     useDHCP = false;
   };
 
+  # Libvirt Guest Agents
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
 
+  # Node Exporter
+  services.prometheus.exporters.node.enable = true;
+
+  # SSH
   services.openssh.enable = true;
 }
