@@ -54,7 +54,10 @@
   services.spice-vdagentd.enable = true;
 
   # Node Exporter
-  services.prometheus.exporters.node.enable = true;
+  services.prometheus.exporters.node = {
+    enable = true;
+    openFirewall = true;
+  };
 
   # SSH
   services.openssh.enable = true;
