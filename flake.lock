@@ -289,11 +289,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1719581268,
-        "narHash": "sha256-ivmsmawwmthU9z1sFrBBcm172JYa9cbm6YhjrUllvOk=",
+        "lastModified": 1719581735,
+        "narHash": "sha256-Pi8V/h6sZJ5zTyQXNrbw7ikrDF9gJMpGaKew+eedyJ8=",
         "owner": "Svenum",
         "repo": "fw-fanctrl",
-        "rev": "bc8df92082d9a3177a2ce5ce16ab581c951ffd23",
+        "rev": "0e99acbb56d11c0434ed25c96cffe0c7366f334b",
         "type": "github"
       },
       "original": {
