@@ -54,7 +54,7 @@
     };
 
     fw-fanctrl = {
-      url = "github:TamtamHero/fw-fanctrl/packaging/nix";
+      url = "github:Svenum/fw-fanctrl/packaging/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

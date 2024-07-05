@@ -26,9 +26,11 @@ in
 
     # Add Virtual Desktops
     kwin = {
-      effects.shakeCursor.enable = true;
+      effects = {
+        shakeCursor.enable = true;
+        desktopSwitching.animation = "slide";
+      };
       virtualDesktops = {
-        animation = "slide";
         rows = 2;
         names = [
           "MAIN TOP"
@@ -61,7 +63,7 @@ in
       clickItemTo = "select";
       theme = "default";
       colorScheme = "Catppuccin${themeFlavour}${themeAccent}";
-      cursorTheme = "Catppuccin-${cursorFlavour}-${themeAccent}-Cursors";
+      cursor.theme = "Catppuccin-${cursorFlavour}-${themeAccent}-Cursors";
       wallpaper = "/etc/wallpaper/catppuccin-${lib.strings.toLower themeCfg.flavour}.jpg";
     };
 
