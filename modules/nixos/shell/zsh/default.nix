@@ -24,8 +24,8 @@ in
     # Enable default settings
     holynix.shell.enable = true;
 
-    # Set users default shell
-    users.defaultUserShell = pkgs.zsh;
+    # enable as default shell
+    users.defaultUserShell = mkIf cfg.defaultShell pkgs.zsh;
 
     programs.zsh = {
       enable = true;

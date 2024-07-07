@@ -8,9 +8,9 @@ let
   mkUser = name: user: {
     isNormalUser = true;
     description = name;
-    shell = user.shell;
-    password = user.password;
-    initialPassword = user.initialPassword;
+    shell = mkIf (user.shell != null) user.shell;
+    password = mkIf (user.password != null) user.password;
+    initialPassword = mkIf (user.initialPassword != null) user.initialPassword;
     extraGroups = [
       "networkmanager"
       "network"
@@ -23,7 +23,6 @@ let
       (mkIf (if builtins.hasAttr "isSudoUser" user then user.isSudoUser else false) "wheel")
     ];
 
-    useDefaultShell = true;
     uid = user.uid;
     openssh.authorizedKeys.keys = mkIf (user.authorizedKeys != null) user.authorizedKeys;
   };
