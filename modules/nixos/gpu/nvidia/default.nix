@@ -21,6 +21,7 @@ in
     hardware = {
       graphics = {
         enable = true;
+        package = config.hardware.nvidia.package;
         extraPackages = with pkgs; [
           vaapiVdpau
           libvdpau-va-gl
