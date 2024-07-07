@@ -18,6 +18,10 @@ in
       type = bool;
       default = false;
     };
+    defaultShell = mkOption {
+      type = bool;
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {
