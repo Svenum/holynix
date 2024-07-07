@@ -27,7 +27,7 @@
 
   # Configure Filesystem
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/496b6388-8a7c-46cb-9b2e-7f727bb51861";
+    { device = "/dev/disk/by-uuid/bc414e42-a691-432c-aeab-dff20179d68d";
       fsType = "ext4";
     };
 
