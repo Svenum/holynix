@@ -35,7 +35,7 @@ in
       ++ lists.optionals (cfg.name == "en_DE") [ "en_US.UTF-8/UTF-8" "de_DE.UTF-8/UTF-8" ];
 
       defaultLocale = if (builtins.elem cfg.name singleLocale) then
-        "${cfg.name}.UTF-8/UTF-8"
+        "${cfg.name}.UTF-8"
       else if (cfg.name == "en_DE") then
         "en_US.UTF-8"
       else
