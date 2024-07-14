@@ -55,6 +55,7 @@ in
     environment.systemPackages = with pkgs; [
       # KDE BACKUP wait for qt6 implementation
       kdePackages.kup
+      bup
       # GUI Tools
       kdePackages.skanlite
       kdePackages.sddm-kcm
