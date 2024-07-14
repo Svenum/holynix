@@ -16,6 +16,7 @@
       "martinn" = {
         isGuiUser = true;
         isSudoUser = false;
+        isKvmUser = true;
         uid = 1001;
       };
       "sumartinn" = {
