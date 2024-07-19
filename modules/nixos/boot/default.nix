@@ -17,6 +17,10 @@ in
       type = bool;
       default = false;
     };
+    systemdBoot = mkOption {
+      type = bool;
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -28,7 +32,7 @@ in
 
     # Bootloader
     boot.loader = {
-      systemd-boot = {
+      systemd-boot = mkIf cfg.systemdBoot {
         enable = mkIf (! cfg.secureBoot) true;
         configurationLimit = 15;
       };
