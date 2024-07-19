@@ -6,6 +6,7 @@
 
   holynix = {
     desktop.plasma.enable = true;
+    locale.name = "de_DE";
     theme = {
       accent = "peach";
       flavour = "mocha";
@@ -15,6 +16,7 @@
       "martinn" = {
         isGuiUser = true;
         isSudoUser = false;
+        isKvmUser = true;
         uid = 1001;
       };
       "sumartinn" = {
