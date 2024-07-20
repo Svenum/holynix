@@ -96,6 +96,9 @@
   # Enable Waydroid
   virtualisation.waydroid.enable = true;
 
+  # enable aarch64 emulation
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   environment.systemPackages = with pkgs; [
     holynix.tetris
   ];
