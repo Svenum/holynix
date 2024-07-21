@@ -12,6 +12,7 @@
       tmux.enable = true;
       cliTools.enable = true;
     };
+    network.enable = true;
     users =  {
       "sudouser" = {
         isGuiUser = true;
@@ -48,4 +49,7 @@
     libraspberrypi
     raspberrypi-eeprom
   ];
+
+  # SSH
+  services.openssh.enable = true;
 }

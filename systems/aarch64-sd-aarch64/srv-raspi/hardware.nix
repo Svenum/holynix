@@ -7,9 +7,4 @@
     grub.enable = lib.mkForce false;
     generic-extlinux-compatible.enable = lib.mkForce true;
   };
-
-  fileSystems."/" =
-    { device = "/dev/sda1";
-      fsType = "ext4";
-    };
 }
