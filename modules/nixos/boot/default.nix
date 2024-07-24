@@ -12,14 +12,27 @@ in
     enable = mkOption {
       type = bool;
       default = true;
+      description = "enable holynix boot options";
     };
     secureBoot = mkOption {
       type = bool;
       default = false;
+      description = "enable lanzaboote to enable secure boot";
     };
     systemdBoot = mkOption {
       type = bool;
       default = true;
+      description = "enable systemd-boot";
+    };
+    memtest = mkOption {
+      type = bool;
+      default = false;
+      description = "enable memtest86";
+    };
+    netboot = mkOption {
+      type = bool;
+      default = false;
+      description = "enable netbootxyz to boot images on the network";
     };
   };
 
@@ -35,6 +48,9 @@ in
       systemd-boot = mkIf cfg.systemdBoot {
         enable = mkIf (! cfg.secureBoot) true;
         configurationLimit = 15;
+        editor = false;
+        memtest86.enable = cfg.memtest;
+        netbootxyz.enable = cfg.netboot;
       };
       efi.canTouchEfiVariables = true;
       timeout = mkDefault 1;

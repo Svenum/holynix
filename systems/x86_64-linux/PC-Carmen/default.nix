@@ -60,7 +60,11 @@
   };
 
   # enable solaar
-  programs.solaar.enable = true;
+  services.solaar = {
+    enable = true;
+    window = "hide";
+    extraArgs = "--restart-on-wake-up";
+  };
 
   # Enable ssh
   services.openssh.enable = true;

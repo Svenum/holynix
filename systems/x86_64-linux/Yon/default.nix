@@ -7,7 +7,11 @@
   ];
 
   holynix = {
-    boot.secureBoot = true;
+    boot = {
+      secureBoot = true;
+      netboot = true;
+      memtest = true;
+    };
     desktop.plasma.enable = true;
     shell.zsh.enable = true;
     locale.name = "en_DE";
@@ -94,7 +98,6 @@
   programs.gamescope.enable = true;
 
   # enable solaar
-  #programs.solaar.enable = true;
   services.solaar = {
     enable = true;
     window = "hide";
