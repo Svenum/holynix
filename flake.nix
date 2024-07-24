@@ -27,12 +27,13 @@
     };
 
     solaar = {
-      url = "github:Svenum/Solaar-Flake/snowfall";
+      #url = "github:Svenum/Solaar-Flake/snowfall";
+      url = "github:redxtech/Solaar-Flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     auto-cpufreq = {
-      url = "github:Svenum/auto-cpufreq/update";
+      url = "github:AdnanHodzic/auto-cpufreq";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

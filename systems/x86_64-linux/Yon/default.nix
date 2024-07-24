@@ -94,7 +94,12 @@
   programs.gamescope.enable = true;
 
   # enable solaar
-  programs.solaar.enable = true;
+  #programs.solaar.enable = true;
+  services.solaar = {
+    enable = true;
+    window = "hide";
+    extraArgs = "--restart-on-wake-up";
+  };
   
   # Enable Waydroid
   virtualisation.waydroid.enable = true;
