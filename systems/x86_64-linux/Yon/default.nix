@@ -15,6 +15,7 @@
     desktop.plasma.enable = true;
     shell.zsh.enable = true;
     locale.name = "en_DE";
+    hardware.laptop.enable = true;
     users."sven" = {
       isGuiUser = true;
       isSudoUser = true;
