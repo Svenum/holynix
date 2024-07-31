@@ -27,7 +27,7 @@
     };
 
     solaar = {
-      url = "github:Svenum/Solaar-Flake/snowfall";
+      url = "github:Svenum/Solaar-Flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -55,6 +55,11 @@
 
     fw-fanctrl = {
       url = "github:Svenum/fw-fanctrl/packaging/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    raspberry-pi-nix = {
+      url = "github:nix-community/raspberry-pi-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -93,6 +98,7 @@
 
     systems.hosts.srv-raspi.modules = with inputs; [
       nixos-hardware.nixosModules.raspberry-pi-5
+      raspberry-pi-nix.nixosModules.raspberry-pi
     ];
 
     systems.hosts.Yon.modules = with inputs; [
@@ -100,4 +106,14 @@
       fw-fanctrl.nixosModules.default
     ];
   };
+
+  nixConfig = {
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
 }
