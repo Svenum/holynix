@@ -116,7 +116,7 @@
     ];
     extra-trusted-users = [
       "@wheel"
-    ]
+    ];
   };
 
 }
