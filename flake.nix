@@ -92,7 +92,7 @@
     ];
 
     systems.hosts.srv-raspi.modules = with inputs; [
-      nixos-hardware.nixosModules.raspberry-pi-4
+      nixos-hardware.nixosModules.raspberry-pi-5
     ];
 
     systems.hosts.Yon.modules = with inputs; [
