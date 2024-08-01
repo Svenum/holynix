@@ -53,7 +53,10 @@ in
 
     # Install Needed packages
     environment.systemPackages = with pkgs; [
-      # KDE BACKUP wait for qt6 implementation
+      # XWayland compability
+      xorg.xrdb
+      xsettingsd
+      # KDE Backup
       kdePackages.kup
       bup
       # GUI Tools
