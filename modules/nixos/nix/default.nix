@@ -33,10 +33,16 @@ in
       substituters = [
         # nix community's cache server
         "https://nix-community.cachix.org"
+
+        # own cache
+        "https://s3.holypenguin.net/nix-cache/"
       ];
       trusted-public-keys = [
         # nix community's cache server public key
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+
+        # own cache
+        "s3.holypenguin.net-1:FazWVlpLLuiIw12YuKaWJ0pUI8NGe50txqlca62lFrA="
       ];
     };
   };
