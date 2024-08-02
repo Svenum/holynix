@@ -69,4 +69,7 @@
 
   # SSH
   services.openssh.enable = true;
+
+  # enable aarch64 emulation
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }
