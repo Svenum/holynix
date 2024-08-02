@@ -60,7 +60,6 @@ in
       kdePackages.kup
       bup
       # GUI Tools
-      kdePackages.skanlite
       kdePackages.sddm-kcm
       xwaylandvideobridge
       caffeine-ng
