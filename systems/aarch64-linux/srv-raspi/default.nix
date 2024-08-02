@@ -4,7 +4,7 @@
   imports = [ ./hardware.nix ];
 
   holynix = {
-    boot.systemdBoot = false;
+    boot.enable = false;
     shell.zsh.enable = true;
     locale.name = "en_DE";
     tools = {

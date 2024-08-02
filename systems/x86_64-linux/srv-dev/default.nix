@@ -19,6 +19,14 @@
           userEmail = "springermail@web.de";
         };
       };
+      "sven" = {
+        isGuiUser = true;
+        isSudoUser = false;
+        git = {
+          userName = "Svenum";
+          userEmail = "s.ziegler@holypenguin.net";
+        };
+      };
       "sudouser" = {
         isGuiUser = true;
         isSudoUser = true;
