@@ -37,7 +37,7 @@ in
         # own cache
         "https://s3.holypenguin.net/nix-cache/"
       ];
-      trusted-substituers = [
+      trusted-substituters = [
         # nix community's cache server
         "https://nix-community.cachix.org"
 
