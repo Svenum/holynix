@@ -4,12 +4,26 @@ with lib;
 with lib.types;
 let
   cfg = config.holynix.wireguard;
+
+  mkWgConfig = name: config: {
+   configFile = config.config; 
+  };
 in
 {
   options.holynix.wireguard = {
     enable = mkOption {
       type = bool;
       default = false;
+    };
+    interfaces = mkOption {
+      type = attrsOf (submodule {
+        config = mkOption {
+          type = nullOr str;
+          default = null;
+          description = "Path to config file";
+        };
+      });
+      default = {};
     };
   };
 
@@ -29,5 +43,6 @@ in
         ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
       '';
     };
+    networking.wg-quick.interfaces = mapAttrs mkWgConfig cfg.interfaces;
   };
 }

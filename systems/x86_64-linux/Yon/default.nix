@@ -97,4 +97,10 @@
   environment.systemPackages = with pkgs; [
     holynix.tetris
   ];
+
+  # Enable OpenSSH for hostkeys but disable firewall
+  services.openssh = {
+    enable = true;
+    openFirewall = false;
+  };
 }

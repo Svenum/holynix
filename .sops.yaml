@@ -4,6 +4,7 @@ keys:
     - &node1 age1jcp58vutz6nm0q0qe5r39v2zmspjlu7ns4jfyc6fwnezgtmtrvpq7y868z
     - &node2 age1h347mrfjlsul2e7unq60xvg6dte9jcn5ge0r5q8ygcnkdzu23cfsdu6hyt
     - &node3 age1vhutk7kxakahg6hcyznvelulyqzep2023gl2hqr2pxtmgcjq4qysg0e8fv
+    - &Yon 
 creation_rules:
   - path_regex: secrets/kube.yaml
     key_groups:
@@ -11,4 +12,8 @@ creation_rules:
           - *node1
           - *node2
           - *node3
+  - path_regex: secrets/wireguard.yaml
+    key_groups:
+      - age:
+          - *Yon
 
