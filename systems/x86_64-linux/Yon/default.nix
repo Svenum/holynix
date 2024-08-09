@@ -25,7 +25,13 @@
         userEmail = "s.ziegler@holypenguin.net";
       };
     };
-    wireguard.enable = true;
+    wireguard = {
+      enable = true;
+      interfaces = {
+        "wg-home" = "${config.sops.secrets."wg-home".path}";
+        "wg-nl" = "${config.sops.secrets."wg-nl".path}";
+      };
+    };
     tools = {
       nvim.enable = true;
       tmux.enable = true;
@@ -68,6 +74,12 @@
         }
       ];
     };
+
+    sops = {
+      enableHostKey = true;
+      defaultSopsFile = ../../../secrets/wireguard.yaml;
+      initSecrets = [ "wg-home" "wg-nl" ];
+    };
   };
   # Force linux kernel 6.9 to build failure in kvmfr
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
@@ -103,4 +115,8 @@
     enable = true;
     openFirewall = false;
   };
+
+  # Restart Wiregaurd on secret change
+  sops.secrets."wg-nl".restartUnits = [ "wg-quick-wg-nl.service" ];
+  sops.secrets."wg-home".restartUnits = [ "wg-quick-wg-home.service" ];
 }
