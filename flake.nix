@@ -1,4 +1,12 @@
 {
+  nixConfig = {
+    extra-substituters = [
+      # Community cache
+      "https://nix-community.cachix.org"
+      # Own cache
+      "https://s3.holypenguin.net/nix-cache/"
+    ];
+  };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
