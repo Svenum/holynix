@@ -28,8 +28,8 @@
     wireguard = {
       enable = true;
       interfaces = {
-        "wg-home" = "${config.sops.secrets."wg-home".path}";
-        "wg-nl" = "${config.sops.secrets."wg-nl".path}";
+        "wg-home" = "${config.sops.secrets."wg_home".path}";
+        "wg-nl" = "${config.sops.secrets."wg_nl".path}";
       };
     };
     tools = {
@@ -78,7 +78,6 @@
     sops = {
       enableHostKey = true;
       defaultSopsFile = ../../../secrets/wireguard.yaml;
-      initSecrets = [ "wg-home" "wg-nl" ];
     };
   };
   # Force linux kernel 6.9 to build failure in kvmfr
@@ -117,6 +116,6 @@
   };
 
   # Restart Wiregaurd on secret change
-  sops.secrets."wg-nl".restartUnits = [ "wg-quick-wg-nl.service" ];
-  sops.secrets."wg-home".restartUnits = [ "wg-quick-wg-home.service" ];
+  sops.secrets."wg_home".restartUnits = [ "wg-quick-wg-nl.service" ];
+  sops.secrets."wg_nl".restartUnits = [ "wg-quick-wg-nl.service" ];
 }
