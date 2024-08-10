@@ -6,7 +6,8 @@ let
   cfg = config.holynix.wireguard;
 
   mkWgConfig = name: interface: {
-   configFile = interface.configFile; 
+   source = interface.configFile; 
+   target = "NetworkManager/system-connections/${name}.nmconnection";
   };
 in
 {
@@ -48,6 +49,6 @@ in
         ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
       '';
     };
-    networking.wg-quick.interfaces = mapAttrs mkWgConfig cfg.interfaces;
+    environment.etc = mapAttrs mkWgConfig cfg.interfaces;
   };
 }
