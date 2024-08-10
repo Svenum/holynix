@@ -116,6 +116,6 @@
   };
 
   # Restart Wiregaurd on secret change
-  sops.secrets."wg_home".restartUnits = [ "wg-quick-wg-nl.service" ];
-  sops.secrets."wg_nl".restartUnits = [ "wg-quick-wg-nl.service" ];
+  sops.secrets."wg_home".restartUnits = [ "NetworkManager.service" ];
+  sops.secrets."wg_nl".restartUnits = [ "NetworkManager.service" ];
 }
