@@ -5,8 +5,8 @@ with lib.types;
 let
   cfg = config.holynix.wireguard;
 
-  mkWgConfig = name: config: {
-   configFile = config.config; 
+  mkWgConfig = name: interface: {
+   configFile = interface.configFile; 
   };
 in
 {
@@ -16,13 +16,18 @@ in
       default = false;
     };
     interfaces = mkOption {
-      type = attrsOf (submodule {
-        config = mkOption {
-          type = nullOr str;
-          default = null;
-          description = "Path to config file";
-        };
-      });
+      type = attrsOf (submodule (
+        { options, ... }:
+        {
+          options = {
+            configFile = mkOption {
+              type = nullOr (str);
+              default = null;
+              description = "Path to config file";
+            };
+          };  
+        }
+      ));
       default = {};
     };
   };

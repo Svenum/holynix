@@ -28,8 +28,8 @@
     wireguard = {
       enable = true;
       interfaces = {
-        "wg-home" = "${config.sops.secrets."wg_home".path}";
-        "wg-nl" = "${config.sops.secrets."wg_nl".path}";
+        "wg-home".configFile = config.sops.secrets."wg_home".path;
+        "wg-nl".configFile = config.sops.secrets."wg_nl".path;
       };
     };
     tools = {
