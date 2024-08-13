@@ -56,6 +56,7 @@ in
       # XWayland compability
       xorg.xrdb
       xsettingsd
+      xdg-desktop-portal-gtk
       # KDE Backup
       kdePackages.kup
       bup
