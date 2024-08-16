@@ -29,7 +29,8 @@
   networking = {
     interfaces = {
       enp1s0.ipv4.addresses = [{
-        address = "172.16.0.12";
+        #address = "172.16.0.12";
+        address = "172.17.0.89";
         prefixLength = 24;
       }];
     };

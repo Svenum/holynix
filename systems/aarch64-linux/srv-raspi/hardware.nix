@@ -12,4 +12,9 @@
   };
   raspberry-pi-nix.board = "bcm2712";
 
+  boot.supportedFilesystems = {
+    zfs = lib.mkForce false;
+  };
+
+  sdImage.compressImage = lib.mkForce false;
 }
