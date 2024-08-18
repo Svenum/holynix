@@ -614,6 +614,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1718835956,
+        "narHash": "sha256-wM9v2yIxClRYsGHut5vHICZTK7xdrUGfrLkXvSuv6s4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "dd457de7e08c6d06789b1f5b88fc9327f4d96309",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1721466660,
         "narHash": "sha256-pFSxgSZqZ3h+5Du0KvEL1ccDZBwu4zvOil1zzrPNb3c=",
         "owner": "NixOS",
@@ -686,9 +702,7 @@
       "inputs": {
         "libcamera-src": "libcamera-src",
         "libpisp-src": "libpisp-src",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_2",
         "rpi-bluez-firmware-src": "rpi-bluez-firmware-src",
         "rpi-firmware-nonfree-src": "rpi-firmware-nonfree-src",
         "rpi-firmware-src": "rpi-firmware-src",
@@ -698,11 +712,11 @@
         "u-boot-src": "u-boot-src"
       },
       "locked": {
-        "lastModified": 1722525809,
-        "narHash": "sha256-LTCbMSKbSHvKubfXolss39UeTKDIoP9wWTyXV/tDPHU=",
+        "lastModified": 1723755330,
+        "narHash": "sha256-kmJPdoDIhbGz6J7mIUPK6JYJLY6YDkeZPdtzpWPCk0I=",
         "owner": "nix-community",
         "repo": "raspberry-pi-nix",
-        "rev": "35bb455fdeb495043a94433f67e05fa88980cdad",
+        "rev": "6d61a9b18b1d3786ebd1cc73b7a3b37959bf4557",
         "type": "github"
       },
       "original": {
@@ -951,7 +965,7 @@
     },
     "sops-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-stable": "nixpkgs-stable_3"
       },
       "locked": {
