@@ -74,4 +74,7 @@
 
   # Enable fwupd
   services.fwupd.enable = true;
+
+  # Open firewall for the AusweisApp
+  programs.ausweisapp.openFirewall = true;
 }

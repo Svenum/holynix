@@ -4,7 +4,7 @@
       # Community cache
       "https://nix-community.cachix.org"
       # Own cache
-      "https://s3.holypenguin.net/nix-cache/"
+      #"https://s3.holypenguin.net/nix-cache/"
     ];
   };
   inputs = {
@@ -27,7 +27,7 @@
     };
 
     plasma-manager = {
-      url = "github:pjones/plasma-manager";
+      url = "github:nix-community/plasma-manager";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
@@ -50,7 +50,7 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.3.0";
+      url = "github:nix-community/lanzaboote/v0.4.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -67,9 +67,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    raspberry-pi-nix = {
-      url = "github:nix-community/raspberry-pi-nix";
-    };
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
 
     sops-nix.url = "github:Mic92/sops-nix";
   };

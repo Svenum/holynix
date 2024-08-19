@@ -118,4 +118,7 @@
   # Restart Wiregaurd on secret change
   sops.secrets."wg_home".restartUnits = [ "NetworkManager.service" ];
   sops.secrets."wg_nl".restartUnits = [ "NetworkManager.service" ];
+
+  # Open firewall for the AusweisApp
+  programs.ausweisapp.openFirewall = true;
 }
