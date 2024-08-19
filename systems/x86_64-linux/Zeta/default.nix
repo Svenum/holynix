@@ -60,6 +60,9 @@
         }
       ];
     };
+
+    # Open firewall for the AusweisApp
+    firewall.ausweisapp.open = true;
   };
 
   # enable solaar
@@ -74,7 +77,4 @@
 
   # Enable fwupd
   services.fwupd.enable = true;
-
-  # Open firewall for the AusweisApp
-  programs.ausweisapp.openFirewall = true;
 }

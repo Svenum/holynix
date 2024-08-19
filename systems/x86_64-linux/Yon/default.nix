@@ -79,6 +79,9 @@
       enableHostKey = true;
       defaultSopsFile = ../../../secrets/wireguard.yaml;
     };
+
+    # Open firewall for the AusweisApp
+    firewall.ausweisapp.open = true;
   };
 
   # Enable fw-fanctrl
@@ -116,7 +119,4 @@
   # Restart Wiregaurd on secret change
   sops.secrets."wg_home".restartUnits = [ "NetworkManager.service" ];
   sops.secrets."wg_nl".restartUnits = [ "NetworkManager.service" ];
-
-  # Open firewall for the AusweisApp
-  programs.ausweisapp.openFirewall = true;
 }
