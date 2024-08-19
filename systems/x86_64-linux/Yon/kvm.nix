@@ -4,7 +4,7 @@ let
   inherit (inputs) nixVirt;
   nixvirt.lib = nixVirt.lib;
   toggle_gpu = pkgs.writeShellScriptBin "toggle_gpu" ''
-    if [[ $1 == "${win10gpuConfig.title}" ]]; then
+    if [[ $1 == "${win10gpuConfig.name}" ]]; then
       if [[ $2 == "prepare" ]]; then
         /run/current-system/sw/bin/toggle-amd-gpu vfio
       elif [[ $2 == "release" ]]; then
