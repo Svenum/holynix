@@ -1,14 +1,16 @@
 { ... }:
 
 final: prev: {
-  kvmfr = prev.kvmfr.overrideAttrs (old: {
-    patches = [
-      (prev.fetchpatch {
-        url = "https://github.com/gnif/LookingGlass/commit/7305ce36af211220419eeab302ff28793d515df2.patch";
-        hash = "sha256-97nZsIH+jKCvSIPf1XPf3i8Wbr24almFZzMOhjhLOYk=";
-        stripLen = 1;
-      })
-    ];
+  linuxPackages = prev.linuxPackages.extend (kfinal: kprev: {
+    kvmfr = prev.kvmfr.overrideAttrs (old: {
+      patches = [
+        (prev.fetchpatch {
+          url = "https://github.com/gnif/LookingGlass/commit/7305ce36af211220419eeab302ff28793d515df2.patch";
+          hash = "sha256-97nZsIH+jKCvSIPf1XPf3i8Wbr24almFZzMOhjhLOYk=";
+          stripLen = 1;
+        })
+      ];
+    });
   });
 
   looking-glass-client = prev.looking-glass-client.overrideAttrs (old: {
