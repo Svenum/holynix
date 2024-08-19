@@ -2,7 +2,7 @@
 
 final: prev: {
   linuxPackages = prev.linuxPackages.extend (kfinal: kprev: {
-    kvmfr = prev.kvmfr.overrideAttrs (old: {
+    kvmfr = prev.linuxPackages.kvmfr.overrideAttrs (old: {
       patches = [
         (prev.fetchpatch {
           url = "https://github.com/gnif/LookingGlass/commit/7305ce36af211220419eeab302ff28793d515df2.patch";
