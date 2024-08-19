@@ -72,8 +72,4 @@
 
   # enable aarch64 emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-  # Pin kernel
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
 }
-

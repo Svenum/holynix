@@ -80,8 +80,6 @@
       defaultSopsFile = ../../../secrets/wireguard.yaml;
     };
   };
-  # Force linux kernel 6.9 to build failure in kvmfr
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_9;
 
   # Enable fw-fanctrl
   programs.fw-fanctrl = {
