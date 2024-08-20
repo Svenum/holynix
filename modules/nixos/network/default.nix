@@ -4,6 +4,7 @@ with lib;
 with lib.types;
 let
   cfg = config.holynix.network;
+  typeCfg = config.holynix.systemType;
 in
 {
   options.holynix.network = {
@@ -18,6 +19,7 @@ in
       networkmanager = {
         enable = true;
         wifi.backend = "iwd";
+        plugins = mkIf typeCfg.server.enable (mkForce []);
       };
     };
   };
