@@ -26,7 +26,7 @@
     };
 
     shell.zsh.enable = true;
-    hardware.laptop.enable = true;
+    systemType.laptop.enable = true;
     tools = {
       nvim.enable = true;
       tmux.enable = true;

@@ -13,6 +13,10 @@ in
   holynix = {
     shell.zsh.enable = true;
     locale.name = "en_DE";
+    systemType = {
+      vm.enable = true;
+      server.enable = true;
+    };
     users = {
       "sudouser" = {
         isSudoUser = true;
@@ -46,11 +50,4 @@ in
 
   # Initial Secrets
   sops.secrets."kube_token".restartUnits = [ "k3s.service" ];
-
-  # Enable SSH
-  services.openssh.enable = true;
-
-  # Enable Guest Agents
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
 }

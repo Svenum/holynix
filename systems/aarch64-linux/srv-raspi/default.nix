@@ -7,6 +7,7 @@
     boot.enable = false;
     shell.zsh.enable = true;
     locale.name = "en_DE";
+    systemType.server.enable = true;
     tools = {
       nvim.enable = true;
       tmux.enable = true;
@@ -38,7 +39,4 @@
     nameservers = [ "172.16.0.3" "172.16.0.4" ];
     useDHCP = false;
   };
-
-# SSH
-  services.openssh.enable = true;
 }

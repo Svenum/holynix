@@ -10,6 +10,10 @@
     desktop.plasma.enable = true;
     shell.zsh.enable = true;
     locale.name = "en_DE";
+    systemType = {
+      vm.enable = true;
+      server.enable = true;
+    };
     users = {
       "michi" = {
         isGuiUser = true;
@@ -56,19 +60,6 @@
     nameservers = [ "172.16.0.3" "172.16.0.4" ];
     useDHCP = false;
   };
-
-  # Libvirt Guest Agents
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
-
-  # Node Exporter
-  services.prometheus.exporters.node = {
-    enable = true;
-    openFirewall = true;
-  };
-
-  # SSH
-  services.openssh.enable = true;
 
   # enable aarch64 emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
