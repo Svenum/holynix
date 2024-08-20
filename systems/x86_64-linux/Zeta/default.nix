@@ -36,7 +36,7 @@
       flatpak.enable = true;
       cliTools.enable = true;
     };
-    kvm.enable = true;
+    virtualisation.kvm.enable = true;
     gpu.nvidia.enable = true;
 
     network.enable = true;

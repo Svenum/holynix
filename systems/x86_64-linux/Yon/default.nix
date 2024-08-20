@@ -43,7 +43,7 @@
     bluetooth.enable = true;
     network.enable = true;
 
-    kvm = {
+    virtualisation.kvm = {
       enable = true;
       vfioPCIDevices = [
         "1002:ab30"

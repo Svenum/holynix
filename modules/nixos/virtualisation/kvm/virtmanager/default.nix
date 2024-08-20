@@ -5,8 +5,8 @@ with lib.types;
 
 let
   inherit (inputs) nixVirt;
-  cfg = config.holynix.kvm.virtmanager;
-  kvmCfg = config.holynix.kvm;
+  cfg = config.holynix.virtualisation.kvm.virtmanager;
+  kvmCfg = config.holynix.virtualisation.kvm;
   usersCfg = config.holynix.users;
 
   # Add connections for users;
@@ -30,7 +30,7 @@ let
   };
 in
 {
-  options.holynix.kvm.virtmanager = {
+  options.holynix.virtualisation.kvm.virtmanager = {
     enable = mkOption {
       type = bool;
       default = kvmCfg.enable;

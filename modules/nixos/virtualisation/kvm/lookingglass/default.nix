@@ -3,11 +3,11 @@
 with lib;
 with lib.types;
 let
-  cfg = config.holynix.kvm.lookingglass;
-  kvmCfg = config.holynix.kvm;
+  cfg = config.holynix.virtualisation.kvm.lookingglass;
+  kvmCfg = config.holynix.virtualisation.kvm;
 in
 {
-  options.holynix.kvm.lookingglass = {
+  options.holynix.virtualisation.kvm.lookingglass = {
     enable = mkOption {
       type = bool;
       default = kvmCfg.vfioPCIDevices != null;

@@ -3,7 +3,7 @@
 with lib;
 with lib.types;
 let
-  cfg = config.holynix.kvm;
+  cfg = config.holynix.virtualisation.kvm;
 
   isAMD = config.hardware.cpu.amd.updateMicrocode;
   isIntel = config.hardware.cpu.intel.updateMicrocode;
@@ -11,7 +11,7 @@ in
 {
   imports = [ inputs.nixVirt.nixosModules.default ];
 
-  options.holynix.kvm = {
+  options.holynix.virtualisation.kvm = {
     enable = mkOption {
       type = bool;
       default = false;
