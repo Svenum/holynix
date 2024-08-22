@@ -37,7 +37,8 @@
         prefixLength = 24;
       }];
     };
-    defaultGateway = "172.16.0.1";
+    #defaultGateway = "172.16.0.1";
+    defaultGateway = "172.17.0.1";
     nameservers = [ "172.16.0.3" "172.16.0.4" ];
     useDHCP = false;
   };
