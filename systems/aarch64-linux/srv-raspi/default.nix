@@ -26,6 +26,7 @@
       };
     };
     virtualisation.podman.enable = true;
+    cockpit.enable = true;
   };
 
   networking = {
