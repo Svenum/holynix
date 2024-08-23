@@ -26,7 +26,10 @@
       };
     };
     virtualisation.podman.enable = true;
-    cockpit.enable = true;
+    cockpit = {
+      enable = true;
+      package = pkgs.holynix.cockpit-podman;
+    };
   };
 
   networking = {
