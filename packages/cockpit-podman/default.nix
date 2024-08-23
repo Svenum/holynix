@@ -1,27 +1,39 @@
-{
-  nodejs,
-  makeWrapper,
-  gettext,
-  stdenv,
-  fetchFromGitHub,
-  gnutls,
-  glib,
-  systemd,
-  pkg-config,
-  autoreconfHook,
-  json-glib,
-  krb5,
-  polkit,
-  libssh,
-  pam,
-  libxcrypt,
-  libxslt,
-  xmlto,
-  python3Packages,
-  docbook_xsl,
-  docbook_xml_dtd_43,
-  bashInteractive,
-  lib
+{ lib
+, stdenv
+, fetchFromGitHub
+, autoreconfHook
+, bashInteractive
+, cacert
+, coreutils
+, dbus
+, docbook_xml_dtd_43
+, docbook_xsl
+, findutils
+, gettext
+, git
+, glib
+, glib-networking
+, gnused
+, gnutls
+, json-glib
+, krb5
+, libssh
+, libxcrypt
+, libxslt
+, makeWrapper
+, nodejs
+, nixosTests
+, nix-update-script
+, openssh
+, openssl
+, pam
+, pkg-config
+, polkit
+, python3Packages
+, runtimeShell
+, systemd
+, udev
+, xmlto
 }:
 
 let
@@ -42,30 +54,33 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [
-    nodejs
+    autoreconfHook
     makeWrapper
+    docbook_xml_dtd_43
+    docbook_xsl
+    findutils
     gettext
-    (lib.getDev glib)
-    systemd
-    json-glib
-    pkg-config
-    autoreconfHook
-    gnutls
-    systemd
-    json-glib
-    pkg-config
-    autoreconfHook
-    krb5
-    polkit
-    libssh
-    pam
-    libxcrypt
+    git
     (lib.getBin libxslt)
-    xmlto
+    nodejs
+    openssl
+    pam
+    pkg-config
     pythonWithGobject.python
     python3Packages.setuptools
-    docbook_xsl
-    docbook_xml_dtd_43
+    systemd
+    xmlto
+  ];
+
+  buildInputs = [
+    (lib.getDev glib)
+    libxcrypt
+    gnutls
+    json-glib
+    krb5
+    libssh
+    polkit
+    udev
   ];
 
   postPatch = ''
@@ -137,4 +152,75 @@ stdenv.mkDerivation rec {
     patchShebangs \
       tools/test-driver
   '';
+
+    postBuild = ''
+    chmod +x \
+      src/systemd/update-motd \
+      src/tls/cockpit-certificate-helper \
+      src/ws/cockpit-desktop
+
+    patchShebangs \
+      src/systemd/update-motd \
+      src/tls/cockpit-certificate-helper \
+      src/ws/cockpit-desktop
+
+    PATH=${pythonWithGobject}/bin patchShebangs src/client/cockpit-client
+
+    substituteInPlace src/ws/cockpit-desktop \
+      --replace ' /bin/bash' ' ${runtimeShell}'
+  '';
+
+  fixupPhase = ''
+    runHook preFixup
+
+    wrapProgram $out/libexec/cockpit-certificate-helper \
+      --prefix PATH : ${lib.makeBinPath [ coreutils openssl ]} \
+      --run 'cd $(mktemp -d)'
+
+    wrapProgram $out/share/cockpit/motd/update-motd \
+      --prefix PATH : ${lib.makeBinPath [ gnused ]}
+
+    substituteInPlace $out/share/polkit-1/actions/org.cockpit-project.cockpit-bridge.policy \
+      --replace /usr $out
+    
+    rm -rf $out/share/cockpit/packagekit
+
+    runHook postFixup
+  '';
+
+  doCheck = true;
+  checkInputs = [
+    bashInteractive
+    cacert
+    dbus
+    glib-networking
+    openssh
+    python3Packages.pytest
+  ];
+  checkPhase = ''
+    export GIO_EXTRA_MODULES=$GIO_EXTRA_MODULES:${glib-networking}/lib/gio/modules
+    export G_DEBUG=fatal-criticals
+    export G_MESSAGES_DEBUG=cockpit-ws,cockpit-wrapper,cockpit-bridge
+    export PATH=$PATH:$(pwd)
+
+    cockpit-bridge --version
+    make pytest -j$NIX_BUILD_CORES || true
+    make check  -j$NIX_BUILD_CORES || true
+    test/static-code
+    npm run eslint
+    npm run stylelint || true
+  '';
+
+  passthru = {
+    tests = { inherit (nixosTests) cockpit; };
+    updateScript = nix-update-script {};
+  };
+
+  meta = with lib; {
+    description = "Web-based graphical interface for servers and podman";
+    mainProgram = "cockpit-bridge";
+    homepage = "https://cockpit-project.org/";
+    license = licenses.lgpl21;
+    maintainers = with maintainers; [ Svenum ];
+  };
 }
