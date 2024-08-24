@@ -8,7 +8,8 @@
 }:
 
 stdenv.mkDerivation rec {
-  pname = "cockpit-podman"; version = "93";
+  pname = "cockpit-podman";
+  version = "93";
 
   src = fetchFromGitHub {
     owner = "cockpit-project";
