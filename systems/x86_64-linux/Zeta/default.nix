@@ -37,7 +37,10 @@
       cliTools.enable = true;
     };
     virtualisation.kvm.enable = true;
-    gpu.nvidia.enable = true;
+    gpu.nvidia = {
+      enable = true;
+      packageChanel = "beta";
+    };
 
     network.enable = true;
 

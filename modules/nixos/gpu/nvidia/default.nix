@@ -11,6 +11,11 @@ in
       type = bool;
       default = false;
     };
+    packageChanel = mkOption {
+      type = enum ["stable" "production" "beta"];
+      default = "stable";
+      description = "Specify the nvidia driver package channel";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -31,6 +36,7 @@ in
         ];
       };
       nvidia = {
+        package = config.boot.kernelPackages.nvidiaPackages."${cfg.packageChanel}";
         modesetting.enable = true;
       };
     };
