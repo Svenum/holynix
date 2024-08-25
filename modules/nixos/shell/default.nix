@@ -16,7 +16,7 @@ in
     environment.shellInit = ''
         su() {
           if [[ $1 != "" ]]; then
-            su $@
+            /run/wrappers/bin/su $@
           else
             sudo -s
           fi
