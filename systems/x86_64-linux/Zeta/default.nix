@@ -39,7 +39,7 @@
     virtualisation.kvm.enable = true;
     gpu.nvidia = {
       enable = true;
-      packageChanel = "beta";
+      #packageChanel = "beta";
     };
 
     network.enable = true;
