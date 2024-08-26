@@ -14,7 +14,7 @@ in
     };
     defaultAddressPool = {
       base = mkOption {
-        type = string;
+        type = str;
         default = "10.10.0.0/16";
         description = "Subnet for default pool";
       };
