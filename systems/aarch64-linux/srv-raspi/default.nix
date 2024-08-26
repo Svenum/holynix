@@ -25,11 +25,7 @@
         ];
       };
     };
-    virtualisation.podman.enable = true;
-    cockpit = {
-      enable = true;
-      package = pkgs.holynix.cockpit-podman;
-    };
+    virtualisation.docker.enable = true;
   };
 
   networking = {
