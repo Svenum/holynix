@@ -5,7 +5,7 @@ with lib.types;
 let
   cfg = config.holynix.systemType.server;
 
-  ansible-nix-shell = pkgs.writeShellScrtipBin "ansible-nix-shell" ''
+  ansible-nix-shell = pkgs.writeShellScriptBin "ansible-nix-shell" ''
     # Initialisiere Variablen    
     p_value=""    
     r_value=""    
