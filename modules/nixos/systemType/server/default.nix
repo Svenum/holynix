@@ -1,4 +1,4 @@
-{ options, config, lib, ... }:
+{ options, config, lib, pkgs, ... }:
 
 with lib;
 with lib.types;
@@ -12,6 +12,11 @@ in
       default = false;
       description = "Enable server specific features";
     };
+    ansibleTarget = mkOption {
+      type = bool;
+      default = false;
+      description = "If true everything gets setup to be a ansible target";
+    };
   };
   config = mkIf cfg.enable {
     # Node Exporter
@@ -22,5 +27,9 @@ in
 
     # SSH
     services.openssh.enable = true;
+
+    environment.systemPackages = with pkgs; mkIf cfg.ansibleTarget [
+      python3
+    ];
   };
 }

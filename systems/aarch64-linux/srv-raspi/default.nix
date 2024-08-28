@@ -7,7 +7,10 @@
     boot.enable = false;
     shell.zsh.enable = true;
     locale.name = "en_DE";
-    systemType.server.enable = true;
+    systemType.server = {
+      enable = true;
+      ansibleTarget = true;
+    };
     tools = {
       nvim.enable = true;
       tmux.enable = true;
