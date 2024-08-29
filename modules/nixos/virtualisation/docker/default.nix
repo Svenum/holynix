@@ -5,6 +5,10 @@ with lib.types;
 let
   cfg = config.holynix.virtualisation.docker;
   cfgSystemType = config.holynix.systemType;
+
+  customPython = pkgs.python3.withPackages (pythonPkgs: [
+    pythonPkgs.pyyaml
+  ]);
 in
 {
   options.holynix.virtualisation.docker = {
@@ -43,6 +47,7 @@ in
 
     environment.systemPackages = with pkgs; [
       docker-compose
-    ] ++ lib.lists.optional cfgSystemType.server.ansibleTarget python312Packages.pyyaml;
+      (mkIf cfgSystemType.server.ansibleTarget customPython)
+    ];
   };
 }
