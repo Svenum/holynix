@@ -87,6 +87,7 @@ in
                 launchers = [
                   "applications:org.kde.dolphin.desktop"
                   "preferred://browser"
+                  "applications:com.logseq.Logseq.desktop"
                   "applications:com.valvesoftware.Steam.desktop"
                   "applications:net.lutris.Lutris.desktop"
                 ];
