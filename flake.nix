@@ -4,7 +4,7 @@
       # Community cache
       "https://nix-community.cachix.org"
       # Own cache
-      #"https://s3.holypenguin.net/nix-cache/"
+      "https://attic.holypenguin.net/holynix"
     ];
   };
   inputs = {

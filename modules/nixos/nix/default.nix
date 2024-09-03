@@ -50,7 +50,7 @@ in
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
 
         # own cache
-        "holynix:vkl52UMpSiD8dwX63yvfAdVZQJFypcmNbsw3hBVsX7E="
+        "holynix:Ucr2JJ5xLEy4hElI/SToX5klNe4I3wKgVIa2+b3lmYo="
       ];
     };
   };
