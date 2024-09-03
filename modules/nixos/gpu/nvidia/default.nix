@@ -36,6 +36,7 @@ in
         ];
       };
       nvidia = {
+        open = false;
         package = config.boot.kernelPackages.nvidiaPackages."${cfg.packageChanel}";
         modesetting.enable = true;
       };
