@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: action/checkout@v4
       - uses: cachix/install-nix-action@v27
-      - uses: Svenum/attic-builder
+      - uses: Svenum/attic-builder@main
         with:
           build_systems: true
           build_packages: true
