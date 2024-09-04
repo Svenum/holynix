@@ -1,0 +1,16 @@
+name: "Build"
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v4
+      - uses: cachix/install-nix-action@v27
+      - uses: Svenum/attic-builder
+        with:
+          build_systems: true
+          build_packages: true
+          attic_url: https://attic.holypenguin.net/
+          attic_cache: holynix
+          attic_token: ${{ secret.ATTIC_TOKEN }}
