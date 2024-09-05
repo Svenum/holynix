@@ -14,6 +14,6 @@ jobs:
         with:
           build_systems: true
           build_packages: true
-          attic_url: https://attic.holypenguin.net/
+          attic_url: "https://attic.holypenguin.net/"
           attic_cache: holynix
           attic_token: ${{ secrets.ATTIC_TOKEN }}
