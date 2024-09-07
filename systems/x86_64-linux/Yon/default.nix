@@ -43,12 +43,15 @@
     bluetooth.enable = true;
     network.enable = true;
 
-    virtualisation.kvm = {
-      enable = true;
-      vfioPCIDevices = [
-        "1002:ab30"
-        "1002:7480"
-      ];
+    virtualisation = {
+      portainer.enable = true; 
+      kvm = {
+        enable = true;
+        vfioPCIDevices = [
+          "1002:ab30"
+          "1002:7480"
+        ];
+      };
     };
 
     gpu.amd.enable = true;
