@@ -44,7 +44,7 @@
     network.enable = true;
 
     virtualisation = {
-      portainer.enable = true; 
+      podman.enable = true; 
       kvm = {
         enable = true;
         vfioPCIDevices = [
