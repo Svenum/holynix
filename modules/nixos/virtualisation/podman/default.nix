@@ -35,9 +35,9 @@ in
     };
 
     systemd.services.podman.enable = cfg.autoStart;
-    systemd.user.services.podman = cfg.autoStart;
+    systemd.user.services.podman.enable = cfg.autoStart;
     systemd.sockets.podman.enable = cfg.autoStart;
-    systemd.user.sockets.podman = cfg.autoStart;
+    systemd.user.sockets.podman.enable = cfg.autoStart;
 
     # Useful other development tools
     environment.systemPackages = with pkgs; [
