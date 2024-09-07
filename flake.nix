@@ -109,7 +109,7 @@
       sops-nix.nixosModules.sops
     ];
 
-    systems.hosts.srv-raspi.modules = with inputs; [
+    systems.hosts.srv-raspi5.modules = with inputs; [
       nixos-hardware.nixosModules.raspberry-pi-5
       raspberry-pi-nix.nixosModules.raspberry-pi
     ];
