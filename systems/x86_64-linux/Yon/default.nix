@@ -46,7 +46,7 @@
     virtualisation = {
       podman = {
         enable = true; 
-        autoStart = false;
+        disableAutoStart = true;
       };
       kvm = {
         enable = true;

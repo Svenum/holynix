@@ -12,10 +12,10 @@ in
       type = bool;
       description = "Enable podman and install needed tools";
     };
-    autoStart = mkOption {
-      default = true;
+    disableAutoStart = mkOption {
+      default = false;
       type = bool;
-      description = "If podman should be autostarted";
+      description = "If podman autostart should be disabled";
     };
   };
 
@@ -34,10 +34,10 @@ in
       };
     };
 
-    systemd.services.podman.wantedBy = mkIf cfg.autoStart (mkForce []);
-    systemd.user.services.podman.wantedBy = mkIf cfg.autoStart (mkForce []);
-    systemd.sockets.podman.wantedBy = mkIf cfg.autoStart (mkForce []);
-    systemd.user.sockets.podman.wantedBy = mkIf cfg.autoStart (mkForce []);
+    systemd.services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce []);
+    systemd.user.services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce []);
+    systemd.sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce []);
+    systemd.user.sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce []);
 
     # Useful other development tools
     environment.systemPackages = with pkgs; [
