@@ -44,7 +44,10 @@
     network.enable = true;
 
     virtualisation = {
-      podman.enable = true; 
+      podman = {
+        enable = true; 
+        autoStart = false;
+      };
       kvm = {
         enable = true;
         vfioPCIDevices = [

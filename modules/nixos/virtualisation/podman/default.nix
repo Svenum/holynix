@@ -12,6 +12,11 @@ in
       type = bool;
       description = "Enable podman and install needed tools";
     };
+    autoStart = mkOption {
+      default = true;
+      type = bool;
+      description = "If podman should be autostarted";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -28,6 +33,11 @@ in
         defaultNetwork.settings.dns_enabled = true;
       };
     };
+
+    systemd.services.podman.enable = cfg.autoStart;
+    systemd.user.services.podman = cfg.autoStart;
+    systemd.sockets.podman.enable = cfg.autoStart;
+    systemd.user.sockets.podman = cfg.autoStart;
 
     # Useful other development tools
     environment.systemPackages = with pkgs; [
