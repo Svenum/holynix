@@ -130,6 +130,13 @@ nnoremap <M-m> :MarkdownPreview<CR>
 """"""""""""""""""""""""""""""
 "            other           "
 """"""""""""""""""""""""""""""
+lua << EOF
+  require("clangd_extensions").setup()
+EOF
+
+""""""""""""""""""""""""""""""
+"            other           "
+""""""""""""""""""""""""""""""
 " Cursor
 set tabstop=2
 set shiftwidth=2

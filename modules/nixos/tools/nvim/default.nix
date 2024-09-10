@@ -32,7 +32,8 @@ in
             coc-eslint coc-docker coc-tabnine
             coc-tsserver coc-prettier coc-highlight
             coc-markdownlint coc-spell-checker
-            coc-vimlsp coc-vimtex coc-lua
+            coc-vimlsp coc-vimtex coc-lua coc-clangd
+            clangd_extensions-nvim
             vim-nix 
             # Explorer
             nvim-web-devicons
