@@ -38,6 +38,10 @@ in
     systemd.user.services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce []);
     systemd.sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce []);
     systemd.user.sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce []);
+    # Compose
+    environment.shellAliases = {
+      compose = "podman-compose";
+    };
 
     # Useful other development tools
     environment.systemPackages = with pkgs; [
