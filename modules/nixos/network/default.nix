@@ -12,13 +12,18 @@ in
       type = bool;
       default = false;
     };
+    useIWD = mkOption {
+      type = bool;
+      default = true;
+      description = "Enable iwd as backend";
+    };
   };
 
   config = mkIf cfg.enable {
     networking = {
       networkmanager = {
         enable = true;
-        wifi.backend = "iwd";
+        wifi.backend = mkIf cfg.useIWD "iwd";
         plugins = mkIf typeCfg.server.enable (mkForce []);
       };
     };

@@ -42,6 +42,7 @@
 
     bluetooth.enable = true;
     network.enable = true;
+    network.useIWD = false;
 
     virtualisation = {
       podman = {
