@@ -7,7 +7,7 @@ let
 in
 {
   options.holynix.programs.bycsdrive.enable = mkOption {
-    type = bool
+    type = bool;
     default = true;
     description = "Enable bycsdrive";
   };
