@@ -5,6 +5,7 @@
 , jre
 , makeDesktopItem
 , unzip
+, imagemagick
 }:
 
 stdenv.mkDerivation rec {
@@ -27,6 +28,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     makeWrapper
     unzip
+    imagemagick
   ];
 
   installPhase = ''
@@ -38,12 +40,13 @@ stdenv.mkDerivation rec {
     cd "$unpackDir"
     cp $src/RobotKarol.jar $TMPDIR/RobotKarol.zip
     unpackFile $TMPDIR/RobotKarol.zip
+    magick -background transparent $TMPDIR/unpack/icons/Karol.ico $TMPDIR/unpack/icons/Karol.png
 
     cp $src/RobotKarol.jar $out/share/java/RobotKarol.jar
     makeWrapper ${jre}/bin/java $out/bin/RobotKarol \
       --add-flags "-jar $out/share/java/RobotKarol.jar" \
       --set _JAVA_OPTIONS '-Dawt.useSystemAAFontSettings=on'
-    install -D $TMPDIR/unpack/icons/Karol.gif $out/share/icons/hicolor/32x32/apps/Karol.gif
+    install -D $TMPDIR/unpack/icons/Karol.png $out/share/icons/hicolor/32x32/apps/Karol.png
     install -D -t $out/share/applications $desktopItem/share/applications/*
   '';
 
