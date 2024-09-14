@@ -3,6 +3,7 @@
 , stdenv
 , makeWrapper
 , jre
+, makeDesktopItem
 }:
 
 stdenv.mkDerivation rec {
@@ -12,6 +13,13 @@ stdenv.mkDerivation rec {
     url = "https://mebis.bycs.de/assets/uploads/mig/2_2019_10_RobotKarol30_other.zip";
     hash = "sha256-NRV9NNh2OejzUPzzlD9UvECEqFOu6Q9UYFthrWuqZR0=";
     stripRoot = false;
+  };
+  
+  desktopItem = makeDesktopItem {
+    name = pname;
+    exec = "RobotKarol";
+    terminal = false;
+    desktopName = "Robot Karol";
   };
 
   nativeBuildInputs = [
@@ -24,6 +32,7 @@ stdenv.mkDerivation rec {
     makeWrapper ${jre}/bin/java $out/bin/RobotKarol \
       --add-flags "-jar $out/share/java/RobotKarol.jar" \
       --set _JAVA_OPTIONS '-Dawt.useSystemAAFontSettings=on'
+    install -D -t $out/share/applications $desktopItem/share/applications/*
   '';
 
   meta = {
