@@ -43,7 +43,7 @@ stdenv.mkDerivation rec {
     makeWrapper ${jre}/bin/java $out/bin/RobotKarol \
       --add-flags "-jar $out/share/java/RobotKarol.jar" \
       --set _JAVA_OPTIONS '-Dawt.useSystemAAFontSettings=on'
-    install -D $TMPDIR/unpack/icons/Karol.ico $out/share/icons/hicolor/32x32/apps/Karol.ico
+    install -D $TMPDIR/unpack/icons/Karol.gif $out/share/icons/hicolor/32x32/apps/Karol.gif
     install -D -t $out/share/applications $desktopItem/share/applications/*
   '';
 
