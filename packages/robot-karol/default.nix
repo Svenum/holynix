@@ -4,6 +4,7 @@
 , makeWrapper
 , jre
 , makeDesktopItem
+, unzip
 }:
 
 stdenv.mkDerivation rec {
@@ -20,18 +21,29 @@ stdenv.mkDerivation rec {
     exec = "RobotKarol";
     terminal = false;
     desktopName = "Robot Karol";
+    icon = "Karol";
   };
 
   nativeBuildInputs = [
     makeWrapper
+    unzip
   ];
 
   installPhase = ''
     mkdir -p $out/share/java $/bin
+
+    # Unpack jar for icon file
+    unpackDir="$TMPDIR/unpack"
+    mkdir "$unpackDir"
+    cd "$unpackDir"
+    cp $src/RobotKarol.jar $TMPDIR/RobotKarol.zip
+    unpackFile $TMPDIR/RobotKarol.zip
+
     cp $src/RobotKarol.jar $out/share/java/RobotKarol.jar
     makeWrapper ${jre}/bin/java $out/bin/RobotKarol \
       --add-flags "-jar $out/share/java/RobotKarol.jar" \
       --set _JAVA_OPTIONS '-Dawt.useSystemAAFontSettings=on'
+    install -D $TMPDIR/unpack/icons/Karol.ico $out/share/icons/hicolor/32x32/apps/Karol.ico
     install -D -t $out/share/applications $desktopItem/share/applications/*
   '';
 
