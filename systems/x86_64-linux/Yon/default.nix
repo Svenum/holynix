@@ -40,8 +40,6 @@
       flake.enable = true;
     };
 
-    programs.bycsdrive.enable = true;
-
     bluetooth.enable = true;
     network.enable = true;
     network.useIWD = false;

@@ -9,5 +9,8 @@ in
   # Add extgra packages
   home.packages = with pkgs; [
     ccrypt
+
+    holynix.bycsdrive
+    holynix.robot-karol
   ];
 }
