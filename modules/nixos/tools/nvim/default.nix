@@ -33,6 +33,7 @@ in
             coc-tsserver coc-prettier coc-highlight
             coc-markdownlint coc-spell-checker
             coc-vimlsp coc-vimtex coc-lua coc-clangd
+            coc-emmet
             clangd_extensions-nvim
             vim-nix 
             # Explorer
