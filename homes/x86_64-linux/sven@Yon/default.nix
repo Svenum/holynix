@@ -7,7 +7,7 @@ in
   imports = [ ./plasma.nix ];
 
   home.shellAliases = {
-    "cd TS" = "cd /home/sven/Documents/TS/Unterricht";
+    "ts" = "cd /home/sven/Documents/TS/Unterricht";
     "pc" = "podman compose";
   };
   # Add extgra packages
