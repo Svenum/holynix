@@ -6,7 +6,7 @@ in
 {
   imports = [ ./plasma.nix ];
 
-  home.shellAliases = {
+  programs.zsh.shellAliases = {
     "ts" = "cd /home/sven/Documents/TS/Unterricht";
     "pc" = "podman compose";
   };
