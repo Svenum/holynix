@@ -34,7 +34,9 @@ in
   '';
 
   # Toggle GPU script
-  environment.systemPackages = mkIf (cfg.vfioPCIDevices != null) [
+  environment.systemPackages = with pkgs; [
+    virtiofsd
+  ] ++ lib.lists.optionals (cfg.vfioPCIDevices != null) [
     (pkgs.holynix.toggle-amd-gpu.override {
       dgpuPCI = cfg.vfioPCIDevices;
     })
