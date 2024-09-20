@@ -14,6 +14,8 @@ in
   home.packages = with pkgs; [
     ccrypt
 
+    gcc
+
     holynix.bycsdrive
     holynix.robot-karol
   ];
