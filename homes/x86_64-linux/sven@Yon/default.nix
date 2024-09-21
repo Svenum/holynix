@@ -10,6 +10,7 @@ in
     "ts" = "cd /home/sven/Documents/TS/Unterricht";
     "pc" = "podman compose";
   };
+  programs.zsh.enable = true;
   # Add extgra packages
   home.packages = with pkgs; [
     ccrypt
