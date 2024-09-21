@@ -6,11 +6,6 @@ let
   cfg = config.holynix.shell.zsh;
   themeCfg = config.holynix.theme;
   usersCfg = config.holynix.users;
-
-  mkUserConfig = name: user: {
-    home.file.".p10k.zsh".source = ./config/p10k.zsh;
-    home.file.".zshrc".source = ./config/zshrc;
-  };
 in
 {
   options.holynix.shell.zsh = {
@@ -31,19 +26,22 @@ in
     # enable as default shell
     users.defaultUserShell = mkIf cfg.defaultShell pkgs.zsh;
 
+    # add p10k.zsh to etc
+    environment.etc."zsh/p10k.zsh".source = ./config/p10k.zsh;
+
     programs.zsh = {
       enable = true;
       syntaxHighlighting.enable = true;
       enableCompletion = true;
-      shellInit = (builtins.readFile ./config/catppuccin_${themeCfg.flavour}-zsh-syntax-highlighting.zsh);
+      shellInit = ''
+        ${builtins.readFile ./config/catppuccin_${themeCfg.flavour}-zsh-syntax-highlighting.zsh}
+        ${builtins.readFile ./config/zshrc}
+      '';
       promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
       ohMyZsh = {
         enable = true;
         plugins = [ "git" ];
       };
     };
-
-    # Setup zshrc and p10k
-    home-manager.users = lib.mapAttrs mkUserConfig usersCfg;
   };
 }
