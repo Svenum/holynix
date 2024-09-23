@@ -9,6 +9,7 @@ in
   home.shellAliases = {
     "ts" = "cd /home/sven/Documents/TS/Unterricht";
     "pc" = "podman compose";
+    "sls" = "live-server -o";
   };
   programs.zsh.enable = true;
   # Add extgra packages
@@ -16,6 +17,8 @@ in
     ccrypt
 
     gcc
+
+    live-server
 
     holynix.bycsdrive
     holynix.robot-karol

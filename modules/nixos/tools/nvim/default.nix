@@ -36,9 +36,6 @@ in
             coc-emmet
             clangd_extensions-nvim
             vim-nix 
-            # HTML Live Server
-            #bracey-vim
-            pkgs.holynix.vim-live-server # IMPORTANT: you have to insstall "npm install -g browser-sync live-server"
             # Explorer
             nvim-web-devicons
             nvim-tree-lua
