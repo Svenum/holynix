@@ -36,6 +36,8 @@ in
             coc-emmet
             clangd_extensions-nvim
             vim-nix 
+            # HTML Live Server
+            bracey-vim
             # Explorer
             nvim-web-devicons
             nvim-tree-lua
