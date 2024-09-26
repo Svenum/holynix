@@ -16,6 +16,8 @@ in
   home.packages = with pkgs; [
     ccrypt
 
+    sl
+
     gcc
 
     live-server
