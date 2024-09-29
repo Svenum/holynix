@@ -1,4 +1,4 @@
-{ pkgs, lib, host, ... }:
+{ pkgs, lib, host, config, ... }:
 
 let
   enableNixVirt = if host == "Yon" then true else false;
