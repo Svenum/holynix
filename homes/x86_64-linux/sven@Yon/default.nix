@@ -1,11 +1,11 @@
-{ pkgs, lib, host, config, ... }:
+{ pkgs, lib, host, systemConfig, ... }:
 
 let
   enableNixVirt = if host == "Yon" then true else false;
 in
 {
   imports = []
-    ++ lib.lists.optional config.holynix.desktop.plasma.enable ./plasma.nix;
+    ++ lib.lists.optional systemConfig.holynix.desktop.plasma.enable ./plasma.nix;
 
   home.shellAliases = {
     "ts" = "cd /home/sven/Documents/TS/Unterricht";
