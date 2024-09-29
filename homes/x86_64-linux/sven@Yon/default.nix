@@ -4,7 +4,7 @@ let
   enableNixVirt = if host == "Yon" then true else false;
 in
 {
-  imports = [ (lib.mkIf (config.holynix.desktop.plasma.enable) ./plasma.nix) ];
+  imports = lib.mkIf config.holynix.desktop.plasma.enable [ ./plasma.nix ];
 
   home.shellAliases = {
     "ts" = "cd /home/sven/Documents/TS/Unterricht";
