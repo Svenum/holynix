@@ -7,6 +7,14 @@ in
   imports = []
     ++ lib.lists.optional systemConfig.holynix.desktop.plasma.enable ./plasma.nix;
 
+    holynix.desktop.hyprland = {
+      enable = true;
+      monitors = [
+        "DP-3,2560x1440@100,3440x0,auto"
+        "DP-4,3440x1440@100,0x0,auto"
+      ];
+    };
+
   home.shellAliases = {
     "ts" = "cd /home/sven/Documents/TS/Unterricht";
     "pc" = "podman compose";

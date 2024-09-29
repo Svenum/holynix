@@ -62,7 +62,7 @@ nnoremap <silent> <C-n> :NvimTreeToggle<CR>
 let g:airline_theme='luna'
 
 " Enable line number
-set number relativenumber
+set relativenumber
 set laststatus=2
 
 """"""""""""""""""""""""""""""

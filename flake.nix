@@ -51,6 +51,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; 
+
     nixVirt = {
       url = "github:AshleyYakeley/NixVirt";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -117,6 +119,7 @@
     systems.hosts.Yon.modules = with inputs; [
       nixos-hardware.nixosModules.framework-16-7040-amd
       fw-fanctrl.nixosModules.default
+
     ];
   };
 }
