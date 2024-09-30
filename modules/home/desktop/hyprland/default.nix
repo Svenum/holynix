@@ -45,8 +45,8 @@ in
           gaps_in = 5;
           gaps_out = 20;
           border_size = 2;
-          col.active_border = "rgba(#2d1d7a) rgba(#df8046) 45deg";  
-          col.inactive_border = "rgba(595959aa)";
+          "col.active_border" = "rgba(#2d1d7a) rgba(#df8046) 45deg";  
+          "col.inactive_border" = "rgba(595959aa)";
           layout = "dwindle";
           resize_on_border = true;
         };
@@ -70,7 +70,7 @@ in
             passes = 1;
           };
       
-          col.shadow = "rgba(1a1a1aee)";
+          "col.shadow" = "rgba(1a1a1aee)";
         };
 
         animations = {
@@ -101,8 +101,8 @@ in
         "$secondMod" = "Win";
 
         bind = [
-          "CONTROL, $mainMod, T, exec, kitty"
-          "CONTROL, $mainMod, B, exec, xdg-open https://"
+          "$mainMod&CTRL, T, exec, kitty"
+          "$mainMod&CTRL, B, exec, xdg-open https://"
           "$mainMod, Q, killactive"
         ];
       };
