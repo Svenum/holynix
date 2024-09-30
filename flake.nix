@@ -119,7 +119,11 @@
     systems.hosts.Yon.modules = with inputs; [
       nixos-hardware.nixosModules.framework-16-7040-amd
       fw-fanctrl.nixosModules.default
-
     ];
+
+    homes.modules = with inputs; [
+      plasma-manager.homeManagerModules.plasma-manager
+    ];
+
   };
 }

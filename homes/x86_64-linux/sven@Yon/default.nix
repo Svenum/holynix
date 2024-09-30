@@ -2,18 +2,29 @@
 
 let
   enableNixVirt = if host == "Yon" then true else false;
+  isYon = host == "Yon";
+  issrv-nixostest = host == "srv-nixostest";
 in
 {
-  imports = []
-    ++ lib.lists.optional systemConfig.holynix.desktop.plasma.enable ./plasma.nix;
-
-    holynix.desktop.hyprland = {
+  holynix.desktop = {
+    hyprland = {
       enable = true;
       monitors = [
         "DP-3,2560x1440@100,3440x0,auto"
         "DP-4,3440x1440@100,0x0,auto"
       ];
     };
+    plasma = {
+      enable = true;
+      cursorFlavour = "latte";
+      cpuRange =if isYon then
+          1600
+        else if issrv-nixostest then
+          400
+        else
+          100; 
+    };
+  };
 
   home.shellAliases = {
     "ts" = "cd /home/sven/Documents/TS/Unterricht";
