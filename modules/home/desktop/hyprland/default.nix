@@ -24,6 +24,7 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enableXdgAutostart = true;
+      systemd.variables = ["--all"];
       xwayland.enable = true;
 
       settings = {
