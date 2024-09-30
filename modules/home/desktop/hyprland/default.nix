@@ -118,7 +118,7 @@ in
           "$mainMod&CTRL, T, exec, kitty"
           "$mainMod&CTRL, B, exec, xdg-open https://"
           "$mainMod, Q, killactive"
-          "$mainMod, SPACE, wofi --show drun"
+          "$mainMod, SPACE, exec, wofi --show drun"
         ];
       };
     };
