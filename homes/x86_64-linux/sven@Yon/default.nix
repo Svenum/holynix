@@ -23,6 +23,14 @@ in
           400
         else
           100; 
+      launchers = [
+        "applications:org.kde.dolphin.desktop"
+        "preferred://browser"
+        "applications:com.logseq.Logseq.desktop"
+        "applications:com.valvesoftware.Steam.desktop"
+        "applications:net.lutris.Lutris.desktop"
+      ];
+      enableGPUSensor = true;
     };
   };
 

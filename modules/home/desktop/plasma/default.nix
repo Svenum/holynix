@@ -33,6 +33,19 @@ in
       type = int;
       description = "cpu threads * 100 = cpuRange";
     };
+    launchers = mkOption {
+      default = [
+        "applications:org.kde.dolphin.desktop"
+        "preferred://browser"
+      ];
+      type = listOf (str);
+      description = "Launchers that are in the side panel";
+    };
+    enableGPUSensor = mkOption {
+      default = false;
+      type = bool;
+      description = "enable GPU Sensor in panel";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -100,13 +113,7 @@ in
               name = "org.kde.plasma.icontasks";
               config = {
                 General = {
-                  launchers = [
-                    "applications:org.kde.dolphin.desktop"
-                    "preferred://browser"
-                    "applications:com.logseq.Logseq.desktop"
-                    "applications:com.valvesoftware.Steam.desktop"
-                    "applications:net.lutris.Lutris.desktop"
-                  ];
+                  launchers = cfg.launchers;
                 };
               };
             }
@@ -146,15 +153,18 @@ in
                 };
               };
             }
-            {
-              name = "org.kde.plasma.systemmonitor";
-              config = {
-                Sensors = {
-                  highPrioritySensorIds = ''[\"gpu/all/usage\"]'';
-                  totalSensors = ''[\"gpu/all/usage\"]'';
+            (if cfg.enableGPUSensor then
+              {
+                name = "org.kde.plasma.systemmonitor";
+                config = {
+                  Sensors = {
+                    highPrioritySensorIds = ''[\"gpu/all/usage\"]'';
+                    totalSensors = ''[\"gpu/all/usage\"]'';
+                  };
                 };
-              };
-            }
+              }
+            else
+            {})
             {
               name = "org.kde.plasma.panelspacer";
               config = {
