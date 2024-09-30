@@ -15,6 +15,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    holynix.desktop.enable = true;
+    
     programs.hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -22,6 +24,7 @@ in
 
     programs.hyprlock.enable = true;
     services.hypridle.enable = true;
+    programs.uwsm.enable = true;
 
     environment.systemPackages = with pkgs; [
       kitty

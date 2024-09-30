@@ -5,6 +5,7 @@ with lib.types;
 let
   cfg = config.holynix.desktop.hyprland;
   localeCfg = systemConfig.holynix.locale;
+  themeCfg = systemConfig.holynix.theme;
 in
 {
   options.holynix.desktop.hyprland = {
@@ -21,6 +22,18 @@ in
   };
 
   config = mkIf cfg.enable {
+    services.hyprpaper = {
+      enable = true;
+      settings = {
+        ipc = "on";
+        splash = false;
+        splash_offset = 2.0;
+
+        preload = [ "/etc/wallpaper/catppuccin-${lib.strings.toLower themeCfg.flavour}.jpg" ];
+
+        wallpaper = ", /etc/wallpaper/catppuccin-${lib.strings.toLower themeCfg.flavour}.jpg";
+      };
+    };
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enableXdgAutostart = true;
