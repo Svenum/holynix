@@ -25,6 +25,7 @@ in
 
     environment.systemPackages = with pkgs; [
       kitty
+      wofi
     ];
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";

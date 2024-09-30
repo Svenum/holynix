@@ -60,7 +60,7 @@ in
           active_opacity = "1.0";
           inactive_opacity = "0.9";
 
-          drop_shadows = true;
+          drop_shadow = true;
           shadow_range = 4;
           shadow_render_power = 3;
       
@@ -104,6 +104,7 @@ in
           "$mainMod&CTRL, T, exec, kitty"
           "$mainMod&CTRL, B, exec, xdg-open https://"
           "$mainMod, Q, killactive"
+          "$mainMod, SPACE, wofi --show drun"
         ];
       };
     };
