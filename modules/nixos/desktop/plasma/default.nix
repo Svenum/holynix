@@ -60,6 +60,9 @@ in
       kdePackages.sddm-kcm
       xwaylandvideobridge
       caffeine-ng
+      kdePackages.korganizer
+      kdePackages.kdepim-runtime
+      kdePackages.kdepim-addons
       # Add Konsole profiles and colorshcemes
       holynix.konsole-catppuccin
       # Add plasmoids
