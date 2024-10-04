@@ -66,6 +66,7 @@ in
       kdePackages.kaccounts-providers
       kdePackages.kaccounts-integration
       kdePackages.signond
+      kdePackages.qtwebengine
       # Add Konsole profiles and colorshcemes
       holynix.konsole-catppuccin
       # Add plasmoids
