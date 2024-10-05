@@ -136,16 +136,4 @@
   # Restart Wiregaurd on secret change
   sops.secrets."wg_home".restartUnits = [ "NetworkManager.service" ];
   sops.secrets."wg_nl".restartUnits = [ "NetworkManager.service" ];
-
-  specialisation = {
-    hyprland.configuration = {
-      system.nixos.tags = [ "hyprland" ];
-      holynix = {
-        desktop = {
-          plasma.enable = lib.mkForce false; 
-          hyprland.enable = true;
-        };
-      };
-    };
-  };
 }

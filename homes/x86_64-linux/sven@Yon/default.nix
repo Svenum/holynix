@@ -7,13 +7,6 @@ let
 in
 {
   holynix.desktop = {
-    hyprland = {
-      enable = true;
-      monitors = [
-        "DP-3,2560x1440@100,3440x0,auto"
-        "DP-4,3440x1440@100,0x0,auto"
-      ];
-    };
     plasma = {
       enable = true;
       cursorFlavour = "latte";
