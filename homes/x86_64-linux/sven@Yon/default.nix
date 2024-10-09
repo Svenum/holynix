@@ -35,15 +35,22 @@ in
   programs.zsh.enable = true;
   # Add extgra packages
   home.packages = with pkgs; [
+    # Crypto
     ccrypt
-
+    
+    #nix config
+    attic-client
+    sops
+    
+    # fun
     sl
+    asciiquarium-transparent
 
+    # School
     gcc
-
     live-server
-
     holynix.bycsdrive
     holynix.robot-karol
+    mysql-workbench
   ];
 }
