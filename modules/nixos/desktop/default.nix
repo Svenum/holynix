@@ -46,7 +46,7 @@ in
 
     # set Hibernate delay
     systemd.sleep.extraConfig = ''
-      HibernateDelaySec=300
+      HibernateDelaySec=0
     '';
 
   };
