@@ -37,6 +37,7 @@
     kernelModules = [ "sg" ];
     kernelParams = [
       "mem_sleep_default=deep"
+      "amd_pstate=passive"
 
       "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
       "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
