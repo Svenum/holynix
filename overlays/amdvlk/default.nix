@@ -3,7 +3,7 @@
 final: prev: {
   my_glslang = prev.glslang.overrideAttrs (finalAttrs: oldAttrs: {
     version = "15.0.0";
-    src = self.fetchFromGitHub {
+    src = final.fetchFromGitHub {
       owner = "KhronosGroup";
       repo = "glslang";
       rev = "refs/tags/${finalAttrs.version}";
@@ -11,8 +11,7 @@ final: prev: {
     };
   });
 
-  amdvlk = prev.amdvlk.overrideAttrs (old: {
-    glslang = my_glslang;
-    version = "2024.Q3.3";
-  }); 
+  amdvlk = prev.amdvlk.override {
+    glslang = final.my_glslang;
+  }; 
 }
