@@ -12,7 +12,7 @@ stdenvNoCC.mkDerivation {
     owner = "Svenum";
     repo = "shutdown_or_switch";
     rev = "add-second-hibernate-option";
-    sha256 = "sha256-WJFmDgoG+tJQd8w28pNDm1eiXnRiRIbZcWPJ7+GtO2g=";
+    sha256 = "sha256-WRHGwYmNTyfo6QWIKfjKMivq9tmisoSZ/FGCD0uUGKI=";
   };
 
   installPhase = ''
