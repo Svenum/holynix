@@ -5,10 +5,14 @@ stdenvNoCC.mkDerivation {
   version = "21.03.2024";
 
   src = fetchFromGitHub {
-    owner = "Davide-sd";
+    #owner = "Davide-sd";
+    #repo = "shutdown_or_switch";
+    #rev = "4a8cb0ff8d994fb249b66a38d92835d69ac0f401";
+    #sha256 = "sha256-iK1Cx3T/gnKBefF9LY2Cy/IjW16McduFiUio3lCT5TQ=";
+    owner = "Svenum";
     repo = "shutdown_or_switch";
-    rev = "4a8cb0ff8d994fb249b66a38d92835d69ac0f401";
-    sha256 = "sha256-iK1Cx3T/gnKBefF9LY2Cy/IjW16McduFiUio3lCT5TQ=";
+    rev = "add-second-hibernate-option";
+    sha256 = "sha256-WJFmDgoG+tJQd8w28pNDm1eiXnRiRIbZcWPJ7+GtO2g=";
   };
 
   installPhase = ''
