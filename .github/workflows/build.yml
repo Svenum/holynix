@@ -16,6 +16,6 @@ jobs:
         with:
           build_systems: true
           build_packages: true
-          attic_url: "http://attic:8080"
+          attic_url: "http://attic:8080/"
           attic_cache: "holynix"
           attic_token: ${{ secrets.ATTIC_TOKEN }}
