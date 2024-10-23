@@ -1,10 +1,12 @@
 name: "Build"
 on:
   push:
+    branches:
+      - main
   workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v27
@@ -14,6 +16,6 @@ jobs:
         with:
           build_systems: true
           build_packages: true
-          attic_url: "https://attic.holypenguin.net/"
-          attic_cache: holynix
+          attic_url: "http://attic:8080/"
+          attic_cache: "holynix"
           attic_token: ${{ secrets.ATTIC_TOKEN }}
