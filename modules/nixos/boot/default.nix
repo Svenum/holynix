@@ -78,5 +78,10 @@ in
     environment.systemPackages = mkIf cfg.secureBoot [
       pkgs.sbctl
     ];
+
+    security.pam.loginLimits = [
+      { domain = "*"; item = "nofile"; type = "-"; value = "32768"; }
+      { domain = "*"; item = "memlock"; type = "-"; value = "32768";}
+    ];
   };
 }
