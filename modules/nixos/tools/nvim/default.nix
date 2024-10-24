@@ -27,13 +27,17 @@ in
             # Plugins
             vim-plug
             # CoC
-            coc-sh coc-git coc-css coc-yaml
-            coc-nvim coc-json coc-html coc-tslint
-            coc-eslint coc-docker coc-tabnine
-            coc-tsserver coc-prettier coc-highlight
-            coc-markdownlint coc-spell-checker
-            coc-vimlsp coc-vimtex coc-lua coc-clangd
-            coc-emmet
+            #coc-sh coc-git coc-css coc-yaml
+            #coc-nvim coc-json coc-html coc-tslint
+            #coc-eslint coc-docker coc-tabnine
+            #coc-tsserver coc-prettier coc-highlight
+            #coc-markdownlint coc-spell-checker
+            #coc-vimlsp coc-vimtex coc-lua coc-clangd
+            #coc-emmet
+            # Mason
+            mason-nvim
+            mason-tool-installer-nvim
+            mason-lspconfig-nvim
             clangd_extensions-nvim
             vim-nix 
             # Explorer
