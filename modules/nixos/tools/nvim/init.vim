@@ -60,7 +60,7 @@ lua << EOF
         redirect_to_clipboard = true,
         register_offset = 0,
         sync_clipboard = true,
-        sync_registers = true,
+        sync_registers = false,
         sync_registers_keymap_put = true,
         sync_registers_keymap_reg = true,
         sync_deletes = true,
