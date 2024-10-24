@@ -3,7 +3,7 @@
 with lib;
 with lib.types;
 let
-  cfg = config.holynix.wireguard;
+  cfg = config.holynix.vpn.wireguard;
 
   mkWgConfig = name: interface: {
    source = interface.configFile; 
@@ -11,7 +11,7 @@ let
   };
 in
 {
-  options.holynix.wireguard = {
+  options.holynix.vpn.wireguard = {
     enable = mkOption {
       type = bool;
       default = false;

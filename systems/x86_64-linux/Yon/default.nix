@@ -35,12 +35,15 @@
         ];
       };
     };
-    wireguard = {
-      enable = true;
-      interfaces = {
-        "wg-home".configFile = config.sops.secrets."wg_home".path;
-        "wg-nl".configFile = config.sops.secrets."wg_nl".path;
+    vpn = {
+      wireguard = {
+        enable = true;
+        interfaces = {
+          "wg-home".configFile = config.sops.secrets."wg_home".path;
+          "wg-nl".configFile = config.sops.secrets."wg_nl".path;
+        };
       };
+      tailscale.enable = true;
     };
     tools = {
       nvim.enable = true;
