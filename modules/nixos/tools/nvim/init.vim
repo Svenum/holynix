@@ -70,6 +70,53 @@ set laststatus=2
 """"""""""""""""""""""""""""""
 let g:rainbow_active=1
 
+
+""""""""""""""""""""""""""""""
+"           mason            "
+""""""""""""""""""""""""""""""
+lua << EOF
+  require("mason").setup()
+  require("mason-lspconfig").setup()
+  require('mason-tool-installer').setup {
+    ensure_installed = {
+      'lua-language-server',
+      'vim-language-server',
+      'stylua',
+      'shellcheck',
+      'editorconfig-checker',
+      'json-to-struct',
+      'luacheck',
+      'misspell',
+      'staticcheck',
+      'nil_ls',
+      'dokcerls',
+      'cssls',
+      'clangd',
+      'html',
+      'jinja_lsp',
+      'ltex',
+      'eslint',
+      'yamlls',
+      'ansiblels',
+      'bashls',
+    },
+    auto_update = true,
+
+    run_on_start = true,
+
+    start_delay = 3000,
+
+    debounce_hours = 5,
+
+    integrations = {
+      ['mason-lspconfig'] = true,
+      ['mason-null-ls'] = true,
+      ['mason-nvim-dap'] = true,
+    },
+
+  }
+EOF
+
 """"""""""""""""""""""""""""""
 "            coc             "
 """"""""""""""""""""""""""""""
