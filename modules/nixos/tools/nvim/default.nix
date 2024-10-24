@@ -28,7 +28,7 @@ in
             vim-plug
             # CoC
             coc-sh coc-git coc-css coc-yaml
-            coc-nvim coc-json coc-html coc-tslint
+            coc-nvim coc-json coc-html
             coc-eslint coc-docker coc-tabnine
             coc-tsserver coc-prettier coc-highlight
             coc-markdownlint coc-spell-checker
