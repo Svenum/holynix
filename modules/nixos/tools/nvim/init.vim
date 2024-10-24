@@ -51,9 +51,31 @@ nnoremap <silent> <C-n> :NvimTreeToggle<CR>
 "         tmux-nvim          "
 """"""""""""""""""""""""""""""
 " Plugin Config
-" lua << EOF
-"   require("tmux").setup()
-" EOF
+ lua << EOF
+   require("tmux").setup{
+{
+    copy_sync = {
+        enable = true,
+        ignore_buffers = { empty = false },
+        redirect_to_clipboard = true,
+        register_offset = 0,
+        sync_clipboard = true,
+        sync_registers = true,
+        sync_registers_keymap_put = true,
+        sync_registers_keymap_reg = true,
+        sync_deletes = true,
+        sync_unnamed = true,
+    },
+    navigation = {
+        enable_default_keybindings = false,
+        persist_zoom = false,
+    },
+    resize = {
+        enable_default_keybindings = false,
+    }
+
+   }
+ EOF
 
 """"""""""""""""""""""""""""""
 "          airline           "
@@ -69,53 +91,6 @@ set laststatus=2
 "          rainbow           "
 """"""""""""""""""""""""""""""
 let g:rainbow_active=1
-
-
-""""""""""""""""""""""""""""""
-"           mason            "
-""""""""""""""""""""""""""""""
-lua << EOF
-  require("mason").setup()
-  require("mason-lspconfig").setup()
-  require('mason-tool-installer').setup {
-    ensure_installed = {
-      'lua-language-server',
-      'vim-language-server',
-      'stylua',
-      'shellcheck',
-      'editorconfig-checker',
-      'json-to-struct',
-      'luacheck',
-      'misspell',
-      'staticcheck',
-      'nil_ls',
-      'dokcerls',
-      'cssls',
-      'clangd',
-      'html',
-      'jinja_lsp',
-      'ltex',
-      'eslint',
-      'yamlls',
-      'ansiblels',
-      'bashls',
-    },
-    auto_update = true,
-
-    run_on_start = true,
-
-    start_delay = 3000,
-
-    debounce_hours = 5,
-
-    integrations = {
-      ['mason-lspconfig'] = true,
-      ['mason-null-ls'] = true,
-      ['mason-nvim-dap'] = true,
-    },
-
-  }
-EOF
 
 """"""""""""""""""""""""""""""
 "            coc             "
