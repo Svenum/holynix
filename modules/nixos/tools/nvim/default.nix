@@ -38,6 +38,7 @@ in
             mason-nvim
             mason-tool-installer-nvim
             mason-lspconfig-nvim
+            nvim-lspconfig
             clangd_extensions-nvim
             vim-nix 
             # Explorer
