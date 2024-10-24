@@ -51,10 +51,10 @@ nnoremap <silent> <C-n> :NvimTreeToggle<CR>
 "         tmux-nvim          "
 """"""""""""""""""""""""""""""
 " Plugin Config
- lua << EOF
-   require("tmux").setup{
-{
-    copy_sync = {
+lua << EOF
+  require('tmux').setup{
+    {
+      copy_sync = {
         enable = true,
         ignore_buffers = { empty = false },
         redirect_to_clipboard = true,
@@ -65,17 +65,17 @@ nnoremap <silent> <C-n> :NvimTreeToggle<CR>
         sync_registers_keymap_reg = true,
         sync_deletes = true,
         sync_unnamed = true,
-    },
-    navigation = {
+      },
+      navigation = {
         enable_default_keybindings = false,
         persist_zoom = false,
-    },
-    resize = {
+      },
+      resize = {
         enable_default_keybindings = false,
+      }
     }
-
-   }
- EOF
+  }
+EOF
 
 """"""""""""""""""""""""""""""
 "          airline           "
