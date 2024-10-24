@@ -52,6 +52,8 @@ in
         set -g repeat-time 700
         set -g mouse on
 
+        set -g set-clipboard on
+
         bind-key c new-window -c "#{pane_current_path}"
         bind-key '"' split-window -c "#{pane_current_path}"
         bind-key % split-window -p 33 -h -c "#{pane_current_path}"
