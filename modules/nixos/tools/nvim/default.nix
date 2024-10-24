@@ -48,7 +48,6 @@ in
             # Theme
             catppuccin-nvim
             # Terminal
-            tmux-nvim
             vim-tmux-navigator
             # Git
             vim-gitgutter
