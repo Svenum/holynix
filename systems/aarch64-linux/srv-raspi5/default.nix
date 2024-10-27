@@ -19,8 +19,8 @@
     network.enable = true;
     users =  {
       "sudouser" = {
-        isGuiUser = true;
         isSudoUser = true;
+        isDockerUser = true;
         initialPassword = "test123";
         uid = 1000;
         authorizedKeys = [
