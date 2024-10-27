@@ -9,6 +9,4 @@
   boot.supportedFilesystems = {
     zfs = lib.mkForce false;
   };
-
-  sdImage.compressImage = lib.mkForce false;
 }
