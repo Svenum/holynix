@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  ip = "172.16.0.13";
+in
 {
   imports = [ ./hardware.nix ];
 
@@ -32,10 +35,18 @@
   };
 
   networking = {
+    macvlans.shim-end0 = {
+      interface = "end0";
+      mode = "bridge";
+    };
     interfaces = {
       end0.ipv4.addresses = [{
-        address = "172.16.0.13";
+        address = ip;
         prefixLength = 24;
+      }];
+      shim-end0.ipv4.addresses = [{
+        address = ip;
+        prefixLength = 32;
       }];
     };
     defaultGateway = "172.16.0.1";
