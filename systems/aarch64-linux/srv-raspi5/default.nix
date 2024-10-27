@@ -38,19 +38,19 @@ in
     bridges.br0.interfaces = [
       "end0"
     ];
-    macvlans.shim-br0 = {
-      interface = "br0";
-      mode = "bridge";
-    };
+    #macvlans.shim-br0 = {
+    #  interface = "br0";
+    #  mode = "bridge";
+    #};
     interfaces = {
       br0.ipv4.addresses = [{
         address = ip;
         prefixLength = 24;
       }];
-      shim-br0.ipv4.addresses = [{
-        address = ip;
-        prefixLength = 32;
-      }];
+    #  shim-br0.ipv4.addresses = [{
+    #    address = ip;
+    #    prefixLength = 32;
+    #  }];
     };
     defaultGateway = "172.16.0.1";
     nameservers = [ "172.16.0.3" "172.16.0.4" ];
