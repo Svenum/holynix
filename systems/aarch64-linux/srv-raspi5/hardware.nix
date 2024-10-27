@@ -3,7 +3,7 @@
 {
   raspberry-pi-nix = {
     board = "bcm2712";
-    uboot.eanble = true;
+    uboot.enable = true;
   };
 
   boot.supportedFilesystems = {
