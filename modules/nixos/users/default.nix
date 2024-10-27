@@ -77,6 +77,10 @@ in
               type = bool;
               default = false;
             };
+            isDockerUser = mkOption {
+              type = bool;
+              default = false;
+            };
             isKvmUser = mkOption {
               type = bool;
               default = false;
