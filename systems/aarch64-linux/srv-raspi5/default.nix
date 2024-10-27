@@ -35,16 +35,19 @@ in
   };
 
   networking = {
-    macvlans.shim-end0 = {
-      interface = "end0";
+    bridges.br0.interfaces = [
+      "end0"
+    ];
+    macvlans.shim-br0 = {
+      interface = "br0";
       mode = "bridge";
     };
     interfaces = {
-      end0.ipv4.addresses = [{
+      br0.ipv4.addresses = [{
         address = ip;
         prefixLength = 24;
       }];
-      shim-end0.ipv4.addresses = [{
+      shim-br0.ipv4.addresses = [{
         address = ip;
         prefixLength = 32;
       }];
