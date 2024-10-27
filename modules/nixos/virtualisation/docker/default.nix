@@ -8,6 +8,7 @@ let
 
   customPython = pkgs.python3.withPackages (pythonPkgs: [
     pythonPkgs.pyyaml
+    pythonPkgs.requests
   ]);
 in
 {
