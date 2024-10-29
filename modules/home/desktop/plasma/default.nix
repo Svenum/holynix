@@ -153,8 +153,7 @@ in
                 };
               };
             }
-            (if cfg.enableGPUSensor then
-              {
+            (mkIf cfg.enableGPUSensor {
                 name = "org.kde.plasma.systemmonitor";
                 config = {
                   Sensors = {
@@ -162,9 +161,7 @@ in
                     totalSensors = ''[\"gpu/all/usage\"]'';
                   };
                 };
-              }
-            else
-            {})
+            })
             {
               name = "org.kde.plasma.panelspacer";
               config = {
