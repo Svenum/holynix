@@ -49,6 +49,25 @@ in
 
     # Add repo and add overrides for guiUsers
     home-manager.users = lib.mapAttrs mkUserConfig usersCfg;
+
+    # Fix fonts
+    fonts.fontDir.enable = true;
+    system.fsPackages = [ pkgs.bindfs ];
+    fileSystems = let
+      mkRoSymBind = path: {
+        device = path;
+        fsType = "fuse.bindfs";
+        options = [ "ro" "resolve-symlinks" "x-gvfs-hide" ];
+      };
+      aggregatedFonts = pkgs.buildEnv {
+        name = "system-fonts";
+        paths = config.fonts.packages;
+        pathsToLink = [ "/share/fonts" ];
+      };
+    in
+    {
+      "/usr/local/share/fonts" = mkRoSymBind "${aggregatedFonts}/share/fonts";
+    };
   };
 }
 

@@ -64,6 +64,7 @@ in
 
     environment.systemPackages = with pkgs; mkIf cfg.ansibleTarget [
       python3
+      bitwarden-cli
     ];
   };
 }

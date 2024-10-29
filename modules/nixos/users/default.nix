@@ -21,6 +21,7 @@ let
       "scanner"
       "lp"
       (mkIf (if builtins.hasAttr "isSudoUser" user then user.isSudoUser else false) "wheel")
+      (mkIf (if builtins.hasAttr "isDockerUser" user then user.isDockerUser else false) "docker")
     ];
 
     uid = user.uid;
@@ -73,6 +74,10 @@ in
               default = false;
             };
             isSudoUser = mkOption {
+              type = bool;
+              default = false;
+            };
+            isDockerUser = mkOption {
               type = bool;
               default = false;
             };

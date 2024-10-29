@@ -58,8 +58,8 @@ in
       };
     };
 
-    # Install dependencis
-    environment.systemPackages = with pkgs; [
+    # Install Nerdfonts
+    fonts.packages = with pkgs; [
       nerdfonts
     ];
   };

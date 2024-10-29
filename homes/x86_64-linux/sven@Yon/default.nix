@@ -1,21 +1,11 @@
-{ pkgs, lib, host, systemConfig, ... }:
+{ pkgs, ... }:
 
-let
-  enableNixVirt = if host == "Yon" then true else false;
-  isYon = host == "Yon";
-  issrv-nixostest = host == "srv-nixostest";
-in
 {
   holynix.desktop = {
     plasma = {
       enable = true;
       cursorFlavour = "latte";
-      cpuRange =if isYon then
-          1600
-        else if issrv-nixostest then
-          400
-        else
-          100; 
+      cpuRange = 1600;
       launchers = [
         "applications:org.kde.dolphin.desktop"
         "preferred://browser"

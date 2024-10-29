@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  ip = "172.16.0.13";
+in
 {
   imports = [ ./hardware.nix ];
 
@@ -19,8 +22,8 @@
     network.enable = true;
     users =  {
       "sudouser" = {
-        isGuiUser = true;
         isSudoUser = true;
+        isDockerUser = true;
         initialPassword = "test123";
         uid = 1000;
         authorizedKeys = [
@@ -32,11 +35,22 @@
   };
 
   networking = {
+    bridges.br0.interfaces = [
+      "end0"
+    ];
+    #macvlans.shim-br0 = {
+    #  interface = "br0";
+    #  mode = "bridge";
+    #};
     interfaces = {
-      end0.ipv4.addresses = [{
-        address = "172.16.0.13";
+      br0.ipv4.addresses = [{
+        address = ip;
         prefixLength = 24;
       }];
+    #  shim-br0.ipv4.addresses = [{
+    #    address = ip;
+    #    prefixLength = 32;
+    #  }];
     };
     defaultGateway = "172.16.0.1";
     nameservers = [ "172.16.0.3" "172.16.0.4" ];
