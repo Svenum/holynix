@@ -82,5 +82,5 @@
   services.fwupd.enable = true;
 
   # Pin Kernel cause newer is buggy with nvidia somehow
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_10;
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_6;
 }
