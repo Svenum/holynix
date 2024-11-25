@@ -143,7 +143,7 @@
   # Enable weylus
   programs.weylus = {
     enable = true;
-    openFirewall = false;
+    openFirewall = true;
     users = [ "sven" ];
   };
 }
