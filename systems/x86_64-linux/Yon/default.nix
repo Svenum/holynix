@@ -139,4 +139,11 @@
   # Restart Wiregaurd on secret change
   sops.secrets."wg_home".restartUnits = [ "NetworkManager.service" ];
   sops.secrets."wg_nl".restartUnits = [ "NetworkManager.service" ];
+
+  # Enable weylus
+  programs.weylus = {
+    enable = true;
+    openFirewall = false;
+    users = [ "sven" ];
+  };
 }
