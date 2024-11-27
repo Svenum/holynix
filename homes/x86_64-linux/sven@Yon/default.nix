@@ -42,5 +42,8 @@
     holynix.bycsdrive
     holynix.robot-karol
     mysql-workbench
+
+    # Nextcloud
+    nextcloud-client
   ];
 }

@@ -9,4 +9,9 @@
   boot.supportedFilesystems = {
     zfs = lib.mkForce false;
   };
+
+  fileSystems."/" = {
+    label = "NIXOS_SD";
+    fsType = "ext4";
+  };
 }
