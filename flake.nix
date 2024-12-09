@@ -18,6 +18,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     snowfall-lib = {
       url = "github:snowfallorg/lib/dev";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -107,6 +112,7 @@
       solaar.nixosModules.default
       home-manager.nixosModules.home-manager
       sops-nix.nixosModules.sops
+      nur.modules.nixos.default
     ];
 
     systems.hosts.srv-raspi5.modules = with inputs; [
