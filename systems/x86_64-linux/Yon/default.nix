@@ -146,4 +146,7 @@
     openFirewall = true;
     users = [ "sven" ];
   };
+
+  # enable fwupd
+  services.fwupd.enable = true;
 }
