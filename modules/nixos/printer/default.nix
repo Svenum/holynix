@@ -58,7 +58,7 @@ in
     # Enable printer
     services.printing = {
       enable = true;
-      drivers = with pkgs; [ epson-escpr hplip ];
+      drivers = with pkgs; [ epson-escpr2 epson-escpr hplip ];
     };
     # Enable auto discovery
     services.avahi.enable = mkDefault cfg.discovery;
@@ -73,6 +73,7 @@ in
     environment.systemPackages = with pkgs; [
       libinklevel
       epson-escpr
+      epson-escpr2
       hplip
     ];
   };
