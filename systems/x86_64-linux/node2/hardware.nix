@@ -20,4 +20,5 @@
     device = "/dev/vda1";
     fsType = "vfat";
   };
+  nixpkgs.hostPlatform = "x86_64-linux";
 }

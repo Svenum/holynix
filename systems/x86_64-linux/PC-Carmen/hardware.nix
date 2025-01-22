@@ -23,4 +23,5 @@
     device = "/dev/disk/by-uuid/9081fe75-7dec-4ca0-ad0d-aa13056751bb";
     fsType = "ext4";
   };
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

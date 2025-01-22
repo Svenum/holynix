@@ -14,4 +14,5 @@
     label = "NIXOS_SD";
     fsType = "ext4";
   };
+  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }
