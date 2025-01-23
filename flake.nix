@@ -125,6 +125,10 @@
       fw-fanctrl.nixosModules.default
     ];
 
+    systems.hosts.Yon.specialArgs = {
+      inherit (inputs) nur;
+    };
+
     homes.modules = with inputs; [
       plasma-manager.homeManagerModules.plasma-manager
     ];
