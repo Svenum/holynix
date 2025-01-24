@@ -65,5 +65,12 @@
         label = "Swap";
       }
     ];
+
+    hardware = {
+      # disable framework kernel module
+      # https://github.com/NixOS/nixos-hardware/issues/1330
+      framework.enableKmod = false;
+    };
+
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
