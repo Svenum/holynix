@@ -19,7 +19,10 @@ in
       tmux.enable = true;
       cliTools.enable = true;
     };
-    network.enable = true;
+    network = {
+      enable = true;
+      useIWD = false;
+    };
     users =  {
       "sudouser" = {
         isSudoUser = true;
@@ -38,19 +41,15 @@ in
     bridges.br0.interfaces = [
       "end0"
     ];
-    #macvlans.shim-br0 = {
-    #  interface = "br0";
-    #  mode = "bridge";
-    #};
     interfaces = {
-      br0.ipv4.addresses = [{
-        address = ip;
-        prefixLength = 24;
-      }];
-    #  shim-br0.ipv4.addresses = [{
-    #    address = ip;
-    #    prefixLength = 32;
-    #  }];
+      "br0" = {
+        ipv4.addresses = [{
+          address = ip;
+          prefixLength = 24;
+        }];
+        useDHCP = false;
+      };
+      "end0".useDHCP = true;
     };
     defaultGateway = "172.16.0.1";
     nameservers = [ "172.16.0.3" "172.16.0.4" ];
