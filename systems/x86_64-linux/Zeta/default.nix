@@ -38,7 +38,7 @@
     };
     virtualisation.kvm.enable = true;
     gpu.nvidia = {
-      enable = true;
+      enable = false;
       #packageChanel = "beta";
     };
 
@@ -82,5 +82,5 @@
   services.fwupd.enable = true;
 
   # Pin Kernel cause newer is buggy with nvidia somehow
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_6;
+  #boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_6;
 }
