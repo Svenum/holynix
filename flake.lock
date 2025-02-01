@@ -327,15 +327,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1738437251,
-        "narHash": "sha256-Q8z7AJaiKva02tCIe1nE/QhsfJ1tx4zylQg4IBqaT6A=",
-        "owner": "TamtamHero",
+        "lastModified": 1738439245,
+        "narHash": "sha256-5+CDb9ed+nV81aPPPuco1shoIPGolzfFEhaKDbYA4js=",
+        "owner": "Svenum",
         "repo": "fw-fanctrl",
-        "rev": "d6e54f2fa1b33f358717770ab2a34053f5e5e8f1",
+        "rev": "ab36905b418aa5ebb25df66dcffeeb43d7716b72",
         "type": "github"
       },
       "original": {
-        "owner": "TamtamHero",
+        "owner": "Svenum",
         "ref": "packaging/nix",
         "repo": "fw-fanctrl",
         "type": "github"
