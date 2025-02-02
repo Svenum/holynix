@@ -40,6 +40,9 @@ in
       pulse.enable = true;
     };
 
+    # enable alsa persistence
+    hardware.alsa.enablePersistence = true;
+
     # Add Catppuccin wallpaper
     environment.etc.wallpaper.source = ./images;
 
