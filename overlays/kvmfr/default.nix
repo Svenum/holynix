@@ -1,8 +1,8 @@
 { ... }:
 
 final: prev: {
-  linuxPackages = prev.linuxPackages.extend (lfinal: lprev: {
-    kvmfr = prev.linuxPackages.kvmfr.overrideAttrs (old: {
+  linuxPackages_latest = prev.linuxPackages_latest.extend (lfinal: lprev: {
+    kvmfr = prev.linuxPackages_latest.kvmfr.overrideAttrs (old: {
       patches = [
         (prev.fetchpatch {
           url = "https://github.com/gnif/LookingGlass/commit/7740692e3000c2019e21b9861585960174dd5ddc.patch";
@@ -19,12 +19,14 @@ final: prev: {
   });
 
   looking-glass-client = prev.looking-glass-client.overrideAttrs (old: {
-    version = "unstable";
+    version = "master";
     src = prev.fetchFromGitHub {
       owner = "gnif";
       repo = "LookingGlass";
-      hash = "sha256-efAO7KLdm7G4myUv6cS1gUSI85LtTwmIm+HGZ52arj8=";
-      rev = "master";
+      hash = "sha256-DBmCJRlB7KzbWXZqKA0X4VTpe+DhhYG5uoxsblPXVzg=";
+      rev = "e25492a3a36f7e1fde6e3c3014620525a712a64a";
+      fetchSubmodules = true;
     };
+    patches = [ ./nanosvg-unvendor.diff ];
   });
 }
