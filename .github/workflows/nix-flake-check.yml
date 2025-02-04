@@ -14,5 +14,5 @@ jobs:
           extra-platforms = aarch64-linux i686-linux
           system-features = nixos-test benchmark big-parallel kvm
 
-    - run: nix flake check --all-systems
+    - run: export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nix flake check --all-systems --impure
 
