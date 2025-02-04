@@ -18,5 +18,9 @@ jobs:
           extra-platforms = aarch64-linux i686-linux
           system-features = nixos-test benchmark big-parallel kvm
           extra-sandbox-paths = /usr/bin/qemu-aarch64-static
-    - run: nix flake check
+    - run: |
+        sudo systemctl restart nix-daemon.service
+        nix flake check
+        ls /usr/bin/qemu-aarch64-static
+        cat /etc/nix/nix.conf
 
