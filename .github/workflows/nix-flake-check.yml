@@ -18,9 +18,11 @@ jobs:
           extra-platforms = aarch64-linux i686-linux
           system-features = nixos-test benchmark big-parallel kvm
           extra-sandbox-paths = /usr/bin/qemu-aarch64-static
+          substituters = https://nix-community.cachix.org https://attic.holypenguin.net/holynix https://cache.nixos.org/
+          trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= holynix:Ucr2JJ5xLEy4hElI/SToX5klNe4I3wKgVIa2+b3lmYo=
+          trusted-substituters = https://nix-community.cachix.org https://attic.holypenguin.net/holynix
+
     - run: |
         sudo systemctl restart nix-daemon.service
-        nix flake check
-        ls /usr/bin/qemu-aarch64-static
-        cat /etc/nix/nix.conf
-
+        nix flake check --accept-flake-config
+        nix build .#nixosConfigurations.srv-raspi5.config.system.build.toplevel
