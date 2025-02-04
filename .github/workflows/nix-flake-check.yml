@@ -7,7 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - run: sudo apt-get install -y qemu-user-static && sudo systemctl restart binfmt-support
+    - run: |
+        sudo apt-get install -y qemu-user-static binfmt-support
+        sudo sed -i '10s/^$/yes/g' /var/lib/binfmts/qemu-arm /var/lib/binfmts/qemu-aarch64
+        sudo systemctl restart binfmt-support
     - uses: cachix/install-nix-action@v27
       with:
         nix_path: nixpkgs=channel:nixos-unstable
