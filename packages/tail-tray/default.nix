@@ -30,6 +30,10 @@ stdenv.mkDerivation rec {
     davfs2
   ];
 
+  fixupPhase = ''
+    substituteInPlace $out/share/applications/tail-tray.desktop --replace '/usr/local' $out
+  '';
+
   meta = {
     description = "Tray icon to manage Tailscale";
     homepage = "https://github.com/SneWs/tail-tray";
