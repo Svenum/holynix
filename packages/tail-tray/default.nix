@@ -1,37 +1,39 @@
-{ lib
-, fetchFromGitHub
-, davfs2
-, cmake
-, stdenv
-, pkg-config
-, kdePackages
+{
+  lib,
+  fetchFromGitHub,
+  davfs2,
+  cmake,
+  stdenv,
+  pkg-config,
+  kdePackages,
 }:
 
 stdenv.mkDerivation rec {
   name = "tail-tray";
-  version = "v0.2.9";
+  version = "0.2.9";
 
   src = fetchFromGitHub {
     owner = "SneWs";
     repo = "tail-tray";
-    rev = version;
+    tag = "v${version}";
     sha256 = "sha256-jNnYJE7AbtTaXQoB165cKIqtx+t78GJOCt/HqVe9x+M=";
   };
 
   nativeBuildInputs = with kdePackages; [
-    cmake
-    pkg-config
-    qtbase
     wrapQtAppsHook
     qttools
   ];
 
-  extraBuildInputs = [
+  buildInputs = with kdePackages; [
+    cmake
+    pkg-config
+    qtbase
     davfs2
   ];
 
-  fixupPhase = ''
-    substituteInPlace $out/share/applications/tail-tray.desktop --replace '/usr/local' $out
+  postFixupPhase = ''
+    substituteInPlace $out/share/applications/tail-tray.desktop \
+        --replace '/usr/local' $out
   '';
 
   meta = {
