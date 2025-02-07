@@ -1,9 +1,10 @@
-{ options, config, lib, ... }:
+{ options, config, lib, pkgs, ... }:
 
 with lib;
 with lib.types;
 let
   cfg = config.holynix.vpn.tailscale;
+  plasmaCfg = config.holynix.desktop.plasma;
 in
 {
   options.holynix.vpn.tailscale.enable = mkOption {
@@ -19,6 +20,9 @@ in
     networking.firewall.checkReversePath = "loose";
 
     services.resolved.enable = true;
-  };
 
+    environment.systemPackages = mkIf plasmaCfg.enable [
+      pkgs.holynix.tail-tray
+    ];
+  };
 }
