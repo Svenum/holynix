@@ -7,7 +7,7 @@ My own little nix config to manage multiple systems.
 # Systems
 
 - **Yon**: Framework 16 Laptop (CPU: AMD Ryzen 7 7840HS; GPU: AMD Radeon 7700S) for gaming, school and development.
-- **Zeta**: Tower PC (CPU: Intel I5; GPU: Nvidia 960) for office work and picture editing.
+- **Zeta**: Tower PC (CPU: Intel I5) for office work and picture editing.
 - **PC-Carmen**: A Lenovo Laptop for office work and websurfing.
 - **srv-raspi5**: Raspberry Pi 5 8GB RAM as little home-server.
 - **node1**: VM for Kubernetes (k3s)
