@@ -10,13 +10,13 @@
 
 stdenv.mkDerivation rec {
   name = "tail-tray";
-  version = "0.2.9";
+  version = "0.2.10";
 
   src = fetchFromGitHub {
     owner = "SneWs";
     repo = "tail-tray";
     tag = "v${version}";
-    sha256 = "sha256-jNnYJE7AbtTaXQoB165cKIqtx+t78GJOCt/HqVe9x+M=";
+    sha256 = "sha256-60ddnIyW93TKHlZ4PgW1ggoyN4moHJEiQ9FnnL6cM7Q=";
   };
 
   nativeBuildInputs = with kdePackages; [
@@ -33,7 +33,7 @@ stdenv.mkDerivation rec {
 
   postFixupPhase = ''
     substituteInPlace $out/share/applications/tail-tray.desktop \
-        --replace '/usr/local' $out
+        --replace-fail '/usr/local' $out
   '';
 
   meta = {
