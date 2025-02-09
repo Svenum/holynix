@@ -40,9 +40,9 @@ stdenv.mkDerivation rec {
     })
   ];
 
-  postFixupPhase = ''
+  postFixup = ''
     substituteInPlace $out/share/applications/tail-tray.desktop \
-        --replace-fail '/usr/local' $out
+      --replace-fail '/usr/local' $out
   '';
 
   meta = {
