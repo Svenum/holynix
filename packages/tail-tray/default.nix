@@ -4,6 +4,7 @@
   davfs2,
   cmake,
   stdenv,
+  fetchpatch,
   pkg-config,
   kdePackages,
 }:
@@ -29,6 +30,14 @@ stdenv.mkDerivation rec {
     pkg-config
     qtbase
     davfs2
+  ];
+
+  patches = [
+    # Fixes https://github.com/SneWs/tail-tray/issues/33
+    (fetchpatch {
+      url = "https://github.com/SneWs/tail-tray/commit/d7655e2187f6a445bd046d0b6fc766387a4d55b7.diff";
+      hash = "sha256-hyf3f8A8hxx2WFsh0eYb4meytg0TpOh9nZAUAtL0jsY=";
+    })
   ];
 
   postFixupPhase = ''
