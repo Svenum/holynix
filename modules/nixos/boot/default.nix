@@ -59,6 +59,9 @@ in
     boot.initrd.systemd.enable = true;
     boot.kernelParams = [ "quiet" "udev.log_level=3" ];
 
+    # Firmware
+    hardware.enableRedistributableFirmware = true;
+
     # Configure Plymouth
     boot.plymouth = {
       enable = true;
