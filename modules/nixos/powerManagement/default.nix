@@ -20,7 +20,7 @@ in
     };
 
     # Disable powerprofiles
-    services.power-profiles-daemon.enable = mkDefault false;
+    services.power-profiles-daemon.enable = mkForce false;
 
     # Enable auto-cpufreq
     programs.auto-cpufreq = {
