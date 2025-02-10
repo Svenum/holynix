@@ -118,6 +118,11 @@
     systems.hosts.srv-raspi5.modules = with inputs; [
       nixos-hardware.nixosModules.raspberry-pi-5
       raspberry-pi-nix.nixosModules.raspberry-pi
+      nixos-generators.nixosModules.sd-aarch64
+    ];
+
+    systems.hosts.srv-oracle.modules = with inputs; [
+      nixos-generators.nixosModules.qcow-efi
     ];
 
     systems.hosts.Yon.modules = with inputs; [

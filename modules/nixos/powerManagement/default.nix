@@ -19,8 +19,8 @@ in
       enable = true;
     };
 
-    # Disable powerpfiles
-    services.power-profiles-daemon.enable = true;
+    # Disable powerprofiles
+    services.power-profiles-daemon.enable = mkDefault false;
 
     # Enable auto-cpufreq
     programs.auto-cpufreq = {
