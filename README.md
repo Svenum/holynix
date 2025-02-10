@@ -6,12 +6,17 @@ My own little nix config to manage multiple systems.
 
 # Systems
 
-- **Yon**: Framework 16 Laptop (CPU: AMD Ryzen 7 7840HS; GPU: AMD Radeon 7700S) for gaming, school and development.
-- **Zeta**: Tower PC (CPU: Intel I5) for office work and picture editing.
-- **PC-Carmen**: A Lenovo Laptop for office work and websurfing.
-- **srv-raspi5**: Raspberry Pi 5 8GB RAM as little home-server.
-- **node1**: VM for Kubernetes (k3s)
-- **node2**: VM for Kubernetes (k3s)
-- **node3**: VM for Kubernetes (k3s)
-- **srv-dev**: VM for development over RDP/VNC.
+## Personal Computer
+- **[Yon](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/Yon/default.nix)**: Framework 16 Laptop (CPU: AMD Ryzen 7 7840HS; GPU: AMD Radeon 7700S) for gaming, school and development.
+- **[Zeta](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/Zeta/default.nix)**: Tower PC (CPU: Intel I5) for office work and picture editing.
+- **[PC-Carmen](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/PC-Carmen/default.nix)**: A Lenovo Laptop for office work and websurfing.
 
+## VMs
+- **[node1](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/node1/default.nix)**: VM for Kubernetes (k3s)
+- **[node2](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/node2/default.nix)**: VM for Kubernetes (k3s)
+- **[node3](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/node3/default.nix)**: VM for Kubernetes (k3s)
+
+## Server
+- **[srv-raspi5](https://github.com/Svenum/holynix/blob/main/systems/aarch64-linux/srv-raspi5/default.nix)**: Raspberry Pi 5 8GB RAM as little home-server.
+- **[srv-dev](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/srv-dev/default.nix)**: VM for development over RDP/VNC.
+- **[srv-dev](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/srv-oracle/default.nix)** VM in der Oracle Cloud (CPU: 2.0 GHz AMD EPYC™ 7551, Shape: VM.Standard.E2.1.Micro) für Docker.
