@@ -7,6 +7,10 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [];
 
-  swapDevices = [];
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 4 * 1024;
+  }];
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

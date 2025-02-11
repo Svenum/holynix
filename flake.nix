@@ -79,7 +79,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix/v0.4.1";
 
     sops-nix.url = "github:Mic92/sops-nix";
   };
@@ -118,7 +118,6 @@
     systems.hosts.srv-raspi5.modules = with inputs; [
       nixos-hardware.nixosModules.raspberry-pi-5
       raspberry-pi-nix.nixosModules.raspberry-pi
-      raspberry-pi-nix.nixosModules.sd-image
     ];
 
     systems.hosts.srv-oracle.modules = with inputs; [
