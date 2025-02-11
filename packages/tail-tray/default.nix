@@ -38,6 +38,11 @@ stdenv.mkDerivation rec {
       url = "https://github.com/SneWs/tail-tray/commit/d7655e2187f6a445bd046d0b6fc766387a4d55b7.diff";
       hash = "sha256-hyf3f8A8hxx2WFsh0eYb4meytg0TpOh9nZAUAtL0jsY=";
     })
+    # Fiexes https://github.com/SneWs/tail-tray/issues/37
+    (fetchpatch {
+      url = "https://github.com/SneWs/tail-tray/commit/83719c629ea98a035ff937a819d6c493f5a7c032.patch";
+      hash = "sha256-oqePwgo+ejhnwh3RZ8+gnwOV2M7w/q04cc16nuQVI3E=";
+    })
   ];
 
   postFixup = ''
