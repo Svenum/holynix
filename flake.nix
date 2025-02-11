@@ -118,7 +118,7 @@
     systems.hosts.srv-raspi5.modules = with inputs; [
       nixos-hardware.nixosModules.raspberry-pi-5
       raspberry-pi-nix.nixosModules.raspberry-pi
-      nixos-generators.nixosModules.sd-aarch64
+      raspberry-pi-nix.nixosModules.sd-image
     ];
 
     systems.hosts.srv-oracle.modules = with inputs; [
