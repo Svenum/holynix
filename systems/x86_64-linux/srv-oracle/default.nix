@@ -20,6 +20,7 @@
       "sudouser" = {
         isGuiUser = true;
         isSudoUser = true;
+        isDockerUser = true;
         uid = 1000;
         initialPassword = "test123";
         authorizedKeys = [
