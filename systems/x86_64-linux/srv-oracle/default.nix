@@ -12,6 +12,7 @@
     systemType = {
       vm.enable = true;
       server.enable = true;
+      ansibleTarget = true;
     };
     users = {
       "sudouser" = {
