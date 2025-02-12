@@ -11,8 +11,10 @@
     locale.name = "en_DE";
     systemType = {
       vm.enable = true;
-      server.enable = true;
-      ansibleTarget = true;
+      server = {
+        enable = true;
+        ansibleTarget = true;
+      };
     };
     users = {
       "sudouser" = {
