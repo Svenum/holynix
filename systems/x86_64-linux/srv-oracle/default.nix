@@ -30,5 +30,6 @@
       cliTools.enable = true;
     };
     network.enable = true;
+    virtualisation.docker.enable = true;
   };
 }
