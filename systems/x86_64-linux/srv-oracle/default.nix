@@ -1,5 +1,8 @@
 { pkgs, lib, config, modulesPath, ... }:
 
+let
+  ip = "172.20.0.11";
+in
 {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -35,5 +38,23 @@
     };
     network.enable = true;
     virtualisation.docker.enable = true;
+  };
+  
+  networking = {
+    bridges.br0.interfaces = [
+      "ens3"
+    ];
+    interfaces = {
+      "br0" = {
+        ipv4.addresses = [{
+          address = ip;
+          prefixLength = 24;
+        }];
+        useDHCP = false;
+      };
+      "ens3".useDHCP = true;
+    };
+    defaultGateway = "172.20.0.1";
+    #nameservers = [ "172.16.0.3" "172.16.0.4" ];
   };
 }
