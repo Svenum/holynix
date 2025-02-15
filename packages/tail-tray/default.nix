@@ -11,7 +11,7 @@
 
 stdenv.mkDerivation rec {
   name = "tail-tray";
-  version = "0.2.11";
+  version = "0.2.12";
 
   src = fetchFromGitHub {
     owner = "SneWs";
