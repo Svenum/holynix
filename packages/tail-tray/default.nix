@@ -10,32 +10,29 @@
 }:
 
 stdenv.mkDerivation rec {
-  name = "tail-tray";
-  version = "0.2.12";
+  pname = "tail-tray";
+  version = "0.2.13";
 
   src = fetchFromGitHub {
     owner = "SneWs";
     repo = "tail-tray";
     tag = "v${version}";
-    sha256 = "sha256-khJX/zsbDgT+eJVhIR72i8kYGJVoUEngfjZp/TASa/4=";
+    sha256 = "sha256-BzE32XvDEdlS5D8XjZ4m2OEn+6nS0F7oJYX/a/UKhJ4=";
   };
 
   nativeBuildInputs = with kdePackages; [
     wrapQtAppsHook
     qttools
+    cmake
+    pkg-config
   ];
 
   buildInputs = with kdePackages; [
-    cmake
-    pkg-config
     qtbase
     davfs2
   ];
 
-  postFixup = ''
-    substituteInPlace $out/share/applications/tail-tray.desktop \
-      --replace-fail '/usr/local' $out
-  '';
+  patches = [ ./desktop.patch ];
 
   meta = {
     description = "Tray icon to manage Tailscale";
