@@ -37,10 +37,6 @@ in
       # Theming
       betterdiscordctl
       spicetify-cli
-      holynix.prepare-spotify
-      (holynix.prepare-discord.override {
-        accent = themeCfg.accent;
-      })
     ] ++ lists.optionals plasmaCfg.enable [ pkgs.kdePackages.discover pkgs.kdePackages.packagekit-qt ];
 
     # Install and enable flatpak

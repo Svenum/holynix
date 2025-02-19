@@ -1,7 +1,7 @@
 { pkgs, lib, config, modulesPath, ... }:
 
 let
-  ip = "172.20.0.11";
+  ip = "172.20.0.214";
 in
 {
   imports = [
@@ -55,6 +55,6 @@ in
       "ens3".useDHCP = true;
     };
     defaultGateway = "172.20.0.1";
-    #nameservers = [ "172.16.0.3" "172.16.0.4" ];
+    nameservers = [ "9.9.9.9" "1.1.1.1" ];
   };
 }
