@@ -22,8 +22,8 @@ in
       withNodeJs = true;
       configure = {
         customRC = (builtins.readFile ./init.vim) + "colorscheme catppuccin-${config.holynix.theme.flavour}";
-        packages.nix = {
-          start = with pkgs.vimPlugins; [
+        packages.nix = with pkgs.vimPlugins; {
+          start = [
             # Plugins
             vim-plug
             # CoC
@@ -64,3 +64,5 @@ in
     ];
   };
 }
+
+

@@ -20,4 +20,12 @@ in
       default = "teal";
     };
   };
+
+  config = {
+    catppuccin = {
+      enable = true;
+      flavor = cfg.flavour;
+      accent = cfg.accent;
+    };
+  };
 }

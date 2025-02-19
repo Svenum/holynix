@@ -82,6 +82,8 @@
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix/v0.4.1";
 
     sops-nix.url = "github:Mic92/sops-nix";
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = inputs:
@@ -113,6 +115,7 @@
       home-manager.nixosModules.home-manager
       sops-nix.nixosModules.sops
       nur.modules.nixos.default
+      catppuccin.nixosModules.catppuccin
     ];
 
     systems.hosts.srv-raspi5.modules = with inputs; [
@@ -135,6 +138,7 @@
 
     homes.modules = with inputs; [
       plasma-manager.homeManagerModules.plasma-manager
+      catppuccin.homeManagerModules.catppuccin
     ];
 
   };
