@@ -22,7 +22,7 @@ in
     services.resolved.enable = true;
 
     environment.systemPackages = mkIf plasmaCfg.enable [
-      pkgs.holynix.tail-tray
+      pkgs.tail-tray
     ];
   };
 }

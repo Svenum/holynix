@@ -1,6 +1,6 @@
-{ pkgs }:
+{ haskellPackages }:
 
-pkgs.haskellPackages.callPackage (
+haskellPackages.callPackage (
 {
   mkDerivation,
   fetchgit,
@@ -42,5 +42,6 @@ mkDerivation {
   homepage = "https://github.com/samtay/tetris#readme";
   license = lib.licenses.bsd3;
   mainProgram = "tetris";
+  maintainers = [ lib.maintainers.Svenum ];
 }) {}
 
