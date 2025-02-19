@@ -4,6 +4,7 @@ with lib;
 with lib.types;
 let
   cfg = config.holynix.users;
+  themeCfg = config.holynix.theme;
 
   mkUser = name: user: {
     isNormalUser = true;
@@ -56,6 +57,12 @@ let
         XDG_GAMES_DIR = "${config.home-manager.users.${name}.home.homeDirectory}/Games";
         XDG_GITHUB_DIR = "${config.home-manager.users.${name}.home.homeDirectory}/GitHub";
       };
+    };
+
+    catppuccin = {
+      enable = true;
+      flavor = themeCfg.flavour;
+      accent = themeCfg.accent;
     };
 
     # Import user specific modues if needed

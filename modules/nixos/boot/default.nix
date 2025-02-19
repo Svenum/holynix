@@ -65,12 +65,6 @@ in
     # Configure Plymouth
     boot.plymouth = {
       enable = true;
-      theme = "catppuccin-${config.holynix.theme.flavour}";
-      themePackages = with pkgs; [
-        (catppuccin-plymouth.override {
-          variant = config.holynix.theme.flavour;
-        })
-      ];
     };
 
     boot.lanzaboote = mkIf cfg.secureBoot {

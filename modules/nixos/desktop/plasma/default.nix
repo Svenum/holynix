@@ -29,7 +29,6 @@ in
           enable = true;
           compositor = "kwin";
         };
-        theme = "catppuccin-${themeCfg.flavour}";
         autoNumlock = true;
       };
       defaultSession = mkIf (! desktopCfg.wayland) "plasmax11";
