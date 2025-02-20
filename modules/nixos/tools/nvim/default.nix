@@ -21,7 +21,7 @@ in
       vimAlias = true;
       withNodeJs = true;
       configure = {
-        customRC = (builtins.readFile ./init.vim) + "colorscheme catppuccin-${config.holynix.theme.flavour}";
+        customRC = (builtins.readFile ./init.vim);
         packages.nix = with pkgs.vimPlugins; {
           start = [
             # Plugins
@@ -45,8 +45,6 @@ in
             # IDE
             auto-pairs
             surround-nvim
-            # Theme
-            catppuccin-nvim
             # Terminal
             vim-tmux-navigator
             # Git
