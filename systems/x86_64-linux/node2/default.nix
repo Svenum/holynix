@@ -30,7 +30,6 @@ in
       };
     };
     tools = {
-      nvim.enable = true;
       tmux.enable = true;
       cliTools.enable = true;
     };
