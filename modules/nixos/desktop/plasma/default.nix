@@ -38,7 +38,7 @@ in
     };
 
     # Disable packages
-    environment.plasma6.excludePackages = with pkgs; [
+    environment.plasma6.excludePackages = with pkgs.kdePackages; [
       oxygen
       elisa
       khelpcenter
