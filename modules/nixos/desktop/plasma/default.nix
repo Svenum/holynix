@@ -38,7 +38,7 @@ in
     };
 
     # Disable packages
-    environment.plasma6.excludePackages = with pkgs; [
+    environment.plasma6.excludePackages = with pkgs.kdePackages; [
       oxygen
       elisa
       khelpcenter
@@ -57,7 +57,7 @@ in
       bup
       # GUI Tools
       kdePackages.sddm-kcm
-      xwaylandvideobridge
+      kdePackages.xwaylandvideobridge
       caffeine-ng
       kdePackages.korganizer
       kdePackages.kdepim-runtime
