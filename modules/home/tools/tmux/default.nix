@@ -53,9 +53,9 @@ in
 
       set -g @catppuccin_date_time_text "%d.%m.%Y %H:%M"
 
-      #set -g @catppuccin_window_left_separator " "
-      #set -g @catppuccin_window_middle_separator " "
-      #set -g @catppuccin_window_right_separator " "
+      set -g @catppuccin_window_left_separator " "
+      set -g @catppuccin_window_middle_separator " "
+      set -g @catppuccin_window_right_separator " "
 
       set -g @catppuccin_status_left_separator " "
       set -g @catppuccin_status_right_separator "█"
