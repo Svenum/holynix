@@ -15,7 +15,6 @@ in
       ansibleTarget = true;
     };
     tools = {
-      tmux.enable = true;
       cliTools.enable = true;
     };
     network = {

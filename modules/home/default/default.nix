@@ -12,6 +12,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    holynix.tools.nvim.enable = mkDefault true;
+    holynix.tools = {
+      nvim.enable = mkDefault true;
+      tmux.enable = mkDefault true;
+      
+    };
   };
 }

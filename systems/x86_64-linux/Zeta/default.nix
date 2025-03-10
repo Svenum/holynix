@@ -31,7 +31,6 @@
 
     shell.zsh.enable = true;
     tools = {
-      tmux.enable = true;
       flatpak.enable = true;
       cliTools.enable = true;
     };

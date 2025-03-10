@@ -46,7 +46,6 @@
       tailscale.enable = true;
     };
     tools = {
-      tmux.enable = true;
       flatpak.enable = true;
       cliTools.enable = true;
       flake.enable = true;

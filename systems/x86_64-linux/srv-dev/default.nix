@@ -44,7 +44,6 @@
       };
     };
     tools = {
-      tmux.enable = true;
       flatpak.enable = true;
       cliTools.enable = true;
     };

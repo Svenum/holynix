@@ -32,7 +32,6 @@ in
       };
     };
     tools = {
-      tmux.enable = true;
       cliTools.enable = true;
     };
     network.enable = true;

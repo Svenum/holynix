@@ -30,7 +30,6 @@ in
       };
     };
     tools = {
-      tmux.enable = true;
       cliTools.enable = true;
     };
 
