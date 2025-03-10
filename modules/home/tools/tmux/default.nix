@@ -55,19 +55,7 @@ in
 
       set -g @catppuccin_date_time_text " %d.%m.%Y %H:%M"
 
-      #set -g @catppuccin_window_left_separator " "
-      #set -g @catppuccin_window_middle_separator " "
-      #set -g @catppuccin_window_right_separator " "
-
-      #set -g @catppuccin_status_left_separator " "
-      #set -g @catppuccin_status_right_separator "█"
-
-      #set -g @catppuccin_status_fill "all"
       #set -g @catppuccin_status_connect_separator "no"
-      #set -g @catppuccin_window_current_text "#{pane_current_path}"
-      #set -g @catppuccin_window_number_position "right"
-      #set -g @catppuccin_window_default_fill "number"
-      #set -g @catppuccin_window_current_fill "all"
 
       set -g @catppuccin_window_number_position "left"
       set -g @catppuccin_window_current_number_color "#{@thm_green}"
@@ -75,15 +63,14 @@ in
       set -g @catppuccin_window_number "#[bold]Tab ###I "
       set -g @catppuccin_window_current_text ""
       set -g @catppuccin_window_current_number "#[bold]Tab ###I "
-      set -g @catppuccin_window_status_style "custom"
       set -g @catppuccin_window_right_separator "#[fg=#{@_ctp_status_bg},reverse]#[none]"
 
       set -g @catppuccin_window_left_separator "#[fg=#{@_ctp_status_bg}] #[none]"
       set -g @catppuccin_window_middle_separator "#[bg=#{@catppuccin_window_text_color},fg=#{@catppuccin_window_number_color}]"
       set -g @catppuccin_window_current_middle_separator "#[bg=#{@catppuccin_window_current_text_color},fg=#{@catppuccin_window_current_number_color}]"
       
-      set -g @catppuccin_status_left_separator "#[none] "
-      set -g @catppuccin_status_right_separator " "
+      set -g @catppuccin_status_left_separator "#[none]"
+      set -g @catppuccin_status_right_separator "#[none] "
     '';
   };
 }
