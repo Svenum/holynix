@@ -54,5 +54,13 @@ in
       ];
     };
 
+    catppuccin.nvim.settings = {
+      term_colors = true;
+      transparent_background = true;
+      integrations = {
+        coc_nvim = true;
+        gitgutter = true;
+      };
+    };
   };
 }
