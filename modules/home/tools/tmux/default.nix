@@ -40,6 +40,8 @@ in
       '';
     };
     catppuccin.tmux.extraConfig = ''
+      set -g @catppuccin_window_status_style "custom"
+
       set -g @catppuccin_status_modules_right "application session user host date_time"
       set -g @catppuccin_date_time_text "%d.%m.%Y %H:%M"
       
