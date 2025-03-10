@@ -46,7 +46,7 @@ in
       set -g status-left-length 0
       set -g status-left "#[fg=#{@thm_fg} bold]TMUX (#S) "
       set -ga status-left "#{?client_prefix,#[fg=#{@thm_red} bold]PREFIX ,#{?#{==:#{pane_mode},copy-mode},#[fg=#{@thm_yellow} bold]COPY ,#[fg=#{@thm_green} bold]NORMAL }}"
-      set -g status-right-length 100
+      set -g status-right-length 0
       set -g status-right "#{E:@catppuccin_status_application}"
       set -ag status-right "#{E:@catppuccin_status_session}"
       set -ag status-right "#{E:@catppuccin_status_user}"
