@@ -81,6 +81,10 @@ in
       set -g @catppuccin_window_left_separator "#[fg=#{@_ctp_status_bg}] #[none]"
       set -g @catppuccin_window_middle_separator "#[bg=#{@catppuccin_window_text_color},fg=#{@catppuccin_window_number_color}]"
       set -g @catppuccin_window_current_middle_separator "#[bg=#{@catppuccin_window_current_text_color},fg=#{@catppuccin_window_current_number_color}]"
+      
+      set -g @catppuccin_status_left_separator "#[none] #[fg=#{@_ctp_status_bg}]"
+      set -g @catppuccin_status_middle_separator "#[bg=#{@catppuccin_window_text_color},fg=#{@catppuccin_window_number_color}]"
+      set -g @catppuccin_status_current_middle_separator "#[bg=#{@catppuccin_window_current_text_color},fg=#{@catppuccin_window_current_number_color}]"
     '';
   };
 }
