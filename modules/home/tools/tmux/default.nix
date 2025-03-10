@@ -71,7 +71,7 @@ in
       
       set -g @catppuccin_status_left_separator "#[none]"
       set -g @catppuccin_status_middle_separator ""
-      set -g @catppuccin_status_right_separator "#[none] "
+      set -g @catppuccin_status_right_separator "#[fg=#{@_ctp_status_bg},reverse]#[none] "
     '';
   };
 }
