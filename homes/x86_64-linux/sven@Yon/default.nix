@@ -39,8 +39,6 @@
     # School
     gcc
     live-server
-    holynix.bycsdrive
-    holynix.robot-karol
     mysql-workbench
 
     # Nextcloud
