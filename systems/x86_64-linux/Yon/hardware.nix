@@ -67,5 +67,15 @@
       framework.enableKmod = false;
     };
 
+    # disable Wakup on Keyboard
+    
+    services.udev.extraRules = ''
+      # Framework Laptop 16 Keyboard
+      ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0018", ATTR{power/wakeup}="disabled"
+
+      # Framework Laptop 16 Numpad Module
+      ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0014", ATTR{power/wakeup}="disabled"
+    '';
+
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
