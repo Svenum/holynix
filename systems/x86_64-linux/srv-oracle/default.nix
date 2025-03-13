@@ -1,4 +1,4 @@
-{ pkgs, lib, config, modulesPath, ... }:
+{ modulesPath, ... }:
 
 let
   ip = "172.20.0.214";

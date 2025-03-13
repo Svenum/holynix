@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, inputs, ... }:
+{ options, config, lib, pkgs, ... }:
 
 with lib;
 with lib.types;
@@ -7,7 +7,6 @@ let
   cfg = config.holynix.desktop.plasma;
   desktopCfg  = config.holynix.desktop;
   themeCfg = config.holynix.theme;
-  usersCfg = config.holynix.users;
 in
 {
   options.holynix.desktop.plasma = {

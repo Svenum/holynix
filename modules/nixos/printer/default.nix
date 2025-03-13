@@ -29,7 +29,7 @@ in
     printers = mkOption {
       default = {};
       type = listOf (submodule (
-        { config, options, ... }:
+        { options, ... }:
         {
           options = {
             name = mkOption {

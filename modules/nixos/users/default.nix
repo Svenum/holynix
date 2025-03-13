@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, ... }:
 
 with lib;
 with lib.types;
@@ -73,7 +73,7 @@ in
     users = mkOption {
       default = {};
       type = attrsOf (submodule (
-        { name, config, options, ... }:
+        { name, options, ... }:
         {
           options = {
             isGuiUser = mkOption {

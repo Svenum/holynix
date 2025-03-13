@@ -5,7 +5,6 @@ with lib.types;
 
 let
   cfg = config.holynix.desktop;
-  localeCfg = config.holynix.locale;
 in
 {
   options.holynix.desktop = {

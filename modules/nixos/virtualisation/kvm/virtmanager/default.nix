@@ -10,7 +10,7 @@ let
   usersCfg = config.holynix.users;
 
   # Add connections for users;
-  mkUserConfig = name: user: {
+  mkUserConfig = _name: user: {
     dconf.settings = lib.mkIf user.isKvmUser or false {
       "org/virt-manager/virt-manager/connections" = {
         autoconnect = ["qemu:///system" "qemu:///session"];
@@ -22,7 +22,7 @@ let
   };
 
   # Add user to needed group
-  mkUser = name: user: {
+  mkUser = _name: user: {
     extraGroups = lib.mkIf user.isKvmUser or false [
       "kvm"
       "libvirtd"

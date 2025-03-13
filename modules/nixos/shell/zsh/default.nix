@@ -5,7 +5,6 @@ with lib.types;
 let
   cfg = config.holynix.shell.zsh;
   themeCfg = config.holynix.theme;
-  usersCfg = config.holynix.users;
 in
 {
   options.holynix.shell.zsh = {

@@ -1,4 +1,4 @@
-{pkgs, uuid, diskPath, nvramPath }:
+{pkgs, uuid, diskPath }:
 
 {
   type = "qemu";

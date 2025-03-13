@@ -8,7 +8,7 @@ let
   usersCfg = config.holynix.users;
   plasmaCfg = config.holynix.desktop.plasma;
 
-  mkUserConfig = name: user: {
+  mkUserConfig = _name: user: {
     home.activation = lib.mkIf (if builtins.hasAttr "isGuiUser" user then user.isGuiUser else false){
       configureFlatpak = ''
         FLAVOUR=${themeCfg.flavour}
