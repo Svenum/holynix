@@ -25,7 +25,7 @@ let
       (mkIf (if builtins.hasAttr "isDockerUser" user then user.isDockerUser else false) "docker")
     ];
 
-    uid = user.uid;
+    inherit (user) id;
     openssh.authorizedKeys.keys = mkIf (user.authorizedKeys != null) user.authorizedKeys;
   };
 
@@ -34,15 +34,15 @@ let
     home = {
       username = name;
       homeDirectory = "/home/${name}";
-      stateVersion = config.system.stateVersion;
+      inherit (config.system) stateVersion;
     };
     programs.home-manager.enable = true;
 
     # Git Config
     programs.git = mkIf (if builtins.hasAttr "git" user then true else false) {
       enable = true;
-      userName = user.git.userName;
-      userEmail = user.git.userEmail;
+      inherit (user.git) userName;
+      inherit (user.git) userEmail;
       extraConfig = {
         safe.directory = "/etc/nixos";
         pager.branch = false;
@@ -61,8 +61,8 @@ let
 
     catppuccin = {
       enable = true;
-      flavor = themeCfg.flavour;
-      accent = themeCfg.accent;
+      inherit (themeCfg) flavor;
+      inherit (themeCfg) accent;
     };
 
     # Import user specific modues if needed

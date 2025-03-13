@@ -3,7 +3,7 @@
 with lib;
 with lib.types;
 let
-  cfg = config.holynix.k3s;
+  cfg = config.holynix.virtualisation.k3s;
 in
 {
   options.holynix.k3s = {
@@ -38,7 +38,7 @@ in
     # Enable K3S
     services.k3s = {
       enable = true;
-      tokenFile = cfg.tokenFile;
+      inherit (cfg) tokenFile;
       extraFlags = "--cluster-cidr ${cfg.clusterCIDR}";
       clusterInit = true;
     };

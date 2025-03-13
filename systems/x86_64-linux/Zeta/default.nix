@@ -9,7 +9,7 @@
     locale.name = "de_DE";
     theme = {
       accent = "peach";
-      flavour = "mocha";
+      flavor = "mocha";
     };
 
     users = {

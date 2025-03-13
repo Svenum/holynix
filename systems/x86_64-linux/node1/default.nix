@@ -41,7 +41,7 @@ in
 
     network.enable = true;
 
-    k3s = {
+    virtualisation.k3s = {
       enable = true;
       clusterCIDR = "10.11.0.0/16";
       tokenFile = config.sops.secrets."kube_token".path;

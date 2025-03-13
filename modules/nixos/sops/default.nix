@@ -32,7 +32,7 @@ in
 
   config = mkIf cfg.enableHostKey {
     sops = {
-      defaultSopsFile = cfg.defaultSopsFile;
+      inherit (cfg) defaultSopsFile;
       age.sshKeyPaths = [
         "/etc/ssh/ssh_host_ed25519_key"
       ] ++ optionals (cfg.sshKeyPaths != null) cfg.sshKeyPaths;

@@ -33,7 +33,7 @@ in
       syntaxHighlighting.enable = true;
       enableCompletion = true;
       shellInit = ''
-        ${builtins.readFile ./config/catppuccin_${themeCfg.flavour}-zsh-syntax-highlighting.zsh}
+        ${builtins.readFile ./config/catppuccin_${themeCfg.flavor}-zsh-syntax-highlighting.zsh}
         ${builtins.readFile ./config/zshrc}
       '';
       promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";

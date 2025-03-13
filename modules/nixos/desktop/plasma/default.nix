@@ -79,20 +79,20 @@ in
       # Icons
       (catppuccin-papirus-folders.override {
         flavor = "latte";
-        accent = themeCfg.accent;
+        inherit (themeCfg) accent;
         })
       # KDE Themes
       (catppuccin-kde.override {
-        flavour = [ themeCfg.flavour ];
+        flavour = [ themeCfg.flavor ];
         accents = [ themeCfg.accent ];
         winDecStyles = [ "modern" ];
       })
       (catppuccin-sddm.override {
-        flavor = themeCfg.flavour;
+        inherit (themeCfg) flavor;
       })
       # GTK Themes
       (catppuccin-gtk.override {
-        variant = themeCfg.flavour;
+        variant = themeCfg.flavor;
         accents = [ themeCfg.accent ];
       })
     ] ++ (if themeCfg.accent == "teal" then [catppuccin-cursors.latteTeal catppuccin-cursors.mochaTeal] else

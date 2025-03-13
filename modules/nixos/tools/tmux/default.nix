@@ -28,7 +28,7 @@ in
       ];
       extraConfigBeforePlugins = ''
         # Catppuccin
-        set -g @catppuccin_flavour '${themeCfg.flavour}'
+        set -g @catppuccin_flavor '${themeCfg.flavor}'
         set -g @catppuccin_status_modules_right "application session user host date_time"
         set -g @catppuccin_date_time_text "%d.%m.%Y %H:%M"
         

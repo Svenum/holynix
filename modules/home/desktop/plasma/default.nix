@@ -14,9 +14,9 @@ in
       description = "enable plasma-manager";
     };
     themeFlavour = mkOption {
-      default = strings.toLower themeCfg.flavour;
+      default = strings.toLower themeCfg.flavor;
       type = str;
-      description = "theme flavour";
+      description = "theme flavor";
     };
     themeAccent = mkOption {
       default = strings.toLower themeCfg.accent;
@@ -24,7 +24,7 @@ in
       description = "theme accent";
     };
     cursorFlavour = mkOption {
-      default = strings.toLower themeCfg.flavour;
+      default = strings.toLower themeCfg.flavor;
       type = str;
       description = "cursor flavor";
     };
@@ -93,7 +93,7 @@ in
         theme = "default";
         colorScheme = "Catppuccin${cfg.themeFlavour}${cfg.themeAccent}";
         cursor.theme = "Catppuccin-${cfg.cursorFlavour}-${cfg.themeAccent}-Cursors";
-        wallpaper = "/etc/wallpaper/catppuccin-${lib.strings.toLower themeCfg.flavour}.jpg";
+        wallpaper = "/etc/wallpaper/catppuccin-${lib.strings.toLower themeCfg.flavor}.jpg";
       };
 
       hotkeys.commands."Launch-Konsole" = {
@@ -113,7 +113,7 @@ in
               name = "org.kde.plasma.icontasks";
               config = {
                 General = {
-                  launchers = cfg.launchers;
+                  inherit (cfg) launchers;
                 };
               };
             }

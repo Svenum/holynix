@@ -6,10 +6,10 @@ let
   cfg = config.holynix.printer;
 
   mkPrinterConfig = props: {
-    name = props.name;
-    deviceUri = props.deviceUri;
-    description = props.description;
-    model = props.model;
+    inherit (props) name;
+    inherit (props) deviceUri;
+    inherit (props) description;
+    inherit (props) model;
   };
 in
 {

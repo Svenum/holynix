@@ -8,7 +8,7 @@
     desktop.plasma.enable = true;
     theme = {
       accent = "red";
-      flavour = "latte";
+      flavor = "latte";
     };
 
     users = {
