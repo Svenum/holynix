@@ -1,4 +1,4 @@
-{options, config, lib, pkgs, inputs, ...}:
+{ options, config, lib, pkgs, inputs, ... }:
 
 with lib;
 with lib.types;
@@ -13,12 +13,12 @@ let
   mkUserConfig = _name: user: {
     dconf.settings = lib.mkIf user.isKvmUser or false {
       "org/virt-manager/virt-manager/connections" = {
-        autoconnect = ["qemu:///system" "qemu:///session"];
-        uris = ["qemu:///system" "qemu:///session"];
+        autoconnect = [ "qemu:///system" "qemu:///session" ];
+        uris = [ "qemu:///system" "qemu:///session" ];
       };
     };
 
-    imports = (if user.isKvmUser or false then [ nixVirt.homeModules.default ] else []);
+    imports = (if user.isKvmUser or false then [ nixVirt.homeModules.default ] else [ ]);
   };
 
   # Add user to needed group

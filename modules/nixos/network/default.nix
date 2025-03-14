@@ -24,7 +24,7 @@ in
       networkmanager = {
         enable = true;
         wifi.backend = mkIf cfg.useIWD "iwd";
-        plugins = mkIf typeCfg.server.enable (mkForce []);
+        plugins = mkIf typeCfg.server.enable (mkForce [ ]);
       };
     };
   };

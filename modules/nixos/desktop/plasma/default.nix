@@ -5,7 +5,7 @@ with lib.types;
 
 let
   cfg = config.holynix.desktop.plasma;
-  desktopCfg  = config.holynix.desktop;
+  desktopCfg = config.holynix.desktop;
   themeCfg = config.holynix.theme;
 in
 {
@@ -42,7 +42,7 @@ in
       elisa
       khelpcenter
       kwrited
-    ];   
+    ];
     programs.dconf.enable = true;
 
     # Install Needed packages
@@ -80,7 +80,7 @@ in
       (catppuccin-papirus-folders.override {
         flavor = "latte";
         inherit (themeCfg) accent;
-        })
+      })
       # KDE Themes
       (catppuccin-kde.override {
         flavour = [ themeCfg.flavor ];
@@ -95,9 +95,9 @@ in
         variant = themeCfg.flavor;
         accents = [ themeCfg.accent ];
       })
-    ] ++ (if themeCfg.accent == "teal" then [catppuccin-cursors.latteTeal catppuccin-cursors.mochaTeal] else
-          if themeCfg.accent == "red" then [catppuccin-cursors.latteRed catppuccin-cursors.mochaRed] else
-          if themeCfg.accent == "peach" then [catppuccin-cursors.lattePeach catppuccin-cursors.mochaPeach] else []);
+    ] ++ (if themeCfg.accent == "teal" then [ catppuccin-cursors.latteTeal catppuccin-cursors.mochaTeal ] else
+    if themeCfg.accent == "red" then [ catppuccin-cursors.latteRed catppuccin-cursors.mochaRed ] else
+    if themeCfg.accent == "peach" then [ catppuccin-cursors.lattePeach catppuccin-cursors.mochaPeach ] else [ ]);
 
     # Enable partitionmanager
     programs.partition-manager.enable = true;

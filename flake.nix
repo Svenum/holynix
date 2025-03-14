@@ -87,59 +87,59 @@
   };
 
   outputs = inputs:
-  let
-    lib = inputs.snowfall-lib.mkLib {
-      inherit inputs;
-      src = ./.;
-      snowfall = {
-        namespace = "holynix";
-        meta = {
-          name = "holynix";
-          title = "Holy Nix";
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
+        snowfall = {
+          namespace = "holynix";
+          meta = {
+            name = "holynix";
+            title = "Holy Nix";
+          };
         };
       };
+    in
+    lib.mkFlake {
+      channels-config = {
+        allowUnfree = true;
+        nvidia.acceptLicense = true;
+      };
+
+      overlays = with inputs; [
+        flake.overlays.default
+      ];
+
+      systems.modules.nixos = with inputs; [
+        solaar.nixosModules.default
+        home-manager.nixosModules.home-manager
+        sops-nix.nixosModules.sops
+        nur.modules.nixos.default
+        catppuccin.nixosModules.catppuccin
+      ];
+
+      systems.hosts.srv-raspi5.modules = with inputs; [
+        nixos-hardware.nixosModules.raspberry-pi-5
+        raspberry-pi-nix.nixosModules.raspberry-pi
+      ];
+
+      systems.hosts.srv-oracle.modules = with inputs; [
+        nixos-generators.nixosModules.qcow-efi
+      ];
+
+      systems.hosts.Yon.modules = with inputs; [
+        nixos-hardware.nixosModules.framework-16-7040-amd
+        fw-fanctrl.nixosModules.default
+      ];
+
+      systems.hosts.Yon.specialArgs = {
+        inherit (inputs) nur;
+      };
+
+      homes.modules = with inputs; [
+        plasma-manager.homeManagerModules.plasma-manager
+        catppuccin.homeManagerModules.catppuccin
+      ];
+
     };
-  in
-  lib.mkFlake {
-    channels-config = {
-      allowUnfree = true;
-      nvidia.acceptLicense = true;
-    };
-    
-    overlays = with inputs; [
-      flake.overlays.default
-    ];
-
-    systems.modules.nixos = with inputs; [
-      solaar.nixosModules.default
-      home-manager.nixosModules.home-manager
-      sops-nix.nixosModules.sops
-      nur.modules.nixos.default
-      catppuccin.nixosModules.catppuccin
-    ];
-
-    systems.hosts.srv-raspi5.modules = with inputs; [
-      nixos-hardware.nixosModules.raspberry-pi-5
-      raspberry-pi-nix.nixosModules.raspberry-pi
-    ];
-
-    systems.hosts.srv-oracle.modules = with inputs; [
-      nixos-generators.nixosModules.qcow-efi
-    ];
-
-    systems.hosts.Yon.modules = with inputs; [
-      nixos-hardware.nixosModules.framework-16-7040-amd
-      fw-fanctrl.nixosModules.default
-    ];
-
-    systems.hosts.Yon.specialArgs = {
-      inherit (inputs) nur;
-    };
-
-    homes.modules = with inputs; [
-      plasma-manager.homeManagerModules.plasma-manager
-      catppuccin.homeManagerModules.catppuccin
-    ];
-
-  };
 }

@@ -14,13 +14,13 @@ in
   config = mkIf cfg.enable {
     # Default alias
     environment.shellInit = ''
-        su() {
-          if [[ $1 != "" ]]; then
-            /run/wrappers/bin/su $@
-          else
-            sudo -s
-          fi
-        }
+      su() {
+        if [[ $1 != "" ]]; then
+          /run/wrappers/bin/su $@
+        else
+          sudo -s
+        fi
+      }
     '';
   };
 }

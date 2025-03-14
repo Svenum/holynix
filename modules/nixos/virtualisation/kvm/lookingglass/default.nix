@@ -1,4 +1,4 @@
-{options, config, lib, pkgs, ...}:
+{ options, config, lib, pkgs, ... }:
 
 with lib;
 with lib.types;
@@ -36,7 +36,7 @@ in
         "/dev/kvm"
       ]
     '';
-    
+
     boot.extraModulePackages = with config.boot.kernelPackages; [ kvmfr ];
     boot.kernelModules = [ "kvmfr" ];
 
@@ -45,7 +45,7 @@ in
       user = "root";
       group = "root";
       mode = "0755";
-      text = generators.toINI {}{
+      text = generators.toINI { } {
         wayland = { fractionScale = "yes"; };
         opengl = { amdPinnedMem = "yes"; };
         input = {
@@ -64,7 +64,7 @@ in
           allowDMA = "yes";
         };
         win = {
-          alerts = "no"; 
+          alerts = "no";
         };
       };
     };

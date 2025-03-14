@@ -8,11 +8,11 @@
   boot.initrd.availableKernelModules = [ "usbhid" "xhci_pci" "ahci" "firewire_ohci" "usb_storage" "sd_mod" "sr_mod" ];
   boot.kernelModules = [ "kvm-intel" "sg" ];
   # Maybe mds=full,nosmt
-  boot.kernelParams = ["mds=full" "efi=runtime" "iommu=pt" "intel_iommu=on" ];
+  boot.kernelParams = [ "mds=full" "efi=runtime" "iommu=pt" "intel_iommu=on" ];
 
   # Configure RAID
   boot.swraid = {
-    enable = true; 
+    enable = true;
     mdadmConf = ''
       # automatically tag new arrays as belonging to the local system
       HOMEHOST <system>
@@ -27,22 +27,26 @@
 
   # Configure Filesystem
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/bc414e42-a691-432c-aeab-dff20179d68d";
+    {
+      device = "/dev/disk/by-uuid/bc414e42-a691-432c-aeab-dff20179d68d";
       fsType = "ext4";
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/0a0605a5-c2d5-4e61-a826-11ff73d9239f";
+    {
+      device = "/dev/disk/by-uuid/0a0605a5-c2d5-4e61-a826-11ff73d9239f";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F384-FF99";
+    {
+      device = "/dev/disk/by-uuid/F384-FF99";
       fsType = "vfat";
     };
   fileSystems."/mnt/ubuntu" =
-    { device = "/dev/disk/by-uuid/496b6388-8a7c-46cb-9b2e-7f727bb51861";
+    {
+      device = "/dev/disk/by-uuid/496b6388-8a7c-46cb-9b2e-7f727bb51861";
       fsType = "ext4";
     };
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

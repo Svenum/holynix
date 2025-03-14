@@ -6,8 +6,8 @@ let
   cfg = config.holynix.powerManagement;
 in
 {
-  imports =  [ inputs.auto-cpufreq.nixosModules.default ];
-      
+  imports = [ inputs.auto-cpufreq.nixosModules.default ];
+
   options.holynix.powerManagement.enable = mkOption {
     type = bool;
     default = false;

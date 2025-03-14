@@ -154,13 +154,13 @@ in
               };
             }
             (mkIf cfg.enableGPUSensor {
-                name = "org.kde.plasma.systemmonitor";
-                config = {
-                  Sensors = {
-                    highPrioritySensorIds = ''[\"gpu/all/usage\"]'';
-                    totalSensors = ''[\"gpu/all/usage\"]'';
-                  };
+              name = "org.kde.plasma.systemmonitor";
+              config = {
+                Sensors = {
+                  highPrioritySensorIds = ''[\"gpu/all/usage\"]'';
+                  totalSensors = ''[\"gpu/all/usage\"]'';
                 };
+              };
             })
             {
               name = "org.kde.plasma.panelspacer";
@@ -179,7 +179,7 @@ in
                   showIcon = "true";
                   showName = "false";
                   showFullName = "false";
-                  showLockScreen = "false"; 
+                  showLockScreen = "false";
                   showHybernate = "true";
                   showSuspend = "true";
                   showNewSession = "false";

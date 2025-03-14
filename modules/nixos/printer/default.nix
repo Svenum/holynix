@@ -27,7 +27,7 @@ in
       default = null;
     };
     printers = mkOption {
-      default = {};
+      default = { };
       type = listOf (submodule (
         { options, ... }:
         {
@@ -65,7 +65,7 @@ in
     services.avahi.nssmdns4 = cfg.discovery;
     services.avahi.openFirewall = cfg.discovery;
 
-    hardware.printers = mkIf (cfg.printers != {}) {
+    hardware.printers = mkIf (cfg.printers != { }) {
       ensurePrinters = builtins.map mkPrinterConfig cfg.printers;
       ensureDefaultPrinter = mkIf (cfg.defaultPrinter != null) cfg.defaultPrinter;
     };

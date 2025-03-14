@@ -6,7 +6,7 @@ let
   cfg = config.holynix.virtualisation.k3s;
 in
 {
-  options.holynix.k3s = {
+  options.holynix.virtualisation.k3s = {
     enable = mkOption {
       type = bool;
       default = false;
@@ -50,9 +50,10 @@ in
     # enable port
     networking.firewall = {
       allowedTCPPorts = [
-        80 443 # Traefik
-        6443   # Kube API
-        10250  # Metrics
+        80
+        443 # Traefik
+        6443 # Kube API
+        10250 # Metrics
       ];
       allowedTCPPortRanges = [
         # etcd

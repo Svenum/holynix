@@ -32,11 +32,11 @@
   };
 
   features = {
-    acpi = {};
-    apic = {};
+    acpi = { };
+    apic = { };
     vmport.state = false;
   };
-  
+
   clock = {
     offset = "localtime";
     timer = [
@@ -124,7 +124,7 @@
       }
     ];
 
-    console = [ { type = "pty"; } ];
+    console = [{ type = "pty"; }];
 
     channel = [
       {

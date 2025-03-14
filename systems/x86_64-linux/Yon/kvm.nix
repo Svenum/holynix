@@ -26,7 +26,7 @@ let
   node1Config = import ./vms/node.nix { inherit pkgs; uuid = "7fdb457d-0417-4156-95fa-92b9187219ac"; nodeID = "1"; inherit diskPath; inherit nvramPath; };
   node2Config = import ./vms/node.nix { inherit pkgs; uuid = "8b302b1d-2055-4d60-8b98-24f375de218f"; nodeID = "2"; inherit diskPath; inherit nvramPath; };
   node3Config = import ./vms/node.nix { inherit pkgs; uuid = "47847aa8-231c-4e52-9aae-fc7f4178d736"; nodeID = "3"; inherit diskPath; inherit nvramPath; };
-  
+
   # MacOS VM
   macosConfig = import ./vms/macos.nix { inherit pkgs; uuid = "46ca6849-65c3-4c14-af1d-e0254845f4a3"; inherit diskPath; };
 in

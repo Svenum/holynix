@@ -34,10 +34,10 @@ in
       };
     };
 
-    systemd.services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce []);
-    systemd.user.services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce []);
-    systemd.sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce []);
-    systemd.user.sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce []);
+    systemd.services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
+    systemd.user.services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
+    systemd.sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
+    systemd.user.sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
     # Compose
     environment.shellAliases = {
       compose = "podman-compose";

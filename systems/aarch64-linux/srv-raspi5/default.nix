@@ -23,7 +23,7 @@ in
       enable = true;
       useIWD = false;
     };
-    users =  {
+    users = {
       "sudouser" = {
         isSudoUser = true;
         isDockerUser = true;

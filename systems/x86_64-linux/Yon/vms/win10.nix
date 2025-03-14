@@ -25,16 +25,16 @@
       { name = "family"; value = "16in"; }
     ];
   };
-  
+
   # CPU and RAM
   vcpu = { count = 4; placement = "static"; };
   memory = { count = 8; unit = "GiB"; };
   cputune = {
     vcpupin = [
-      {vcpu = 0; cpuset = "4";}
-      {vcpu = 1; cpuset = "5";}
-      {vcpu = 2; cpuset = "6";}
-      {vcpu = 3; cpuset = "7";}
+      { vcpu = 0; cpuset = "4"; }
+      { vcpu = 1; cpuset = "5"; }
+      { vcpu = 2; cpuset = "6"; }
+      { vcpu = 3; cpuset = "7"; }
     ];
   };
   cpu = {
@@ -73,8 +73,8 @@
   };
 
   features = {
-    acpi = {};
-    apic = {};
+    acpi = { };
+    apic = { };
     hyperv = {
       mode = "custom";
       relaxed = { state = true; };
@@ -85,7 +85,7 @@
     kvm.hidden = { state = true; };
     vmport.state = false;
   };
-  
+
   clock = {
     offset = "localtime";
     timer = [
@@ -148,7 +148,7 @@
       model = {
         type = "vga";
         vram = 65536;
-        heads  = 1;
+        heads = 1;
         primary = true;
       };
     };

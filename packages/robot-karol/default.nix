@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
     hash = "sha256-NRV9NNh2OejzUPzzlD9UvECEqFOu6Q9UYFthrWuqZR0=";
     stripRoot = false;
   };
-  
+
   desktopItem = makeDesktopItem {
     name = pname;
     exec = "RobotKarol";

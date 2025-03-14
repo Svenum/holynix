@@ -13,14 +13,14 @@ vmConf // {
   memory = vmConf.memory // { count = 20; };
   cputune = {
     vcpupin = vmConf.cputune.vcpupin ++ [
-      {vcpu = 4; cpuset = "8";}
-      {vcpu = 5; cpuset = "9";}
-      {vcpu = 6; cpuset = "10";}
-      {vcpu = 7; cpuset = "11";}
-      {vcpu = 8; cpuset = "12";}
-      {vcpu = 9; cpuset = "13";}
-      {vcpu = 10; cpuset = "14";}
-      {vcpu = 11; cpuset = "15";}
+      { vcpu = 4; cpuset = "8"; }
+      { vcpu = 5; cpuset = "9"; }
+      { vcpu = 6; cpuset = "10"; }
+      { vcpu = 7; cpuset = "11"; }
+      { vcpu = 8; cpuset = "12"; }
+      { vcpu = 9; cpuset = "13"; }
+      { vcpu = 10; cpuset = "14"; }
+      { vcpu = 11; cpuset = "15"; }
     ];
   };
   cpu = vmConf.cpu // {

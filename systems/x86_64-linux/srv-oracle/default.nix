@@ -39,7 +39,7 @@ in
     network.enable = true;
     virtualisation.docker.enable = true;
   };
-  
+
   networking = {
     bridges.br0.interfaces = [
       "ens3"

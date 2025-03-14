@@ -1,4 +1,4 @@
-{pkgs, uuid, diskPath }:
+{ pkgs, uuid, diskPath }:
 
 {
   type = "qemu";

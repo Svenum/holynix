@@ -27,11 +27,11 @@
   home.packages = with pkgs; [
     # Crypto
     ccrypt
-    
+
     #nix config
     attic-client
     sops
-    
+
     # fun
     sl
     asciiquarium-transparent

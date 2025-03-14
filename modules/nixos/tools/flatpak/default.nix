@@ -9,7 +9,7 @@ let
   plasmaCfg = config.holynix.desktop.plasma;
 
   mkUserConfig = _name: user: {
-    home.activation = lib.mkIf (if builtins.hasAttr "isGuiUser" user then user.isGuiUser else false){
+    home.activation = lib.mkIf (if builtins.hasAttr "isGuiUser" user then user.isGuiUser else false) {
       configureFlatpak = ''
         FLAVOUR=${themeCfg.flavor}
         ACCENT=${themeCfg.accent}
@@ -49,21 +49,22 @@ in
     # Fix fonts
     fonts.fontDir.enable = true;
     system.fsPackages = [ pkgs.bindfs ];
-    fileSystems = let
-      mkRoSymBind = path: {
-        device = path;
-        fsType = "fuse.bindfs";
-        options = [ "ro" "resolve-symlinks" "x-gvfs-hide" ];
+    fileSystems =
+      let
+        mkRoSymBind = path: {
+          device = path;
+          fsType = "fuse.bindfs";
+          options = [ "ro" "resolve-symlinks" "x-gvfs-hide" ];
+        };
+        aggregatedFonts = pkgs.buildEnv {
+          name = "system-fonts";
+          paths = config.fonts.packages;
+          pathsToLink = [ "/share/fonts" ];
+        };
+      in
+      {
+        "/usr/local/share/fonts" = mkRoSymBind "${aggregatedFonts}/share/fonts";
       };
-      aggregatedFonts = pkgs.buildEnv {
-        name = "system-fonts";
-        paths = config.fonts.packages;
-        pathsToLink = [ "/share/fonts" ];
-      };
-    in
-    {
-      "/usr/local/share/fonts" = mkRoSymBind "${aggregatedFonts}/share/fonts";
-    };
   };
 }
 

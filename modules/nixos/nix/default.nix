@@ -7,7 +7,7 @@ let
 in
 {
   options.holynix.nix = {
-   enable = mkOption {
+    enable = mkOption {
       type = bool;
       default = true;
     };

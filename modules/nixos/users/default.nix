@@ -25,7 +25,7 @@ let
       (mkIf (if builtins.hasAttr "isDockerUser" user then user.isDockerUser else false) "docker")
     ];
 
-    inherit (user) id;
+    inherit (user) uid;
     openssh.authorizedKeys.keys = mkIf (user.authorizedKeys != null) user.authorizedKeys;
   };
 
@@ -71,7 +71,7 @@ in
 {
   options.holynix = {
     users = mkOption {
-      default = {};
+      default = { };
       type = attrsOf (submodule (
         { name, options, ... }:
         {
@@ -132,7 +132,7 @@ in
     };
   };
 
-  config = mkIf (if cfg != {} then true else false) {
+  config = mkIf (if cfg != { } then true else false) {
     # Create user
     users.users = mkMerge [ (mapAttrs mkUser cfg) { root.hashedPassword = "!"; } ];
 
