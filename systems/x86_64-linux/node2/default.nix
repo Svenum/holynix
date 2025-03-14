@@ -21,11 +21,11 @@ in
     users = {
       "sudouser" = {
         isSudoUser = true;
-        authorizedKeys = authorizedKeys;
+        inherit authorizedKeys;
       };
       "}" = {
         isSudoUser = false;
-        authorizedKeys = authorizedKeys;
+        inherit authorizedKeys;
       };
     };
     tools = {

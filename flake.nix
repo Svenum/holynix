@@ -110,30 +110,36 @@
         flake.overlays.default
       ];
 
-      systems.modules.nixos = with inputs; [
-        solaar.nixosModules.default
-        home-manager.nixosModules.home-manager
-        sops-nix.nixosModules.sops
-        nur.modules.nixos.default
-        catppuccin.nixosModules.catppuccin
-      ];
+      systems = {
+        modules.nixos = with inputs; [
+          solaar.nixosModules.default
+          home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
+          nur.modules.nixos.default
+          catppuccin.nixosModules.catppuccin
+        ];
 
-      systems.hosts.srv-raspi5.modules = with inputs; [
-        nixos-hardware.nixosModules.raspberry-pi-5
-        raspberry-pi-nix.nixosModules.raspberry-pi
-      ];
+        hosts = {
+          srv-raspi5.modules = with inputs; [
+            nixos-hardware.nixosModules.raspberry-pi-5
+            raspberry-pi-nix.nixosModules.raspberry-pi
+          ];
 
-      systems.hosts.srv-oracle.modules = with inputs; [
-        nixos-generators.nixosModules.qcow-efi
-      ];
+          srv-oracle.modules = with inputs; [
+            nixos-generators.nixosModules.qcow-efi
+          ];
 
-      systems.hosts.Yon.modules = with inputs; [
-        nixos-hardware.nixosModules.framework-16-7040-amd
-        fw-fanctrl.nixosModules.default
-      ];
+          Yon = {
+            modules = with inputs; [
+              nixos-hardware.nixosModules.framework-16-7040-amd
+              fw-fanctrl.nixosModules.default
+            ];
 
-      systems.hosts.Yon.specialArgs = {
-        inherit (inputs) nur;
+            specialArgs = {
+              inherit (inputs) nur;
+            };
+          };
+        };
       };
 
       homes.modules = with inputs; [

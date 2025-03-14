@@ -15,19 +15,20 @@ in
   };
 
   config = mkIf cfg.enable {
-    # install looking-glass-client
-    environment.systemPackages = with pkgs; [
-      looking-glass-client
-    ];
 
     # Prepare kvmfr
     services.udev.extraRules = ''
       SUBSYSTEM=="kvmfr", OWNER="root", GROUP="kvm", MODE="0660"
     '';
 
-    boot.extraModprobeConfig = ''
-      options kvmfr static_size_mb=128
-    '';
+    boot = {
+      extraModprobeConfig = ''
+        options kvmfr static_size_mb=128
+      '';
+
+      extraModulePackages = with config.boot.kernelPackages; [ kvmfr ];
+      kernelModules = [ "kvmfr" ];
+    };
 
     virtualisation.libvirtd.qemu.verbatimConfig = ''
       namespaces = []
@@ -37,34 +38,38 @@ in
       ]
     '';
 
-    boot.extraModulePackages = with config.boot.kernelPackages; [ kvmfr ];
-    boot.kernelModules = [ "kvmfr" ];
+    environment = {
+      # install looking-glass-client
+      systemPackages = with pkgs; [
+        looking-glass-client
+      ];
 
-    # Lookingglass config
-    environment.etc."looking-glass-client.ini" = {
-      user = "root";
-      group = "root";
-      mode = "0755";
-      text = generators.toINI { } {
-        wayland = { fractionScale = "yes"; };
-        opengl = { amdPinnedMem = "yes"; };
-        input = {
-          rawMouse = "yes";
-          autoCapture = "yes";
-          captureOnly = "yes";
-          escapeKey = "KEY_F12";
-        };
-        spice = {
-          enable = "yes";
-          clipboard = "yes";
-          audio = "yes";
-        };
-        app = {
-          shmFile = "/dev/kvmfr0";
-          allowDMA = "yes";
-        };
-        win = {
-          alerts = "no";
+      # Lookingglass config
+      etc."looking-glass-client.ini" = {
+        user = "root";
+        group = "root";
+        mode = "0755";
+        text = generators.toINI { } {
+          wayland = { fractionScale = "yes"; };
+          opengl = { amdPinnedMem = "yes"; };
+          input = {
+            rawMouse = "yes";
+            autoCapture = "yes";
+            captureOnly = "yes";
+            escapeKey = "KEY_F12";
+          };
+          spice = {
+            enable = "yes";
+            clipboard = "yes";
+            audio = "yes";
+          };
+          app = {
+            shmFile = "/dev/kvmfr0";
+            allowDMA = "yes";
+          };
+          win = {
+            alerts = "no";
+          };
         };
       };
     };

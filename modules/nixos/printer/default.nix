@@ -23,7 +23,7 @@ in
       default = false;
     };
     defaultPrinter = mkOption {
-      type = nullOr (str);
+      type = nullOr str;
       default = null;
     };
     printers = mkOption {
@@ -45,7 +45,7 @@ in
               default = "";
             };
             description = mkOption {
-              type = nullOr (str);
+              type = nullOr str;
               default = null;
             };
           };
@@ -55,15 +55,20 @@ in
   };
 
   config = mkIf cfg.enable {
-    # Enable printer
-    services.printing = {
-      enable = true;
-      drivers = with pkgs; [ epson-escpr2 epson-escpr hplip ];
+    services = {
+      # Enable printer
+      printing = {
+        enable = true;
+        drivers = with pkgs; [ epson-escpr2 epson-escpr hplip ];
+      };
+
+      # Enable auot discovery
+      avahi = {
+        enable = mkDefault cfg.discovery;
+        nssmdns4 = cfg.discovery;
+        openFirewall = cfg.discovery;
+      };
     };
-    # Enable auto discovery
-    services.avahi.enable = mkDefault cfg.discovery;
-    services.avahi.nssmdns4 = cfg.discovery;
-    services.avahi.openFirewall = cfg.discovery;
 
     hardware.printers = mkIf (cfg.printers != { }) {
       ensurePrinters = builtins.map mkPrinterConfig cfg.printers;

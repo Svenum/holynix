@@ -93,7 +93,7 @@ in
               default = false;
             };
             shell = mkOption {
-              type = nullOr (shellPackage);
+              type = nullOr shellPackage;
               default = null;
             };
             authorizedKeys = mkOption {
@@ -101,15 +101,15 @@ in
               default = null;
             };
             uid = mkOption {
-              type = nullOr (int);
+              type = nullOr int;
               default = null;
             };
             password = mkOption {
-              type = nullOr (str);
+              type = nullOr str;
               default = null;
             };
             initialPassword = mkOption {
-              type = nullOr (str);
+              type = nullOr str;
               default = null;
             };
             extraGroups = mkOption {

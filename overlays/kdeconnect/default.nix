@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 _final: prev: {
   kdePackages = prev.kdePackages.overrideScope (_kfinal: kprev: {

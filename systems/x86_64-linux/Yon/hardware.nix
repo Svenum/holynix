@@ -41,23 +41,22 @@
   };
 
   # Configure Filesystem
-  fileSystems."/" =
-    {
+  fileSystems = {
+    "/" = {
       device = "/dev/disk/by-uuid/0abec576-e226-4276-8e4f-deabb395bf65";
       fsType = "ext4";
     };
 
-  fileSystems."/home" =
-    {
+    "/home" = {
       device = "/dev/disk/by-uuid/59dfb4d5-9964-4797-84a1-342adc189e94";
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
-    {
+    "/boot" = {
       device = "/dev/disk/by-uuid/142B-16BD";
       fsType = "vfat";
     };
+  };
   swapDevices = [
     {
       label = "Swap";

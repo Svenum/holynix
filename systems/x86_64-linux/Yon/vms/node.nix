@@ -1,12 +1,12 @@
 { pkgs, uuid, nodeID, diskPath, nvramPath }:
 
 {
+  inherit uuid;
   type = "kvm";
 
   # VM Infos
   title = "Node ${nodeID}";
   name = "node${nodeID}";
-  uuid = uuid;
   description = "A Kubernetes node define in nix";
 
   # CPU and RAM

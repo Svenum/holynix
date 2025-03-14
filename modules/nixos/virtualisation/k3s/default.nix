@@ -13,17 +13,17 @@ in
       description = "Enalbe K3S";
     };
     clusterCIDR = mkOption {
-      type = nullOr (str);
+      type = nullOr str;
       default = "";
       description = "CIDR for the pods inside of the Cluster";
     };
     tokenFile = mkOption {
-      type = nullOr (path);
+      type = nullOr path;
       default = null;
       description = "Path to the file wich contains the token for k3s";
     };
     serverAddress = mkOption {
-      type = nullOr (str);
+      type = nullOr str;
       default = null;
       description = "Address of the first K3S node";
     };

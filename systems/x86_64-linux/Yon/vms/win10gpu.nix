@@ -4,9 +4,9 @@ let
   vmConf = import ./win10.nix { inherit nvramPath; inherit pkgs; inherit uuid; };
 in
 vmConf // {
+  inherit uuid;
   title = "Windows 10 (GPU)";
   name = "win10gpu";
-  uuid = uuid;
   description = "A Windows 10 vm define in nix with gpu passthrough";
 
   vcpu = vmConf.vcpu // { count = 12; };

@@ -1,9 +1,9 @@
 { pkgs, uuid, diskPath }:
 
 {
+  inherit uuid;
   type = "qemu";
   name = "mac9.2.2";
-  uuid = uuid;
   memory = {
     count = 512;
     unit = "MiB";

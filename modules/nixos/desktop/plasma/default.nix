@@ -99,16 +99,18 @@ in
     if themeCfg.accent == "red" then [ catppuccin-cursors.latteRed catppuccin-cursors.mochaRed ] else
     if themeCfg.accent == "peach" then [ catppuccin-cursors.lattePeach catppuccin-cursors.mochaPeach ] else [ ]);
 
-    # Enable partitionmanager
-    programs.partition-manager.enable = true;
+    programs = {
+      # Enable partitionmanager
+      partition-manager.enable = true;
 
-    # Enable KDEConnect
-    programs.kdeconnect = {
-      enable = true;
-      package = lib.mkForce pkgs.kdePackages.kdeconnect-kde;
+      # Enable KDEConnect
+      kdeconnect = {
+        enable = true;
+        package = lib.mkForce pkgs.kdePackages.kdeconnect-kde;
+      };
+
+      # Enable XWayland
+      xwayland.enable = true;
     };
-
-    # Enable XWayland
-    programs.xwayland.enable = true;
   };
 }

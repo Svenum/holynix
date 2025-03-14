@@ -20,11 +20,11 @@ in
     users = {
       "sudouser" = {
         isSudoUser = true;
-        authorizedKeys = authorizedKeys;
+        inherit authorizedKeys;
       };
       "kube" = {
         isSudoUser = false;
-        authorizedKeys = authorizedKeys;
+        inherit authorizedKeys;
       };
     };
     tools = {

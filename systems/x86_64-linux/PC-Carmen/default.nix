@@ -60,16 +60,17 @@
     };
   };
 
-  # enable solaar
-  services.solaar = {
-    enable = true;
-    window = "hide";
-    extraArgs = "--restart-on-wake-up";
+  services = {
+    # enable solaar
+    solaar = {
+      enable = true;
+      window = "hide";
+      extraArgs = "--restart-on-wake-up";
+    };
+    # Enable ssh
+    openssh.enable = true;
+
+    # Enable fwupd
+    fwupd.enable = true;
   };
-
-  # Enable ssh
-  services.openssh.enable = true;
-
-  # Enable fwupd
-  services.fwupd.enable = true;
 }

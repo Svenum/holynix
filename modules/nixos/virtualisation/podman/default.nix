@@ -20,9 +20,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    # Enable common container config files in /etc/containers
-    virtualisation.containers.enable = true;
     virtualisation = {
+      # Enable common container config files in /etc/containers
+      containers.enable = true;
       podman = {
         enable = true;
 
@@ -34,19 +34,25 @@ in
       };
     };
 
-    systemd.services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
-    systemd.user.services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
-    systemd.sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
-    systemd.user.sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
-    # Compose
-    environment.shellAliases = {
-      compose = "podman-compose";
+    systemd = {
+      services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
+      sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
+      user = {
+        services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
+        sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
+      };
     };
+    # Compose
+    environment = {
+      shellAliases = {
+        compose = "podman-compose";
+      };
 
-    # Useful other development tools
-    environment.systemPackages = with pkgs; [
-      podman-tui # status of containers in the terminal
-      podman-compose # start group of containers for dev
-    ];
+      # Useful other development tools
+      systemPackages = with pkgs; [
+        podman-tui # status of containers in the terminal
+        podman-compose # start group of containers for dev
+      ];
+    };
   };
 }

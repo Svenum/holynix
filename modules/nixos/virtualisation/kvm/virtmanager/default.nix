@@ -18,7 +18,7 @@ let
       };
     };
 
-    imports = (if user.isKvmUser or false then [ nixVirt.homeModules.default ] else [ ]);
+    imports = if user.isKvmUser or false then [ nixVirt.homeModules.default ] else [ ];
   };
 
   # Add user to needed group

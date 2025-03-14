@@ -22,7 +22,7 @@ in
         {
           options = {
             configFile = mkOption {
-              type = nullOr (str);
+              type = nullOr str;
               default = null;
               description = "Path to config file";
             };

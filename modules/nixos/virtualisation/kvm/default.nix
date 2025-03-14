@@ -24,14 +24,29 @@ in
 
   config = mkIf cfg.enable {
 
-    # Prepare Kernel
-    boot.extraModprobeConfig = mkIf (cfg.vfioPCIDevices != null) ''
-      options vfio_pci ids=${strings.concatMapStrings (x: "," + x) cfg.vfioPCIDevices}
-      options kvm ignore_msrs=1
-      options kvm report_ignored_msrs=0
-      options kvmfr static_size_mb=128
-      ${if isAMD then "options kvm_amd nested=1" else ""}
-    '';
+    boot = {
+      # Prepare Kernel
+      extraModprobeConfig = mkIf (cfg.vfioPCIDevices != null) ''
+        options vfio_pci ids=${strings.concatMapStrings (x: "," + x) cfg.vfioPCIDevices}
+        options kvm ignore_msrs=1
+        options kvm report_ignored_msrs=0
+        options kvmfr static_size_mb=128
+        ${if isAMD then "options kvm_amd nested=1" else ""}
+      '';
+
+      # Boot options
+      kernelModules = [ "vfio" "vfio_iommu_type1" "vfio_pci" "pci_stub" ]
+        ++ lists.optionals isAMD [ "kvm-amd" ];
+      kernelParams = [ "iommu=pt" ]
+        ++ lists.optionals isAMD [ "amd_iommu=on" "kvm_amd.avic=1" "kvm_amd.npt=1" ]
+        ++ lists.optionals isIntel [ "intel_iommu=on" ];
+
+      initrd.kernelModules = [
+        "vfio"
+        "vfio-pci"
+      ]
+      ++ lists.optional isAMD "amdgpu";
+    };
 
     # Toggle GPU script
     environment.systemPackages = with pkgs; [
@@ -53,18 +68,5 @@ in
         options = [ "NOPASSWD" ];
       }];
     }];
-
-    # Boot options
-    boot.kernelModules = [ "vfio" "vfio_iommu_type1" "vfio_pci" "pci_stub" ]
-      ++ lists.optionals isAMD [ "kvm-amd" ];
-    boot.kernelParams = [ "iommu=pt" ]
-      ++ lists.optionals isAMD [ "amd_iommu=on" "kvm_amd.avic=1" "kvm_amd.npt=1" ]
-      ++ lists.optionals isIntel [ "intel_iommu=on" ];
-
-    boot.initrd.kernelModules = [
-      "vfio"
-      "vfio-pci"
-    ]
-    ++ lists.optional isAMD "amdgpu";
   };
 }

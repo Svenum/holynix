@@ -1,11 +1,11 @@
 { nvramPath, pkgs, uuid }:
 
 {
+  inherit uuid;
   type = "kvm";
   # VM Infos
   title = "Windows 10";
   name = "win10";
-  uuid = uuid;
   description = "A Windows 10 vm define in nix";
 
   sysinfo = {

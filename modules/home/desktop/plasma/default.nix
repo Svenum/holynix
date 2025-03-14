@@ -38,7 +38,7 @@ in
         "applications:org.kde.dolphin.desktop"
         "preferred://browser"
       ];
-      type = listOf (str);
+      type = listOf str;
       description = "Launchers that are in the side panel";
     };
     enableGPUSensor = mkOption {

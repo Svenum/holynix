@@ -104,49 +104,50 @@
     firewall.ausweisapp.open = true;
   };
 
-  # Enable fw-fanctrl
-  programs.fw-fanctrl = {
-    enable = true;
+
+  programs = {
+    # Enable fw-fanctrl
+    fw-fanctrl.enable = true;
+
+    # Enable gamescope
+    gamescope.enable = true;
   };
 
   # enable Steam input
   hardware.steam-hardware.enable = true;
-  programs.gamescope.enable = true;
 
-  # enable solaar
-  services.solaar = {
-    enable = true;
-    window = "hide";
-    extraArgs = "--restart-on-wake-up";
+  services = {
+    # Enable solaar
+    solaar = {
+      enable = true;
+      window = "hide";
+      extraArgs = "--restart-on-wake-up";
+    };
+
+    # Enable fwupd
+    fwupd.enable = true;
+
+    # Enable OpenSSH for hostkeys but disable firewall
+    openssh = {
+      enable = true;
+      openFirewall = false;
+    };
   };
 
   # Enable Waydroid
   virtualisation.waydroid.enable = true;
 
-  # enable aarch64 emulation
+  # Enable aarch64 emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   environment.systemPackages = with pkgs; [
     holynix.tetris
   ];
 
-  # Enable OpenSSH for hostkeys but disable firewall
-  services.openssh = {
-    enable = true;
-    openFirewall = false;
-  };
 
   # Restart Wiregaurd on secret change
-  sops.secrets."wg_home".restartUnits = [ "NetworkManager.service" ];
-  sops.secrets."wg_nl".restartUnits = [ "NetworkManager.service" ];
-
-  # Enable weylus
-  programs.weylus = {
-    enable = true;
-    openFirewall = true;
-    users = [ "sven" ];
+  sops.secrets = {
+    "wg_home".restartUnits = [ "NetworkManager.service" ];
+    "wg_nl".restartUnits = [ "NetworkManager.service" ];
   };
-
-  # enable fwupd
-  services.fwupd.enable = true;
 }
