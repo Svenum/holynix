@@ -1,4 +1,4 @@
-{ pkgs, lib, config, modulesPath, ... }:
+{ modulesPath, ... }:
 
 let
   ip = "172.20.0.214";
@@ -37,7 +37,7 @@ in
     network.enable = true;
     virtualisation.docker.enable = true;
   };
-  
+
   networking = {
     bridges.br0.interfaces = [
       "ens3"

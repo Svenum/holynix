@@ -14,12 +14,18 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.tailscale.enable = true;
-    services.tailscale.useRoutingFeatures = "both";
-    networking.firewall.trustedInterfaces = [ "tailscale0" ];
-    networking.firewall.checkReversePath = "loose";
+    services = {
+      tailscale = {
+        enable = true;
+        useRoutingFeatures = "both";
+      };
+      resolved.enable = true;
+    };
 
-    services.resolved.enable = true;
+    networking.firewall = {
+      trustedInterfaces = [ "tailscale0" ];
+      checkReversePath = "loose";
+    };
 
     environment.systemPackages = mkIf plasmaCfg.enable [
       pkgs.tail-tray

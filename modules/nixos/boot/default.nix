@@ -7,7 +7,7 @@ let
 in
 {
   imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
-  
+
   options.holynix.boot = {
     enable = mkOption {
       type = bool;
@@ -37,40 +37,41 @@ in
   };
 
   config = mkIf cfg.enable {
-    # Filesystems
-    boot.supportedFilesystems = [ "ntfs" ];
 
-    # Kernel
-    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+    boot = {
+      # Filesystems
+      supportedFilesystems = [ "ntfs" ];
 
-    # Bootloader
-    boot.loader = {
-      systemd-boot = mkIf cfg.systemdBoot {
-        enable = mkIf (! cfg.secureBoot) true;
-        configurationLimit = 15;
-        editor = false;
-        memtest86.enable = cfg.memtest;
-        netbootxyz.enable = cfg.netboot;
+      # Kernel
+      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+
+      # Bootloader
+      loader = {
+        systemd-boot = mkIf cfg.systemdBoot {
+          enable = mkIf (! cfg.secureBoot) true;
+          configurationLimit = 15;
+          editor = false;
+          memtest86.enable = cfg.memtest;
+          netbootxyz.enable = cfg.netboot;
+        };
+        efi.canTouchEfiVariables = true;
+        timeout = mkDefault 1;
       };
-      efi.canTouchEfiVariables = true;
-      timeout = mkDefault 1;
-    };
 
-    boot.initrd.systemd.enable = true;
-    boot.kernelParams = [ "quiet" "udev.log_level=3" ];
+      initrd.systemd.enable = true;
+      kernelParams = [ "quiet" "udev.log_level=3" ];
+
+      # Configure Plymouth
+      plymouth.enable = true;
+
+      lanzaboote = mkIf cfg.secureBoot {
+        enable = true;
+        pkiBundle = "/etc/secureboot";
+      };
+    };
 
     # Firmware
     hardware.enableRedistributableFirmware = true;
-
-    # Configure Plymouth
-    boot.plymouth = {
-      enable = true;
-    };
-
-    boot.lanzaboote = mkIf cfg.secureBoot {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
-    };
 
     environment.systemPackages = mkIf cfg.secureBoot [
       pkgs.sbctl
@@ -78,7 +79,7 @@ in
 
     security.pam.loginLimits = [
       { domain = "*"; item = "nofile"; type = "-"; value = "32768"; }
-      { domain = "*"; item = "memlock"; type = "-"; value = "32768";}
+      { domain = "*"; item = "memlock"; type = "-"; value = "32768"; }
     ];
   };
 }

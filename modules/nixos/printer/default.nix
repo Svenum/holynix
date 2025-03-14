@@ -6,10 +6,10 @@ let
   cfg = config.holynix.printer;
 
   mkPrinterConfig = props: {
-    name = props.name;
-    deviceUri = props.deviceUri;
-    description = props.description;
-    model = props.model;
+    inherit (props) name;
+    inherit (props) deviceUri;
+    inherit (props) description;
+    inherit (props) model;
   };
 in
 {
@@ -23,13 +23,13 @@ in
       default = false;
     };
     defaultPrinter = mkOption {
-      type = nullOr (str);
+      type = nullOr str;
       default = null;
     };
     printers = mkOption {
-      default = {};
+      default = { };
       type = listOf (submodule (
-        { config, options, ... }:
+        { options, ... }:
         {
           options = {
             name = mkOption {
@@ -45,7 +45,7 @@ in
               default = "";
             };
             description = mkOption {
-              type = nullOr (str);
+              type = nullOr str;
               default = null;
             };
           };
@@ -55,17 +55,22 @@ in
   };
 
   config = mkIf cfg.enable {
-    # Enable printer
-    services.printing = {
-      enable = true;
-      drivers = with pkgs; [ epson-escpr2 epson-escpr hplip ];
-    };
-    # Enable auto discovery
-    services.avahi.enable = mkDefault cfg.discovery;
-    services.avahi.nssmdns4 = cfg.discovery;
-    services.avahi.openFirewall = cfg.discovery;
+    services = {
+      # Enable printer
+      printing = {
+        enable = true;
+        drivers = with pkgs; [ epson-escpr2 epson-escpr hplip ];
+      };
 
-    hardware.printers = mkIf (cfg.printers != {}) {
+      # Enable auot discovery
+      avahi = {
+        enable = mkDefault cfg.discovery;
+        nssmdns4 = cfg.discovery;
+        openFirewall = cfg.discovery;
+      };
+    };
+
+    hardware.printers = mkIf (cfg.printers != { }) {
       ensurePrinters = builtins.map mkPrinterConfig cfg.printers;
       ensureDefaultPrinter = mkIf (cfg.defaultPrinter != null) cfg.defaultPrinter;
     };

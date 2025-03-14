@@ -1,13 +1,12 @@
-{ options, config, lib, pkgs, inputs, ... }:
+{ options, config, lib, pkgs, ... }:
 
 with lib;
 with lib.types;
 
 let
   cfg = config.holynix.desktop.plasma;
-  desktopCfg  = config.holynix.desktop;
+  desktopCfg = config.holynix.desktop;
   themeCfg = config.holynix.theme;
-  usersCfg = config.holynix.users;
 in
 {
   options.holynix.desktop.plasma = {
@@ -43,7 +42,7 @@ in
       elisa
       khelpcenter
       kwrited
-    ];   
+    ];
     programs.dconf.enable = true;
 
     # Install Needed packages
@@ -80,36 +79,38 @@ in
       # Icons
       (catppuccin-papirus-folders.override {
         flavor = "latte";
-        accent = themeCfg.accent;
-        })
+        inherit (themeCfg) accent;
+      })
       # KDE Themes
       (catppuccin-kde.override {
-        flavour = [ themeCfg.flavour ];
+        flavour = [ themeCfg.flavor ];
         accents = [ themeCfg.accent ];
         winDecStyles = [ "modern" ];
       })
       (catppuccin-sddm.override {
-        flavor = themeCfg.flavour;
+        inherit (themeCfg) flavor;
       })
       # GTK Themes
       (catppuccin-gtk.override {
-        variant = themeCfg.flavour;
+        variant = themeCfg.flavor;
         accents = [ themeCfg.accent ];
       })
-    ] ++ (if themeCfg.accent == "teal" then [catppuccin-cursors.latteTeal catppuccin-cursors.mochaTeal] else
-          if themeCfg.accent == "red" then [catppuccin-cursors.latteRed catppuccin-cursors.mochaRed] else
-          if themeCfg.accent == "peach" then [catppuccin-cursors.lattePeach catppuccin-cursors.mochaPeach] else []);
+    ] ++ (if themeCfg.accent == "teal" then [ catppuccin-cursors.latteTeal catppuccin-cursors.mochaTeal ] else
+    if themeCfg.accent == "red" then [ catppuccin-cursors.latteRed catppuccin-cursors.mochaRed ] else
+    if themeCfg.accent == "peach" then [ catppuccin-cursors.lattePeach catppuccin-cursors.mochaPeach ] else [ ]);
 
-    # Enable partitionmanager
-    programs.partition-manager.enable = true;
+    programs = {
+      # Enable partitionmanager
+      partition-manager.enable = true;
 
-    # Enable KDEConnect
-    programs.kdeconnect = {
-      enable = true;
-      package = lib.mkForce pkgs.kdePackages.kdeconnect-kde;
+      # Enable KDEConnect
+      kdeconnect = {
+        enable = true;
+        package = lib.mkForce pkgs.kdePackages.kdeconnect-kde;
+      };
+
+      # Enable XWayland
+      xwayland.enable = true;
     };
-
-    # Enable XWayland
-    programs.xwayland.enable = true;
   };
 }

@@ -1,11 +1,14 @@
-{ lib, config, ... }:
+{ lib, ... }:
 
 {
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" ];
-
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [];
+  boot = {
+    initrd = {
+      availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" ];
+      kernelModules = [ ];
+    };
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+  };
 
   swapDevices = [{
     device = "/var/lib/swapfile";

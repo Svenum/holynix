@@ -6,8 +6,8 @@ let
   cfg = config.holynix.vpn.wireguard;
 
   mkWgConfig = name: interface: {
-   source = interface.configFile; 
-   target = "NetworkManager/system-connections/${name}.nmconnection";
+    source = interface.configFile;
+    target = "NetworkManager/system-connections/${name}.nmconnection";
   };
 in
 {
@@ -22,14 +22,14 @@ in
         {
           options = {
             configFile = mkOption {
-              type = nullOr (str);
+              type = nullOr str;
               default = null;
               description = "Path to config file";
             };
-          };  
+          };
         }
       ));
-      default = {};
+      default = { };
     };
   };
 

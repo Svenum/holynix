@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+_:
 
 let
   ip = "172.16.0.13";
@@ -21,7 +21,7 @@ in
       enable = true;
       useIWD = false;
     };
-    users =  {
+    users = {
       "sudouser" = {
         isSudoUser = true;
         isDockerUser = true;

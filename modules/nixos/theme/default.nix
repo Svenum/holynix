@@ -11,7 +11,7 @@ in
       type = enum [ "catppuccin" ];
       default = "catppuccin";
     };
-    flavour = mkOption {
+    flavor = mkOption {
       type = enum [ "mocha" "macchiato" "frappe" "latte" ];
       default = "mocha";
     };
@@ -24,8 +24,8 @@ in
   config = {
     catppuccin = {
       enable = true;
-      flavor = cfg.flavour;
-      accent = cfg.accent;
+      inherit (cfg) flavor;
+      inherit (cfg) accent;
     };
   };
 }

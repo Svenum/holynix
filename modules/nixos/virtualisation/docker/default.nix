@@ -38,8 +38,8 @@ in
       daemon.settings = {
         default-address-pools = [
           {
-            base = cfg.defaultAddressPool.base;
-            size = cfg.defaultAddressPool.size;
+            inherit (cfg.defaultAddressPool) base;
+            inherit (cfg.defaultAddressPool) size;
           }
         ];
       };

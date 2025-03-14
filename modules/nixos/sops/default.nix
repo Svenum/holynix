@@ -19,12 +19,12 @@ in
       description = "Default secret file";
     };
     sshKeyPaths = mkOption {
-      type = nullOr (listOf (str));
+      type = nullOr (listOf str);
       default = null;
       description = "Path of the private ssh key to encrypt";
     };
     initSecrets = mkOption {
-      type = nullOr (listOf (str));
+      type = nullOr (listOf str);
       default = null;
       description = "List of secrets to initial";
     };
@@ -32,12 +32,14 @@ in
 
   config = mkIf cfg.enableHostKey {
     sops = {
-      defaultSopsFile = cfg.defaultSopsFile;
-      age.sshKeyPaths = [
-        "/etc/ssh/ssh_host_ed25519_key"
-      ] ++ optionals (cfg.sshKeyPaths != null) cfg.sshKeyPaths;
-      age.keyFile = "/var/lib/sops-nix/key.txt";
-      age.generateKey = true;
+      inherit (cfg) defaultSopsFile;
+      age = {
+        sshKeyPaths = [
+          "/etc/ssh/ssh_host_ed25519_key"
+        ] ++ optionals (cfg.sshKeyPaths != null) cfg.sshKeyPaths;
+        keyFile = "/var/lib/sops-nix/key.txt";
+        generateKey = true;
+      };
     };
   };
 }

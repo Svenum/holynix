@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, ... }:
 
 with lib;
 with lib.types;
@@ -25,7 +25,7 @@ let
       (mkIf (if builtins.hasAttr "isDockerUser" user then user.isDockerUser else false) "docker")
     ];
 
-    uid = user.uid;
+    inherit (user) uid;
     openssh.authorizedKeys.keys = mkIf (user.authorizedKeys != null) user.authorizedKeys;
   };
 
@@ -34,15 +34,15 @@ let
     home = {
       username = name;
       homeDirectory = "/home/${name}";
-      stateVersion = config.system.stateVersion;
+      inherit (config.system) stateVersion;
     };
     programs.home-manager.enable = true;
 
     # Git Config
     programs.git = mkIf (if builtins.hasAttr "git" user then true else false) {
       enable = true;
-      userName = user.git.userName;
-      userEmail = user.git.userEmail;
+      inherit (user.git) userName;
+      inherit (user.git) userEmail;
       extraConfig = {
         safe.directory = "/etc/nixos";
         pager.branch = false;
@@ -61,8 +61,8 @@ let
 
     catppuccin = {
       enable = true;
-      flavor = themeCfg.flavour;
-      accent = themeCfg.accent;
+      inherit (themeCfg) flavor;
+      inherit (themeCfg) accent;
     };
 
     # Import user specific modues if needed
@@ -71,9 +71,9 @@ in
 {
   options.holynix = {
     users = mkOption {
-      default = {};
+      default = { };
       type = attrsOf (submodule (
-        { name, config, options, ... }:
+        { name, options, ... }:
         {
           options = {
             isGuiUser = mkOption {
@@ -93,7 +93,7 @@ in
               default = false;
             };
             shell = mkOption {
-              type = nullOr (shellPackage);
+              type = nullOr shellPackage;
               default = null;
             };
             authorizedKeys = mkOption {
@@ -101,15 +101,15 @@ in
               default = null;
             };
             uid = mkOption {
-              type = nullOr (int);
+              type = nullOr int;
               default = null;
             };
             password = mkOption {
-              type = nullOr (str);
+              type = nullOr str;
               default = null;
             };
             initialPassword = mkOption {
-              type = nullOr (str);
+              type = nullOr str;
               default = null;
             };
             extraGroups = mkOption {
@@ -132,7 +132,7 @@ in
     };
   };
 
-  config = mkIf (if cfg != {} then true else false) {
+  config = mkIf (if cfg != { } then true else false) {
     # Create user
     users.users = mkMerge [ (mapAttrs mkUser cfg) { root.hashedPassword = "!"; } ];
 

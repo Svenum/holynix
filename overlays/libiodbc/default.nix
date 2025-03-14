@@ -1,9 +1,9 @@
-{ ... }:
+_:
 
-final: prev: {
-  libiodbc = prev.libiodbc.overrideAttrs (old: {
+_final: prev: {
+  libiodbc = prev.libiodbc.overrideAttrs (_old: {
     configureFlags = [
-     "--disable-libodbc"
+      "--disable-libodbc"
     ];
   });
 }
