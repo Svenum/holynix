@@ -67,7 +67,7 @@ in
 
       ## Status global/default configuration
       set -g @catppuccin_status_left_separator "█"
-      set -g @catppuccin_status_middle_separator " / "
+      set -g @catppuccin_status_middle_separator "#[reverse]█#[noreverse]"
       set -g @catppuccin_status_right_separator "█"
       set -g @catppuccin_status_connect_separator "no"
 
