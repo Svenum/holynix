@@ -40,15 +40,36 @@ in
       '';
     };
     catppuccin.tmux.extraConfig = ''
-      set -g @catppuccin_window_status_style "slanted"
-
+      # Window
+      set -g @catppuccin_window_status_style "custom"
       set -g window-status-separator ""
 
-      # Left modules
-      set -g status-left-length 0
-      set -g status-left ""
+      ## Window global/default configuration
+      set -g @catppuccin_window_default_text " #{window_name}"
+      set -g @catppuccin_window_status "icon"
+      set -g @catppuccin_window_default_fill "number"
+      set -g @catppuccin_window_number_position "left"
 
-      # Right modules
+      set -g @catppuccin_window_left_separator "█"
+      set -g @catppuccin_window_middle_separator "█"
+      set -g @catppuccin_window_right_separator "█"
+
+      ## Window current configuration
+      set -g @catppuccin_window_current_text "#{window_name}"
+      set -g @catppuccin_window_current_fill "all"
+      set -g @catppuccin_window_current_middle_separator "#[reverse] 󰿟 #[noreverse]"
+
+      # Status
+      set -g status-right-length 100
+      set -g status-left ""
+      set -g status-status-seperator: ""
+
+      ## Status global/default configuration
+      set -g @catppuccin_status_left_separator "█"
+      set -g @catppuccin_status_middle_separator "█"
+      set -g @catppuccin_status_right_separator "█"
+
+      # Status modules
       set -g status-right-length 0
       set -g status-right "#{E:@catppuccin_status_application}"
       set -ag status-right "#{E:@catppuccin_status_session}"
@@ -56,9 +77,8 @@ in
       set -ag status-right "#{E:@catppuccin_status_host}"
       set -ag status-right "#{E:@catppuccin_status_date_time}"
 
-      set -g @catppuccin_date_time_text " %d.%m.%Y %H:%M"
-
-      set -g @catppuccin_status_connect_separator "no"
+      # Moduels
+      set -g @catppuccin_date_time_text " %d.%m.%Y %H:%M "
     '';
   };
 }
