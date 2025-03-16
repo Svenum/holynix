@@ -50,9 +50,9 @@ in
       set -g @catppuccin_window_fill "number"
       set -g @catppuccin_window_number_position "left"
 
-      set -g @catppuccin_window_left_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}]█"
+      set -g @catppuccin_window_left_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_overlay_0}]█"
       set -g @catppuccin_window_middle_separator "█"
-      set -g @catppuccin_window_right_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}]█"
+      set -g @catppuccin_window_right_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_overlay_0}]█"
       set -g @catppuccin_window_text "#{window_name}"
 
       ## Window current configuration
@@ -66,7 +66,7 @@ in
 
       ## Status global/default configuration
       set -g @catppuccin_status_left_separator "█"
-      set -g @catppuccin_status_middle_separator "█"
+      set -g @catppuccin_status_middle_separator "#[reverse]█"
       set -g @catppuccin_status_right_separator "█"
       set -g @catppuccin_status_connect_separator "no"
 
