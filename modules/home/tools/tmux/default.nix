@@ -57,7 +57,7 @@ in
       ## Window current configuration
       set -g @catppuccin_window_current_text "#{window_name}"
       set -g @catppuccin_window_current_fill "all"
-      set -g @catppuccin_window_current_middle_separator " 󰿟 "
+      set -g @catppuccin_window_current_middle_separator "#[reverse] 󰿟 #[noreverse]"
 
       set -g @catppuccin_window_text "#{window_name}"
 
@@ -69,6 +69,7 @@ in
       set -g @catppuccin_status_left_separator "█"
       set -g @catppuccin_status_middle_separator " / "
       set -g @catppuccin_status_right_separator "█"
+      set -g @catppuccin_status_connect_separator "no"
 
       # Status modules
       set -g status-right-length 0
