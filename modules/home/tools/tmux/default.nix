@@ -50,9 +50,9 @@ in
       set -g @catppuccin_window_fill "number"
       set -g @catppuccin_window_number_position "left"
 
-      set -g @catppuccin_window_left_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@catppuccin_window_current_text_color}]█"
+      set -g @catppuccin_window_left_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}]█"
       set -g @catppuccin_window_middle_separator "█"
-      set -g @catppuccin_window_right_separator "█"
+      set -g @catppuccin_window_right_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}]█"
       set -g @catppuccin_window_text "#{window_name}"
 
       ## Window current configuration
@@ -72,8 +72,6 @@ in
 
       # Status modules
       set -g status-right-length 0
-      set -g status-right "#{E:@catppuccin_status_application}"
-      set -ag status-right "#{E:@catppuccin_status_session}"
       set -ag status-right "#{E:@catppuccin_status_user}"
       set -ag status-right "#{E:@catppuccin_status_host}"
       set -ag status-right "#{E:@catppuccin_status_date_time}"
