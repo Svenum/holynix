@@ -58,7 +58,7 @@ in
       ## Window current configuration
       set -g @catppuccin_window_current_text "#{window_name}"
       set -g @catppuccin_window_current_fill "all"
-      set -g @catppuccin_window_current_middle_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}] 󰿟 #[none]"
+      set -g @catppuccin_window_current_middle_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg},reverse] 󰿟 #[none]"
 
       # Status
       set -g status-right-length 100
