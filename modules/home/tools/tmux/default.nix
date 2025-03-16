@@ -50,7 +50,7 @@ in
       set -g @catppuccin_window_default_fill "number"
       set -g @catppuccin_window_number_position "left"
 
-      set -g @catppuccin_window_left_separator "#[reverse]#[reverse]█"
+      set -g @catppuccin_window_left_separator "#[reverse]█#[noreverse]"
       set -g @catppuccin_window_middle_separator "█"
       set -g @catppuccin_window_right_separator "█"
 
@@ -67,7 +67,7 @@ in
 
       ## Status global/default configuration
       set -g @catppuccin_status_left_separator "█"
-      set -g @catppuccin_status_middle_separator "#[reverse]█#[noreverse]"
+      set -g @catppuccin_status_middle_separator "#[reverse]#[noreverse]"
       set -g @catppuccin_status_right_separator "█"
       set -g @catppuccin_status_connect_separator "no"
 
