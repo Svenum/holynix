@@ -206,6 +206,7 @@ in
                 Appearance = {
                   dateDisplayFormat = "BesideTime";
                   dateFormat = "longDate";
+                  enabledCalendarPlugins = "holidaysevents,pimevents";
                 };
               };
             }
