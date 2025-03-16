@@ -57,7 +57,7 @@ in
       ## Window current configuration
       set -g @catppuccin_window_current_text "#{window_name}"
       set -g @catppuccin_window_current_fill "all"
-      set -g @catppuccin_window_current_middle_separator "#[reverse] 󰿟 #[noreverse]"
+      set -g @catppuccin_window_current_middle_separator " 󰿟 "
 
       # Status
       set -g status-right-length 100
@@ -65,7 +65,7 @@ in
 
       ## Status global/default configuration
       set -g @catppuccin_status_left_separator "█"
-      set -g @catppuccin_status_middle_separator "█"
+      set -g @catppuccin_status_middle_separator " / "
       set -g @catppuccin_status_right_separator "█"
 
       # Status modules
@@ -77,7 +77,7 @@ in
       set -ag status-right "#{E:@catppuccin_status_date_time}"
 
       # Moduels
-      set -g @catppuccin_date_time_text " %d.%m.%Y %H:%M "
+      set -g @catppuccin_date_time_text "%d.%m.%Y %H:%M"
     '';
   };
 }
