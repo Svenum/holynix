@@ -38,7 +38,7 @@ in
   };
 
   networking = {
-    macvlans."br0-shim" = {
+    macvlans."shim-br0" = {
       mode = "bridge";
       interface = "br0";
     };
@@ -54,12 +54,11 @@ in
         useDHCP = false;
       };
       "end0".useDHCP = true;
-      "br0-shim" = {
+      "shim-br0" = {
         ipv4.addresses = [{
           address = ip;
-          prefixLength = 32;
+          prefixLength = 24;
         }];
-        useDHCP = false;
       };
     };
     defaultGateway = "172.16.0.1";
