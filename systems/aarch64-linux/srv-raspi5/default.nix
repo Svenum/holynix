@@ -57,7 +57,7 @@ in
       "br0-shim" = {
         ipv4.addresses = [{
           address = ip;
-          prefixLength = 32;
+          prefixLength = 24;
         }];
         useDHCP = false;
       };
