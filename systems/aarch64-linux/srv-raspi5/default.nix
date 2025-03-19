@@ -38,6 +38,10 @@ in
   };
 
   networking = {
+    macvlans."br0-shim" = {
+      mode = "bridge";
+      interface = "br0";
+    };
     bridges.br0.interfaces = [
       "end0"
     ];
@@ -50,6 +54,13 @@ in
         useDHCP = false;
       };
       "end0".useDHCP = true;
+      "br0-shim" = {
+        ipv4.addresses = [{
+          address = ip;
+          prefixLength = 32;
+        }];
+        useDHCP = false;
+      };
     };
     defaultGateway = "172.16.0.1";
     nameservers = [ "172.16.0.3" "172.16.0.4" ];
