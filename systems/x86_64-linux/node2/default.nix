@@ -23,7 +23,7 @@ in
         isSudoUser = true;
         inherit authorizedKeys;
       };
-      "}" = {
+      "kube" = {
         isSudoUser = false;
         inherit authorizedKeys;
       };
