@@ -50,7 +50,7 @@ in
 
       ## Window global/default configuration
       set -g @catppuccin_window_text_color "#{@thm_teal}"
-      set -g @catppuccin_window_text "#[reverse]#{window_name}#[none]"
+      set -g @catppuccin_window_text "#{window_name}"
       set -g @catppuccin_window_status "icon"
       set -g @catppuccin_window_number "#[reverse] #I#[none]"
       set -g @catppuccin_window_number_position "left"
