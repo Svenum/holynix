@@ -40,6 +40,9 @@ in
       '';
     };
     catppuccin.tmux.extraConfig = ''
+      # Pane
+      set -g @catppuccin_pane_default_text ""
+
       # Window
       set -g @catppuccin_window_status_style "custom"
       set -g window-status-separator ""
@@ -56,10 +59,10 @@ in
       set -g @catppuccin_window_text "#{window_name}"
 
       ## Window current configuration
-      set -g @catppuccin_window_current_text "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg},reverse]#{window_name}#[none]"
+      set -g @catppuccin_window_current_text "#[reverse]#{window_name}#[none]"
       set -g @catppuccin_window_current_number "#[reverse] #I#[none]"
       set -g @catppuccin_window_current_middle_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg},reverse] 󰿟 #[none]"
-      set -g @catppuccin_window_current_right_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_surface_0}]█#[none]"
+      set -g @catppuccin_window_current_right_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}]█#[none]"
 
       # Status
       set -g status-right-length 100
