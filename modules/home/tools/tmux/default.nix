@@ -42,8 +42,6 @@ in
     catppuccin.tmux.extraConfig = ''
       # Pane
       set -g @catppuccin_pane_default_text ""
-      set -g @catppuccin_window_text_color "#{@thm_teal}"
-      set -g @catppuccin_window_current_text_color "#{@thm_teal}"
 
       # Window
       set -g @catppuccin_window_status_style "custom"
@@ -51,19 +49,21 @@ in
       set -g window-status-separator ""
 
       ## Window global/default configuration
-      set -g @catppuccin_window_text " #{window_name}"
+      set -g @catppuccin_window_text_color "#{@thm_teal}"
+      set -g @catppuccin_window_text "#[fg=#{@thm_surface_0},reverse]#{window_name}#[none]"
       set -g @catppuccin_window_status "icon"
       set -g @catppuccin_window_number "#[reverse] #I#[none]"
       set -g @catppuccin_window_number_position "left"
 
       set -g @catppuccin_window_left_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}]█#[none]"
-      set -g @catppuccin_window_middle_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_surface_0}]█ #[none]"
+      set -g @catppuccin_window_middle_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_surface_0}]█  #[none]"
       set -g @catppuccin_window_right_separator "#[fg=#{@thm_bg},reverse]█#[none]"
       set -g @catppuccin_window_text "#{window_name}"
 
       ## Window current configuration
-      set -ogq @catppuccin_window_current_number_color "#{@thm_teal}"
-      set -g @catppuccin_window_current_text "#W"
+      set -g @catppuccin_window_current_text_color "#{@thm_teal}"
+      set -g @catppuccin_window_current_number_color "#{@thm_teal}"
+      set -g @catppuccin_window_current_text "#[bg=#{@thm_surface_0}]#W"
       set -g @catppuccin_window_current_number "#[reverse] #I#[none]"
       set -g @catppuccin_window_current_middle_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg},reverse] 󰿟 #[none]"
       set -g @catppuccin_window_current_right_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}]█#[none]"
