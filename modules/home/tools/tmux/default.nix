@@ -63,7 +63,7 @@ in
       ## Window current configuration
       set -g @catppuccin_window_current_text_color "#{@thm_teal}"
       set -g @catppuccin_window_current_number_color "#{@thm_teal}"
-      set -g @catppuccin_window_current_text "#[fg=#@{thm_surface_0}]#W#[none]"
+      set -g @catppuccin_window_current_text "#[fg=#{@thm_surface_0}]#W#[none]"
       set -g @catppuccin_window_current_number "#[reverse] #I#[none]"
       set -g @catppuccin_window_current_middle_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg},reverse] 󰿟 #[none]"
       set -g @catppuccin_window_current_right_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}]█#[none]"
