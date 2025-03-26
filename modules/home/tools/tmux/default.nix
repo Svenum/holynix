@@ -58,7 +58,7 @@ in
       set -g @catppuccin_window_left_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}]█#[none]"
       set -g @catppuccin_window_middle_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_surface_0}]█  #[none]"
       set -g @catppuccin_window_right_separator "#[fg=#{@thm_surface_0},bg=#{@thm_bg}]█#[none]"
-      set -g @catppuccin_window_text "#[fg=@{thm_surface_0},reverse]#{window_name}#[none]"
+      set -g @catppuccin_window_text "#[fg=#{@thm_surface_0},reverse]#{window_name}#[none]"
 
       ## Window current configuration
       set -g @catppuccin_window_current_text_color "#{@thm_teal}"
