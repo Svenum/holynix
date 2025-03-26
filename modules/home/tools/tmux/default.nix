@@ -56,7 +56,7 @@ in
       set -g @catppuccin_window_text "#{window_name}"
 
       ## Window current configuration
-      set -g @catppuccin_window_current_text "#{window_name}"
+      set -g @catppuccin_window_current_text "#[reverse]#{window_name}#[none]"
       set -g @catppuccin_window_current_fill "all"
       set -g @catppuccin_window_current_middle_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg},reverse] 󰿟 #[none]"
 
