@@ -50,9 +50,9 @@ in
       set -g @catppuccin_window_fill "number"
       set -g @catppuccin_window_number_position "left"
 
-      set -g @catppuccin_window_left_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_overlay_0}]█#[none]"
-      set -g @catppuccin_window_middle_separator "█"
-      set -g @catppuccin_window_right_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_overlay_0}]█#[none]"
+      set -g @catppuccin_window_left_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}]█#[none]"
+      set -g @catppuccin_window_middle_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}]█#[none]"
+      set -g @catppuccin_window_right_separator "#[fg=#{@catppuccin_window_current_number_color},bg=#{@thm_bg}]█#[none]"
       set -g @catppuccin_window_text "#{window_name}"
 
       ## Window current configuration
