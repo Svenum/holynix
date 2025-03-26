@@ -46,6 +46,7 @@ in
 
       # Window
       set -g @catppuccin_window_status_style "custom"
+      set -ogq @catppuccin_window_flag ""
       set -g window-status-separator ""
 
       ## Window global/default configuration
