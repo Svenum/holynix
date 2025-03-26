@@ -43,7 +43,6 @@ in
       # Pane
       set -g @catppuccin_pane_default_text ""
       set -g @catppuccin_window_text_color "#{@thm_teal}"
-      set -g @catppuccin_flavor 'teal'
 
       # Window
       set -g @catppuccin_window_status_style "custom"
