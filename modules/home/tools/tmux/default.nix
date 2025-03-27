@@ -71,6 +71,7 @@ in
       # Status
       set -g status-right-length 100
       set -g status-left ""
+      set -g status-right ""
 
       ## Status global/default configuration
       set -g @catppuccin_status_left_separator "█"
