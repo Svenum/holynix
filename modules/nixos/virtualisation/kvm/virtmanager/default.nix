@@ -43,7 +43,10 @@ in
     virtualisation = {
       libvirtd.enable = true;
       spiceUSBRedirection.enable = true;
+      libvirtd.qemu.swtpm.enable = true; 
+      tpm.enable = true;
     };
+
     programs.virt-manager.enable = true;
 
     # Add user to groups
