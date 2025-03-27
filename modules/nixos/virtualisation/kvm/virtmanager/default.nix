@@ -43,7 +43,7 @@ in
     virtualisation = {
       libvirtd.enable = true;
       spiceUSBRedirection.enable = true;
-      libvirtd.qemu.swtpm.enable = true; 
+      libvirtd.qemu.swtpm.enable = true;
       tpm.enable = true;
     };
 
