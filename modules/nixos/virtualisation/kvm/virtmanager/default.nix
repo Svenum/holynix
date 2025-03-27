@@ -41,10 +41,11 @@ in
   config = mkIf cfg.enable {
     # Enable spiceUSBRedirection
     virtualisation = {
-      libvirtd.enable = true;
+      libvirtd = {
+        enable = true;
+        qemu.swtpm.enable = true;
+      };
       spiceUSBRedirection.enable = true;
-      libvirtd.qemu.swtpm.enable = true;
-      tpm.enable = true;
     };
 
     programs.virt-manager.enable = true;
