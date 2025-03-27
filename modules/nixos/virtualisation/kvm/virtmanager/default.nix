@@ -59,6 +59,7 @@ in
     # install package virtdeclare
     environment.systemPackages = with pkgs; [
       inputs.nixVirt.packages.x86_64-linux.default
+      swtpm
     ];
   };
 }
