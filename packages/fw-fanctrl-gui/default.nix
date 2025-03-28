@@ -1,10 +1,7 @@
-{
-  lib,
-  python3Packages,
-  python3,
-  fw-ectool,
-  fetchFromGitHub,
-  holynix
+{ lib
+, python3Packages
+, python3
+, fetchFromGitHub
 }:
 
 python3Packages.buildPythonPackage rec{
