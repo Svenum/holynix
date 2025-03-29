@@ -36,23 +36,11 @@ in
   };
 
   networking = {
-    macvlans."shim-br0" = {
-      mode = "bridge";
-      interface = "br0";
-    };
     bridges.br0.interfaces = [
       "end0"
     ];
     interfaces = {
       "br0" = {
-        ipv4.addresses = [{
-          address = ip;
-          prefixLength = 24;
-        }];
-        useDHCP = false;
-      };
-      "end0".useDHCP = true;
-      "shim-br0" = {
         ipv4.addresses = [{
           address = ip;
           prefixLength = 24;
