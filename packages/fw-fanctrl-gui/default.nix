@@ -11,7 +11,7 @@ let
     version = "5.2.2";
     pyproject = true;
 
-    src = fetchFromGitHub{
+    src = fetchFromGitHub {
       owner = "tomschimansky";
       repo = "customtkinter";
       tag = "v${version}";
@@ -29,7 +29,7 @@ let
     version = "0.36";
     pyproject = true;
 
-    src = fetchFromGitHub{
+    src = fetchFromGitHub {
       owner = "alejandroautalan";
       repo = "pygubu";
       tag = "v${version}";
