@@ -16,7 +16,14 @@ in
   config = mkIf cfg.enable {
     programs.neovim = {
       enable = true;
-      coc.enable = true;
+      coc = {
+        enable = true;
+        settings = {
+          "emmet.includeLanguages" = {
+            php = "html";
+          };
+        };
+      };
       defaultEditor = true;
       extraConfig = builtins.readFile ./init.vim;
       withNodeJs = true;
