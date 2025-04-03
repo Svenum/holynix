@@ -345,11 +345,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741868525,
-        "narHash": "sha256-jikLF3o6cmIwTq3BNE1KZADzL/OprjACoVkrJEKf8hQ=",
+        "lastModified": 1743661097,
+        "narHash": "sha256-ZSx9BdbW+/4k3Pmecl7ZhpHXnpreuAgYxrRaJC8VmuU=",
         "owner": "TamtamHero",
         "repo": "fw-fanctrl",
-        "rev": "f97a5e9447c6def10f097d8dbd449ebb4e3ed253",
+        "rev": "473575cd1753cb4ec429ea085975e48d32970894",
         "type": "github"
       },
       "original": {

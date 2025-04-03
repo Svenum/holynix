@@ -2,7 +2,10 @@
 , python3Packages
 , python3
 , fetchFromGitHub
-, inputs
+, fw-ectool
+, holynix
+, gobject-introspection
+, wrapGAppsHook
 }:
 
 let
@@ -56,15 +59,18 @@ python3Packages.buildPythonPackage rec{
 
   nativeBuildInputs = [
     python3
+    gobject-introspection
+    wrapGAppsHook
   ];
 
   propagatedBuildInputs = with python3Packages; [
-    setuptools
     pystray
     blinker
     customtkinter
+    tkinter
+    packaging
     pygubu
-    inputs.fw-fanctrl.packages.x86_64-linux.default
+    holynix.fw-fanctrl
   ];
 
   doCheck = false;
