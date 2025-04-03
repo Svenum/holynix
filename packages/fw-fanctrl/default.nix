@@ -1,9 +1,8 @@
-{
-  lib,
-  python3Packages,
-  python3,
-  fw-ectool,
-  fetchFromGitHub,
+{ lib
+, python3Packages
+, python3
+, fw-ectool
+, fetchFromGitHub
 }:
 
 python3Packages.buildPythonPackage rec {

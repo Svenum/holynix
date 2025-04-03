@@ -2,7 +2,6 @@
 , python3Packages
 , python3
 , fetchFromGitHub
-, fw-ectool
 , holynix
 , gobject-introspection
 , wrapGAppsHook
