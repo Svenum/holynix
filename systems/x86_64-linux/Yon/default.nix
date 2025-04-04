@@ -55,6 +55,8 @@
     network.enable = true;
     network.useIWD = false;
 
+    hardware.headsetcontrol.enable = true;
+
     virtualisation = {
       podman = {
         enable = true;

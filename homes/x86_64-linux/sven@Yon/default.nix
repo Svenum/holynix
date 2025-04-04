@@ -43,8 +43,5 @@
 
     # Nextcloud
     nextcloud-client
-
-    # Headset
-    headsetcontrol
   ];
 }
