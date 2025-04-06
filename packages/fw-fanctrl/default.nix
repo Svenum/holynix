@@ -11,10 +11,10 @@ python3Packages.buildPythonPackage rec {
   pyproject = true;
 
   src = fetchFromGitHub {
-    owner = "TamtamHero";
+    owner = "leopoldhub";
     repo = "fw-fanctrl";
-    rev = "main";
-    hash = "sha256-WBP9Z+M1WmVOWNeDMIoGxOe/k0EOgWbOrNCR6fGYf34=";
+    rev = "true-pip-installation";
+    hash = "sha256-N1urNftsccavmcTCBkbszyuGIKTdXqsVRydwQ6irA4M=";
   };
 
   nativeBuildInputs = [
