@@ -14,7 +14,7 @@ python3Packages.buildPythonPackage rec {
     owner = "leopoldhub";
     repo = "fw-fanctrl";
     rev = "true-pip-installation";
-    hash = "sha256-N1urNftsccavmcTCBkbszyuGIKTdXqsVRydwQ6irA4M=";
+    hash = "sha256-+32ahFbziOubIj3ifOMXGdwi7Er+b2mQDI99WaMjRQ0=";
   };
 
   nativeBuildInputs = [
@@ -30,10 +30,12 @@ python3Packages.buildPythonPackage rec {
   postInstall = ''
     mkdir -p $out/share/fw-fanctrl
     cp $src/src/fw_fanctrl/_resources/config.json $out/share/fw-fanctrl/config.json
-    cp $src/services/system-sleep/fw-fanctrl-suspend $out/share/fw-fanctrl/fw-fanctrl-suspend
+    cp $src/src/fw_fanctrl_setup/_resources/services/system-sleep/fw-fanctrl-suspend $out/share/fw-fanctrl/fw-fanctrl-suspend
     substituteInPlace $out/share/fw-fanctrl/fw-fanctrl-suspend \
       --replace-fail '#!/bin/sh' '#!/usr/bin/env sh' \
-      --replace-fail '/usr/bin/python3 "%PYTHON_SCRIPT_INSTALLATION_PATH%"' $out/bin/fw-fanctrl
+      --replace-fail '%PYTHON_PATH% "%PYTHON_SCRIPT_INSTALLATION_PATH%"' $out/bin/fw-fanctrl
+    # Cleanup
+    rm -rf $out/bin/fw-fanctrl-setup $out/lib/python3.12/site-packages/fw_fanctrl_setup
   '';
 
   doCheck = false;
