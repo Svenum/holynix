@@ -50,5 +50,7 @@ in
       docker-compose
       (mkIf cfgSystemType.server.ansibleTarget customPython)
     ];
+
+    networking.firewall.trustedInterfaces = [ "docker0" ];
   };
 }
