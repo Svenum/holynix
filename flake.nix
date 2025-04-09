@@ -144,7 +144,7 @@
 
       homes.modules = with inputs; [
         plasma-manager.homeManagerModules.plasma-manager
-        catppuccin.homeManagerModules.catppuccin
+        catppuccin.homeModules.catppuccin
       ];
 
     };

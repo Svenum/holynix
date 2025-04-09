@@ -23,7 +23,7 @@ in
       };
       settings.auto-optimise-store = true;
 
-      package = pkgs.nixVersions.git;
+      package = pkgs.nixVersions.latest;
 
       # Add sources
       settings = {
