@@ -106,15 +106,17 @@
 
 
   programs = {
-    # Enable fw-fanctrl
-    fw-fanctrl.enable = true;
-
     # Enable gamescope
     gamescope.enable = true;
   };
 
-  # enable Steam input
-  hardware.steam-hardware.enable = true;
+  hardware = {
+    # enable Steam input
+    steam-hardware.enable = true;
+
+    # enable fw-fanctrl
+    fw-fanctrl.enable = true;
+  };
 
   services = {
     # Enable solaar

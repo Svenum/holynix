@@ -15,7 +15,8 @@
     ];
   };
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:Svenum/nixpkgs/add-fw-fanctrl";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
     nur = {
@@ -73,12 +74,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    fw-fanctrl = {
-      #url = "github:Svenum/fw-fanctrl/packaging/nix";
-      url = "github:TamtamHero/fw-fanctrl/packaging/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix/v0.4.1";
 
     sops-nix.url = "github:Mic92/sops-nix";
@@ -132,7 +127,6 @@
           Yon = {
             modules = with inputs; [
               nixos-hardware.nixosModules.framework-16-7040-amd
-              fw-fanctrl.nixosModules.default
             ];
 
             specialArgs = {
