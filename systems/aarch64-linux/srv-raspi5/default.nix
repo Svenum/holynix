@@ -51,11 +51,19 @@ in
     nameservers = [ "172.16.0.3" "172.16.0.4" ];
     useDHCP = false;
     localCommands = ''
+      # Set up shim device
       ip l add shim-br0 link br0 type ipvlan mode l3
       ip l set shim-br0 up
-      ip a add 172.16.0.13/24 dev shim-br0
-      ip r add 172.16.0.0/24 dev br0 proto kernel scope link src 172.16.0.13 metric 1
-      ip r del 172.16.0.0/24 dev br0 proto kernel scope link src 172.16.0.13
+      ip a add ${ip}/24 dev shim-br0
+
+      # Add routes
+      ip r add 172.16.0.0/24 dev br0 proto kernel scope link src ${ip} metric 1
+      ip r del 172.16.0.0/24 dev br0 proto kernel scope link src ${ip}
+
+      # Add default route
+      ip r add default via 172.16.0.1 dev shim-br0
+      ip r del default via 172.16.0.1 dev br0
+      ip r add default via 172.16.0.1 dev br0 metric 1
     '';
   };
 }
