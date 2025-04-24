@@ -39,18 +39,8 @@ in
     bridges.br0.interfaces = [
       "end0"
     ];
-    macvlans."shim-br0" = {
-      mode = "bridge";
-      interface = "br0";
-    };
     interfaces = {
       "br0" = {
-        ipv4.addresses = [{
-          address = ip;
-          prefixLength = 24;
-        }];
-      };
-      "shim-br0" = {
         ipv4.addresses = [{
           address = ip;
           prefixLength = 24;
