@@ -61,9 +61,9 @@ in
       ip r del 172.16.0.0/24 dev br0 proto kernel scope link src ${ip}
 
       # Add default route
-      ip r add default via 172.16.0.1 dev shim-br0
-      ip r del default via 172.16.0.1 dev br0
       ip r add default via 172.16.0.1 dev br0 metric 1
+      ip r del default via 172.16.0.1 dev br0
+      ip r add default via 172.16.0.1 dev shim-br0
     '';
   };
 }
