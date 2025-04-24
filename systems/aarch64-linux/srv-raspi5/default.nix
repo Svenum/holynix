@@ -54,7 +54,7 @@ in
       ip l add shim-br0 link br0 type ipvlan mode l3
       ip l set shim-br0 up
       ip a add 172.16.0.13/24 dev shim-br0
-      ip r append 172.16.0.0/24 dev br0 proto kernel scope link src 172.16.0.13 metric 1
+      ip r replace 172.16.0.0/24 dev br0 proto kernel scope link src 172.16.0.13 metric 1
     '';
   };
 }
