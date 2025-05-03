@@ -545,11 +545,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1746308171,
-        "narHash": "sha256-HUCxeQw9DgPpWghDppYPwXNsXKBbUXG4DgrDxJD60Xk=",
+        "lastModified": 1746308434,
+        "narHash": "sha256-BdRudGhxD/vYjWavGiyoxS2d+s0gzDJRtG9uo5xDNqg=",
         "owner": "Svenum",
         "repo": "nixpkgs",
-        "rev": "e1779285e6cf5f21102318eacc709f400174cb38",
+        "rev": "8ba4714b71291ee78d0e0b63e73304089f83e812",
         "type": "github"
       },
       "original": {
