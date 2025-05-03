@@ -124,10 +124,10 @@
             fanSpeedUpdateFrequency = 5;
             movingAverageInterval = 40;
             speedCurve = [
-                { temp = 45; speed = 0; }
-                { temp = 65; speed = 15; }
-                { temp = 70; speed = 25; }
-                { temp = 85; speed = 35; }
+              { temp = 45; speed = 0; }
+              { temp = 65; speed = 15; }
+              { temp = 70; speed = 25; }
+              { temp = 85; speed = 35; }
             ];
           };
           "lazy" = {
