@@ -108,6 +108,14 @@
   programs = {
     # Enable gamescope
     gamescope.enable = true;
+    # Enable weylus
+    weylus = {
+      enable = true;
+      openFirewall = true;
+      users = [
+        "sven"
+      ];
+    };
   };
 
   hardware = {
