@@ -16,7 +16,7 @@
   };
   inputs = {
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:Svenum/nixpkgs/test";
+    nixpkgs.url = "github:Svenum/nixpkgs/add-fw-fanctrl";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
     nur = {
