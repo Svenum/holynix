@@ -32,7 +32,7 @@ in
           "https://nix-community.cachix.org"
 
           # own cache
-          "https://attic.holypenguin.net/holynix"
+          "https://iglu.holypenguin.net/default"
 
         ];
         trusted-substituters = [
@@ -40,14 +40,14 @@ in
           "https://nix-community.cachix.org"
 
           # own cache
-          "https://attic.holypenguin.net/holynix"
+          "https://iglu.holypenguin.net/default"
         ];
         trusted-public-keys = [
           # nix community's cache server public key
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
 
           # own cache
-          "holynix:OTArBDwLVzXH1oXdMNXNWbVtmbBdydjXvgHznUVrnBc="
+          "default:19TwUXwKVvD7ePU4QRkZmB8FFMBRX2cy6tFsa6kjOLc="
         ];
 
         # Configure Nix
