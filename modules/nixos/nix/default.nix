@@ -47,7 +47,7 @@ in
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
 
           # own cache
-          "default:naCKd6a5+DRGn6q4R+F8A8VYSdnhvVLoJNSy5o3VFUU="
+          "default:N70oHEuy1jSzIZ5xEZdqCv4/49KERecq/P3sleSLxjI="
         ];
 
         # Configure Nix
