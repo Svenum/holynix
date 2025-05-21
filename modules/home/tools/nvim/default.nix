@@ -65,6 +65,7 @@ in
         # IDE
         auto-pairs
         surround-nvim
+        vim-prettier
         # Terminal
         vim-tmux-navigator
         # Git
