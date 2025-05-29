@@ -2,7 +2,7 @@
   inputs = {
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:Svenum/nixpkgs/add-fw-fanctrl";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     nur = {
       url = "github:nix-community/NUR";
@@ -11,11 +11,6 @@
 
     snowfall-lib = {
       url = "github:snowfallorg/lib/dev";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    flake = {
-      url = "github:snowfallorg/flake?ref=v1.3.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -61,9 +56,15 @@
 
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix/v0.4.1";
 
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -85,10 +86,6 @@
         allowUnfree = true;
         nvidia.acceptLicense = true;
       };
-
-      overlays = with inputs; [
-        flake.overlays.default
-      ];
 
       systems = {
         modules.nixos = with inputs; [

@@ -48,7 +48,6 @@
     tools = {
       flatpak.enable = true;
       cliTools.enable = true;
-      flake.enable = true;
     };
 
     bluetooth.enable = true;
