@@ -21,6 +21,7 @@
     "ts" = "cd /home/sven/Documents/TS/Unterricht";
     "pc" = "podman compose";
     "sls" = "live-server -o";
+    "nd" = "nix develop";
   };
   programs.zsh.enable = true;
   # Add extgra packages
