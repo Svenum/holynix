@@ -411,11 +411,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1750919273,
-        "narHash": "sha256-Eq1HgAUvcNjZ5TnmgAaVCkwwNUjDpzHLJhYlcCSmofs=",
+        "lastModified": 1751006432,
+        "narHash": "sha256-feaovXWY898jh93LBD7TCODLFThDRRUzaLFpW7yYtTc=",
         "owner": "Svenum",
         "repo": "nixpkgs",
-        "rev": "65f44d9d865b47aa3e830d2ecec17a5b0dc0183f",
+        "rev": "f3adce5d95b8d575ce9999cb9a9ee9898d30b4d6",
         "type": "github"
       },
       "original": {
