@@ -55,7 +55,6 @@ in
         coc-clangd
         coc-emmet
         coc-pyright
-        coc-mypy
         nvim-lspconfig
         clangd_extensions-nvim
         # nix
