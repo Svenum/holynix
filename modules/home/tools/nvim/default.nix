@@ -54,8 +54,12 @@ in
         coc-lua
         coc-clangd
         coc-emmet
+        coc-pyright
+        coc-mypy
         nvim-lspconfig
         clangd_extensions-nvim
+        # nix
+        statix
         vim-nix
         # Explorer
         nvim-web-devicons
