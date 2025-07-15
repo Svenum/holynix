@@ -125,7 +125,8 @@
     fw-fanctrl = {
       enable = true;
       config = {
-        defaultStrategy = "school";
+        defaultStrategy = "lazy";
+        strategyOnDischarging = "school";
         strategies = {
           "school" = {
             fanSpeedUpdateFrequency = 5;
@@ -135,18 +136,6 @@
               { temp = 65; speed = 15; }
               { temp = 70; speed = 25; }
               { temp = 85; speed = 35; }
-            ];
-          };
-          "lazy" = {
-            fanSpeedUpdateFrequency = 5;
-            movingAverageInterval = 30;
-            speedCurve = [
-              { temp = 0; speed = 15; }
-              { temp = 50; speed = 15; }
-              { temp = 65; speed = 25; }
-              { temp = 70; speed = 35; }
-              { temp = 75; speed = 50; }
-              { temp = 85; speed = 100; }
             ];
           };
         };
