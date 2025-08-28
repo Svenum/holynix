@@ -26,6 +26,11 @@
           userEmail = "s.ziegler@holypenguin.net";
         };
       };
+      "lina" = {
+        isGuiUser = true;
+        isSudoUser = false;
+        isKvmUser = false;
+      };
       "boerg" = {
         isGuiUser = false;
         isSudoUser = false;
