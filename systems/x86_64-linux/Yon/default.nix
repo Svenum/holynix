@@ -26,7 +26,7 @@
           userEmail = "s.ziegler@holypenguin.net";
         };
       };
-      "lina" = {
+      "alina" = {
         isGuiUser = true;
         isSudoUser = false;
         isKvmUser = false;
@@ -138,9 +138,11 @@
             movingAverageInterval = 40;
             speedCurve = [
               { temp = 45; speed = 0; }
-              { temp = 65; speed = 15; }
-              { temp = 70; speed = 25; }
-              { temp = 85; speed = 35; }
+              { temp = 55; speed = 15; }
+              { temp = 65; speed = 25; }
+              { temp = 70; speed = 35; }
+              { temp = 80; speed = 45; }
+              { temp = 90; speed = 50; }
             ];
           };
         };
