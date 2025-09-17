@@ -7,16 +7,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1757966793,
-        "narHash": "sha256-Mwv1UPRV9TlR/kXd3Uh0POqlO+lR1Pp+sKY2kWpBw9o=",
-        "owner": "Svenum",
+        "lastModified": 1758056808,
+        "narHash": "sha256-7I4duKo9OdQ7sldgjoYBlpZ+xykszDj/IVz5hlJOaeg=",
+        "owner": "AdnanHodzic",
         "repo": "auto-cpufreq",
-        "rev": "b22c249c5e5635d391fed4d708ce4855c57896a1",
+        "rev": "9f86acc38dca4299b70ea55ae6c52902da5c903c",
         "type": "github"
       },
       "original": {
-        "owner": "Svenum",
-        "ref": "fix-build",
+        "owner": "AdnanHodzic",
         "repo": "auto-cpufreq",
         "type": "github"
       }
@@ -265,11 +264,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1757997814,
-        "narHash": "sha256-F+1aoG+3NH4jDDEmhnDUReISyq6kQBBuktTUqCUWSiw=",
+        "lastModified": 1758085625,
+        "narHash": "sha256-D0KVKNgWSDVjYFgPLEtSQvSKchTBT0YqSbNlH7OQ+bo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5820376beb804de9acf07debaaff1ac84728b708",
+        "rev": "fb928abb67bd4df99040721ed48c3b42e24b1d08",
         "type": "github"
       },
       "original": {
@@ -482,11 +481,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758050828,
-        "narHash": "sha256-62NNOdQW7ljeSRu10Nr2i/NXIHlfzDfhWCR7ThRPUWI=",
+        "lastModified": 1758090586,
+        "narHash": "sha256-6CXur7TWODx21TW5kRovL5usMyvRyjntLO/W5Yy/hfo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "19d08cf44b5d3b732aa43844612a323a8399083a",
+        "rev": "8c08ab7dbfba494a0c5fdbb8143f41454e1914b6",
         "type": "github"
       },
       "original": {

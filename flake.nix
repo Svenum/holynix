@@ -32,8 +32,7 @@
     };
 
     auto-cpufreq = {
-      #url = "github:AdnanHodzic/auto-cpufreq";
-      url = "github:Svenum/auto-cpufreq/fix-build";
+      url = "github:AdnanHodzic/auto-cpufreq";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
