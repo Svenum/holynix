@@ -64,6 +64,11 @@
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    musnix = {
+      url = "github:musnix/musnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -93,6 +98,7 @@
           sops-nix.nixosModules.sops
           nur.modules.nixos.default
           catppuccin.nixosModules.catppuccin
+          musnix.nixosModules.musnix
         ];
 
         hosts = {

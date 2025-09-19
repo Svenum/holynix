@@ -184,4 +184,7 @@
     "wg_home".restartUnits = [ "NetworkManager.service" ];
     "wg_nl".restartUnits = [ "NetworkManager.service" ];
   };
+
+  # Enable musnix
+  musnix.enable = true;
 }
