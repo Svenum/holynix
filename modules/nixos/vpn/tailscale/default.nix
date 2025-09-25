@@ -18,8 +18,10 @@ in
       tailscale = {
         enable = true;
         useRoutingFeatures = "both";
+        extraSetFlags = [
+          "--accept-dns=false"
+        ];
       };
-      resolved.enable = true;
     };
 
     networking.firewall = {

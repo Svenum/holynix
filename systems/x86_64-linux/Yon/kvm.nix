@@ -39,152 +39,155 @@ in
       };
     };
 
-    libvirt.connections."qemu:///system" = {
-      # Add networks 
-      networks = [
-        {
-          definition = nixvirt.lib.network.writeXML {
-            name = "default";
-            uuid = "5d84e370-c682-4186-ba72-d20dfc85d432";
-            forward = {
-              mode = "nat";
-              nat = { port = { start = 1024; end = 65535; }; };
-            };
-            bridge = {
-              name = "virbr0";
-              stp = true;
-              delay = 0;
-            };
-            mac.address = "52:54:00:2d:98:61";
-            ip = {
-              address = "192.168.122.1";
-              netmask = "255.255.255.0";
-              dhcp = {
-                range = {
-                  start = "192.168.122.2";
-                  end = "192.168.122.254";
+    libvirt = {
+      enable = true;
+      connections."qemu:///system" = {
+        # Add networks 
+        networks = [
+          {
+            definition = nixvirt.lib.network.writeXML {
+              name = "default";
+              uuid = "5d84e370-c682-4186-ba72-d20dfc85d432";
+              forward = {
+                mode = "nat";
+                nat = { port = { start = 1024; end = 65535; }; };
+              };
+              bridge = {
+                name = "virbr0";
+                stp = true;
+                delay = 0;
+              };
+              mac.address = "52:54:00:2d:98:61";
+              ip = {
+                address = "192.168.122.1";
+                netmask = "255.255.255.0";
+                dhcp = {
+                  range = {
+                    start = "192.168.122.2";
+                    end = "192.168.122.254";
+                  };
                 };
               };
             };
-          };
-          active = true;
-        }
-        {
-          definition = nixvirt.lib.network.writeXML {
-            name = "kube";
-            uuid = "23897c1c-b6b3-49a3-8f96-a89765ae1113";
-            forward = {
-              mode = "nat";
-              nat = { port = { start = 1024; end = 65535; }; };
-            };
-            bridge = {
-              name = "virbr1";
-              stp = true;
-              delay = 0;
-            };
-            mac.address = "52:54:00:2d:97:60";
-            ip = {
-              address = "10.10.0.1";
-              netmask = "255.255.255.0";
-              dhcp = {
-                host = [
-                  {
-                    name = "node1";
-                    mac = node1Config.devices.interface.mac.address;
-                    ip = "10.10.0.11";
-                  }
-                  {
-                    name = "node2";
-                    mac = node2Config.devices.interface.mac.address;
-                    ip = "10.10.0.12";
-                  }
-                  {
-                    name = "node3";
-                    mac = node3Config.devices.interface.mac.address;
-                    ip = "10.10.0.13";
-                  }
-                ];
+            active = true;
+          }
+          {
+            definition = nixvirt.lib.network.writeXML {
+              name = "kube";
+              uuid = "23897c1c-b6b3-49a3-8f96-a89765ae1113";
+              forward = {
+                mode = "nat";
+                nat = { port = { start = 1024; end = 65535; }; };
+              };
+              bridge = {
+                name = "virbr1";
+                stp = true;
+                delay = 0;
+              };
+              mac.address = "52:54:00:2d:97:60";
+              ip = {
+                address = "10.10.0.1";
+                netmask = "255.255.255.0";
+                dhcp = {
+                  host = [
+                    {
+                      name = "node1";
+                      mac = node1Config.devices.interface.mac.address;
+                      ip = "10.10.0.11";
+                    }
+                    {
+                      name = "node2";
+                      mac = node2Config.devices.interface.mac.address;
+                      ip = "10.10.0.12";
+                    }
+                    {
+                      name = "node3";
+                      mac = node3Config.devices.interface.mac.address;
+                      ip = "10.10.0.13";
+                    }
+                  ];
+                };
               };
             };
-          };
-          active = true;
-        }
-      ];
+            active = true;
+          }
+        ];
 
-      # Add pools
-      pools = [
-        {
-          definition = nixvirt.lib.pool.writeXML {
-            name = "default";
-            uuid = "689ba4f2-da57-43e4-9723-a0551e871c8a";
-            type = "dir";
-            target = {
-              path = "/var/lib/libvirt/images";
-            };
-          };
-        }
-        {
-          definition = nixvirt.lib.pool.writeXML {
-            name = "images";
-            uuid = "464a4f52-bbf4-479e-9b2b-ed27116aab7b";
-            type = "dir";
-            target = {
-              path = "${diskPath}";
-            };
-          };
-          volumes = [
-            {
-              definition = nixvirt.lib.volume.writeXML {
-                name = "node1.qcow2";
-                capacity = { count = 150; unit = "GiB"; };
-                target = {
-                  format = { type = "qcow2"; };
-                };
+        # Add pools
+        pools = [
+          {
+            definition = nixvirt.lib.pool.writeXML {
+              name = "default";
+              uuid = "689ba4f2-da57-43e4-9723-a0551e871c8a";
+              type = "dir";
+              target = {
+                path = "/var/lib/libvirt/images";
               };
-            }
-            {
-              definition = nixvirt.lib.volume.writeXML {
-                name = "node2.qcow2";
-                capacity = { count = 150; unit = "GiB"; };
-                target = {
-                  format = { type = "qcow2"; };
-                };
-              };
-            }
-            {
-              definition = nixvirt.lib.volume.writeXML {
-                name = "node3.qcow2";
-                capacity = { count = 150; unit = "GiB"; };
-                target = {
-                  format = { type = "qcow2"; };
-                };
-              };
-            }
-          ];
-          active = true;
-        }
-        {
-          definition = nixvirt.lib.pool.writeXML {
-            name = "isos";
-            uuid = "5217ddb8-29c2-4a4d-b976-73b9dde59e43";
-            type = "dir";
-            target = {
-              path = "/home/sven/.local/share/libvirt/isos";
             };
-          };
-          active = true;
-        }
-      ];
+          }
+          {
+            definition = nixvirt.lib.pool.writeXML {
+              name = "images";
+              uuid = "464a4f52-bbf4-479e-9b2b-ed27116aab7b";
+              type = "dir";
+              target = {
+                path = "${diskPath}";
+              };
+            };
+            volumes = [
+              {
+                definition = nixvirt.lib.volume.writeXML {
+                  name = "node1.qcow2";
+                  capacity = { count = 150; unit = "GiB"; };
+                  target = {
+                    format = { type = "qcow2"; };
+                  };
+                };
+              }
+              {
+                definition = nixvirt.lib.volume.writeXML {
+                  name = "node2.qcow2";
+                  capacity = { count = 150; unit = "GiB"; };
+                  target = {
+                    format = { type = "qcow2"; };
+                  };
+                };
+              }
+              {
+                definition = nixvirt.lib.volume.writeXML {
+                  name = "node3.qcow2";
+                  capacity = { count = 150; unit = "GiB"; };
+                  target = {
+                    format = { type = "qcow2"; };
+                  };
+                };
+              }
+            ];
+            active = true;
+          }
+          {
+            definition = nixvirt.lib.pool.writeXML {
+              name = "isos";
+              uuid = "5217ddb8-29c2-4a4d-b976-73b9dde59e43";
+              type = "dir";
+              target = {
+                path = "/home/sven/.local/share/libvirt/isos";
+              };
+            };
+            active = true;
+          }
+        ];
 
-      # Add windows Domain
-      domains = [
-        { definition = nixvirt.lib.domain.writeXML win10gpuConfig; }
-        { definition = nixvirt.lib.domain.writeXML win10Config; }
-        { definition = nixvirt.lib.domain.writeXML node1Config; }
-        { definition = nixvirt.lib.domain.writeXML node2Config; }
-        { definition = nixvirt.lib.domain.writeXML node3Config; }
-        { definition = nixvirt.lib.domain.writeXML macosConfig; }
-      ];
+        # Add windows Domain
+        domains = [
+          { definition = nixvirt.lib.domain.writeXML win10gpuConfig; }
+          { definition = nixvirt.lib.domain.writeXML win10Config; }
+          { definition = nixvirt.lib.domain.writeXML node1Config; }
+          { definition = nixvirt.lib.domain.writeXML node2Config; }
+          { definition = nixvirt.lib.domain.writeXML node3Config; }
+          { definition = nixvirt.lib.domain.writeXML macosConfig; }
+        ];
+      };
     };
   };
 }
