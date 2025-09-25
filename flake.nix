@@ -38,6 +38,7 @@
 
     nixVirt = {
       url = "github:AshleyYakeley/NixVirt";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
