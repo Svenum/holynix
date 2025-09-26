@@ -75,6 +75,10 @@ in
         vim-gitgutter
         # Markdown Preview
         markdown-preview-nvim
+        # Pets
+        holynix.pets-nvim
+        hologram-nvim
+        nui-nvim
       ];
     };
 
