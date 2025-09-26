@@ -76,7 +76,7 @@ in
         # Markdown Preview
         markdown-preview-nvim
         # Pets
-        holynix.pets-nvim
+        pkgs.holynix.pets-nvim
         hologram-nvim
         nui-nvim
       ];
