@@ -68,7 +68,7 @@ in
       # Add Konsole profiles and colorshcemes
       holynix.konsole-catppuccin
       # Add plasmoids
-      holynix.plasma-applet-shutdown_or_switch
+      holynix.shutdown_or_switch
       # Other
       glxinfo
       vulkan-tools

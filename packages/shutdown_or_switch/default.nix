@@ -1,18 +1,14 @@
 { lib, stdenvNoCC, fetchFromGitHub, ... }:
 
 stdenvNoCC.mkDerivation {
-  pname = "plasma-applet-shutdown_or_switch";
-  version = "21.03.2024";
+  pname = "shutdown_or_switch";
+  version = "unstable-2025-09-29";
 
   src = fetchFromGitHub {
     owner = "Davide-sd";
     repo = "shutdown_or_switch";
     rev = "master";
-    sha256 = "sha256-S28mE4LpDuUghWwODqGF/MIIaPnqRcfRdOrvuQ87jJ8=";
-    #owner = "Svenum";
-    #repo = "shutdown_or_switch";
-    #rev = "add-second-hibernate-option";
-    #sha256 = "sha256-WRHGwYmNTyfo6QWIKfjKMivq9tmisoSZ/FGCD0uUGKI=";
+    sha256 = "sha256-NbZyQu23gr0O1QHbhLbcaTXV6t639akW9PF0Jq4Sc3Y=";
   };
 
   installPhase = ''
