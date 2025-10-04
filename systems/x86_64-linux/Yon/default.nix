@@ -174,11 +174,6 @@
   # Enable aarch64 emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  environment.systemPackages = with pkgs; [
-    holynix.tetris
-  ];
-
-
   # Restart Wiregaurd on secret change
   sops.secrets = {
     "wg_home".restartUnits = [ "NetworkManager.service" ];

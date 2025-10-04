@@ -36,6 +36,7 @@
     # fun
     sl
     asciiquarium-transparent
+    tetris
 
     # School
     gcc
