@@ -4,6 +4,7 @@
   imports = [
     ./hardware.nix
     ./kvm.nix
+    ./specialisation.nix
   ];
 
   holynix = {
@@ -27,6 +28,11 @@
         };
       };
       "alina" = {
+        isGuiUser = true;
+        isSudoUser = false;
+        isKvmUser = false;
+      };
+      "steam" = {
         isGuiUser = true;
         isSudoUser = false;
         isKvmUser = false;
