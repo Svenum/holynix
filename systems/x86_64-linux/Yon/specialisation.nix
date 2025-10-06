@@ -6,6 +6,7 @@ in
 {
   specialisation.steam.configuration = {
     services.getty.autologinUser = "steam";
+    services.displayManager.sddm.enable = lib.mkForce false;
     programs = {
       gamescope = {
         enable = true;
