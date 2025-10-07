@@ -22,6 +22,9 @@ in
     # Disable powerprofiles
     services.power-profiles-daemon.enable = mkForce false;
 
+    # Disable tlp
+    services.tlp.enable = mkForce false;
+
     # Enable auto-cpufreq
     programs.auto-cpufreq = {
       enable = true;
