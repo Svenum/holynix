@@ -1,4 +1,4 @@
-{ options, config, lib, ... }:
+{ config, lib, ... }:
 
 with lib;
 with lib.types;
@@ -18,7 +18,7 @@ in
     };
     interfaces = mkOption {
       type = attrsOf (submodule (
-        { options, ... }:
+        _:
         {
           options = {
             configFile = mkOption {

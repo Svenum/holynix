@@ -1,4 +1,4 @@
-{ options, config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 with lib;
 with lib.types;

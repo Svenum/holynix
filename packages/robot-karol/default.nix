@@ -1,5 +1,4 @@
-{ lib
-, fetchzip
+{ fetchzip
 , stdenv
 , makeWrapper
 , jre

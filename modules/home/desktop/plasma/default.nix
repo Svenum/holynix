@@ -1,4 +1,4 @@
-{ options, config, lib, systemConfig, ... }:
+{ config, lib, systemConfig, ... }:
 
 with lib;
 with lib.types;

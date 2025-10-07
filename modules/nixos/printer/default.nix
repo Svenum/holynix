@@ -1,4 +1,4 @@
-{ options, config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 with lib;
 with lib.types;
@@ -29,7 +29,7 @@ in
     printers = mkOption {
       default = { };
       type = listOf (submodule (
-        { options, ... }:
+        _:
         {
           options = {
             name = mkOption {

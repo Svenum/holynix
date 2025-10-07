@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.types;
@@ -16,12 +16,9 @@ in
   config = mkIf cfg.enable {
     hardware.graphics = {
       enable = true;
+      enable32Bit = true;
       extraPackages = with pkgs; [
         rocmPackages.clr.icd
-        amdvlk
-      ];
-      extraPackages32 = with pkgs; [
-        driversi686Linux.amdvlk
       ];
     };
 
