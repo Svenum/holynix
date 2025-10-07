@@ -36,7 +36,7 @@
     kernelModules = [ "sg" ];
     kernelParams = [
       "mem_sleep_default=deep"
-      "amd_pstate=passive"
+      "amd_pstate=active"
     ];
   };
 
