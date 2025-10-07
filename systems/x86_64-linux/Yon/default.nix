@@ -120,7 +120,7 @@
     gamescope.enable = true;
     # Enable weylus
     weylus = {
-      enable = true;
+      enable = false;
       openFirewall = true;
       users = [
         "sven"
