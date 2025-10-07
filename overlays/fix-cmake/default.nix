@@ -4,7 +4,7 @@ _final: prev: {
   fw-ectool = prev.fw-ectool.overrideAttrs (old: {
     cmakeFlags = (old.cmakeFlags or [ ]) ++ [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
   });
-  weylus= prev.weylus.overrideAttrs (old: {
+  weylus = prev.weylus.overrideAttrs (old: {
     cmakeFlags = (old.cmakeFlags or [ ]) ++ [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
   });
 }
