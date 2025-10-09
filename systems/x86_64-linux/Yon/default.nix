@@ -4,7 +4,6 @@
   imports = [
     ./hardware.nix
     ./kvm.nix
-    ./specialisation.nix
   ];
 
   holynix = {
@@ -28,11 +27,6 @@
         };
       };
       "alina" = {
-        isGuiUser = true;
-        isSudoUser = false;
-        isKvmUser = false;
-      };
-      "steam" = {
         isGuiUser = true;
         isSudoUser = false;
         isKvmUser = false;
@@ -172,6 +166,11 @@
       enable = true;
       openFirewall = false;
     };
+  };
+
+  environment.variables = {
+    # Needed to fix Kwin if gpu gets detatched
+    KWIN_DRM_DEVICES = "/dev/dri/card2";
   };
 
   # Enable Waydroid
