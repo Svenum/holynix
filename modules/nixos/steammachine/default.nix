@@ -6,9 +6,7 @@ let
   cfg = config.holynix.steammachine;
   gs = pkgs.writeScriptBin "gs.sh" ''
     #!${lib.getBin pkgs.bash}/bin/bash
-    ${lib.getBin pkgs.coreutils}/bin/id
     exec ${lib.getBin pkgs.gamescope}/bin/gamescope --adaptive-sync --hdr-enabled --rt --steam -- ${cfg.command}
-    ${lib.getBin pkgs.coreutils}/bin/id
   '';
 in
 {
@@ -43,7 +41,7 @@ in
     };
 
     environment = {
-      interactiveShellInit = ''
+      loginShellInit = ''
         # Start steam if tty9
         if [ "$(tty)" = "/dev/tty9" ]; then
           ${gs}/bin/gs.sh
