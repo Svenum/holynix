@@ -41,9 +41,6 @@ in
     };
 
     environment = {
-      loginShellInit = ''
-        [[ "$(tty)" = "/dev/tty9" ]] && ${gs}/bin/gs.sh
-      '';
       systemPackages = with pkgs; [
         gamescope-wsi
         gs
@@ -52,13 +49,14 @@ in
 
     systemd.services."steammachine-getty" = {
       description = "Getty for tty9 for the steammachine";
+      enable = true;
       wantedBy = lib.mkForce [ ];
       after = [
         "systemd-user-sessions.service"
         "getty-pre.target"
       ] ++ optional config.boot.plymouth.enable "plymouth-quit-wait.service";
       serviceConfig = {
-        ExecStart = [ "${pkgs.util-linux}/bin/agetty --autologin ${cfg.user} --noclear tty9 linux" ];
+        ExecStart = [  " " "${pkgs.util-linux}/bin/agetty --autologin ${cfg.user} --noclear tty9 linux --login-program ${gs}/bin/gs.sh" ];
         Type = "idle";
         Restart = "always";
       };
