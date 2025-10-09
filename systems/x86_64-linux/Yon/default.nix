@@ -7,6 +7,7 @@
   ];
 
   holynix = {
+    steammachine.enable = true;
     boot = {
       secureBoot = true;
       netboot = true;
