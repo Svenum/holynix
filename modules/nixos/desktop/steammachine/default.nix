@@ -42,7 +42,7 @@ in
     # Enable default desktop settings
     holynix.desktop.enable = true;
 
-    services.displayManager.sessionPack = [
+    services.displayManager.sessionPackages = [
       sessionFile
     ];
 
