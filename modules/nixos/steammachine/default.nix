@@ -6,7 +6,9 @@ let
   cfg = config.holynix.steammachine;
   gs = pkgs.writeScriptBin "gs.sh" ''
     #!${lib.getBin pkgs.bash}/bin/bash
+    ${lib.getBin pkgs.coreutils}/bin/id
     exec ${lib.getBin pkgs.gamescope}/bin/gamescope --adaptive-sync --hdr-enabled --rt --steam -- ${cfg.command}
+    ${lib.getBin pkgs.coreutils}/bin/id
   '';
 in
 {
@@ -54,7 +56,7 @@ in
     systemd.services."steammachine-getty" = {
       description = "Getty for tty9 for the steammachine";
       enable = true;
-      wantedBy = lib.mkForce [ ];
+      wantedBy = [ "getty.target" ];
       after = [
         "systemd-user-sessions.service"
         "getty-pre.target"
