@@ -6,7 +6,7 @@ let
   cfg = config.holynix.steammachine;
   gs = pkgs.writeScriptBin "gs.sh" ''
     #!${pkgs.bash}/bin/bash
-    exec gamescope --adaptive-sync --hdr-enabled --rt --steam -- ${cfg.command}
+    exec ${pkgs.gamescope-wsi}/bin/gamescope --adaptive-sync --hdr-enabled --rt --steam -- ${cfg.command}
   '';
 in
 {
@@ -23,7 +23,7 @@ in
     };
     command = mkOption {
       type = str;
-      default = "steam -pipewire-dmabuf -tenfoot -bigpicture";
+      default = "${pkgs.steam}/bin/steam -pipewire-dmabuf -tenfoot -bigpicture";
       description = "Set steam launch command";
     };
     installSteam = mkOption {
