@@ -8,7 +8,7 @@
 
   holynix = {
     steammachine = {
-      enable = true;
+      enable = false;
       command = "${lib.getBin pkgs.flatpak}/bin/flatpak run com.valvesoftware.Steam -pipewire-dmabuf -tenfoot -bigpicture";
       installSteam = false;
     };
@@ -17,7 +17,14 @@
       netboot = true;
       memtest = true;
     };
-    desktop.plasma.enable = true;
+    desktop = {
+      plasma.enable = true;
+      steammachine = {
+        enable = true;
+        command = "${lib.getBin pkgs.flatpak}/bin/flatpak run com.valvesoftware.Steam -pipewire-dmabuf -tenfoot -bigpicture";
+        installSteam = false;
+      };
+    };
     shell.zsh.enable = true;
     locale.name = "en_DE";
     systemType.laptop.enable = true;
