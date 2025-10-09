@@ -61,7 +61,6 @@ in
         ExecStart = [ "${pkgs.util-linux}/bin/agetty --autologin ${cfg.user} --noclear tty9 linux" ];
         Type = "idle";
         Restart = "always";
-        BindToDevice = lib.mkForce "";
       };
     };
   };
