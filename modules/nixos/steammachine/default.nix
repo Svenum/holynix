@@ -26,11 +26,15 @@ in
       isKvmUser = false;
     };
 
-    systemd.services."getty@tty9" = {
-      enable = true;
-      serviceConfig.ExecStart = [
-        "/sbin/agetty --autologin steam --noclear %I $TERM"
-      ];
+    systemd.services."steammachine-getty" = {
+      description = "Getty for tty9 for the steammachine";
+      wantedBy = [ "getty.target" ];
+      after = [ "systemd-user-sessions.service" ];
+      serviceConfig = {
+        ExecStart = [ "/sbin/agetty --autologin steam --noclear tty9 linux" ];
+        Type = "idle";
+        Restart = "always";
+      };
     };
   };
 }
