@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -9,7 +9,7 @@
   holynix = {
     steammachine = {
       enable = true;
-      command = "${pkgs.flatpak}/bin/flatpak run com.valvesoftware.Steam -pipewire-dmabuf -tenfoot -bigpicture";
+      command = "${lib.getBin pkgs.flatpak}/bin/flatpak run com.valvesoftware.Steam -pipewire-dmabuf -tenfoot -bigpicture";
       installSteam = false;
     };
     boot = {

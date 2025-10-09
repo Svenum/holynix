@@ -5,8 +5,8 @@ with lib.types;
 let
   cfg = config.holynix.steammachine;
   gs = pkgs.writeScriptBin "gs.sh" ''
-    #!${pkgs.bash}/bin/bash
-    exec ${pkgs.gamescope-wsi}/bin/gamescope --adaptive-sync --hdr-enabled --rt --steam -- ${cfg.command}
+    #!${lib.getBin pkgs.bash}/bin/bash
+    exec ${lib.getBin pkgs.gamescope}/bin/gamescope --adaptive-sync --hdr-enabled --rt --steam -- ${cfg.command}
   '';
 in
 {
@@ -43,6 +43,7 @@ in
     environment = {
       systemPackages = with pkgs; [
         gamescope-wsi
+        gamescope
         gs
       ] ++ optional cfg.installSteam pkgs.steam;
     };
@@ -56,7 +57,7 @@ in
         "getty-pre.target"
       ] ++ optional config.boot.plymouth.enable "plymouth-quit-wait.service";
       serviceConfig = {
-        ExecStart = [ " " "${pkgs.util-linux}/bin/agetty --autologin ${cfg.user} --noclear tty9 linux --login-program ${gs}/bin/gs.sh" ];
+        ExecStart = [ " " "${lib.getBin pkgs.util-linux}/bin/agetty --autologin ${cfg.user} --noclear tty9 linux --login-program ${gs}/bin/gs.sh" ];
         Type = "idle";
         Restart = "always";
       };
