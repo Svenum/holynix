@@ -5,7 +5,7 @@ with lib.types;
 
 let
   cfg = config.holynix.desktop.steammachine;
-  gs-steam = pkgs.writeShellScriptBin "steam-gs" ''
+  gs-steam = pkgs.writeShellScriptBin "gs-steam" ''
     exec ${lib.getBin pkgs.gamescope}/bin/gamescope --adaptive-sync --hdr-enabled --rt --steam -- ${cfg.command}
   '';
   sessionFile = (pkgs.writeTextDir "share/wayland-sessions/steam.desktop" ''
