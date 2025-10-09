@@ -46,13 +46,17 @@ in
       '';
       systemPackages = with pkgs; [
         gamescope-wsi
+        gs
       ] ++ optional cfg.installSteam pkgs.steam;
     };
 
     systemd.services."steammachine-getty" = {
       description = "Getty for tty9 for the steammachine";
       wantedBy = [ "getty.target" ];
-      after = [ "systemd-user-sessions.service" ];
+      after = [
+        "systemd-user-sessions.service"
+        "getty-pre.target"
+      ] ++ optional config.boot.plymouth.enable "plymouth-quit-wait.service";
       serviceConfig = {
         ExecStart = [ "${pkgs.util-linux}/bin/agetty --autologin ${cfg.user} --noclear tty9 linux" ];
         Type = "idle";
