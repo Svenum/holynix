@@ -43,8 +43,11 @@ in
     };
 
     environment = {
-      loginShellInit = ''
-        [[ "$(tty)" = "/dev/tty9" ]] && ${gs}/bin/gs.sh
+      interactiveShellInit = ''
+        # Start steam if tty9
+        if [ "$(tty)" = "/dev/tty9" ]; then
+          ${gs}/bin/gs.sh
+        fi
       '';
       systemPackages = with pkgs; [
         gamescope-wsi
