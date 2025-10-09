@@ -55,7 +55,7 @@ in
     environment.systemPackages = with pkgs; [
       gamescope-wsi
       gamescope
-      gs
+      gs-steam
     ] ++ optional cfg.installSteam pkgs.steam;
   };
 
