@@ -5,7 +5,6 @@ with lib.types;
 
 let
   cfg = config.holynix.desktop.steammachine;
-  desktopCfg = config.holynix.desktop;
   gs-steam = pkgs.writeShellScriptBin "steam-gs" ''
     exec ${lib.getBin pkgs.gamescope}/bin/gamescope --adaptive-sync --hdr-enabled --rt --steam -- ${cfg.command}
   '';
