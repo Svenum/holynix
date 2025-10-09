@@ -56,7 +56,7 @@ in
         "getty-pre.target"
       ] ++ optional config.boot.plymouth.enable "plymouth-quit-wait.service";
       serviceConfig = {
-        ExecStart = [  " " "${pkgs.util-linux}/bin/agetty --autologin ${cfg.user} --noclear tty9 linux --login-program ${gs}/bin/gs.sh" ];
+        ExecStart = [ " " "${pkgs.util-linux}/bin/agetty --autologin ${cfg.user} --noclear tty9 linux --login-program ${gs}/bin/gs.sh" ];
         Type = "idle";
         Restart = "always";
       };
