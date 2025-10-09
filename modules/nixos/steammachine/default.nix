@@ -52,7 +52,7 @@ in
 
     systemd.services."steammachine-getty" = {
       description = "Getty for tty9 for the steammachine";
-      wantedBy = [ "getty.target" ];
+      wantedBy = lib.mkForce [ ];
       after = [
         "systemd-user-sessions.service"
         "getty-pre.target"
@@ -61,6 +61,7 @@ in
         ExecStart = [ "${pkgs.util-linux}/bin/agetty --autologin ${cfg.user} --noclear tty9 linux" ];
         Type = "idle";
         Restart = "always";
+        BindToDevice = lib.mkForce "";
       };
     };
   };
