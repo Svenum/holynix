@@ -7,11 +7,6 @@
   ];
 
   holynix = {
-    steammachine = {
-      enable = false;
-      command = "${lib.getBin pkgs.flatpak}/bin/flatpak run com.valvesoftware.Steam -pipewire-dmabuf -tenfoot -bigpicture";
-      installSteam = false;
-    };
     boot = {
       secureBoot = true;
       netboot = true;
@@ -21,7 +16,7 @@
       plasma.enable = true;
       steammachine = {
         enable = true;
-        command = "${lib.getBin pkgs.flatpak}/bin/flatpak run com.valvesoftware.Steam -pipewire-dmabuf -tenfoot -bigpicture";
+        command = "${lib.getBin pkgs.flatpak}/bin/flatpak run com.valvesoftware.Steam -pipewire-dmabuf -tenfoot";
         installSteam = false;
       };
     };

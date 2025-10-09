@@ -6,7 +6,7 @@ with lib.types;
 let
   cfg = config.holynix.desktop.steammachine;
   gs-steam = pkgs.writeShellScriptBin "gs-steam" ''
-    exec ${lib.getBin pkgs.gamescope}/bin/gamescope --adaptive-sync --hdr-enabled --rt --steam -- ${cfg.command}
+    exec ${lib.getBin pkgs.gamescope}/bin/gamescope --adaptive-sync --rt --steam -- ${cfg.command}
   '';
   sessionFile = (pkgs.writeTextDir "share/wayland-sessions/steam.desktop" ''
     [Desktop Entry]
@@ -28,7 +28,7 @@ in
     };
     command = mkOption {
       type = str;
-      default = "${lib.getBin pkgs.steam}/bin/steam -pipewire-dmabuf -tenfoot -bigpicture";
+      default = "${lib.getBin pkgs.steam}/bin/steam -pipewire-dmabuf -tenfoot";
       description = "Set steam launch command";
     };
     installSteam = mkOption {
@@ -52,9 +52,21 @@ in
       enable32Bit = true;
     };
 
+    programs.gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
+
+    security.wrappers = {
+      bwrap = {
+        owner = "root";
+        group = "root";
+        source = "${pkgs.bubblewrap}/bin/bwrap";
+        setuid = true;
+      };
+    };
+
     environment.systemPackages = with pkgs; [
-      gamescope-wsi
-      gamescope
       gs-steam
     ] ++ optional cfg.installSteam pkgs.steam;
   };
