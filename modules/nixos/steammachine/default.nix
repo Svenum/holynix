@@ -5,7 +5,7 @@ with lib.types;
 let
   cfg = config.holynix.steammachine;
   gs = pkgs.writeScriptBin "gs.sh" ''
-    #!/usr/bin/env bash
+    #!${pkgs.bash}/bin/bash
     exec gamescope --adaptive-sync --hdr-enabled --rt --steam -- ${cfg.command}
   '';
 in
