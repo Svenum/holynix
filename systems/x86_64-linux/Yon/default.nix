@@ -7,7 +7,11 @@
   ];
 
   holynix = {
-    steammachine.enable = true;
+    steammachine = {
+      enable = true;
+      command = "flatpak run com.valvesoftware.Steam -pipewire-dmabuf -tenfoot -bigpicture";
+      installSteam = false;
+    };
     boot = {
       secureBoot = true;
       netboot = true;

@@ -6,7 +6,7 @@ let
   cfg = config.holynix.steammachine;
   gs = pkgs.writeScriptBin "gs.sh" ''
     #!/usr/bin/env bash
-    exec gamescope --adaptive-sync --hdr-enabled --rt --steam -- flatpak run com.valvesoftware.Steam -pipewire-dmabuf -tenfoot -bigpicture
+    exec gamescope --adaptive-sync --hdr-enabled --rt --steam -- ${cfg.command}
   '';
 in
 {
@@ -20,6 +20,16 @@ in
       type = str;
       default = "steam";
       description = "User under which steam runs";
+    };
+    command = mkOption {
+      type = str;
+      default = "steam -pipewire-dmabuf -tenfoot -bigpicture";
+      description = "Set steam launch command";
+    };
+    installSteam = mkOption {
+      type = bool;
+      default = true;
+      description = "Install steam";
     };
   };
 
@@ -36,7 +46,7 @@ in
       '';
       systemPackages = with pkgs; [
         gamescope-wsi
-      ];
+      ] ++ optional cfg.installSteam pkgs.steam;
     };
 
     systemd.services."steammachine-getty" = {
@@ -44,7 +54,7 @@ in
       wantedBy = [ "getty.target" ];
       after = [ "systemd-user-sessions.service" ];
       serviceConfig = {
-        ExecStart = [ "${pkgs.util-linux}/bin/agetty --autologin steam --noclear tty9 linux" ];
+        ExecStart = [ "${pkgs.util-linux}/bin/agetty --autologin ${cfg.user} --noclear tty9 linux" ];
         Type = "idle";
         Restart = "always";
       };
