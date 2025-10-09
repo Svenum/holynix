@@ -23,7 +23,7 @@ in
     };
     command = mkOption {
       type = str;
-      default = "${pkgs.steam}/bin/steam -pipewire-dmabuf -tenfoot -bigpicture";
+      default = "${lib.getBin pkgs.steam}/bin/steam -pipewire-dmabuf -tenfoot -bigpicture";
       description = "Set steam launch command";
     };
     installSteam = mkOption {
@@ -41,6 +41,9 @@ in
     };
 
     environment = {
+      loginShellInit = ''
+        [[ "$(tty)" = "/dev/tty9" ]] && ${gs}/bin/gs.sh
+      '';
       systemPackages = with pkgs; [
         gamescope-wsi
         gamescope
@@ -57,7 +60,7 @@ in
         "getty-pre.target"
       ] ++ optional config.boot.plymouth.enable "plymouth-quit-wait.service";
       serviceConfig = {
-        ExecStart = [ " " "${lib.getBin pkgs.util-linux}/bin/agetty --autologin ${cfg.user} --noclear tty9 linux --login-program ${gs}/bin/gs.sh" ];
+        ExecStart = [ " " "${lib.getBin pkgs.util-linux}/bin/agetty --autologin ${cfg.user} --noclear tty9 linux" ];
         Type = "idle";
         Restart = "always";
       };
