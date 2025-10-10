@@ -16,7 +16,7 @@
       plasma.enable = true;
       steammachine = {
         enable = true;
-        command = "${lib.getBin pkgs.flatpak}/bin/flatpak run com.valvesoftware.Steam -pipewire-dmabuf -tenfoot";
+        command = "${lib.getBin pkgs.flatpak}/bin/flatpak run com.valvesoftware.Steam";
         installSteam = false;
       };
     };

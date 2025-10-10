@@ -18,10 +18,10 @@ let
     (_: {
       passthru.providedSessions = [ "steam" ];
     });
-    steamos-session-select = pkgs.writeShellScriptBin "steamos-session-select" ''
-      #!/usr/bin/env bash 
-      ${command} -shutdown
-    '';
+  steamos-session-select = pkgs.writeShellScriptBin "steamos-session-select" ''
+    #!/usr/bin/env bash 
+    ${command} -shutdown
+  '';
 in
 {
   options.holynix.desktop.steammachine = {
