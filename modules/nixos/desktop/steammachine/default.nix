@@ -20,7 +20,7 @@ let
     });
   steamos-session-select = pkgs.writeShellScriptBin "steamos-session-select" ''
     #!/usr/bin/env bash 
-    ${command} -shutdown
+    ${cfg.command} -shutdown
   '';
 in
 {
