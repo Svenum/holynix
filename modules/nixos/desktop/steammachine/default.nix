@@ -6,7 +6,7 @@ with lib.types;
 let
   cfg = config.holynix.desktop.steammachine;
   gs-steam = pkgs.writeShellScriptBin "gs-steam" ''
-    exec ${lib.getBin pkgs.gamescope}/bin/gamescope --adaptive-sync --rt --steam -- ${cfg.command}
+    exec ${lib.getBin pkgs.gamescope}/bin/gamescope --adaptive-sync --rt --steam -- ${cfg.command} -pipewire-dmabuf -tenfoot -steamdeck -steamos3
   '';
   sessionFile = (pkgs.writeTextDir "share/wayland-sessions/steam.desktop" ''
     [Desktop Entry]
@@ -18,6 +18,10 @@ let
     (_: {
       passthru.providedSessions = [ "steam" ];
     });
+    steamos-session-select = pkgs.writeShellScriptBin "steamos-session-select" ''
+      #!/usr/bin/env bash 
+      ${command} -shutdown
+    '';
 in
 {
   options.holynix.desktop.steammachine = {
@@ -28,7 +32,7 @@ in
     };
     command = mkOption {
       type = str;
-      default = "${lib.getBin pkgs.steam}/bin/steam -pipewire-dmabuf -tenfoot";
+      default = "${lib.getBin pkgs.steam}/bin/steam";
       description = "Set steam launch command";
     };
     installSteam = mkOption {
@@ -68,6 +72,7 @@ in
 
     environment.systemPackages = with pkgs; [
       gs-steam
+      steamos-session-select
     ] ++ optional cfg.installSteam pkgs.steam;
   };
 
