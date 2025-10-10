@@ -127,7 +127,6 @@
         steamArgs = [
           "-pipewire-dmabuf"
           "-tenfoot"
-          "-steamdeck"
           "-steamos3"
         ];
         args = [
