@@ -15,7 +15,7 @@
     desktop = {
       plasma.enable = true;
       steammachine = {
-        enable = true;
+        enable = false;
         command = "${lib.getBin pkgs.flatpak}/bin/flatpak run com.valvesoftware.Steam";
         installSteam = false;
       };
@@ -119,6 +119,23 @@
   programs = {
     # Enable gamescope
     gamescope.enable = true;
+
+    steam = {
+      enable = true;
+      gamescopeSession = {
+        enable = true;
+        steamArgs = [
+          "-pipewire-dmabuf"
+          "-tenfoot"
+          "-steamdeck"
+          "-steamos3"
+        ];
+        args = [
+          "--adaptive-sync"
+          "--rt"
+        ];
+      };
+    };
     # Enable weylus
     weylus = {
       enable = false;
@@ -194,4 +211,7 @@
 
   # Enable musnix
   musnix.enable = true;
+
+
+
 }
