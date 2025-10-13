@@ -50,7 +50,7 @@ in
     };
 
     systemd.tmpfiles.rules = mkIf cfg.enableSteamMachine [
-      "C /usr/bin 0775 root root - ${pkgs.holynix.steam-session-helper}/bin"
+      "C+ /usr/bin 0775 root root - ${pkgs.holynix.steam-session-helper}/bin"
     ];
 
   };
