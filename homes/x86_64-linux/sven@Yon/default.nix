@@ -10,7 +10,7 @@
         "applications:org.kde.dolphin.desktop"
         "preferred://browser"
         "applications:com.logseq.Logseq.desktop"
-        "applications:virt-manager"
+        "applications:virt-manager.desktop"
       ];
       enableGPUSensor = true;
     };
