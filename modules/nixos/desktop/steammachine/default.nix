@@ -15,7 +15,7 @@ in
     };
     enableSteamMachine = mkOption {
       type = bool;
-      default = true;
+      default = false;
       description = "Enable SteamDeck mode + install helper scripts";
     };
   };
@@ -52,7 +52,7 @@ in
       "C+ /usr/bin 0775 root root - ${pkgs.holynix.steam-session-helper}/bin"
     ];
 
-    environment.systemPackages = mkIf cfg.enableSteamMachine [
+    environment.systemPackages = [
       pkgs.holynix.steam-session-helper
     ];
   };
