@@ -43,7 +43,6 @@ in
             "--rt"
           ];
         };
-        extest.enable = true;
         localNetworkGameTransfers.openFirewall = true;
         remotePlay.openFirewall = true;
       };
