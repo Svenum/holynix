@@ -14,11 +14,7 @@
     };
     desktop = {
       plasma.enable = true;
-      steammachine = {
-        enable = false;
-        command = "${lib.getBin pkgs.flatpak}/bin/flatpak run com.valvesoftware.Steam";
-        installSteam = false;
-      };
+      steammachine.enable = true;
     };
     shell.zsh.enable = true;
     locale.name = "en_DE";
@@ -117,24 +113,6 @@
 
 
   programs = {
-    # Enable gamescope
-    gamescope.enable = true;
-
-    steam = {
-      enable = true;
-      gamescopeSession = {
-        enable = true;
-        steamArgs = [
-          "-pipewire-dmabuf"
-          "-tenfoot"
-          "-steamos3"
-        ];
-        args = [
-          "--adaptive-sync"
-          "--rt"
-        ];
-      };
-    };
     # Enable weylus
     weylus = {
       enable = false;
