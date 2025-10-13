@@ -53,6 +53,9 @@ in
       "C+ /usr/bin 0775 root root - ${pkgs.holynix.steam-session-helper}/bin"
     ];
 
+    environment.systemPackages = mkIf cfg.enableSteamMachine [
+      pkgs.holynix.steam-session-helper
+    ];
   };
 
 }
