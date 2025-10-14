@@ -62,10 +62,7 @@
     network.enable = true;
     network.useIWD = false;
 
-    hardware = {
-      headsetcontrol.enable = true;
-      xbox.enable = true;
-    };
+    hardware.headsetcontrol.enable = true;
 
     virtualisation = {
       podman = {
