@@ -21,6 +21,7 @@ let
       "optical"
       "scanner"
       "lp"
+      "input"
       (mkIf (if builtins.hasAttr "isSudoUser" user then user.isSudoUser else false) "wheel")
       (mkIf (if builtins.hasAttr "isDockerUser" user then user.isDockerUser else false) "docker")
     ];

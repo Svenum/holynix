@@ -12,7 +12,10 @@
       netboot = true;
       memtest = true;
     };
-    desktop.plasma.enable = true;
+    desktop = {
+      plasma.enable = true;
+      steammachine.enable = true;
+    };
     shell.zsh.enable = true;
     locale.name = "en_DE";
     systemType.laptop.enable = true;
@@ -110,8 +113,6 @@
 
 
   programs = {
-    # Enable gamescope
-    gamescope.enable = true;
     # Enable weylus
     weylus = {
       enable = false;
@@ -187,4 +188,7 @@
 
   # Enable musnix
   musnix.enable = true;
+
+
+
 }
