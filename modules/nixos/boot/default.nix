@@ -82,6 +82,7 @@ in
       lanzaboote = mkIf cfg.secureBoot {
         enable = true;
         pkiBundle = "/var/lib/sbctl";
+        inherit (config.boot.loader.systemd-boot) configurationLimit;
       };
     };
 
