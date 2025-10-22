@@ -34,6 +34,11 @@ in
       default = false;
       description = "enable netbootxyz to boot images on the network";
     };
+    uefi-shell = mkOption {
+      type = bool;
+      default = false;
+      description = "enable edk2-uefi-shell";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -51,8 +56,18 @@ in
           enable = mkIf (! cfg.secureBoot) true;
           configurationLimit = 15;
           editor = false;
-          memtest86.enable = cfg.memtest;
-          netbootxyz.enable = cfg.netboot;
+          memtest86 = {
+            enable = cfg.memtest;
+            sortKey = "z_memtest";
+          };
+          netbootxyz = {
+            enable = cfg.netboot;
+            sortKey = "z_netboot";
+          };
+          edk2-uefi-shell = {
+            enable = cfg.uefi-shell;
+            sortKey = "z_edk2";
+          };
         };
         efi.canTouchEfiVariables = true;
         timeout = mkDefault 1;
@@ -66,7 +81,7 @@ in
 
       lanzaboote = mkIf cfg.secureBoot {
         enable = true;
-        pkiBundle = "/etc/secureboot";
+        pkiBundle = "/var/lib/sbctl";
       };
     };
 

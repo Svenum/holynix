@@ -11,6 +11,7 @@
       secureBoot = true;
       netboot = true;
       memtest = true;
+      uefi-shell = true;
     };
     desktop = {
       plasma.enable = true;
