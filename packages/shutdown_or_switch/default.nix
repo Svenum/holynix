@@ -1,14 +1,14 @@
 { lib, stdenvNoCC, fetchFromGitHub, ... }:
 
-stdenvNoCC.mkDerivation {
+stdenvNoCC.mkDerivation rec {
   pname = "shutdown_or_switch";
-  version = "unstable-2025-09-29";
+  version = "1.1.3";
 
   src = fetchFromGitHub {
     owner = "Davide-sd";
     repo = "shutdown_or_switch";
-    rev = "master";
-    sha256 = "sha256-NbZyQu23gr0O1QHbhLbcaTXV6t639akW9PF0Jq4Sc3Y=";
+    rev = "v${version}";
+    hash = "sha256-nCSHYBQcw6Ids/+xwqz2vfn8TaLTUNhP86kMUluMWN0=";
   };
 
   installPhase = ''

@@ -1,7 +1,7 @@
 _:
 
 _: prev: {
-  nextcloud-client = prev.nextcloud-client.overrideAttrs (old: rec {
+  nextcloud-client = prev.nextcloud-client.overrideAttrs (_: rec {
     version = "4.0.0";
     src = prev.fetchFromGitHub {
       owner = "nextcloud-releases";
