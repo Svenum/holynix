@@ -35,7 +35,7 @@ let
             "xdg-config/gtkrc:ro"
             "~/.themes:ro"
           ];
-          Environment.GTK_THEME="Catppuccin-${flavor}-Standard-${accent}-${mode}";
+          Environment.GTK_THEME = "Catppuccin-${flavor}-Standard-${accent}-${mode}";
         };
       };
     };
