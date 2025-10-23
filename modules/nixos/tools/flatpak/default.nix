@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 with lib;
 with lib.types;
@@ -8,18 +8,36 @@ let
   usersCfg = config.holynix.users;
   plasmaCfg = config.holynix.desktop.plasma;
 
+  flavor = "${lib.toUpper (builtins.substring 0 1 themeCfg.flavor)}${builtins.substring 1 99 themeCfg.flavor}";
+  accent = "${lib.toUpper (builtins.substring 0 1 themeCfg.accent)}${builtins.substring 1 99 themeCfg.accent}";
+  mode = if themeCfg.flavor != "latte" then "Dark" else "Light";
+
   mkUserConfig = _name: user: {
+    imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
+
     home.activation = lib.mkIf (if builtins.hasAttr "isGuiUser" user then user.isGuiUser else false) {
       configureFlatpak = ''
-        FLAVOUR=${themeCfg.flavor}
-        ACCENT=${themeCfg.accent}
-        ${pkgs.flatpak}/bin/flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-        ${pkgs.flatpak}/bin/flatpak remote-add --user --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
-        ${pkgs.flatpak}/bin/flatpak override --user --filesystem=xdg-config/gtk-3.0:ro --filesystem=xdg-config/gtkrc-2.0:ro --filesystem=xdg-config/gtk-4.0:ro --filesystem=xdg-config/gtkrc:ro --filesystem=~/.themes:ro
-        ${pkgs.flatpak}/bin/flatpak override --user --env=GTK_THEME=Catppuccin-''${FLAVOUR^}-Standard-''${ACCENT^}-${if themeCfg.flavor != "latte" then "Dark" else "Light"}
-        ${pkgs.flatpak}/bin/flatpak override --user --device=dri --filesystem=~/Games:rw com.valvesoftware.Steam
         ${if plasmaCfg.enable then (pkgs.rsync + "/bin/rsync -vrkL /run/current-system/sw/share/themes/* ~/.themes/") else ""}
       '';
+    };
+
+    services.flatpak = {
+      remotes = [
+        { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; }
+        { name = "flathub-beta"; location = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo"; }
+      ];
+      overrides = {
+        global = {
+          Context.fileSystems = [
+            "xdg-config/gtk-3.0:ro"
+            "xdg-config/gtkrc-2.0:ro"
+            "xdg-config/gtk-4.0:ro"
+            "xdg-config/gtkrc:ro"
+            "~/.themes:ro"
+          ];
+          Environment.GTK_THEME="Catppuccin-${flavor}-Standard-${accent}-${mode}";
+        };
+      };
     };
   };
 in

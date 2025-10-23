@@ -31,6 +31,7 @@
         "usb_storage"
         "sd_mod"
         "thunderbolt"
+        "ip_tables"
       ];
     };
     kernelModules = [ "sg" ];
