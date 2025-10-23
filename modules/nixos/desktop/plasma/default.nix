@@ -56,7 +56,6 @@ in
       bup
       # GUI Tools
       kdePackages.sddm-kcm
-      kdePackages.xwaylandvideobridge
       caffeine-ng
       kdePackages.korganizer
       kdePackages.kdepim-runtime
