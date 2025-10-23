@@ -60,10 +60,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin = {
-      url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    catppuccin.url = "github:catppuccin/nix";
 
     musnix = {
       url = "github:musnix/musnix";
