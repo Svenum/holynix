@@ -173,6 +173,7 @@
   environment.variables = {
     # Needed to fix Kwin if gpu gets detatched
     KWIN_DRM_DEVICES = "/dev/dri/card2";
+    KWIN_USE_OVERLAYS = "1";
   };
 
   # Enable Waydroid
