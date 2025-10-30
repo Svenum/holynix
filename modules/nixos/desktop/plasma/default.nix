@@ -69,7 +69,7 @@ in
       # Add plasmoids
       holynix.shutdown_or_switch
       # Other
-      glxinfo
+      mesa-demos
       vulkan-tools
       playerctl
       wayland-utils

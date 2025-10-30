@@ -31,13 +31,15 @@
         "usb_storage"
         "sd_mod"
         "thunderbolt"
-        "ip_tables"
       ];
     };
     kernelModules = [ "sg" ];
     kernelParams = [
       "mem_sleep_default=deep"
       "amd_pstate=active"
+    ];
+    extraModulePackages = with config.boot.kernelPackages; [
+      framework-laptop-kmod
     ];
   };
 
@@ -64,14 +66,9 @@
     }
   ];
 
-  #hardware = {
-  #  # disable framework kernel module
-  #  # https://github.com/NixOS/nixos-hardware/issues/1330
-  #  framework.enableKmod = false;
-  #};
+  hardware.framework.enableKmod = false;
 
   # disable Wakup on Keyboard
-
   services.udev.extraRules = ''
     # Framework Laptop 16 Keyboard
     ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0018", ATTR{power/wakeup}="disabled"
