@@ -21,6 +21,7 @@ in
 
   config = mkIf cfg.enable {
     networking = {
+      nftables.enable = true;
       networkmanager = {
         enable = true;
         wifi.backend = mkIf cfg.useIWD "iwd";
