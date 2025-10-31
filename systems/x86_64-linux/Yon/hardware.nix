@@ -38,9 +38,6 @@
       "mem_sleep_default=deep"
       "amd_pstate=active"
     ];
-    extraModulePackages = with config.boot.kernelPackages; [
-      framework-laptop-kmod
-    ];
   };
 
   # Configure Filesystem
@@ -66,7 +63,7 @@
     }
   ];
 
-  hardware.framework.enableKmod = false;
+  hardware.framework.enableKmod = true;
 
   # disable Wakup on Keyboard
   services.udev.extraRules = ''
