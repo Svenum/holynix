@@ -62,7 +62,6 @@
       options = [
         "perms=0660:+X"
         "mirror=@users"
-        "x-systemd.requires=local-fs.target"
       ];
     };
   };
