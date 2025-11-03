@@ -50,12 +50,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    # Install cusotm scripts
-    environment.systemPackages = with pkgs; [
-      # Theming
-      betterdiscordctl
-      spicetify-cli
-    ] ++ lists.optionals plasmaCfg.enable [ pkgs.kdePackages.discover pkgs.kdePackages.packagekit-qt ];
+    environment.systemPackages = mkIf plasmaCfg.enable [ pkgs.kdePackages.discover pkgs.kdePackages.packagekit-qt ];
 
     # Install and enable flatpak
     services.flatpak.enable = true;
