@@ -56,7 +56,7 @@
       device = "/dev/disk/by-uuid/142B-16BD";
       fsType = "vfat";
     };
-    "/home/share" = {
+    "/mnt/share" = {
       device = "/home/share";
       fsType = "fuse.bindfs";
       options = [

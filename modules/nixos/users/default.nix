@@ -9,9 +9,9 @@ let
   mkUser = name: user: {
     isNormalUser = true;
     description = name;
-    shell = mkIf (user.shell != null) user.shell;
-    password = mkIf (user.password != null) user.password;
-    initialPassword = mkIf (user.initialPassword != null) user.initialPassword;
+    inherit (user) shell;
+    inherit (user) password;
+    inherit (user) initialPassword;
     extraGroups = [
       "networkmanager"
       "network"
@@ -22,9 +22,9 @@ let
       "scanner"
       "lp"
       "input"
-      (mkIf (if builtins.hasAttr "isSudoUser" user then user.isSudoUser else false) "wheel")
-      (mkIf (if builtins.hasAttr "isDockerUser" user then user.isDockerUser else false) "docker")
-    ];
+    ]
+    ++ optional user.isSudoUser "wheel"
+    ++ optional user.isDockerUser "docker";
 
     inherit (user) uid;
     openssh.authorizedKeys.keys = mkIf (user.authorizedKeys != null) user.authorizedKeys;
