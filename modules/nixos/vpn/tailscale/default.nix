@@ -19,7 +19,7 @@ in
         enable = true;
         useRoutingFeatures = "both";
         extraSetFlags = [
-          "--accept-dns=false"
+          "--accept-dns=true"
         ];
       };
     };
