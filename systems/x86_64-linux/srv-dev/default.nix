@@ -43,6 +43,12 @@
         ];
       };
     };
+    virtualisation = {
+      podman = {
+        enable = true;
+        disableAutoStart = true;
+      };
+    };
     tools = {
       flatpak.enable = true;
       cliTools.enable = true;
