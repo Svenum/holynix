@@ -25,6 +25,7 @@ in
       packages = with pkgs; [
         noto-fonts-cjk-sans
         noto-fonts-lgc-plus
+        gyre-fonts
       ];
       enableDefaultPackages = true;
     };
