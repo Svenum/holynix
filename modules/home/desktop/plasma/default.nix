@@ -96,11 +96,6 @@ in
         wallpaper = "/etc/wallpaper/catppuccin-${lib.strings.toLower themeCfg.flavor}.jpg";
       };
 
-      hotkeys.commands."Launch-Konsole" = {
-        key = "Ctrl+T";
-        command = "konsole";
-      };
-
       panels = [
         {
           location = "left";
