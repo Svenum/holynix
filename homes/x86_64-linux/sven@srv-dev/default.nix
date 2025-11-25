@@ -22,7 +22,6 @@
   # Add extgra packages
   home.packages = with pkgs; [
     #nix config
-    attic-client
     sops
   ];
 }

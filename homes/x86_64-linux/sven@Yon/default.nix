@@ -29,7 +29,6 @@
     ccrypt
 
     #nix config
-    attic-client
     sops
 
     # fun
