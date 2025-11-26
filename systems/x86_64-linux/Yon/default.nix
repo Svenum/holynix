@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -191,6 +191,13 @@
   # Enable musnix
   musnix.enable = true;
 
+  # ld
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs;[
+      glibc
+    ];
+  };
 
 
 }
