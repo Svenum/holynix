@@ -12,8 +12,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    hardware.xpadneo.enable = true;
-
     # Xbox-Controller aktivieren
     hardware = {
       xpadneo.enable = true;
