@@ -13,5 +13,18 @@ in
 
   config = mkIf cfg.enable {
     hardware.xpadneo.enable = true;
+
+    # Xbox-Controller aktivieren
+    hardware = {
+      xpadneo.enable = true;
+      bluetooth.settings = {
+        General = {
+          Privacy = "device";
+          JustWorksRepairing = "always";
+          Class = "0x000100";
+          FastConnectable = true;
+        };
+      };
+    };
   };
 }
