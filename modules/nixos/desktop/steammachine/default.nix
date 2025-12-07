@@ -24,7 +24,6 @@ in
     # Enable default desktop settings
     holynix = {
       desktop.enable = true;
-      hardware.xbox.enable = true;
     };
 
     programs = {
