@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.types;
@@ -14,6 +14,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [ nixpkgs-fmt ];
     programs.nixvim = {
       enable = true;
       defaultEditor = true;
@@ -41,6 +42,9 @@ in
         loaded_netrw = 1;
         loaded_netrwPlugin = 1;
       };
+
+      # Clipboard
+      clipboard.providers.pbcopy.enable = true;
 
       # Colorscheme
       colorschemes.catppuccin = {
@@ -134,7 +138,7 @@ in
 
             # CSS
             cssls.enable = true;
-            tailwindcss = true;
+            tailwindcss.enable = true;
 
             # JSON
             jsonls.enable = true;
@@ -276,7 +280,7 @@ in
               json = [ "prettier" ];
               yaml = [ "prettier" ];
               markdown = [ "prettier" ];
-              nix = [ "nixpkgs_fmt" ];
+              nix = [ "nixpkgs-fmt" ];
             };
             format_on_save = {
               lsp_fallback = true;
