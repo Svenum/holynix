@@ -32,7 +32,6 @@ in
         laststatus = 2;
         backup = false;
         writebackup = false;
-        updatetime = 300;
         signcolumn = "yes";
         completeopt = [ "menu" "menuone" "noselect" ];
       };
