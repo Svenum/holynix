@@ -32,7 +32,6 @@ let
 
   mkUserConfig = name: user: {
     # Home-Manager Config
-    nixpkgs.config.allowUnfree = true;
     home = {
       username = name;
       homeDirectory = "/home/${name}";

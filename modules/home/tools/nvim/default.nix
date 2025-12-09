@@ -204,7 +204,6 @@ in
               { name = "buffer"; }
               { name = "spell"; }
               { name = "tmux"; }
-              { name = "cmp_tabnine"; }
               { name = "treesitter"; }
               { name = "vimtex"; }
               { name = "nixpkgs_maintainers"; }
