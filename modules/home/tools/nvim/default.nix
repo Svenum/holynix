@@ -34,7 +34,7 @@ in
         writebackup = false;
         updatetime = 300;
         signcolumn = "yes";
-        completeopt = ["menu" "menuone" "noselect"];
+        completeopt = [ "menu" "menuone" "noselect" ];
       };
 
       # Global variables
@@ -53,16 +53,16 @@ in
             native_lsp = {
               enabled = true;
               virtual_text = {
-                errors = ["italic"];
-                hints = ["italic"];
-                warnings = ["italic"];
-                information = ["italic"];
+                errors = [ "italic" ];
+                hints = [ "italic" ];
+                warnings = [ "italic" ];
+                information = [ "italic" ];
               };
               underlines = {
-                errors = ["underline"];
-                hints = ["underline"];
-                warnings = ["underline"];
-                information = ["underline"];
+                errors = [ "underline" ];
+                hints = [ "underline" ];
+                warnings = [ "underline" ];
+                information = [ "underline" ];
               };
             };
             cmp = true;
@@ -90,7 +90,7 @@ in
         # LSP
         lsp = {
           enable = true;
-          
+
           keymaps = {
             diagnostic = {
               "[d" = "goto_prev";
@@ -120,7 +120,7 @@ in
               enable = true;
               extraOptions = {
                 capabilities = {
-                  offsetEncoding = ["utf-16"];
+                  offsetEncoding = [ "utf-16" ];
                 };
               };
             };
@@ -175,7 +175,7 @@ in
             nil_ls = {
               enable = true;
               settings = {
-                formatting.command = ["nixpkgs-fmt"];
+                formatting.command = [ "nixpkgs-fmt" ];
               };
             };
 
@@ -205,7 +205,7 @@ in
         cmp = {
           enable = true;
           autoEnableSources = true;
-          
+
           settings = {
             snippet.expand = ''
               function(args)
@@ -314,15 +314,15 @@ in
           enable = true;
           settings = {
             formatters_by_ft = {
-              python = ["black"];
-              javascript = ["prettier"];
-              typescript = ["prettier"];
-              html = ["prettier"];
-              css = ["prettier"];
-              json = ["prettier"];
-              yaml = ["prettier"];
-              markdown = ["prettier"];
-              nix = ["nixpkgs_fmt"];
+              python = [ "black" ];
+              javascript = [ "prettier" ];
+              typescript = [ "prettier" ];
+              html = [ "prettier" ];
+              css = [ "prettier" ];
+              json = [ "prettier" ];
+              yaml = [ "prettier" ];
+              markdown = [ "prettier" ];
+              nix = [ "nixpkgs_fmt" ];
             };
             format_on_save = {
               lsp_fallback = true;
@@ -335,10 +335,10 @@ in
         lint = {
           enable = true;
           lintersByFt = {
-            javascript = ["eslint"];
-            typescript = ["eslint"];
-            markdown = ["markdownlint"];
-            sh = ["shellcheck"];
+            javascript = [ "eslint" ];
+            typescript = [ "eslint" ];
+            markdown = [ "markdownlint" ];
+            sh = [ "shellcheck" ];
           };
         };
 
@@ -598,9 +598,6 @@ in
       '';
 
       extraConfigLua = ''
-        -- Clangd extensions
-        require("clangd_extensions").setup()
-
         -- Emmet configuration
         vim.g.user_emmet_settings = {
           php = {
