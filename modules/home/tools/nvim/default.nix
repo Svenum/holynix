@@ -68,6 +68,7 @@ in
             cmp = true;
             gitsigns = true;
             treesitter = true;
+            nvimtree = true;
           };
         };
       };
@@ -79,7 +80,6 @@ in
           enable = true;
           settings = {
             openOnSetup = true;
-            sortBy = "case_sensitive";
             filters = {
               dotfiles = true;
               custom = [ "^.git$" ];
@@ -172,11 +172,12 @@ in
             };
 
             # Nix
-            nil_ls = {
+            nixd = {
               enable = true;
-              settings = {
-                formatting.command = [ "nixpkgs-fmt" ];
-              };
+            };
+
+            statix = {
+              enable = true;
             };
 
             # VimScript
@@ -357,11 +358,6 @@ in
           enable = true;
         };
       };
-
-      # Extra plugins
-      extraPlugins = with pkgs.vimPlugins; [
-        statix
-      ];
 
       # Key mappings
       keymaps = [
