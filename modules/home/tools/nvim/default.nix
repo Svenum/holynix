@@ -223,25 +223,15 @@ in
           };
         };
 
-        # Git integration (replacement for gitgutter)
-        gitsigns = {
+        gitgutter = {
           enable = true;
           settings = {
-            signs = {
-              add = { text = "+"; };
-              change = { text = "~"; };
-              delete = { text = "_"; };
-              topdelete = { text = "‾"; };
-              changedelete = { text = "~"; };
-            };
-            current_line_blame = true;
-            current_line_blame_opts = {
-              delay = 300;
-            };
+            highlight_lines = true;
+            highlight_linenrs = true;
+            preview_win_floating = true;
+            sign_priority = 20;
           };
         };
-
-        gitgutter.enable = true;
 
         # Syntax
         rainbow-delimiters.enable = true;
