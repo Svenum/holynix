@@ -126,44 +126,28 @@ in
             };
 
             # Python
-            pyright = {
-              enable = true;
-            };
+            pyright.enable = true;
 
             # TypeScript/JavaScript
-            ts_ls = {
-              enable = true;
-            };
+            ts_ls.enable = true;
 
             # HTML
-            html = {
-              enable = true;
-            };
+            html.enable = true;
 
             # CSS
-            cssls = {
-              enable = true;
-            };
+            cssls.enable = true;
 
             # JSON
-            jsonls = {
-              enable = true;
-            };
+            jsonls.enable = true;
 
             # YAML
-            yamlls = {
-              enable = true;
-            };
+            yamlls.enable = true;
 
             # Docker
-            dockerls = {
-              enable = true;
-            };
+            dockerls.enable = true;
 
             # Bash
-            bashls = {
-              enable = true;
-            };
+            bashls.enable = true;
 
             # Lua
             lua_ls = {
@@ -172,35 +156,23 @@ in
             };
 
             # Nix
-            nixd = {
-              enable = true;
-            };
+            nixd.enable = true;
 
-            statix = {
-              enable = true;
-            };
+            statix.enable = true;
 
             # VimScript
-            vimls = {
-              enable = true;
-            };
+            vimls.enable = true;
 
             # LaTeX
-            texlab = {
-              enable = true;
-            };
+            texlab.enable = true;
 
             # Markdown
-            marksman = {
-              enable = true;
-            };
+            marksman.enable = true;
           };
         };
 
         # LSP UI enhancements
-        lsp-lines = {
-          enable = true;
-        };
+        lsp-lines.enable = true;
 
         # Autocompletion
         cmp = {
@@ -228,21 +200,22 @@ in
             sources = [
               { name = "nvim_lsp"; }
               { name = "luasnip"; }
-              { name = "path"; }
+              { name = "async-path"; }
               { name = "buffer"; }
               { name = "spell"; }
+              { name = "tmux"; }
+              { name = "tabnine"; }
+              { name = "treesitter"; }
+              { name = "vimtex"; }
+              { name = "nixpkgs-maintainers"; }
             ];
           };
         };
 
         # Snippets
-        luasnip = {
-          enable = true;
-        };
+        luasnip.enable = true;
 
-        cmp-spell = {
-          enable = true;
-        };
+        cmp-spell.enable = true;
 
         # Treesitter for better syntax highlighting
         treesitter = {
@@ -273,14 +246,10 @@ in
         };
 
         # Syntax
-        rainbow-delimiters = {
-          enable = true;
-        };
+        rainbow-delimiters.enable = true;
 
         # UI
-        web-devicons = {
-          enable = true;
-        };
+        web-devicons.enable = true;
 
         lualine = {
           enable = true;
@@ -296,19 +265,13 @@ in
         };
 
         # Navigation
-        tmux-navigator = {
-          enable = true;
-        };
+        tmux-navigator.enable = true;
 
         # Editing
-        nvim-autopairs = {
-          enable = true;
-        };
+        nvim-autopairs.enable = true;
 
         # Nix support
-        nix = {
-          enable = true;
-        };
+        nix.enable = true;
 
         # Formatting
         conform-nvim = {
@@ -344,19 +307,13 @@ in
         };
 
         # Multi-cursor support
-        vim-visual-multi = {
-          enable = true;
-        };
+        vim-visual-multi.enable = true;
 
         # Surround
-        vim-surround = {
-          enable = true;
-        };
+        vim-surround.enable = true;
 
         # Emmet
-        emmet-vim = {
-          enable = true;
-        };
+        emmet-vim.enable = true;
       };
 
       # Key mappings
