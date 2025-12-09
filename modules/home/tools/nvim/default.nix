@@ -132,6 +132,7 @@ in
 
             # TypeScript/JavaScript
             ts_ls.enable = true;
+            eslint.enable = true;
 
             # HTML
             html.enable = true;
