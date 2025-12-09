@@ -200,22 +200,20 @@ in
             sources = [
               { name = "nvim_lsp"; }
               { name = "luasnip"; }
-              { name = "async-path"; }
+              { name = "async_path"; }
               { name = "buffer"; }
               { name = "spell"; }
               { name = "tmux"; }
-              { name = "tabnine"; }
+              { name = "cmp_tabnine"; }
               { name = "treesitter"; }
               { name = "vimtex"; }
-              { name = "nixpkgs-maintainers"; }
+              { name = "nixpkgs_maintainers"; }
             ];
           };
         };
 
         # Snippets
         luasnip.enable = true;
-
-        cmp-spell.enable = true;
 
         # Treesitter for better syntax highlighting
         treesitter = {
@@ -244,6 +242,8 @@ in
             };
           };
         };
+
+        gitgutter.enable = true;
 
         # Syntax
         rainbow-delimiters.enable = true;
