@@ -78,8 +78,8 @@ in
         # File explorer
         nvim-tree = {
           enable = true;
+          openOnSetup = true;
           settings = {
-            openOnSetup = true;
             filters = {
               dotfiles = true;
               custom = [ "^.git$" ];
