@@ -134,6 +134,7 @@ in
 
             # CSS
             cssls.enable = true;
+            tailwindcss = true;
 
             # JSON
             jsonls.enable = true;
@@ -146,6 +147,9 @@ in
 
             # Bash
             bashls.enable = true;
+
+            # Postgres
+            postgres_lsp.enable = true;
 
             # Lua
             lua_ls = {
@@ -189,7 +193,6 @@ in
               "<C-d>" = "cmp.mapping.scroll_docs(-4)";
               "<C-e>" = "cmp.mapping.close()";
               "<C-f>" = "cmp.mapping.scroll_docs(4)";
-              "<CR>" = "cmp.mapping.confirm({ select = true })";
               "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
               "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
               "<A-CR>" = "cmp.mapping.confirm({ select = true })";
@@ -310,38 +313,6 @@ in
           mode = "n";
           key = "<C-n>";
           action = "<cmd>NvimTreeToggle<CR>";
-          options = { silent = true; };
-        }
-
-        # Gitsigns (replacement for gitgutter)
-        {
-          mode = "n";
-          key = "<C-g>p";
-          action = "<cmd>Gitsigns preview_hunk<CR>";
-          options = { silent = true; };
-        }
-        {
-          mode = "n";
-          key = "<C-g>n";
-          action = "<cmd>Gitsigns next_hunk<CR>";
-          options = { silent = true; };
-        }
-        {
-          mode = "n";
-          key = "<C-g>N";
-          action = "<cmd>Gitsigns prev_hunk<CR>";
-          options = { silent = true; };
-        }
-        {
-          mode = "n";
-          key = "<C-g>u";
-          action = "<cmd>Gitsigns reset_hunk<CR>";
-          options = { silent = true; };
-        }
-        {
-          mode = "n";
-          key = "<C-g>t";
-          action = "<cmd>Gitsigns toggle_signs<CR>";
           options = { silent = true; };
         }
 
