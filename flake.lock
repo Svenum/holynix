@@ -480,6 +480,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1764947035,
+        "narHash": "sha256-EYHSjVM4Ox4lvCXUMiKKs2vETUSL5mx+J2FfutM7T9w=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a672be65651c80d3f592a89b3945466584a22069",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1728193676,
         "narHash": "sha256-PbDWAIjKJdlVg+qQRhzdSor04bAPApDqIv2DofTyynk=",
         "owner": "NixOS",
@@ -497,9 +513,7 @@
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_3",
         "systems": "systems"
       },
       "locked": {
@@ -524,11 +538,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765271418,
-        "narHash": "sha256-01vU8TYPYIWiSb+97Sr15t5NvmTFZE9yWDvAT0OmsZo=",
+        "lastModified": 1765280799,
+        "narHash": "sha256-O+c2BuVh2rgP3nl0pe4clQFRuRii2IunHXZbPF9v/5o=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "17bb8238856f8765c68d333e31138acc69ad44f7",
+        "rev": "663847d2f9bde7a28f6c04b31c4678e2fb44c2ea",
         "type": "github"
       },
       "original": {
@@ -591,7 +605,7 @@
       "inputs": {
         "libcamera-src": "libcamera-src",
         "libpisp-src": "libpisp-src",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "rpi-bluez-firmware-src": "rpi-bluez-firmware-src",
         "rpi-firmware-nonfree-src": "rpi-firmware-nonfree-src",
         "rpi-firmware-src": "rpi-firmware-src",
