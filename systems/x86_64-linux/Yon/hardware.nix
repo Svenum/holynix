@@ -82,21 +82,5 @@
     ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0014", ATTR{power/wakeup}="disabled"
   '';
 
-  security.pam.services.sddm.text = lib.mkForce (
-    lib.strings.concatLines
-      (
-        builtins.filter (x: (lib.strings.hasPrefix "auth " x) && (!lib.strings.hasInfix "fprintd" x)) (
-          lib.strings.splitString "\n"
-            config.security.pam.services.login.text
-        )
-      )
-    + ''
-
-      account   include   login
-      password  substack  login
-      session   include   login
-    ''
-  );
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
