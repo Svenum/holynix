@@ -195,9 +195,9 @@ in
 
             mapping = {
               "<C-Space>" = "cmp.mapping.complete()";
-              "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+              #"<C-F>" = "cmp.mapping.scroll_docs(-4)";
               "<C-e>" = "cmp.mapping.close()";
-              "<C-f>" = "cmp.mapping.scroll_docs(4)";
+              #"<C-f>" = "cmp.mapping.scroll_docs(4)";
               "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
               "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
               "<A-CR>" = "cmp.mapping.confirm({ select = true })";
@@ -302,7 +302,15 @@ in
         };
 
         # Multi-cursor support
-        visual-multi.enable = true;
+        visual-multi = {
+          enable = true;
+          settings = {
+            maps = {
+              "Find Under" = "<C-d>";
+              "Find Subword Under" = "<C-d>";
+            };
+          };
+        };
 
         # Surround
         vim-surround.enable = true;
