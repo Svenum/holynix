@@ -302,7 +302,7 @@ in
         };
 
         # Multi-cursor support
-        vim-visual-multi.enable = true;
+        visual-multi.enable = true;
 
         # Surround
         vim-surround.enable = true;
