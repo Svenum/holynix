@@ -134,7 +134,7 @@ in
 
             # Java
             java_language_server = {
-              enable = false;
+              enable = true;
               extraOptions.root_dir = [
                 "build.gradle"
                 "build.gradle.kts"
