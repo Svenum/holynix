@@ -135,7 +135,7 @@ in
             # Java
             java_language_server = {
               enable = true;
-              extraOptions.root_dir = [
+              config.root_markers = [
                 "build.gradle"
                 "build.gradle.kts"
                 "pom.xml"
@@ -332,6 +332,9 @@ in
 
         # Emmet
         emmet-vim.enable = true;
+
+        # Java
+        java.enable = true;
       };
 
       # Key mappings
