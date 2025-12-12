@@ -14,7 +14,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ nixpkgs-fmt ];
+    home.packages = with pkgs; [
+      nixpkgs-fmt
+      vale
+      shellcheck
+    ];
+
     programs.nixvim = {
       enable = true;
       defaultEditor = true;
@@ -195,9 +200,7 @@ in
 
             mapping = {
               "<C-Space>" = "cmp.mapping.complete()";
-              #"<C-F>" = "cmp.mapping.scroll_docs(-4)";
               "<C-e>" = "cmp.mapping.close()";
-              #"<C-f>" = "cmp.mapping.scroll_docs(4)";
               "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
               "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
               "<A-CR>" = "cmp.mapping.confirm({ select = true })";
@@ -296,7 +299,7 @@ in
           lintersByFt = {
             javascript = [ "eslint" ];
             typescript = [ "eslint" ];
-            markdown = [ "markdownlint" ];
+            markdown = [ "vale" ];
             sh = [ "shellcheck" ];
           };
         };
