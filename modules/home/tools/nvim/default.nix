@@ -133,7 +133,16 @@ in
             };
 
             # Java
-            java_language_server.enable = true;
+            java_language_server = {
+              enable = false;
+              extraOptions.root_dir = [
+                "build.gradle"
+                "build.gradle.kts"
+                "pom.xml"
+                ".git"
+                ""
+              ];
+            };
 
             # Python
             pyright.enable = true;
