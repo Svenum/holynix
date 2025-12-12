@@ -132,6 +132,9 @@ in
               };
             };
 
+            # Java
+            java_language_server.enable = true;
+
             # Python
             pyright.enable = true;
 
