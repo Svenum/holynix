@@ -132,19 +132,6 @@ in
               };
             };
 
-            # Java
-            #java_language_server = {
-            #  enable = true;
-            #  config.root_markers = [
-            #    "build.gradle"
-            #    "build.gradle.kts"
-            #    "pom.xml"
-            #    ".git"
-            #    ""
-            #  ];
-            #};
-            jdtls.enable = true;
-
             # Python
             pyright.enable = true;
 
@@ -283,6 +270,7 @@ in
 
         # Nix support
         nix.enable = true;
+        nix-develop.enable = true;
 
         # Formatting
         conform-nvim = {
@@ -333,9 +321,6 @@ in
 
         # Emmet
         emmet-vim.enable = true;
-
-        # Java
-        java.enable = true;
       };
 
       # Key mappings
