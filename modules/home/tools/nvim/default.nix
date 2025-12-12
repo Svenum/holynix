@@ -133,16 +133,17 @@ in
             };
 
             # Java
-            java_language_server = {
-              enable = true;
-              config.root_markers = [
-                "build.gradle"
-                "build.gradle.kts"
-                "pom.xml"
-                ".git"
-                ""
-              ];
-            };
+            #java_language_server = {
+            #  enable = true;
+            #  config.root_markers = [
+            #    "build.gradle"
+            #    "build.gradle.kts"
+            #    "pom.xml"
+            #    ".git"
+            #    ""
+            #  ];
+            #};
+            jdtls.enable = true;
 
             # Python
             pyright.enable = true;
