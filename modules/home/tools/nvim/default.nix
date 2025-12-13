@@ -186,6 +186,15 @@ in
         # LSP UI enhancements
         lsp-lines.enable = true;
 
+        trouble = {
+          enable = true;
+          settings = {
+            auto_close = true;
+            auto_refresh = true;
+            auto_preview = true;
+          };
+        };
+
         # Autocompletion
         cmp = {
           enable = true;
