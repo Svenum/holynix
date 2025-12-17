@@ -31,6 +31,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixvim.url = "github:nix-community/nixvim";
+
     auto-cpufreq = {
       url = "github:AdnanHodzic/auto-cpufreq";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -134,6 +136,7 @@
       homes.modules = with inputs; [
         plasma-manager.homeModules.plasma-manager
         catppuccin.homeModules.catppuccin
+        nixvim.homeModules.nixvim
       ];
 
     };
