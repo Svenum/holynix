@@ -43,16 +43,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
+      url = "github:nix-community/lanzaboote/v1.0.0";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        rust-overlay.follows = "rust-overlay";
       };
     };
 
@@ -78,6 +72,11 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    jovian = {
+      url = "github:jovian-experiments/Jovian-NixOS";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -101,6 +100,10 @@
         cudaSupport = true;
       };
 
+      overlays = with inputs; [
+        jovian.overlays.jovian
+      ];
+
       systems = {
         modules.nixos = with inputs; [
           solaar.nixosModules.default
@@ -109,6 +112,7 @@
           nur.modules.nixos.default
           catppuccin.nixosModules.catppuccin
           musnix.nixosModules.musnix
+          jovian.nixosModules.jovian
         ];
 
         hosts = {

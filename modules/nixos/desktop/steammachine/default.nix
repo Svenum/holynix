@@ -5,6 +5,7 @@ with lib.types;
 
 let
   cfg = config.holynix.desktop.steammachine;
+  plasmaCfg = config.holynix.desktop.plasma;
 in
 {
   options.holynix.desktop.steammachine = {
@@ -13,10 +14,10 @@ in
       default = false;
       description = "Enable steammachine UI";
     };
-    enableSteamMachine = mkOption {
+    hasAmdGpu = mkOption {
       type = bool;
       default = false;
-      description = "Enable SteamDeck mode + install helper scripts";
+      description = "Set amd gpu to enable more perfomance features";
     };
   };
 
@@ -26,37 +27,21 @@ in
       desktop.enable = true;
     };
 
-    programs = {
-      gamescope = {
-        enable = true;
-        capSysNice = true;
-      };
+    jovian = {
       steam = {
         enable = true;
-        gamescopeSession = {
-          enable = true;
-          steamArgs = [
-            "-pipewire-dmabuf"
-            "-tenfoot"
-            "-steamos3"
-          ] ++ optional cfg.enableSteamMachine "-steamdeck";
-          args = [
-            "--adaptive-sync"
-            "--rt"
-          ];
-        };
-        localNetworkGameTransfers.openFirewall = true;
-        remotePlay.openFirewall = true;
+        desktopSession = mkIf plasmaCfg.enable "plasma";
+        updater.splash = "vendor";
       };
+      steamos = {
+        enableDefaultCmdlineConfig = false;
+        enableZram = false;
+      };
+      hardware = {
+        has.amd.gpu = cfg.hasAmdGpu;
+      };
+      decky-loader.enable = false;
     };
-
-    systemd.tmpfiles.rules = mkIf cfg.enableSteamMachine [
-      "C+ /usr/bin 0775 root root - ${pkgs.holynix.steam-session-helper}/bin"
-    ];
-
-    environment.systemPackages = [
-      pkgs.holynix.steam-session-helper
-    ];
   };
 
 }
