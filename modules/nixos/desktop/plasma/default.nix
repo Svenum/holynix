@@ -14,6 +14,11 @@ in
       type = bool;
       default = false;
     };
+    krdp.openFirewall = mkOption {
+      type = bool;
+      default = false;
+      description = "Open port 3389 for krdp";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -111,5 +116,7 @@ in
       # Enable XWayland
       xwayland.enable = true;
     };
+
+    networking.firewall.allowedTCPPorts = mkIf cfg.krdp.openFirewall [ 3389 ];
   };
 }

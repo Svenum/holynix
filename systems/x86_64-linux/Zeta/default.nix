@@ -5,7 +5,10 @@
   imports = [ ./hardware.nix ];
 
   holynix = {
-    desktop.plasma.enable = true;
+    desktop.plasma = {
+      enable = true;
+      krdp.openFirewall = true;
+    };
     locale.name = "de_DE";
     theme = {
       accent = "peach";
