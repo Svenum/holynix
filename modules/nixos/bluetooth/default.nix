@@ -20,7 +20,7 @@ in
           Privacy = "device";
           JustWorksRepairing = "always";
           Class = "0x000100";
-          FastConnectable = "true";
+          FastConnectable = mkDefault true;
         };
       };
     };
