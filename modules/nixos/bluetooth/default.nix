@@ -13,7 +13,7 @@ in
 
   config = mkIf cfg.enable {
     hardware.bluetooth = {
-      enable = true;
+      enable = mkDefault true;
       settings = {
         General = {
           Experimental = true;
