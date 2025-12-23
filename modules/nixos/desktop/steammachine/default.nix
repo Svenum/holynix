@@ -5,7 +5,6 @@ with lib.types;
 
 let
   cfg = config.holynix.desktop.steammachine;
-  plasmaCfg = config.holynix.desktop.plasma;
 in
 {
   options.holynix.desktop.steammachine = {
@@ -27,10 +26,15 @@ in
       desktop.enable = true;
     };
 
+    programs.steam.extraPackages = with pkgs; [
+      fuse
+      fuse3
+    ];
+
     jovian = {
       steam = {
         enable = true;
-        desktopSession = mkIf plasmaCfg.enable "plasma";
+        desktopSession = config.services.displayManager.defaultSession;
         updater.splash = "vendor";
       };
       steamos = {
