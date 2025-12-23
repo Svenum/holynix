@@ -37,14 +37,11 @@ in
         desktopSession = config.services.displayManager.defaultSession;
         updater.splash = "vendor";
       };
-      steamos = {
-        enableDefaultCmdlineConfig = false;
-        enableZram = false;
-      };
+      steamos.useSteamOSConfig = false;
       hardware = {
         has.amd.gpu = cfg.hasAmdGpu;
       };
-      decky-loader.enable = false;
+      decky-loader.enable = true;
     };
   };
 
