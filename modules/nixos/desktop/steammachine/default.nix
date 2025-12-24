@@ -44,8 +44,8 @@ in
       decky-loader = {
         enable = true;
         extraPackages =
-          lists.optional programs.kdeconnect.enable pkgs.kdePackages.kdeconnect-kde
-          ++ lists.optional services.tailscale.enable pkgs.tailscale;
+          lists.optional config.programs.kdeconnect.enable pkgs.kdePackages.kdeconnect-kde
+          ++ lists.optional config.services.tailscale.enable pkgs.tailscale;
       };
     };
   };
