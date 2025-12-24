@@ -43,8 +43,8 @@ in
       };
       decky-loader = {
         enable = true;
-        extraPackages = 
-             lists.optional programs.kdeconnect.enable pkgs.kdePackages.kdeconnect-kde
+        extraPackages =
+          lists.optional programs.kdeconnect.enable pkgs.kdePackages.kdeconnect-kde
           ++ lists.optional services.tailscale.enable pkgs.tailscale;
       };
     };
