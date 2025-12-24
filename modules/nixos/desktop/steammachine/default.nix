@@ -41,7 +41,12 @@ in
       hardware = {
         has.amd.gpu = cfg.hasAmdGpu;
       };
-      decky-loader.enable = true;
+      decky-loader = {
+        enable = true;
+        extraPackages = 
+             lists.optional programs.kdeconnect.enable pkgs.kdePackages.kdeconnect-kde
+          ++ lists.optional services.tailscale.enable pkgs.tailscale;
+      };
     };
   };
 
