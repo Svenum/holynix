@@ -15,7 +15,10 @@
     };
     desktop = {
       plasma.enable = true;
-      steammachine.enable = true;
+      steammachine = {
+        enable = true;
+        hasAmdGpu = true;
+      };
     };
     shell.zsh.enable = true;
     locale.name = "en_DE";

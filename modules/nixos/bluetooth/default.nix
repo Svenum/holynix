@@ -13,14 +13,14 @@ in
 
   config = mkIf cfg.enable {
     hardware.bluetooth = {
-      enable = true;
+      enable = mkDefault true;
       settings = {
         General = {
           Experimental = true;
           Privacy = "device";
           JustWorksRepairing = "always";
           Class = "0x000100";
-          FastConnectable = "true";
+          FastConnectable = mkDefault true;
         };
       };
     };

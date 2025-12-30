@@ -1,6 +1,6 @@
 _:
 
-_final: prev: {
+final: prev: {
   kdePackages = prev.kdePackages.overrideScope (_kfinal: kprev: {
     # enable bluetooth support
     kdeconnect-kde = kprev.kdeconnect-kde.overrideAttrs (old: {
@@ -9,12 +9,10 @@ _final: prev: {
     # Make Plasma faster
     plasma-workspace =
       let
-
         # the package we want to override
         basePkg = kprev.plasma-workspace;
-
         # a helper package that merges all the XDG_DATA_DIRS into a single directory
-        xdgdataPkg = prev.stdenv.mkDerivation {
+        xdgdataPkg = final.stdenv.mkDerivation {
           name = "${basePkg.name}-xdgdata";
           buildInputs = [ basePkg ];
           dontUnpack = true;
@@ -32,7 +30,6 @@ _final: prev: {
             )
           '';
         };
-
         # undo the XDG_DATA_DIRS injection that is usually done in the qt wrapper
         # script and instead inject the path of the above helper package
         derivedPkg = basePkg.overrideAttrs {

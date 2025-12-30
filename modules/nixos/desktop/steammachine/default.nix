@@ -13,10 +13,10 @@ in
       default = false;
       description = "Enable steammachine UI";
     };
-    enableSteamMachine = mkOption {
+    hasAmdGpu = mkOption {
       type = bool;
       default = false;
-      description = "Enable SteamDeck mode + install helper scripts";
+      description = "Set amd gpu to enable more perfomance features";
     };
   };
 
@@ -26,37 +26,28 @@ in
       desktop.enable = true;
     };
 
-    programs = {
-      gamescope = {
-        enable = true;
-        capSysNice = true;
-      };
+    programs.steam.extraPackages = with pkgs; [
+      fuse
+      fuse3
+    ];
+
+    jovian = {
       steam = {
         enable = true;
-        gamescopeSession = {
-          enable = true;
-          steamArgs = [
-            "-pipewire-dmabuf"
-            "-tenfoot"
-            "-steamos3"
-          ] ++ optional cfg.enableSteamMachine "-steamdeck";
-          args = [
-            "--adaptive-sync"
-            "--rt"
-          ];
-        };
-        localNetworkGameTransfers.openFirewall = true;
-        remotePlay.openFirewall = true;
+        desktopSession = config.services.displayManager.defaultSession;
+        updater.splash = "vendor";
+      };
+      steamos.useSteamOSConfig = false;
+      hardware = {
+        has.amd.gpu = cfg.hasAmdGpu;
+      };
+      decky-loader = {
+        enable = true;
+        extraPackages =
+          lists.optional config.programs.kdeconnect.enable pkgs.kdePackages.kdeconnect-kde
+          ++ lists.optional config.services.tailscale.enable pkgs.tailscale;
       };
     };
-
-    systemd.tmpfiles.rules = mkIf cfg.enableSteamMachine [
-      "C+ /usr/bin 0775 root root - ${pkgs.holynix.steam-session-helper}/bin"
-    ];
-
-    environment.systemPackages = [
-      pkgs.holynix.steam-session-helper
-    ];
   };
 
 }
