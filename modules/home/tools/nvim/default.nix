@@ -329,6 +329,9 @@ in
 
         # Surround
         vim-surround.enable = true;
+
+        # Indent
+        indent-blankline.enable = true;
       };
 
       # Key mappings
