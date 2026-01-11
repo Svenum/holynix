@@ -30,12 +30,11 @@
       device = "/dev/disk/by-uuid/3497cccd-a50b-4b72-a1b5-7bdce5d54449";
       fsType = "ext4";
     };
-
-    swapDevices = [ ];
-
-    networking.useDHCP = lib.mkDefault true;
-
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-    hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
+  swapDevices = [ ];
+
+  networking.useDHCP = lib.mkDefault true;
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
