@@ -227,9 +227,14 @@ in
         tiny-inline-diagnostic = {
           enable = true;
           settings = {
-            multiline = true;
-            add_messages = {
-              display_count = true;
+            options = {
+              multilines = true;
+              add_messages = {
+                display_count = true;
+              };
+              show_source = {
+                enabled = true;
+              };
             };
           };
         };
