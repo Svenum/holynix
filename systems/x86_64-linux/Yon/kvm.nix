@@ -147,6 +147,32 @@ in
             };
             active = true;
           }
+          {
+            definition = nixvirt.lib.network.writeXML {
+              name = "internal";
+              uuid = "23897i1c-b6b3-49a3-8f96-a89765ae1113";
+              forward = {
+                mode = "private";
+              };
+              bridge = {
+                name = "virbr2";
+                stp = true;
+                delay = 0;
+              };
+              mac.address = "52:54:00:2d:97:61";
+              ip = {
+                address = "10.10.2.1";
+                netmask = "255.255.255.0";
+              };
+              dhcp = {
+                range = {
+                  start = "10.10.2.2";
+                  end = "10.10.2.254";
+                };
+              };
+            };
+            active = true;
+          }
         ];
 
         # Add pools

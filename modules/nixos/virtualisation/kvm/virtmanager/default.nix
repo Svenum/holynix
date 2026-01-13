@@ -56,6 +56,13 @@ in
       libvirtd = {
         enable = true;
         qemu.swtpm.enable = true;
+        allowedBridges = [
+          "virbr0"
+          "virbr1"
+          "virbr2"
+          "virbr3"
+          "virbr4"
+        ];
       };
       spiceUSBRedirection.enable = true;
     };
@@ -73,6 +80,7 @@ in
         trustedInterfaces = [
           "virbr0"
           "virbr1"
+          "virbr2"
         ];
       };
       nat = {
