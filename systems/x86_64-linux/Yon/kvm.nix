@@ -150,24 +150,21 @@ in
           {
             definition = nixvirt.lib.network.writeXML {
               name = "internal";
-              uuid = "23897i1c-b6b3-49a3-8f96-a89765ae1113";
-              forward = {
-                mode = "private";
-              };
+              uuid = "f34b98c3-38ea-4972-84b4-4b525d0675e5";
               bridge = {
                 name = "virbr2";
                 stp = true;
                 delay = 0;
               };
-              mac.address = "52:54:00:2d:97:61";
+              mac.address = "52:54:00:de:df:59";
               ip = {
-                address = "10.10.2.1";
+                address = "192.168.100.1";
                 netmask = "255.255.255.0";
               };
               dhcp = {
                 range = {
-                  start = "10.10.2.2";
-                  end = "10.10.2.254";
+                  start = "192.168.100.2";
+                  end = "192.168.100.254";
                 };
               };
             };
