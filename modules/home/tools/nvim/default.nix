@@ -90,6 +90,17 @@ in
         };
       };
 
+      # diagnostic
+      diagnostic.settings = {
+        virtual_text = false;
+        signs.text = {
+          "__rawKey__vim.diagnostic.severity.ERROR" = "●";
+          "__rawKey__vim.diagnostic.severity.WARN" = "●";
+          "__rawKey__vim.diagnostic.severity.INFO" = "●";
+          "__rawKey__vim.diagnostic.severity.HINT" = "●";
+        };
+      };
+
       # Plugins
       plugins = {
         # File explorer
@@ -197,36 +208,10 @@ in
         # LSP UI enhancements
         lsp-lines.enable = true;
 
-        #trouble = {
-        #  enable = true;
-        #  settings = {
-        #    auto_close = true;
-        #    auto_refresh = true;
-        #    auto_preview = true;
-        #    hl_group = "lualine_c_normal";
-        #    modes = {
-        #      preview_float = {
-        #        mode = "diagnostics";
-        #        auto_open = true;
-        #        hl_group = "lualine_c_normal";
-        #        preview = {
-        #          type = "float";
-        #          relative = "editor";
-        #          border = "rounded";
-        #          title = "Preview";
-        #          title_pos = "center";
-        #          position = [ 0 (-2) ];
-        #          size = { width = 0.3; height = 0.3; };
-        #          zindex = 200;
-        #        };
-        #      };
-        #    };
-        #  };
-        #};
-
         tiny-inline-diagnostic = {
           enable = true;
           settings = {
+            preset = "powerline";
             options = {
               multilines = true;
               add_messages = {
@@ -235,6 +220,7 @@ in
               show_source = {
                 enabled = true;
               };
+              use_icons_from_diagnostic = false;
             };
           };
         };
