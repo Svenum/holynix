@@ -194,6 +194,24 @@ in
             auto_close = true;
             auto_refresh = true;
             auto_preview = true;
+            hl_group = "lualine_c_normal";
+            modes = {
+              preview_float = {
+                mode = "diagnostics";
+                auto_open = true;
+                hl_group = "lualine_c_normal";
+                preview = {
+                  type = "float";
+                  relative = "editor";
+                  border = "rounded";
+                  title = "Preview";
+                  title_pos = "center";
+                  position = [ 0 (-2) ];
+                  size = { width = 0.3; height = 0.3; };
+                  zindex = 200;
+                };
+              };
+            };
           };
         };
 
