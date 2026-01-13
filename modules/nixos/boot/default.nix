@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -53,7 +59,7 @@ in
       # Bootloader
       loader = {
         systemd-boot = mkIf cfg.systemdBoot {
-          enable = mkIf (! cfg.secureBoot) true;
+          enable = mkIf (!cfg.secureBoot) true;
           configurationLimit = 15;
           editor = false;
           memtest86 = {
@@ -74,7 +80,10 @@ in
       };
 
       initrd.systemd.enable = true;
-      kernelParams = [ "quiet" "udev.log_level=3" ];
+      kernelParams = [
+        "quiet"
+        "udev.log_level=3"
+      ];
 
       # Configure Plymouth
       plymouth.enable = true;
@@ -94,8 +103,18 @@ in
     ];
 
     security.pam.loginLimits = [
-      { domain = "*"; item = "nofile"; type = "-"; value = "32768"; }
-      { domain = "*"; item = "memlock"; type = "-"; value = "32768"; }
+      {
+        domain = "*";
+        item = "nofile";
+        type = "-";
+        value = "32768";
+      }
+      {
+        domain = "*";
+        item = "memlock";
+        type = "-";
+        value = "32768";
+      }
     ];
   };
 }

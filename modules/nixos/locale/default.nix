@@ -6,12 +6,19 @@ let
   cfg = config.holynix.locale;
   desktopCfg = config.holynix.desktop;
 
-  singleLocale = [ "de_DE" "en_US" ];
+  singleLocale = [
+    "de_DE"
+    "en_US"
+  ];
 in
 {
   options.holynix.locale = {
     name = mkOption {
-      type = enum [ "de_DE" "en_DE" "en_US" ];
+      type = enum [
+        "de_DE"
+        "en_DE"
+        "en_US"
+      ];
       default = "de_DE";
     };
     tz = mkOption {
@@ -32,7 +39,10 @@ in
         "C.UTF-8/UTF-8"
       ]
       ++ lists.optional (builtins.elem cfg.name singleLocale) "${cfg.name}.UTF-8/UTF-8"
-      ++ lists.optionals (cfg.name == "en_DE") [ "en_US.UTF-8/UTF-8" "de_DE.UTF-8/UTF-8" ];
+      ++ lists.optionals (cfg.name == "en_DE") [
+        "en_US.UTF-8/UTF-8"
+        "de_DE.UTF-8/UTF-8"
+      ];
 
       defaultLocale =
         if (builtins.elem cfg.name singleLocale) then
@@ -40,8 +50,7 @@ in
         else if (cfg.name == "en_DE") then
           "en_US.UTF-8"
         else
-          ""
-      ;
+          "";
 
       extraLocaleSettings =
         if (builtins.elem cfg.name singleLocale) then

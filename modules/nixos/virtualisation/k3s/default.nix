@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -43,9 +48,11 @@ in
       clusterInit = true;
     };
 
-    environment.systemPackages = with pkgs; mkIf cfg.enableHelm [
-      kubernetes-helm
-    ];
+    environment.systemPackages =
+      with pkgs;
+      mkIf cfg.enableHelm [
+        kubernetes-helm
+      ];
 
     # enable port
     networking.firewall = {
@@ -57,7 +64,10 @@ in
       ];
       allowedTCPPortRanges = [
         # etcd
-        { from = 2379; to = 2380; }
+        {
+          from = 2379;
+          to = 2380;
+        }
       ];
     };
   };

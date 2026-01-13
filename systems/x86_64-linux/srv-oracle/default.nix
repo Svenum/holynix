@@ -44,15 +44,20 @@ in
     ];
     interfaces = {
       "br0" = {
-        ipv4.addresses = [{
-          address = ip;
-          prefixLength = 24;
-        }];
+        ipv4.addresses = [
+          {
+            address = ip;
+            prefixLength = 24;
+          }
+        ];
         useDHCP = false;
       };
       "ens3".useDHCP = true;
     };
     defaultGateway = "172.20.0.1";
-    nameservers = [ "9.9.9.9" "1.1.1.1" ];
+    nameservers = [
+      "9.9.9.9"
+      "1.1.1.1"
+    ];
   };
 }

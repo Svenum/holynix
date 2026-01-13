@@ -1,4 +1,10 @@
-{ pkgs, uuid, nodeID, diskPath, nvramPath }:
+{
+  pkgs,
+  uuid,
+  nodeID,
+  diskPath,
+  nvramPath,
+}:
 
 {
   inherit uuid;
@@ -10,8 +16,14 @@
   description = "A Kubernetes node define in nix";
 
   # CPU and RAM
-  vcpu = { count = 2; placement = "static"; };
-  memory = { count = 4; unit = "GiB"; };
+  vcpu = {
+    count = 2;
+    placement = "static";
+  };
+  memory = {
+    count = 4;
+    unit = "GiB";
+  };
   cpu.node = "host-passthrough";
 
   # OS
@@ -40,9 +52,18 @@
   clock = {
     offset = "localtime";
     timer = [
-      { name = "rtc"; tickpolicy = "catchup"; }
-      { name = "pit"; tickpolicy = "delay"; }
-      { name = "hpet"; present = false; }
+      {
+        name = "rtc";
+        tickpolicy = "catchup";
+      }
+      {
+        name = "pit";
+        tickpolicy = "delay";
+      }
+      {
+        name = "hpet";
+        present = false;
+      }
     ];
   };
 
@@ -75,7 +96,10 @@
       {
         type = "file";
         device = "cdrom";
-        target = { dev = "sda"; bus = "sata"; };
+        target = {
+          dev = "sda";
+          bus = "sata";
+        };
         readonly = true;
         address.type = "drive";
       }
@@ -95,8 +119,12 @@
     graphics = {
       type = "spice";
       autoport = true;
-      listen = { type = "address"; };
-      image = { compression = false; };
+      listen = {
+        type = "address";
+      };
+      image = {
+        compression = false;
+      };
     };
 
     video = {
@@ -105,41 +133,70 @@
       };
     };
 
-    # Interfaces 
+    # Interfaces
     redirdev = [
-      { bus = "usb"; type = "spicevmc"; }
-      { bus = "usb"; type = "spicevmc"; }
+      {
+        bus = "usb";
+        type = "spicevmc";
+      }
+      {
+        bus = "usb";
+        type = "spicevmc";
+      }
     ];
 
     controller = [
-      { type = "usb"; model = "qemu-xhci"; ports = 15; }
-      { type = "pci"; model = "pcie-root"; }
-      { type = "pci"; model = "pcie-root-port"; }
+      {
+        type = "usb";
+        model = "qemu-xhci";
+        ports = 15;
+      }
+      {
+        type = "pci";
+        model = "pcie-root";
+      }
+      {
+        type = "pci";
+        model = "pcie-root-port";
+      }
     ];
 
     serial = [
       {
         type = "pty";
-        target = { type = "isa-serial"; port = 0; model.name = "isa-serial"; };
+        target = {
+          type = "isa-serial";
+          port = 0;
+          model.name = "isa-serial";
+        };
       }
     ];
 
-    console = [{ type = "pty"; }];
+    console = [ { type = "pty"; } ];
 
     channel = [
       {
         type = "spicevmc";
-        target = { type = "virtio"; name = "com.redhat.spice.0"; };
+        target = {
+          type = "virtio";
+          name = "com.redhat.spice.0";
+        };
       }
       {
         type = "unix";
         source.mode = "bind";
-        target = { type = "virtio"; name = "org.qemu.guest_agent.0"; };
+        target = {
+          type = "virtio";
+          name = "org.qemu.guest_agent.0";
+        };
       }
     ];
 
     # Other
-    watchdog = { model = "itco"; action = "reset"; };
+    watchdog = {
+      model = "itco";
+      action = "reset";
+    };
     memballoon.model = "virtio";
 
     rng = {

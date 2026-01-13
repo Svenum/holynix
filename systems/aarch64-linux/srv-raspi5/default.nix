@@ -41,14 +41,19 @@ in
     ];
     interfaces = {
       "br0" = {
-        ipv4.addresses = [{
-          address = ip;
-          prefixLength = 24;
-        }];
+        ipv4.addresses = [
+          {
+            address = ip;
+            prefixLength = 24;
+          }
+        ];
       };
     };
     defaultGateway = "172.16.0.1";
-    nameservers = [ "172.16.0.3" "172.16.0.4" ];
+    nameservers = [
+      "172.16.0.3"
+      "172.16.0.4"
+    ];
     useDHCP = false;
   };
 }

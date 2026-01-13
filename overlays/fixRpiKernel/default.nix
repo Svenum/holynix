@@ -1,6 +1,5 @@
 _:
 
 _final: prev: {
-  makeModulesClosure = x:
-    prev.makeModulesClosure (x // { allowMissing = true; });
+  makeModulesClosure = x: prev.makeModulesClosure (x // { allowMissing = true; });
 }

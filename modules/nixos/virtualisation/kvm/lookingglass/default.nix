@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -50,8 +55,12 @@ in
         group = "root";
         mode = "0755";
         text = generators.toINI { } {
-          wayland = { fractionScale = "yes"; };
-          opengl = { amdPinnedMem = "yes"; };
+          wayland = {
+            fractionScale = "yes";
+          };
+          opengl = {
+            amdPinnedMem = "yes";
+          };
           input = {
             rawMouse = "yes";
             autoCapture = "yes";

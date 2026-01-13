@@ -19,13 +19,39 @@ let
   diskPath = "/home/sven/.local/share/libvirt/images";
 
   # Windows VMs
-  win10Config = import ./vms/win10.nix { inherit nvramPath; inherit pkgs; uuid = "c08333dc-33f9-4117-969a-ac46e19ba81f"; };
-  win10gpuConfig = import ./vms/win10gpu.nix { inherit nvramPath; inherit pkgs; uuid = "3af8cded-1545-4ff2-87d6-d647119aa0e3"; };
+  win10Config = import ./vms/win10.nix {
+    inherit nvramPath;
+    inherit pkgs;
+    uuid = "c08333dc-33f9-4117-969a-ac46e19ba81f";
+  };
+  win10gpuConfig = import ./vms/win10gpu.nix {
+    inherit nvramPath;
+    inherit pkgs;
+    uuid = "3af8cded-1545-4ff2-87d6-d647119aa0e3";
+  };
 
   # Kubernetes Nodes
-  node1Config = import ./vms/node.nix { inherit pkgs; uuid = "7fdb457d-0417-4156-95fa-92b9187219ac"; nodeID = "1"; inherit diskPath; inherit nvramPath; };
-  node2Config = import ./vms/node.nix { inherit pkgs; uuid = "8b302b1d-2055-4d60-8b98-24f375de218f"; nodeID = "2"; inherit diskPath; inherit nvramPath; };
-  node3Config = import ./vms/node.nix { inherit pkgs; uuid = "47847aa8-231c-4e52-9aae-fc7f4178d736"; nodeID = "3"; inherit diskPath; inherit nvramPath; };
+  node1Config = import ./vms/node.nix {
+    inherit pkgs;
+    uuid = "7fdb457d-0417-4156-95fa-92b9187219ac";
+    nodeID = "1";
+    inherit diskPath;
+    inherit nvramPath;
+  };
+  node2Config = import ./vms/node.nix {
+    inherit pkgs;
+    uuid = "8b302b1d-2055-4d60-8b98-24f375de218f";
+    nodeID = "2";
+    inherit diskPath;
+    inherit nvramPath;
+  };
+  node3Config = import ./vms/node.nix {
+    inherit pkgs;
+    uuid = "47847aa8-231c-4e52-9aae-fc7f4178d736";
+    nodeID = "3";
+    inherit diskPath;
+    inherit nvramPath;
+  };
 
   # MacOS VM
   #macosConfig = import ./vms/macos.nix { inherit pkgs; uuid = "46ca6849-65c3-4c14-af1d-e0254845f4a3"; inherit diskPath; };
@@ -42,7 +68,7 @@ in
     libvirt = {
       enable = true;
       connections."qemu:///system" = {
-        # Add networks 
+        # Add networks
         networks = [
           {
             definition = nixvirt.lib.network.writeXML {
@@ -50,7 +76,12 @@ in
               uuid = "5d84e370-c682-4186-ba72-d20dfc85d432";
               forward = {
                 mode = "nat";
-                nat = { port = { start = 1024; end = 65535; }; };
+                nat = {
+                  port = {
+                    start = 1024;
+                    end = 65535;
+                  };
+                };
               };
               bridge = {
                 name = "virbr0";
@@ -77,7 +108,12 @@ in
               uuid = "23897c1c-b6b3-49a3-8f96-a89765ae1113";
               forward = {
                 mode = "nat";
-                nat = { port = { start = 1024; end = 65535; }; };
+                nat = {
+                  port = {
+                    start = 1024;
+                    end = 65535;
+                  };
+                };
               };
               bridge = {
                 name = "virbr1";
@@ -138,27 +174,42 @@ in
               {
                 definition = nixvirt.lib.volume.writeXML {
                   name = "node1.qcow2";
-                  capacity = { count = 150; unit = "GiB"; };
+                  capacity = {
+                    count = 150;
+                    unit = "GiB";
+                  };
                   target = {
-                    format = { type = "qcow2"; };
+                    format = {
+                      type = "qcow2";
+                    };
                   };
                 };
               }
               {
                 definition = nixvirt.lib.volume.writeXML {
                   name = "node2.qcow2";
-                  capacity = { count = 150; unit = "GiB"; };
+                  capacity = {
+                    count = 150;
+                    unit = "GiB";
+                  };
                   target = {
-                    format = { type = "qcow2"; };
+                    format = {
+                      type = "qcow2";
+                    };
                   };
                 };
               }
               {
                 definition = nixvirt.lib.volume.writeXML {
                   name = "node3.qcow2";
-                  capacity = { count = 150; unit = "GiB"; };
+                  capacity = {
+                    count = 150;
+                    unit = "GiB";
+                  };
                   target = {
-                    format = { type = "qcow2"; };
+                    format = {
+                      type = "qcow2";
+                    };
                   };
                 };
               }

@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -13,8 +19,14 @@ let
   mkUserConfig = _name: user: {
     dconf.settings = lib.mkIf user.isKvmUser or false {
       "org/virt-manager/virt-manager/connections" = {
-        autoconnect = [ "qemu:///system" "qemu:///session" ];
-        uris = [ "qemu:///system" "qemu:///session" ];
+        autoconnect = [
+          "qemu:///system"
+          "qemu:///session"
+        ];
+        uris = [
+          "qemu:///system"
+          "qemu:///session"
+        ];
       };
     };
 
@@ -51,7 +63,11 @@ in
     networking = {
       firewall = {
         interfaces."virbr0" = {
-          allowedUDPPorts = [ 53 67 68 ];
+          allowedUDPPorts = [
+            53
+            67
+            68
+          ];
           allowedTCPPorts = [ 53 ];
         };
         trustedInterfaces = [

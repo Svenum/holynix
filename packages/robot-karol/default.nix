@@ -1,10 +1,11 @@
-{ fetchzip
-, stdenv
-, makeWrapper
-, jre
-, makeDesktopItem
-, unzip
-, imagemagick
+{
+  fetchzip,
+  stdenv,
+  makeWrapper,
+  jre,
+  makeDesktopItem,
+  unzip,
+  imagemagick,
 }:
 
 stdenv.mkDerivation rec {

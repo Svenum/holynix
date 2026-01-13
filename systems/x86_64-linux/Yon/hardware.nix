@@ -1,23 +1,28 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
 
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   # Fix Wlan after suspend or Hibernate
-  environment.etc."systemd/system-sleep/fix-wifi.sh".source =
-    pkgs.writeShellScript "fix-wifi.sh" ''
-      case $1/$2 in
-        pre/*)
-          ${pkgs.kmod}/bin/modprobe -r mt7921e mt792x_lib mt76
-          echo 1 > /sys/bus/pci/devices/0000:04:00.0/remove
-          ;;
+  environment.etc."systemd/system-sleep/fix-wifi.sh".source = pkgs.writeShellScript "fix-wifi.sh" ''
+    case $1/$2 in
+      pre/*)
+        ${pkgs.kmod}/bin/modprobe -r mt7921e mt792x_lib mt76
+        echo 1 > /sys/bus/pci/devices/0000:04:00.0/remove
+        ;;
 
-        post/*)
-          ${pkgs.kmod}/bin/modprobe mt7921e
-          echo 1 > /sys/bus/pci/rescan
-          ;;
-      esac
-    '';
+      post/*)
+        ${pkgs.kmod}/bin/modprobe mt7921e
+        echo 1 > /sys/bus/pci/rescan
+        ;;
+    esac
+  '';
 
   # Add AMD CPU driver
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -83,13 +88,11 @@
   '';
 
   security.pam.services.sddm.text = lib.mkForce (
-    lib.strings.concatLines
-      (
-        builtins.filter (x: (lib.strings.hasPrefix "auth " x) && (!lib.strings.hasInfix "fprintd" x)) (
-          lib.strings.splitString "\n"
-            config.security.pam.services.login.text
-        )
+    lib.strings.concatLines (
+      builtins.filter (x: (lib.strings.hasPrefix "auth " x) && (!lib.strings.hasInfix "fprintd" x)) (
+        lib.strings.splitString "\n" config.security.pam.services.login.text
       )
+    )
     + ''
 
       account   include   login

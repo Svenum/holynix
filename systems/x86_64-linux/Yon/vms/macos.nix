@@ -1,4 +1,8 @@
-{ pkgs, uuid, diskPath }:
+{
+  pkgs,
+  uuid,
+  diskPath,
+}:
 
 {
   inherit uuid;

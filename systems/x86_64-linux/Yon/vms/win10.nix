@@ -1,4 +1,8 @@
-{ nvramPath, pkgs, uuid }:
+{
+  nvramPath,
+  pkgs,
+  uuid,
+}:
 
 {
   inherit uuid;
@@ -11,41 +15,101 @@
   sysinfo = {
     type = "smbios";
     bios.entry = [
-      { name = "vendor"; value = "INSYDE Corp."; }
-      { name = "version"; value = "03.02"; }
-      { name = "date"; value = "01/23/2024"; }
+      {
+        name = "vendor";
+        value = "INSYDE Corp.";
+      }
+      {
+        name = "version";
+        value = "03.02";
+      }
+      {
+        name = "date";
+        value = "01/23/2024";
+      }
     ];
     system.entry = [
-      { name = "manufacturer"; value = "Framework"; }
-      { name = "product"; value = "Laptop 16 (AMD Ryzen 7040 Series)"; }
-      { name = "version"; value = "AG"; }
-      { name = "serial"; value = "FRAGADDPAG4096006K"; }
-      { name = "uuid"; value = uuid; }
-      { name = "sku"; value = "FRAGACCP0G"; }
-      { name = "family"; value = "16in"; }
+      {
+        name = "manufacturer";
+        value = "Framework";
+      }
+      {
+        name = "product";
+        value = "Laptop 16 (AMD Ryzen 7040 Series)";
+      }
+      {
+        name = "version";
+        value = "AG";
+      }
+      {
+        name = "serial";
+        value = "FRAGADDPAG4096006K";
+      }
+      {
+        name = "uuid";
+        value = uuid;
+      }
+      {
+        name = "sku";
+        value = "FRAGACCP0G";
+      }
+      {
+        name = "family";
+        value = "16in";
+      }
     ];
   };
 
   # CPU and RAM
-  vcpu = { count = 4; placement = "static"; };
-  memory = { count = 8; unit = "GiB"; };
+  vcpu = {
+    count = 4;
+    placement = "static";
+  };
+  memory = {
+    count = 8;
+    unit = "GiB";
+  };
   cputune = {
     vcpupin = [
-      { vcpu = 0; cpuset = "4"; }
-      { vcpu = 1; cpuset = "5"; }
-      { vcpu = 2; cpuset = "6"; }
-      { vcpu = 3; cpuset = "7"; }
+      {
+        vcpu = 0;
+        cpuset = "4";
+      }
+      {
+        vcpu = 1;
+        cpuset = "5";
+      }
+      {
+        vcpu = 2;
+        cpuset = "6";
+      }
+      {
+        vcpu = 3;
+        cpuset = "7";
+      }
     ];
   };
   cpu = {
     mode = "host-passthrough";
     check = "none";
     migratable = true;
-    cache = { level = 3; mode = "emulate"; };
+    cache = {
+      level = 3;
+      mode = "emulate";
+    };
     feature = [
-      { policy = "disable"; name = "hypervisor"; }
-      { policy = "require"; name = "svm"; }
-      { policy = "require"; name = "topoext"; }
+      {
+        policy = "disable";
+        name = "hypervisor";
+      }
+      {
+        policy = "require";
+        name = "svm";
+      }
+      {
+        policy = "require";
+        name = "topoext";
+      }
     ];
     topology = {
       sockets = 1;
@@ -77,29 +141,57 @@
     apic = { };
     hyperv = {
       mode = "custom";
-      relaxed = { state = true; };
-      vapic = { state = true; };
-      spinlocks = { state = true; retries = 8191; };
-      vendor_id = { state = true; value = "1234567890ab"; };
+      relaxed = {
+        state = true;
+      };
+      vapic = {
+        state = true;
+      };
+      spinlocks = {
+        state = true;
+        retries = 8191;
+      };
+      vendor_id = {
+        state = true;
+        value = "1234567890ab";
+      };
     };
-    kvm.hidden = { state = true; };
+    kvm.hidden = {
+      state = true;
+    };
     vmport.state = false;
   };
 
   clock = {
     offset = "localtime";
     timer = [
-      { name = "rtc"; tickpolicy = "catchup"; }
-      { name = "pit"; tickpolicy = "delay"; }
-      { name = "hpet"; present = false; }
-      { name = "hypervclock"; present = true; }
+      {
+        name = "rtc";
+        tickpolicy = "catchup";
+      }
+      {
+        name = "pit";
+        tickpolicy = "delay";
+      }
+      {
+        name = "hpet";
+        present = false;
+      }
+      {
+        name = "hypervclock";
+        present = true;
+      }
     ];
   };
 
   # PowerManagement
   pm = {
-    suspend-to-mem = { enabled = false; };
-    suspend-to-disk = { enabled = false; };
+    suspend-to-mem = {
+      enabled = false;
+    };
+    suspend-to-disk = {
+      enabled = false;
+    };
   };
 
   # Devices
@@ -132,16 +224,26 @@
 
     # Input
     input = [
-      { type = "keyboard"; bus = "virtio"; }
-      { type = "mouse"; bus = "virtio"; }
+      {
+        type = "keyboard";
+        bus = "virtio";
+      }
+      {
+        type = "mouse";
+        bus = "virtio";
+      }
     ];
 
     # Video + Audio
     graphics = {
       type = "spice";
       autoport = true;
-      listen = { type = "address"; };
-      image = { compression = false; };
+      listen = {
+        type = "address";
+      };
+      image = {
+        compression = false;
+      };
     };
 
     video = {
@@ -153,39 +255,69 @@
       };
     };
 
-    sound = { model = "ich9"; };
-    audio = { id = 1; type = "spice"; };
+    sound = {
+      model = "ich9";
+    };
+    audio = {
+      id = 1;
+      type = "spice";
+    };
 
-    # Interfaces 
+    # Interfaces
     controller = [
-      { type = "usb"; index = 0; model = "qemu-xhci"; ports = 15; }
-      { type = "pci"; index = 0; model = "pcie-root"; }
-      { type = "virtio-serial"; index = 0; }
+      {
+        type = "usb";
+        index = 0;
+        model = "qemu-xhci";
+        ports = 15;
+      }
+      {
+        type = "pci";
+        index = 0;
+        model = "pcie-root";
+      }
+      {
+        type = "virtio-serial";
+        index = 0;
+      }
     ];
 
     serial = [
       {
         type = "pty";
-        target = { type = "isa-serial"; port = 0; model.name = "isa-serial"; };
+        target = {
+          type = "isa-serial";
+          port = 0;
+          model.name = "isa-serial";
+        };
       }
     ];
 
     console = [
       {
         type = "pty";
-        target = { type = "serial"; port = 0; };
+        target = {
+          type = "serial";
+          port = 0;
+        };
       }
     ];
 
     channel = [
       {
         type = "spicevmc";
-        target = { type = "virtio"; name = "com.redhat.spice.0"; };
+        target = {
+          type = "virtio";
+          name = "com.redhat.spice.0";
+        };
       }
     ];
 
     # Other
-    watchdog = { model = "itco"; action = "reset"; };
+    watchdog = {
+      model = "itco";
+      action = "reset";
+    };
     memballoon.model = "none";
   };
 
@@ -198,7 +330,9 @@
       { value = "-device"; }
       { value = "{\"driver\":\"ivshmem-plain\",\"id\":\"shmem0\",\"memdev\":\"looking-glass\"}"; }
       { value = "-object"; }
-      { value = "{\"qom-type\":\"memory-backend-file\",\"id\":\"looking-glass\",\"mem-path\":\"/dev/kvmfr0\",\"size\":134217728,\"share\":true}"; }
+      {
+        value = "{\"qom-type\":\"memory-backend-file\",\"id\":\"looking-glass\",\"mem-path\":\"/dev/kvmfr0\",\"size\":134217728,\"share\":true}";
+      }
     ];
   };
 }

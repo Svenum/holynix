@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -51,7 +56,10 @@ in
         ];
 
         # Configure Nix
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
       };
     };
 

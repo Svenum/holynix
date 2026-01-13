@@ -75,69 +75,74 @@ in
   options.holynix = {
     users = mkOption {
       default = { };
-      type = attrsOf (submodule (
-        { name, ... }:
-        {
-          options = {
-            isGuiUser = mkOption {
-              type = bool;
-              default = false;
-            };
-            isSudoUser = mkOption {
-              type = bool;
-              default = false;
-            };
-            isDockerUser = mkOption {
-              type = bool;
-              default = false;
-            };
-            isKvmUser = mkOption {
-              type = bool;
-              default = false;
-            };
-            shell = mkOption {
-              type = nullOr shellPackage;
-              default = null;
-            };
-            authorizedKeys = mkOption {
-              type = nullOr (listOf singleLineStr);
-              default = null;
-            };
-            uid = mkOption {
-              type = nullOr int;
-              default = null;
-            };
-            password = mkOption {
-              type = nullOr str;
-              default = null;
-            };
-            initialPassword = mkOption {
-              type = nullOr str;
-              default = null;
-            };
-            extraGroups = mkOption {
-              type = nullOr (listOf singleLineStr);
-              default = null;
-            };
-            git = {
-              userName = mkOption {
-                type = str;
-                default = name;
+      type = attrsOf (
+        submodule (
+          { name, ... }:
+          {
+            options = {
+              isGuiUser = mkOption {
+                type = bool;
+                default = false;
               };
-              userEmail = mkOption {
-                type = str;
-                default = name + "@example.com";
+              isSudoUser = mkOption {
+                type = bool;
+                default = false;
+              };
+              isDockerUser = mkOption {
+                type = bool;
+                default = false;
+              };
+              isKvmUser = mkOption {
+                type = bool;
+                default = false;
+              };
+              shell = mkOption {
+                type = nullOr shellPackage;
+                default = null;
+              };
+              authorizedKeys = mkOption {
+                type = nullOr (listOf singleLineStr);
+                default = null;
+              };
+              uid = mkOption {
+                type = nullOr int;
+                default = null;
+              };
+              password = mkOption {
+                type = nullOr str;
+                default = null;
+              };
+              initialPassword = mkOption {
+                type = nullOr str;
+                default = null;
+              };
+              extraGroups = mkOption {
+                type = nullOr (listOf singleLineStr);
+                default = null;
+              };
+              git = {
+                userName = mkOption {
+                  type = str;
+                  default = name;
+                };
+                userEmail = mkOption {
+                  type = str;
+                  default = name + "@example.com";
+                };
               };
             };
-          };
-        }
-      ));
+          }
+        )
+      );
     };
   };
 
   config = mkIf (if cfg != { } then true else false) {
     # Create user
-    users.users = mkMerge [ (mapAttrs mkUser cfg) { root.hashedPassword = "!"; } ];
+    users.users = mkMerge [
+      (mapAttrs mkUser cfg)
+      { root.hashedPassword = "!"; }
+    ];
 
     # Configure user
     home-manager.users = mapAttrs mkUserConfig cfg;

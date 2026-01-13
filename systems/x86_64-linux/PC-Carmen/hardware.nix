@@ -1,4 +1,9 @@
-{ config, lib, modulesPath, ... }:
+{
+  config,
+  lib,
+  modulesPath,
+  ...
+}:
 
 {
   imports = [
@@ -7,7 +12,15 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "nvme"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+        "rtsx_pci_sdmmc"
+      ];
       kernelModules = [ ];
     };
     kernelModules = [ "kvm-intel" ];
@@ -23,7 +36,10 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/F9CD-7AD0";
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
     };
 
     "/home" = {

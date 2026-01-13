@@ -12,11 +12,31 @@ in
       default = "catppuccin";
     };
     flavor = mkOption {
-      type = enum [ "mocha" "macchiato" "frappe" "latte" ];
+      type = enum [
+        "mocha"
+        "macchiato"
+        "frappe"
+        "latte"
+      ];
       default = "mocha";
     };
     accent = mkOption {
-      type = enum [ "rosewater" "flamingo" "pink" "mauve" "red" "maroon" "peach" "yellow" "green" "teal" "sky" "sapphire" "blue" "lavender" ];
+      type = enum [
+        "rosewater"
+        "flamingo"
+        "pink"
+        "mauve"
+        "red"
+        "maroon"
+        "peach"
+        "yellow"
+        "green"
+        "teal"
+        "sky"
+        "sapphire"
+        "blue"
+        "lavender"
+      ];
       default = "teal";
     };
   };

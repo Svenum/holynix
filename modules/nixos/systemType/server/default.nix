@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -28,8 +33,10 @@ in
     # SSH
     services.openssh.enable = true;
 
-    environment.systemPackages = with pkgs; mkIf cfg.ansibleTarget [
-      python3
-    ];
+    environment.systemPackages =
+      with pkgs;
+      mkIf cfg.ansibleTarget [
+        python3
+      ];
   };
 }

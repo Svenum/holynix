@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -28,9 +33,8 @@ in
     };
     printers = mkOption {
       default = { };
-      type = listOf (submodule (
-        _:
-        {
+      type = listOf (
+        submodule (_: {
           options = {
             name = mkOption {
               type = str;
@@ -49,8 +53,8 @@ in
               default = null;
             };
           };
-        }
-      ));
+        })
+      );
     };
   };
 
@@ -59,7 +63,11 @@ in
       # Enable printer
       printing = {
         enable = true;
-        drivers = with pkgs; [ epson-escpr2 epson-escpr hplip ];
+        drivers = with pkgs; [
+          epson-escpr2
+          epson-escpr
+          hplip
+        ];
       };
 
       # Enable auot discovery

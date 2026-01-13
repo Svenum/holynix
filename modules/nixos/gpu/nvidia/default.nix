@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -12,7 +17,11 @@ in
       default = false;
     };
     packageChanel = mkOption {
-      type = enum [ "stable" "production" "beta" ];
+      type = enum [
+        "stable"
+        "production"
+        "beta"
+      ];
       default = "stable";
       description = "Specify the nvidia driver package channel";
     };

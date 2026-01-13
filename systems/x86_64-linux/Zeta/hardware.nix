@@ -5,13 +5,29 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   boot = {
-    initrd.availableKernelModules = [ "usbhid" "xhci_pci" "ahci" "firewire_ohci" "usb_storage" "sd_mod" "sr_mod" ];
+    initrd.availableKernelModules = [
+      "usbhid"
+      "xhci_pci"
+      "ahci"
+      "firewire_ohci"
+      "usb_storage"
+      "sd_mod"
+      "sr_mod"
+    ];
 
     # Configure Kernel
-    kernelModules = [ "kvm-intel" "sg" ];
+    kernelModules = [
+      "kvm-intel"
+      "sg"
+    ];
 
     # Maybe mds=full,nosmt
-    kernelParams = [ "mds=full" "efi=runtime" "iommu=pt" "intel_iommu=on" ];
+    kernelParams = [
+      "mds=full"
+      "efi=runtime"
+      "iommu=pt"
+      "intel_iommu=on"
+    ];
 
     # Configure RAID
     swraid = {
@@ -28,7 +44,6 @@
       '';
     };
   };
-
 
   # Configure Filesystem
   fileSystems = {

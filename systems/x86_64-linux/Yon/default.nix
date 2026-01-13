@@ -115,7 +115,6 @@
     firewall.ausweisapp.open = true;
   };
 
-
   programs = {
     # Enable weylus
     weylus = {
@@ -142,12 +141,30 @@
             fanSpeedUpdateFrequency = 5;
             movingAverageInterval = 40;
             speedCurve = [
-              { temp = 45; speed = 0; }
-              { temp = 55; speed = 15; }
-              { temp = 65; speed = 25; }
-              { temp = 70; speed = 35; }
-              { temp = 80; speed = 45; }
-              { temp = 90; speed = 50; }
+              {
+                temp = 45;
+                speed = 0;
+              }
+              {
+                temp = 55;
+                speed = 15;
+              }
+              {
+                temp = 65;
+                speed = 25;
+              }
+              {
+                temp = 70;
+                speed = 35;
+              }
+              {
+                temp = 80;
+                speed = 45;
+              }
+              {
+                temp = 90;
+                speed = 50;
+              }
             ];
           };
         };
@@ -197,10 +214,9 @@
   # ld
   programs.nix-ld = {
     enable = true;
-    libraries = with pkgs;[
+    libraries = with pkgs; [
       glibc
     ];
   };
-
 
 }

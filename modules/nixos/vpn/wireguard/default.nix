@@ -17,9 +17,8 @@ in
       default = false;
     };
     interfaces = mkOption {
-      type = attrsOf (submodule (
-        _:
-        {
+      type = attrsOf (
+        submodule (_: {
           options = {
             configFile = mkOption {
               type = nullOr str;
@@ -27,8 +26,8 @@ in
               description = "Path to config file";
             };
           };
-        }
-      ));
+        })
+      );
       default = { };
     };
   };

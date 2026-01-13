@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -15,7 +20,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      nixpkgs-fmt
+      nixfmt
       vale
       shellcheck
       eslint
@@ -40,7 +45,11 @@ in
         backup = false;
         writebackup = false;
         signcolumn = "yes";
-        completeopt = [ "menu" "menuone" "noselect" ];
+        completeopt = [
+          "menu"
+          "menuone"
+          "noselect"
+        ];
       };
 
       # Global variables
@@ -188,29 +197,39 @@ in
         # LSP UI enhancements
         lsp-lines.enable = true;
 
-        trouble = {
+        #trouble = {
+        #  enable = true;
+        #  settings = {
+        #    auto_close = true;
+        #    auto_refresh = true;
+        #    auto_preview = true;
+        #    hl_group = "lualine_c_normal";
+        #    modes = {
+        #      preview_float = {
+        #        mode = "diagnostics";
+        #        auto_open = true;
+        #        hl_group = "lualine_c_normal";
+        #        preview = {
+        #          type = "float";
+        #          relative = "editor";
+        #          border = "rounded";
+        #          title = "Preview";
+        #          title_pos = "center";
+        #          position = [ 0 (-2) ];
+        #          size = { width = 0.3; height = 0.3; };
+        #          zindex = 200;
+        #        };
+        #      };
+        #    };
+        #  };
+        #};
+
+        tiny-inline-diagnostic = {
           enable = true;
           settings = {
-            auto_close = true;
-            auto_refresh = true;
-            auto_preview = true;
-            hl_group = "lualine_c_normal";
-            modes = {
-              preview_float = {
-                mode = "diagnostics";
-                auto_open = true;
-                hl_group = "lualine_c_normal";
-                preview = {
-                  type = "float";
-                  relative = "editor";
-                  border = "rounded";
-                  title = "Preview";
-                  title_pos = "center";
-                  position = [ 0 (-2) ];
-                  size = { width = 0.3; height = 0.3; };
-                  zindex = 200;
-                };
-              };
+            multiline = true;
+            add_messages = {
+              display_count = true;
             };
           };
         };
@@ -314,7 +333,7 @@ in
               json = [ "prettier" ];
               yaml = [ "prettier" ];
               markdown = [ "prettier" ];
-              nix = [ "nixpkgs-fmt" ];
+              nix = [ "nixfmt" ];
             };
             format_on_save = {
               lsp_fallback = true;
@@ -359,7 +378,9 @@ in
           mode = "n";
           key = "<C-n>";
           action = "<cmd>NvimTreeToggle<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
 
         # Markdown Preview
@@ -375,37 +396,49 @@ in
           mode = "n";
           key = "<C-Right>";
           action = "<cmd>tabnext<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "n";
           key = "<C-Left>";
           action = "<cmd>tabprevious<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "n";
           key = "<C-Down>";
           action = "<cmd>tabclose<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "t";
           key = "<C-Right>";
           action = "<C-\\><C-n><cmd>tabnext<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "t";
           key = "<C-Left>";
           action = "<C-\\><C-n><cmd>tabprevious<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "t";
           key = "<C-Down>";
           action = "<C-\\><C-n><cmd>tabclose<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
 
         # Search
@@ -413,7 +446,9 @@ in
           mode = "n";
           key = "<C-f>";
           action = "<Esc>/";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
 
         # Window resizing
@@ -421,49 +456,65 @@ in
           mode = "n";
           key = "<C-S-Right>";
           action = "<cmd>vert res +5<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "n";
           key = "<C-S-Left>";
           action = "<cmd>vert res -5<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "n";
           key = "<C-S-Up>";
           action = "<cmd>res +5<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "n";
           key = "<C-S-Down>";
           action = "<cmd>res -5<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "t";
           key = "<C-S-Right>";
           action = "<C-\\><C-n><cmd>vert res +5<CR>i";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "t";
           key = "<C-S-Left>";
           action = "<C-\\><C-n><cmd>vert res -5<CR>i";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "t";
           key = "<C-S-Up>";
           action = "<C-\\><C-n><cmd>res +5<CR>i";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "t";
           key = "<C-S-Down>";
           action = "<C-\\><C-n><cmd>res -5<CR>i";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
 
         # Quit commands
@@ -511,13 +562,17 @@ in
           mode = "n";
           key = "<A-Down>";
           action = "<cmd>split<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
         {
           mode = "n";
           key = "<A-Right>";
           action = "<cmd>vsplit<CR>";
-          options = { silent = true; };
+          options = {
+            silent = true;
+          };
         }
 
         # Delete word in insert mode

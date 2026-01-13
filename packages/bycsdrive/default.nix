@@ -1,5 +1,6 @@
-{ appimageTools
-, fetchurl
+{
+  appimageTools,
+  fetchurl,
 }:
 
 let

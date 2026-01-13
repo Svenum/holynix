@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -35,11 +41,22 @@ in
       '';
 
       # Boot options
-      kernelModules = [ "vfio" "vfio_iommu_type1" "vfio_pci" "pci_stub" ]
-        ++ lists.optionals isAMD [ "kvm-amd" ];
-      kernelParams = [ "iommu=pt" ]
-        ++ lists.optionals isAMD [ "amd_iommu=on" "kvm_amd.avic=1" "kvm_amd.npt=1" ]
-        ++ lists.optionals isIntel [ "intel_iommu=on" ];
+      kernelModules = [
+        "vfio"
+        "vfio_iommu_type1"
+        "vfio_pci"
+        "pci_stub"
+      ]
+      ++ lists.optionals isAMD [ "kvm-amd" ];
+      kernelParams = [
+        "iommu=pt"
+      ]
+      ++ lists.optionals isAMD [
+        "amd_iommu=on"
+        "kvm_amd.avic=1"
+        "kvm_amd.npt=1"
+      ]
+      ++ lists.optionals isIntel [ "intel_iommu=on" ];
 
       initrd.kernelModules = [
         "vfio"
@@ -49,24 +66,31 @@ in
     };
 
     # Toggle GPU script
-    environment.systemPackages = with pkgs; [
-      virtiofsd
-    ] ++ lib.lists.optionals (cfg.vfioPCIDevices != null) [
-      (pkgs.holynix.toggle-amd-gpu.override {
-        dgpuPCI = cfg.vfioPCIDevices;
-      })
-    ];
-
-    security.sudo.extraRules = mkIf (cfg.vfioPCIDevices != null) [{
-      groups = [
-        "kvm"
-        "libvirtd"
+    environment.systemPackages =
+      with pkgs;
+      [
+        virtiofsd
+      ]
+      ++ lib.lists.optionals (cfg.vfioPCIDevices != null) [
+        (pkgs.holynix.toggle-amd-gpu.override {
+          dgpuPCI = cfg.vfioPCIDevices;
+        })
       ];
-      runAs = "ALL:ALL";
-      commands = [{
-        command = "/run/current-system/sw/bin/toggle-amd-gpu";
-        options = [ "NOPASSWD" ];
-      }];
-    }];
+
+    security.sudo.extraRules = mkIf (cfg.vfioPCIDevices != null) [
+      {
+        groups = [
+          "kvm"
+          "libvirtd"
+        ];
+        runAs = "ALL:ALL";
+        commands = [
+          {
+            command = "/run/current-system/sw/bin/toggle-amd-gpu";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
   };
 }
