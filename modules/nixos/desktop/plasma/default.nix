@@ -10,7 +10,6 @@ with lib.types;
 
 let
   cfg = config.holynix.desktop.plasma;
-  desktopCfg = config.holynix.desktop;
   themeCfg = config.holynix.theme;
 in
 {
@@ -40,7 +39,6 @@ in
         };
         autoNumlock = true;
       };
-      defaultSession = mkIf (!desktopCfg.wayland) "plasmax11";
     };
     services.desktopManager.plasma6 = {
       enable = true;
@@ -52,6 +50,7 @@ in
       elisa
       khelpcenter
       kwrited
+      kwin-x11
     ];
     programs.dconf.enable = true;
 

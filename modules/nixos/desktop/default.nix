@@ -17,11 +17,6 @@ in
       type = bool;
       default = false;
     };
-
-    wayland = mkOption {
-      type = bool;
-      default = true;
-    };
   };
 
   config = mkIf cfg.enable {
