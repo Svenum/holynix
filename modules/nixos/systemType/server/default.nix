@@ -22,21 +22,44 @@ in
       default = false;
       description = "If true everything gets setup to be a ansible target";
     };
+    enableZfs = mkOption {
+      type = bool;
+      default = false;
+      description = "Enable ZFS if needed";
+    };
   };
   config = mkIf cfg.enable {
-    # Node Exporter
-    services.prometheus.exporters.node = {
-      enable = true;
-      openFirewall = true;
-    };
 
-    # SSH
-    services.openssh.enable = true;
+    services = {
+      # Node Exporter
+      prometheus.exporters.node = {
+        enable = true;
+        openFirewall = true;
+      };
+      # SSH
+      openssh.enable = true;
+      # ZFS-Services
+      zfs = mkIf cfg.enableZfs {
+        autoScrub = {
+          enable = true;
+          interval = "weekly";
+        };
+      };
+    };
 
     environment.systemPackages =
       with pkgs;
       mkIf cfg.ansibleTarget [
         python3
       ];
+
+    # ZFS-Kernel-Module
+    boot.supportedFilesystems = mkIf cfg.enableZfs [ "zfs" ];
+
+    # Kernel-Parameter for ZFS
+    boot.kernelPackages = mkIf cfg.enableZfs (mkForce pkgs.linuxPackages_6_18);
+
+    networking.hostId = mkIf cfg.enableZfs "1b6c3a18";
+
   };
 }

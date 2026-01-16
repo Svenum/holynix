@@ -30,7 +30,6 @@ in
       containers.enable = true;
       podman = {
         enable = true;
-
         # Create a `docker` alias for podman, to use it as a drop-in replacement
         dockerCompat = true;
         dockerSocket.enable = true;
@@ -39,6 +38,7 @@ in
         defaultNetwork.settings.dns_enabled = true;
       };
     };
+    hardware.nvidia-container-toolkit.enable = config.holynix.gpu.nvidia.enable;
 
     systemd = {
       services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
