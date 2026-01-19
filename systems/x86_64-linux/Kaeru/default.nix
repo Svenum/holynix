@@ -33,7 +33,7 @@ _:
   };
   networking = {
     bridges.br0.interfaces = [
-      "end0"
+      "enp0s31f6"
     ];
     interfaces = {
       "br0" = {

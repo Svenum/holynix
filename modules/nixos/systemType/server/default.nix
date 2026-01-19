@@ -9,6 +9,17 @@ with lib;
 with lib.types;
 let
   cfg = config.holynix.systemType.server;
+  zfsCompatibleKernelPackages = lib.filterAttrs (
+    name: kernelPackages:
+    (builtins.match "linux_[0-9]+_[0-9]+" name) != null
+    && (builtins.tryEval kernelPackages).success
+    && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
+  ) pkgs.linuxKernel.packages;
+  latestKernelPackage = lib.last (
+    lib.sort (a: b: (lib.versionOlder a.kernel.version b.kernel.version)) (
+      builtins.attrValues zfsCompatibleKernelPackages
+    )
+  );
 in
 {
   options.holynix.systemType.server = {
@@ -57,7 +68,7 @@ in
     boot.supportedFilesystems = mkIf cfg.enableZfs [ "zfs" ];
 
     # Kernel-Parameter for ZFS
-    boot.kernelPackages = mkIf cfg.enableZfs (mkForce pkgs.linuxPackages_6_18);
+    boot.kernelPackages = mkIf cfg.enableZfs (mkForce latestKernelPackage);
 
     networking.hostId = mkIf cfg.enableZfs "1b6c3a18";
 
