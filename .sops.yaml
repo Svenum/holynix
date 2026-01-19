@@ -5,6 +5,7 @@ keys:
     - &node2 age1h347mrfjlsul2e7unq60xvg6dte9jcn5ge0r5q8ygcnkdzu23cfsdu6hyt
     - &node3 age1vhutk7kxakahg6hcyznvelulyqzep2023gl2hqr2pxtmgcjq4qysg0e8fv
     - &Yon age1ep4rg94wa7qgasz584jg8rddyyrcgta2fqsddc0qmlsek6wtvvgql0tnxz
+    - &Kaeru age1tvwng7xyjekmc4nddvnmhu5zzrnmnryt8paa5cp6n73ak7gqzqdshysg8v
 creation_rules:
   - path_regex: secrets/kube.yaml
     key_groups:
@@ -17,3 +18,7 @@ creation_rules:
       - age:
           - *Yon
 
+  - path_regex: secrets/kaeru/container/.*.yaml
+    key_groups:
+      - age:
+          - *Kaeru
