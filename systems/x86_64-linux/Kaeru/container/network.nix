@@ -7,7 +7,8 @@ _:
         autoStart = true;
         networkConfig = {
           driver = "bridge";
-          options.parent = "podman0";
+          podmanArgs = [ "--network-interface=podman0" ];
+          internal = true;
         };
       };
       "br0" = {
