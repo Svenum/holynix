@@ -14,8 +14,8 @@ in
       description = "Enable the host ssh_key for sops";
     };
     defaultSopsFile = mkOption {
-      type = path;
-      default = ./secrets/secret.yaml;
+      type = nullOr path;
+      default = null;
       description = "Default secret file";
     };
     sshKeyPaths = mkOption {

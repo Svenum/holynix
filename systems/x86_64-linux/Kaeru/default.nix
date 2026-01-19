@@ -21,6 +21,7 @@ in
       enable = true;
       enableZfs = true;
     };
+    sops.enableHostKey = true;
     users = {
       "sudouser" = {
         isSudoUser = true;
