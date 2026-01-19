@@ -13,7 +13,7 @@ _:
         autoStart = true;
         networkConfig = {
           driver = "ipvlan";
-          gateway = [ "172.16.0.1" ];
+          gateways = [ "172.16.0.1" ];
           subnets = [ "172.16.0.0/24" ];
           options.parent = "br0";
         };
