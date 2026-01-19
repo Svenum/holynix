@@ -1,16 +1,16 @@
 { config, ... }:
 
 {
+  sops.secrets."proxy.yaml" = {
+    sopsFile = ../../../../secrets/kaeru/container/proxy.yaml;
+    format = "binary";
+  };
   virtualisation.quadlet =
     let
       inherit (config.virtualisation.quadlet) networks;
       volumePath = "/mnt/container/proxy";
     in
     {
-      sops.secrets."proxy.yaml" = {
-        sopsFile = ../../../../secrets/kaeru/container/proxy.yaml;
-        format = "binary";
-      };
       containers = {
         "proxy-traefik" = {
           autoStart = true;
