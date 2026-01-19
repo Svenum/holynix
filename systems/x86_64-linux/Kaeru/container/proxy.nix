@@ -30,9 +30,9 @@
             };
             ip = "172.16.0.220";
             labels = {
-              "traefik.enable" = true;
+              "traefik.enable" = "true";
               "traefik.http.routers.traefik.entryPoint" = "https";
-              "traefik.http.services.traefik.loadbalancer.server.port" = 8080;
+              "traefik.http.services.traefik.loadbalancer.server.port" = "8080";
             };
             dns = [
               "9.9.9.9"
