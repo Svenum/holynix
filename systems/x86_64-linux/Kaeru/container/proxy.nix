@@ -18,7 +18,7 @@
           containerConfig = {
             image = "docker.io/traefik:latest";
             volumes = [
-              "${volumePath}/traefik:/etc/traefik"
+              "${volumePath}/traefik:/etc/traefik:Z"
               "/var/run/docker.sock:/var/run/docker.sock"
             ];
             networks = [
@@ -26,10 +26,6 @@
               "${networks.proxy.ref}"
               "${networks.br0.ref}:ip=172.16.0.220"
             ];
-            environments = {
-              CLOUDFLARE_EMAIL = "\${CLOUDFLARE_EMAIL}";
-              CLOUDFLARE_DNS_API_TOKEN = "\${CLOUDFLARE_DNS_API_TOKEN}";
-            };
             labels = {
               "traefik.enable" = "true";
               "traefik.http.routers.traefik.entryPoint" = "https";
