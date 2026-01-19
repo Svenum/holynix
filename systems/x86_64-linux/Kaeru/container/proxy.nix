@@ -18,7 +18,7 @@
           containerConfig = {
             image = "docker.io/traefik:latest";
             volumes = [
-              "${volumePath}/traefik:/etc/traefik:Z"
+              "${volumePath}/traefik:/etc/traefik"
               "/var/run/docker.sock:/var/run/docker.sock"
             ];
             networks = [
@@ -28,7 +28,7 @@
             ];
             labels = {
               "traefik.enable" = "true";
-              "traefik.http.routers.traefik.entryPoint" = "https";
+              "traefik.http.routers.traefik.entryPoints" = "https";
               "traefik.http.services.traefik.loadbalancer.server.port" = "8080";
             };
             dns = [
