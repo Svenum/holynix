@@ -41,7 +41,10 @@
       };
       networks.proxy_default = {
         autoStart = true;
-        networkConfig.driver = "bridge";
+        networkConfig = {
+          driver = "bridge";
+          internal = true;
+        };
       };
     };
 }
