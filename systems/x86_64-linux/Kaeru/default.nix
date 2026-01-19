@@ -1,7 +1,15 @@
-_:
+{ lib, ... }:
 
+let
+  containerImports = lib.filter (n: lib.strings.hasSuffix ".nix" n) (
+    lib.filesystem.listFilesRecursive ./container
+  );
+in
 {
-  imports = [ ./hardware.nix ];
+  imports = [
+    ./hardware.nix
+  ]
+  ++ containerImports;
   holynix = {
     boot = {
       memtest = true;

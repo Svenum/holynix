@@ -43,6 +43,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    quadlet = {
+      url = "github:SEIAROTg/quadlet-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs = {
@@ -135,6 +140,9 @@
               inherit (inputs) nur;
             };
           };
+          Kaeru.modules = with inputs; [
+            quadlet.nixosModules.quadlet
+          ];
         };
       };
 
