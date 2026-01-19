@@ -13,7 +13,7 @@
     in
     {
       containers = {
-        "proxy-traefik" = {
+        "proxy_traefik" = {
           autoStart = true;
           containerConfig = {
             image = "docker.io/traefik:latest";
@@ -23,7 +23,8 @@
             ];
             networks = [
               "${networks.proxy_default.ref}"
-              "${networks.proxy.ref}:ip=172.16.0.220"
+              "${networks.proxy.ref}"
+              "${networks.br0.ref}:ip=172.16.0.220"
             ];
             environments = {
               CLOUDFLARE_EMAIL = "\${CLOUDFLARE_EMAIL}";
