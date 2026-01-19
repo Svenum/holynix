@@ -7,6 +7,7 @@ _:
         autoStart = true;
         networkConfig = {
           driver = "bridge";
+          options.parent = "podman0";
         };
       };
       "br0" = {
