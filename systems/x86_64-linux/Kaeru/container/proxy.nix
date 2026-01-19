@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  sops.secrets."proxy.yaml" = {
+  sops.secrets."proxy.env" = {
     sopsFile = ../../../../secrets/kaeru/container/proxy.yaml;
     format = "binary";
   };
@@ -38,7 +38,7 @@
               "9.9.9.9"
               "149.112.112.112"
             ];
-            environmentFiles = [ config.sops.secrets."proxy.yaml".path ];
+            environmentFiles = [ config.sops.secrets."proxy.env".path ];
           };
         };
       };
