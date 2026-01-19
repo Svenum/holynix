@@ -3,7 +3,8 @@
 {
   sops.secrets."proxy.env" = {
     sopsFile = ../../../../secrets/kaeru/container/proxy.env;
-    format = "binary";
+    format = "dotenv";
+    key = "";
   };
   virtualisation.quadlet =
     let
