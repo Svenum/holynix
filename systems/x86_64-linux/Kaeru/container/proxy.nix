@@ -22,14 +22,13 @@
               "/var/run/docker.sock:/var/run/docker.sock"
             ];
             networks = [
-              networks.proxy_default.ref
-              networks.proxy.ref
+              "${networks.proxy_default.ref}"
+              "${networks.proxy.ref}:ip=172.16.0.220"
             ];
             environments = {
-              CLOUDFLARE_EMAIL = "$${CLOUDFLARE_EMAIL}";
-              CLOUDFLARE_DNS_API_TOKEN = "$${CLOUDFLARE_DNS_API_TOKEN}";
+              CLOUDFLARE_EMAIL = "\${CLOUDFLARE_EMAIL}";
+              CLOUDFLARE_DNS_API_TOKEN = "\${CLOUDFLARE_DNS_API_TOKEN}";
             };
-            ip = "172.16.0.220";
             labels = {
               "traefik.enable" = "true";
               "traefik.http.routers.traefik.entryPoint" = "https";
