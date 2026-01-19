@@ -22,7 +22,7 @@
               "/var/run/docker.sock:/var/run/docker.sock"
             ];
             networks = [
-              "default"
+              networks.proxy_default.ref
               networks.proxy.ref
             ];
             environments = {
@@ -42,6 +42,10 @@
             environmentFiles = [ config.sops.secrets."proxy.env".path ];
           };
         };
+      };
+      networks.proxy_default = {
+        autoStart = true;
+        networkConfig.driver = "bridge";
       };
     };
 }
