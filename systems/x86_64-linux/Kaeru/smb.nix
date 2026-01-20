@@ -6,9 +6,9 @@
 let
   # Funktion zum Erstellen eines User-Shares
   mkUserShare = username: {
-    path = "/mnt/storage/${username}";
-    browseable = "yes";
-    writable = "yes";
+    "path" = "/mnt/storage/${username}";
+    "browseable" = "yes";
+    "writable" = "yes";
     "guest ok" = "no";
     "valid users" = username;
     "create mask" = "0664";
@@ -51,10 +51,10 @@ in
     openFirewall = true;
     settings = {
       global = {
-        workgroup = "WORKGROUP";
+        "workgroup" = "WORKGROUP";
         "server string" = "Kaeru";
         "map to guest" = "bad user";
-        security = "user";
+        "security" = "user";
 
         # SMB3 min version
         "server min protocol" = "SMB3";
