@@ -44,7 +44,7 @@
         autoStart = true;
         networkConfig = {
           driver = "bridge";
-          interfaceName = "podman1";
+          interfaceName = "pod_proxy";
         };
       };
     };

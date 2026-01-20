@@ -42,5 +42,20 @@ in
         generateKey = true;
       };
     };
+
+    # fix sops (https://github.com/Mic92/sops-nix/issues/149#issuecomment-1656036132)
+    systemd.services.decrypt-sops = {
+      description = "Decrypt sops secrets";
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network-online.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        # in network is not ready
+        Restart = "on-failure";
+        RestartSec = "2s";
+      };
+      script = config.system.activationScripts.setupSecrets.text;
+    };
   };
 }
