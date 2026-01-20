@@ -8,6 +8,7 @@ in
 {
   imports = [
     ./hardware.nix
+    ./smb.nix
   ]
   ++ containerImports;
   holynix = {
