@@ -77,6 +77,9 @@ in
         # Timeouts
         "dead time" = "15";
         "getwd cache" = "yes";
+        "kernel oplocks" = "no";
+        "posix locking" = "no";
+        "strict locking" = "no";
 
         # Logging
         "log level" = "1";
