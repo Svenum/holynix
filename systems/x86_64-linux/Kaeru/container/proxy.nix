@@ -27,6 +27,7 @@
               "${networks.br0.ref}:ip=172.16.0.220"
             ];
             labels = {
+              "service" = "traefik";
               "traefik.enable" = "true";
               "traefik.http.routers.traefik.entryPoints" = "https";
               "traefik.http.services.traefik.loadbalancer.server.port" = "8080";
