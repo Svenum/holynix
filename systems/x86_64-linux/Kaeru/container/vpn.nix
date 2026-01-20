@@ -37,6 +37,7 @@
             networks = [
               networks.vpn_default.ref
             ];
+            environmentFiles = [ config.sops.secrets."vpn.env".path ];
           };
         };
       };
