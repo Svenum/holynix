@@ -63,7 +63,6 @@ in
 
         # ZFS optimise Performance
         "strict allocate" = "yes";
-        "allocation roundup size" = "131072";
         "min receivefile size" = "16384";
 
         # Performance
