@@ -44,7 +44,8 @@
     };
 
     quadlet = {
-      url = "github:SEIAROTg/quadlet-nix";
+      #url = "github:SEIAROTg/quadlet-nix";
+      url = "github:Svenum/quadlet-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

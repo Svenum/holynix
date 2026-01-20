@@ -43,7 +43,7 @@
         autoStart = true;
         networkConfig = {
           driver = "bridge";
-          podmanArgs = [ "--interface-name=podman0" ];
+          interfaceName = "podman1";
         };
       };
     };
