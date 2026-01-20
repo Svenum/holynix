@@ -2,7 +2,7 @@
 
 {
   sops.secrets."vpn.env" = {
-    sopsFile = ../../../../secrets/kaeru/container/vpn.nix;
+    sopsFile = ../../../../secrets/kaeru/container/vpn.env;
     format = "dotenv";
     key = "";
   };
