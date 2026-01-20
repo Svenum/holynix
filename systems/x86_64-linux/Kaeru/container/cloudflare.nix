@@ -13,7 +13,7 @@
     in
     {
       containers = {
-        "ddns" = {
+        "cloudflare_ddns" = {
           autoStart = true;
           containerConfig = {
             image = "docker.io/favonia/cloudflare-ddns:latest";
@@ -24,7 +24,6 @@
             environmentFiles = [ config.sops.secrets."cloudflare.env".path ];
             networks = [
               "host"
-              networks.proxy.ref
             ];
             addCapabilities = [
               "SETUID"
