@@ -13,7 +13,7 @@
       volumePath = "/mnt/container/vpn";
     in
     {
-      container = {
+      containers = {
         "vpn_tailscale" = {
           autoStart = true;
           containerConfig = {
