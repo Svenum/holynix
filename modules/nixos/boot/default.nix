@@ -98,6 +98,9 @@ in
     # Firmware
     hardware.enableRedistributableFirmware = true;
 
+    # activate tpm2
+    security.tpm2.enable = true;
+
     environment.systemPackages = mkIf cfg.secureBoot [
       pkgs.sbctl
     ];
