@@ -35,7 +35,7 @@
           };
         };
         "cloudflare_tunnel" = {
-          autoStart = true;
+          autoStart = false;
           containerConfig = {
             image = "docker.io/cloudflare/cloudflared:latest";
             environmentFiles = [ config.sops.secrets."cloudflare.env".path ];
