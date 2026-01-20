@@ -14,6 +14,7 @@ let
     "create mask" = "0664";
     "directory mask" = "0775";
     "force user" = username;
+    "force group" = "users";
   };
 
   # Liste der User
