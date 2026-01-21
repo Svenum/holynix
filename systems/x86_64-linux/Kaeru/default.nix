@@ -47,12 +47,52 @@ in
     ];
     interfaces = {
       "br0" = {
-        ipv4.addresses = [
-          {
-            address = "172.16.0.14";
-            prefixLength = 24;
-          }
-        ];
+        ipv4 = {
+          addresses = [
+            {
+              address = "172.16.0.14";
+              prefixLength = 24;
+            }
+          ];
+          routes = [
+            {
+              address = "0.0.0.0";
+              prefixLength = 0;
+              via = "172.16.0.1";
+              options.metric = "1";
+            }
+            {
+              address = "172.16.0.0";
+              prefixLength = 24;
+              via = "172.16.0.1";
+              options.metric = "1";
+            }
+          ];
+        };
+      };
+      "shim-br0" = {
+        ipv4 = {
+          addresses = [
+            {
+              address = "172.16.0.14";
+              prefixLength = 24;
+            }
+          ];
+          routes = [
+            {
+              address = "0.0.0.0";
+              prefixLength = 0;
+              via = "172.16.0.1";
+              options.metric = "0";
+            }
+            {
+              address = "172.16.0.0";
+              prefixLength = 24;
+              via = "172.16.0.1";
+              options.metric = "1";
+            }
+          ];
+        };
       };
     };
     defaultGateway = "172.16.0.1";
@@ -61,5 +101,9 @@ in
       "172.16.0.4"
     ];
     useDHCP = false;
+    macvlans.shim-br0 = {
+      mode = "bridge";
+      interface = "enp0s31f6";
+    };
   };
 }
