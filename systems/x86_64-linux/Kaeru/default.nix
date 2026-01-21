@@ -45,7 +45,7 @@ in
   systemd.network = {
     enable = true;
     networks = {
-      "10-enp0s31f6" = {
+      "20-enp0s31f6" = {
         matchConfig.Name = "enp0s31f6";
         address = [ "172.16.0.14/24" ];
         dns = [
@@ -55,17 +55,16 @@ in
         routes = [
           {
             Gateway = "172.16.0.1";
-            Metric = 1;
-            Destination = "0.0.0.0/0";
+            Metric = 0;
           }
           {
             Gateway = "172.16.0.1";
-            Metric = 1;
+            Metric = 0;
             Destination = "172.16.0.0/24";
           }
         ];
       };
-      "20-shim" = {
+      "30-shim" = {
         matchConfig.Name = "shim";
         address = [ "172.16.0.14/24" ];
         dns = [
@@ -75,12 +74,11 @@ in
         routes = [
           {
             Gateway = "172.16.0.1";
-            Metric = 0;
-            Destination = "0.0.0.0/0";
+            Metric = 1;
           }
           {
             Gateway = "172.16.0.1";
-            Metric = 0;
+            Metric = 1;
             Destination = "172.16.0.0/24";
           }
         ];
