@@ -49,15 +49,13 @@ in
       networks = {
         "30-enp0s31f6" = {
           matchConfig.Name = "enp0s31f6";
-          networkConfig = {
-            IPVLAN = "shim-br0";
-            Bridge = "br0";
-          };
+          networkConfig.Bridge = "br0";
         };
 
         "40-br0" = {
           matchConfig.Name = "br0";
           address = [ "172.16.0.14/24" ];
+          networkConfig.IPVLAN = "shim-br0";
           dns = [
             "172.16.0.3"
             "172.16.0.4"
