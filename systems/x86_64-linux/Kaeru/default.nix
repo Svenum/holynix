@@ -84,7 +84,7 @@ in
         ];
       };
     };
-    netdevs."20-shim" = {
+    netdevs."10-shim" = {
       netdevConfig = {
         Kind = "ipvlan";
         Name = "shim";
