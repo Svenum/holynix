@@ -63,11 +63,11 @@ in
           routes = [
             {
               Gateway = "172.16.0.1";
-              Metric = 0;
+              Metric = 1;
             }
             {
               Gateway = "172.16.0.1";
-              Metric = 0;
+              Metric = 1;
               Destination = "172.16.0.0/24";
             }
           ];
@@ -82,11 +82,11 @@ in
           routes = [
             {
               Gateway = "172.16.0.1";
-              Metric = 1;
+              Metric = 0;
             }
             {
               Gateway = "172.16.0.1";
-              Metric = 1;
+              Metric = 0;
               Destination = "172.16.0.0/24";
             }
           ];
