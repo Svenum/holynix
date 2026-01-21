@@ -80,22 +80,21 @@ in
           ];
           routes = [
             {
-              address = "0.0.0.0";
-              prefixLength = 0;
-              via = "172.16.0.1";
-              options.metric = "0";
-            }
-            {
               address = "172.16.0.0";
               prefixLength = 24;
               via = "172.16.0.1";
-              options.metric = "1";
+              options.metric = "0";
             }
           ];
         };
       };
     };
-    defaultGateway = "172.16.0.1";
+    defaultGateway = {
+      address = "172.16.0.1";
+      interface = "shim-br0";
+      source = "172.16.0.14";
+      metric = 0;
+    };
     nameservers = [
       "172.16.0.3"
       "172.16.0.4"
