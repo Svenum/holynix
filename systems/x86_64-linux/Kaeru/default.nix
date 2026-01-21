@@ -75,19 +75,14 @@ in
         "50-shim-br0" = {
           matchConfig.Name = "shim-br0";
           address = [ "172.16.0.14/24" ];
-          dns = [
-            "172.16.0.3"
-            "172.16.0.4"
-          ];
           routes = [
             {
               Gateway = "172.16.0.1";
-              Metric = 0;
             }
             {
               Gateway = "172.16.0.1";
-              Metric = 0;
               Destination = "172.16.0.0/24";
+              Scope = "link";
             }
           ];
         };
