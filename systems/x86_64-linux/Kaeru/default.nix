@@ -93,7 +93,7 @@ in
       };
       ipvlanConfig = {
         Mode = "L2";
-        Flag = "Bridge";
+        Flags = "bridge";
       };
     };
   };
