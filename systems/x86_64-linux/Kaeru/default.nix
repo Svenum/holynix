@@ -92,8 +92,8 @@ in
         Name = "shim";
       };
       ipvlanConfig = {
-        mode = "L2";
-        flag = "bridge";
+        Mode = "L2";
+        Flag = "Bridge";
       };
     };
   };
