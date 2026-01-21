@@ -16,7 +16,7 @@ _:
           driver = "ipvlan";
           gateways = [ "172.16.0.1" ];
           subnets = [ "172.16.0.0/24" ];
-          options.parent = "enp0s31f6";
+          options.parent = "br0";
         };
       };
     };

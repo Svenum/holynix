@@ -24,7 +24,7 @@
         "sd_mod"
       ];
       kernelModules = [ ];
-
+      systemd.network.enable = true;
     };
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];

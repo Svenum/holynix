@@ -42,56 +42,71 @@ in
     gpu.nvidia.enable = true;
   };
 
-  systemd.network = {
-    enable = true;
-    networks = {
-      "20-enp0s31f6" = {
-        matchConfig.Name = "enp0s31f6";
-        address = [ "172.16.0.14/24" ];
-        dns = [
-          "172.16.0.3"
-          "172.16.0.4"
-        ];
-        routes = [
-          {
-            Gateway = "172.16.0.1";
-            Metric = 0;
-          }
-          {
-            Gateway = "172.16.0.1";
-            Metric = 0;
-            Destination = "172.16.0.0/24";
-          }
-        ];
+  systemd = {
+    services."systemd-networkd".environment.SYSTEMD_LOG_LEVEL = "debug";
+    network = {
+      enable = true;
+      networks = {
+        "30-enp0s31f6" = {
+          matchConfig.Name = "enp0s31f6";
+          networkConfig.IPVLAN = "shim-br0";
+        };
+
+        "40-br0" = {
+          matchConfig.Name = "br0";
+          address = [ "172.16.0.14/24" ];
+          dns = [
+            "172.16.0.3"
+            "172.16.0.4"
+          ];
+          routes = [
+            {
+              Gateway = "172.16.0.1";
+              Metric = 0;
+            }
+            {
+              Gateway = "172.16.0.1";
+              Metric = 0;
+              Destination = "172.16.0.0/24";
+            }
+          ];
+        };
+        "50-shim-br0" = {
+          matchConfig.Name = "shim-br0";
+          address = [ "172.16.0.14/24" ];
+          dns = [
+            "172.16.0.3"
+            "172.16.0.4"
+          ];
+          routes = [
+            {
+              Gateway = "172.16.0.1";
+              Metric = 1;
+            }
+            {
+              Gateway = "172.16.0.1";
+              Metric = 1;
+              Destination = "172.16.0.0/24";
+            }
+          ];
+        };
       };
-      "30-shim" = {
-        matchConfig.Name = "shim";
-        address = [ "172.16.0.14/24" ];
-        dns = [
-          "172.16.0.3"
-          "172.16.0.4"
-        ];
-        routes = [
-          {
-            Gateway = "172.16.0.1";
-            Metric = 1;
-          }
-          {
-            Gateway = "172.16.0.1";
-            Metric = 1;
-            Destination = "172.16.0.0/24";
-          }
-        ];
-      };
-    };
-    netdevs."10-shim" = {
-      netdevConfig = {
-        Kind = "ipvlan";
-        Name = "shim";
-      };
-      ipvlanConfig = {
-        Mode = "L2";
-        Flags = "bridge";
+      netdevs = {
+        "10-shim-br0" = {
+          netdevConfig = {
+            Kind = "ipvlan";
+            Name = "shim-br0";
+          };
+          ipvlanConfig = {
+            Mode = "L2";
+          };
+        };
+        "10-br0" = {
+          netdevConfig = {
+            Kind = "bridge";
+            Name = "br0";
+          };
+        };
       };
     };
   };
