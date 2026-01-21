@@ -79,7 +79,7 @@ in
           routes = [
             {
               Gateway = "172.16.0.1";
-              Destination = "0.0.0.0";
+              Destination = "0.0.0.0/0";
             }
             {
               Gateway = "172.16.0.1";
