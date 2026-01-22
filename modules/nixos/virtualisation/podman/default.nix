@@ -62,7 +62,7 @@ let
       ];
       routes = [
         {
-          Gateway = "${attrs.gateway}}";
+          Gateway = "${attrs.gateway}";
           Destination = "0.0.0.0/0";
           Metric = 0;
         }
