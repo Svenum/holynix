@@ -20,7 +20,28 @@ in
     locale.name = "en_DE";
     systemType.server = {
       enable = true;
-      enableZfs = true;
+      zfs = {
+        enable = true;
+        hostId = "1b6c3a18";
+        snapshots = [
+          {
+            dataset = "kaeru/storage";
+            frequenz = "medium";
+          }
+          {
+            dataset = "kaeru/container";
+            frequenz = "high";
+          }
+          {
+            dataset = "kaeru/vms";
+            frequenz = "low";
+          }
+          {
+            dataset = "kaeru/media";
+            frequenz = "very_low";
+          }
+        ];
+      };
     };
     sops.enableHostKey = true;
     users = {
