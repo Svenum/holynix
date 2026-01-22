@@ -72,9 +72,10 @@ in
               Metric = 1;
             }
             {
-              Gateway = "172.16.0.1";
               Metric = 1;
               Destination = "172.16.0.0/24";
+              Scope = "link";
+              Source = "172.16.0.14/32";
             }
           ];
         };
@@ -90,10 +91,13 @@ in
             {
               Gateway = "172.16.0.1";
               Destination = "0.0.0.0/0";
+              Metric = 0;
             }
             {
-              Gateway = "172.16.0.1";
               Destination = "172.16.0.0/24";
+              Scope = "link";
+              Source = "172.16.0.14/32";
+              Metric = 0;
             }
           ];
         };
