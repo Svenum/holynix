@@ -54,7 +54,12 @@ in
 
         "40-br0" = {
           matchConfig.Name = "br0";
-          address = [ "172.16.0.14/24" ];
+          addresses = [
+            {
+              Address = "172.16.0.14/24";
+              AddPrefixRoute = "no";
+            }
+          ];
           networkConfig.IPVLAN = "shim-br0";
           dns = [
             "172.16.0.3"
@@ -75,7 +80,12 @@ in
         };
         "50-shim-br0" = {
           matchConfig.Name = "shim-br0";
-          address = [ "172.16.0.14/24" ];
+          addresses = [
+            {
+              Address = "172.16.0.14/24";
+              AddPrefixRoute = "no";
+            }
+          ];
           routes = [
             {
               Gateway = "172.16.0.1";
