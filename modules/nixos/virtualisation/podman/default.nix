@@ -9,6 +9,66 @@ with lib;
 with lib.types;
 let
   cfg = config.holynix.virtualisation.podman;
+
+  mkNetdevs = attrs: {
+    "10-shim-${attrs.name}" = {
+      netdevConfig = {
+        Kind = "ipvlan";
+        Name = "shim-${attrs.name}";
+      };
+      ipvlanConfig = {
+        Mode = "L2";
+      };
+    };
+    "10-br0" = {
+      netdevConfig = {
+        Kind = "bridge";
+        Name = attrs.name;
+      };
+    };
+  };
+
+  mkNetworks = attrs: {
+    "30-${attrs.interface}" = {
+      matchConfig.Name = attrs.interface;
+      networkConfig.Bridge = attrs.name;
+    };
+
+    "40-${attrs.name}" = {
+      inherit (attrs) dns;
+      matchConfig.Name = attrs.name;
+      networkConfig.IPVLAN = "shim-${attrs.name}";
+      addresses = [
+        {
+          Address = "${attrs.address}/${toString attrs.prefixLength}";
+          RouteMetric = 1;
+        }
+      ];
+      routes = [
+        {
+          Gateway = "${attrs.gateway}";
+          Destination = "0.0.0.0/0";
+          Metric = 1;
+        }
+      ];
+    };
+    "50-shim-${attrs.name}" = {
+      matchConfig.Name = "shim-${attrs.name}";
+      addresses = [
+        {
+          Address = "${attrs.address}/${toString attrs.prefixLength}";
+          RouteMetric = 0;
+        }
+      ];
+      routes = [
+        {
+          Gateway = "${attrs.gateway}}";
+          Destination = "0.0.0.0/0";
+          Metric = 0;
+        }
+      ];
+    };
+  };
 in
 {
   options.holynix.virtualisation.podman = {
@@ -21,6 +81,40 @@ in
       default = false;
       type = bool;
       description = "If podman autostart should be disabled";
+    };
+    bridges = mkOption {
+      default = null;
+      type = nullOr (
+        listOf (submodule {
+          options = {
+            name = mkOption {
+              type = str;
+              description = "Name of the bridge";
+            };
+            interface = mkOption {
+              type = str;
+              description = "Parent interface used for bridge";
+            };
+            address = mkOption {
+              type = str;
+              description = "Ip address of the parent interface";
+            };
+            prefixLength = mkOption {
+              type = ints.between 0 32;
+              description = "Prefix length of parent interface";
+            };
+            dns = mkOption {
+              type = listOf str;
+              description = "List of DNS server to use";
+            };
+            gateway = mkOption {
+              type = str;
+              description = "Default gateway of parent interface";
+            };
+          };
+        })
+      );
+      description = "Add bridge interface with shim to acces ipvlans based on bridge";
     };
   };
 
@@ -59,6 +153,14 @@ in
         podman-tui # status of containers in the terminal
         podman-compose # start group of containers for dev
       ];
+    };
+
+    # Bridge
+
+    systemd.network = mkIf (cfg.bridges != null) {
+      enable = true;
+      netdevs = foldl (acc: x: acc // mkNetdevs x) { } cfg.bridges;
+      networks = foldl (acc: x: acc // mkNetworks x) { } cfg.bridges;
     };
   };
 }

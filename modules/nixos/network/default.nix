@@ -14,7 +14,7 @@ in
     };
     useIWD = mkOption {
       type = bool;
-      default = true;
+      default = false;
       description = "Enable iwd as backend";
     };
   };
