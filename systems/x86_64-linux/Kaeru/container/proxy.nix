@@ -114,7 +114,7 @@
         };
       };
       volumes.proxy_traefik.volumeConfig = {
-        type = "bind";
+        type = "zfs";
         device = "${volumePath}/traefik";
       };
       networks.proxy_default = {
