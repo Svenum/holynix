@@ -18,7 +18,7 @@ creation_rules:
       - age:
           - *Yon
 
-  - path_regex: secrets/kaeru/container/.*[.env|.yaml]
+  - path_regex: secrets/kaeru/.*/.*[.env|.yaml]
     key_groups:
       - age:
           - *Kaeru
