@@ -9,6 +9,11 @@ with lib.types;
       default = "${config.networking.hostName}.holypenguin.net";
       description = "Domain under which the services are deployed";
     };
+    adminName = mkOption {
+      type = str;
+      default = "holyadmin";
+      description = "Name of the admin Accounts";
+    };
     sopsDir = mkOption {
       type = path;
       default = ../../../secrets/${config.networking.hostName}/services;

@@ -21,16 +21,12 @@ in
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets."service_nextcloud".sopsFile =
-      "${config.holynix.services.globalSettings.sopsDir}/nextcloud.yaml";
     services.nextcloud = {
       enable = true;
       hostName = "nextcloud.${config.holynix.services.globalSettings.domain}";
       config = {
-        inherit (secrets."service_nextcloud") adminuser;
-        adminpassFile = pkgs.writeTextFile {
-          text = secrets."service_nextcloud".adminpass;
-        };
+        adminuser = config.holynix.services.globalSettings.adminName;
+        adminpassFile = secrets."service_nextcloud_adminpass".path;
       };
     };
   };

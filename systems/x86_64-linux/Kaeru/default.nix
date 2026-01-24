@@ -44,7 +44,10 @@ in
         ];
       };
     };
-    sops.enableHostKey = true;
+    sops = {
+      defaultSopsFile = ../../../secrets/kaeru.yaml;
+      enableHostKey = true;
+    };
     users = {
       "sudouser" = {
         isSudoUser = true;
