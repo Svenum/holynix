@@ -20,12 +20,13 @@ in
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets."services/nextcloud/adminpass" = { };
     services.nextcloud = {
       enable = true;
       hostName = "nextcloud.${config.holynix.services.globalSettings.domain}";
       config = {
         adminuser = config.holynix.services.globalSettings.adminName;
-        adminpassFile = secrets."service_nextcloud_adminpass".path;
+        adminpassFile = secrets."services/nextcloud/adminpass".path;
       };
     };
   };

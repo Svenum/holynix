@@ -33,6 +33,7 @@ in
   config = mkIf cfg.enableHostKey {
     sops = {
       inherit (cfg) defaultSopsFile;
+      useTmpfs = true;
       age = {
         sshKeyPaths = [
           "/etc/ssh/ssh_host_ed25519_key"
@@ -41,6 +42,14 @@ in
         keyFile = "/var/lib/sops-nix/key.txt";
         generateKey = true;
       };
+      secrets = mkIf (cfg.initSecrets != null) (
+        builtins.listToAttrs (
+          map (name: {
+            inherit name;
+            value = { };
+          }) cfg.initSecrets
+        )
+      );
     };
   };
 }

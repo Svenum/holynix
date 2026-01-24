@@ -34,7 +34,6 @@ in
     sops = {
       enableHostKey = true;
       defaultSopsFile = ../../../secrets/kube.yaml;
-      initSecrets = [ "kube_token" ];
     };
 
     network.enable = true;

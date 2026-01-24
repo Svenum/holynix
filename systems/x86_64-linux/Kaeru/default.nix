@@ -45,9 +45,8 @@ in
       };
     };
     sops = {
-      defaultSopsFile = ../../../secrets/kaeru.yaml;
+      defaultSopsFile = ../../../secrets/kaeru/default.yaml;
       enableHostKey = true;
-      initSecrets = [ "service_nextcloud_adminpass" ];
     };
     users = {
       "sudouser" = {
