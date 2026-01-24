@@ -47,6 +47,7 @@ in
     sops = {
       defaultSopsFile = ../../../secrets/kaeru.yaml;
       enableHostKey = true;
+      initSecrets = [ "service_nextcloud_adminpass" ];
     };
     users = {
       "sudouser" = {
