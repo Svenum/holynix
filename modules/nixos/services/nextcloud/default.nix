@@ -22,7 +22,7 @@ in
   };
   config = mkIf cfg.enable {
     sops.secrets."service_nextcloud".sopsFile =
-      "${config.holynix.services.globalSettings.sopsDir}/nextcloud.yml";
+      "${config.holynix.services.globalSettings.sopsDir}/nextcloud.yaml";
     services.nextcloud = {
       enable = true;
       hostName = "nextcloud.${config.holynix.services.globalSettings.domain}";
