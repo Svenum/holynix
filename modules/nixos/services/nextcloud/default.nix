@@ -29,6 +29,19 @@ in
         adminpassFile = secrets."services/nextcloud/adminpass".path;
         dbtype = "sqlite";
       };
+      extraApps = {
+        inherit (config.services.nextcloud.package.packages.apps)
+          end_to_end_encryption
+          cookbook
+          calendar
+          contacts
+          notes
+          previewgenerator
+          richdocuments
+          ;
+      };
+      extraAppsEnable = true;
+
     };
   };
 }
