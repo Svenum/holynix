@@ -27,6 +27,7 @@ in
       config = {
         adminuser = config.holynix.services.globalSettings.adminName;
         adminpassFile = secrets."services/nextcloud/adminpass".path;
+        dbtype = "sqlite";
       };
     };
   };
