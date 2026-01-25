@@ -26,7 +26,9 @@ in
   };
   config = mkIf cfg.enable {
     holynix.services.enable = true;
-    sops.secrets."services/nextcloud/adminpass" = { };
+    sops.secrets."services/nextcloud/adminpass" = {
+      restartUnits = [ "phpfpm-nextcloud.service" ];
+    };
     services = {
       nextcloud = {
         enable = true;
