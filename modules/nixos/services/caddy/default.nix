@@ -18,9 +18,7 @@ in
     services.caddy = {
       enable = true;
       globalConfig = ''
-        {
-          acme_dns cloudflare {$CLOUDFLARE_KEY}
-        }
+        acme_dns cloudflare {$CLOUDFLARE_KEY}
       '';
       extraConfig = ''
         https:// {
