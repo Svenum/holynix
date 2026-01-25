@@ -44,9 +44,11 @@ in
       '';
     };
 
-    sops.secrets."services/caddy/cloudflare_dns_api_toke" = { };
+    sops.secrets."services/caddy/cloudflare_dns_api_token" = {
+      restartUnits = [ "caddy.service" ];
+    };
     systemd.services.caddy.serviceConfig.EnvironmentFile = [
-      config.sops.secrets."services/caddy/cloudflare_dns_api_toke".path
+      config.sops.secrets."services/caddy/cloudflare_dns_api_token".path
     ];
 
     networking.firewall.allowedTCPPorts = [
