@@ -23,7 +23,7 @@ in
         }
       '';
       extraConfig = ''
-        (security_headers) {
+        https:// {
           header {
             X-Robots-Tag "noindex,nofollow"
             -Server
@@ -37,10 +37,6 @@ in
             X-XSS-Protection "1; mode=block"
             Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
           }
-        }
-
-        *.* {
-          import security_headers
         }
       '';
     };
