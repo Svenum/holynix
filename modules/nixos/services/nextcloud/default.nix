@@ -18,6 +18,11 @@ in
       default = false;
       description = "Enable nextcloud";
     };
+    datadir = mkOption {
+      type = str;
+      default = "/mnt/storage/nextcloud";
+      description = "Path of the User Files";
+    };
   };
   config = mkIf cfg.enable {
     holynix.services.enable = true;
@@ -25,6 +30,7 @@ in
     services = {
       nextcloud = {
         enable = true;
+        inherit (cfg) datadir;
         hostName = "nextcloud.${config.holynix.services.globalSettings.domain}";
         config = {
           adminuser = config.holynix.services.globalSettings.adminName;
