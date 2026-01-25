@@ -46,7 +46,7 @@ in
 
     sops.secrets."services/caddy/cloudflare_dns_api_toke" = { };
     systemd.services.caddy.serviceConfig.EnvironmentFile = [
-      sops.secrets."services/caddy/cloudflare_dns_api_toke".path
+      config.sops.secrets."services/caddy/cloudflare_dns_api_toke".path
     ];
 
     networking.firewall.allowedTCPPorts = [
