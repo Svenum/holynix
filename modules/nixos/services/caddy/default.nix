@@ -27,7 +27,7 @@ in
         hash = "sha256-dnhEjopeA0UiI+XVYHYpsjcEI6Y1Hacbi28hVKYQURg=";
       };
       globalConfig = ''
-        acme_dns cloudflare {$CLOUDFLARE_KEY}
+        acme_dns cloudflare {$CLOUDFLARE_DNS_API_TOKEN}
       '';
       extraConfig = ''
         https:// {
