@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -17,6 +22,10 @@ in
   config = mkIf cfg.enable {
     services.caddy = {
       enable = true;
+      package = pkgs.caddy.withPlugins {
+        plugins = [ "github.com/caddy-dns/cloudflare@v0.2.2" ];
+        hash = "sha256-dnhEjopeA0UiI+XVYHYpsjcEI6Y1Hacbi28hVKYQURg=";
+      };
       globalConfig = ''
         acme_dns cloudflare {$CLOUDFLARE_KEY}
       '';
