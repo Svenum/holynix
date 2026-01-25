@@ -16,6 +16,7 @@ in
 
   config = mkIf cfg.enable {
     services.caddy = {
+      enable = true;
       globalConfig = ''
         {
           acme_dns cloudflare {$CLOUDFLARE_KEY}
