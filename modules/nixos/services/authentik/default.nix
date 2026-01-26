@@ -29,8 +29,10 @@ in
       authentik = {
         enable = true;
         environmentFile = config.secrets."services/authentik/env".path;
-        disable_startup_analytics = true;
-        avatars = "initials";
+        settings = {
+          disable_startup_analytics = true;
+          avatars = "initials";
+        };
       };
       caddy = {
         virtualHost."authentik.${config.holynix.services.globalSettings.domain}" = {
