@@ -47,5 +47,7 @@ in
         };
       };
     };
+    systemd.services.authentik-ldap.environment.AUTHENTIK_HOST =
+      "authentik.${config.holynix.services.globalSettings.hostFQDN}";
   };
 }
