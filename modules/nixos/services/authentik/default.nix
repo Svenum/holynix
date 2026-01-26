@@ -1,6 +1,6 @@
 {
   config,
-  lig,
+  lib,
   inputs,
   ...
 }:

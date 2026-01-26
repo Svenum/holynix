@@ -12,7 +12,10 @@ in
   ]
   ++ containerImports;
   holynix = {
-    services.nextcloud.enable = true;
+    services = {
+      nextcloud.enable = true;
+      authentik.enable = true;
+    };
     boot = {
       memtest = true;
       uefi-shell = true;
