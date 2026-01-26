@@ -25,7 +25,10 @@ in
     };
   };
   config = mkIf cfg.enable {
-    holynix.services.enable = true;
+    holynix.services = {
+      enable = true;
+      postgresql.enable = true;
+    };
     sops.secrets."services/nextcloud/adminpass" = {
       restartUnits = [ "phpfpm-nextcloud.service" ];
     };
@@ -37,7 +40,7 @@ in
         config = {
           adminuser = config.holynix.services.globalSettings.adminName;
           adminpassFile = secrets."services/nextcloud/adminpass".path;
-          dbtype = "sqlite";
+          dbtype = "pgsql";
         };
         settings = {
           trusted_domains = [ "nextcloud.holypenguin.net" ];
@@ -70,14 +73,22 @@ in
           '';
         };
       };
+      nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
+        {
+          addr = "127.0.0.1";
+          port = 8080;
+        }
+      ];
+      postgresql = {
+        ensureUsers = [
+          {
+            name = "nextcloud";
+            ensureDBOwnership = true;
+          }
+        ];
+        ensureDatabases = [ "nextcloud" ];
+      };
     };
-
-    services.nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
-      {
-        addr = "127.0.0.1";
-        port = 8080;
-      }
-    ];
 
   };
 }
