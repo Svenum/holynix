@@ -38,7 +38,7 @@ in
         virtualHosts."authentik.${config.holynix.services.globalSettings.hostFQDN}" = {
           serverAliases = [ "authentik.${config.holynix.services.globalSettings.domain}" ];
           extraConfig = ''
-            reverse_proxy localhost:9443 
+            reverse_proxy localhost:9000 
           '';
         };
       };
