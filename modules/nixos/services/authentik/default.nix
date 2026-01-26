@@ -37,13 +37,13 @@ in
         disable_startup_analytics = true;
         avatars = "initials";
       };
-    };
-    caddy = {
-      virtualHost."authentik.${config.holynix.services.globalSettings.domain}" = {
-        serverAliases = [ "authentik.holypenguin.net" ];
-        extraConfig = ''
-          reverse_proxy localhost:9443 
-        '';
+      caddy = {
+        virtualHost."authentik.${config.holynix.services.globalSettings.domain}" = {
+          serverAliases = [ "authentik.holypenguin.net" ];
+          extraConfig = ''
+            reverse_proxy localhost:9443 
+          '';
+        };
       };
     };
   };
