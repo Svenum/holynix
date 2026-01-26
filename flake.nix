@@ -48,6 +48,8 @@
       url = "github:Svenum/quadlet-nix";
     };
 
+    authentik-nix.url = "github:nix-community/authentik-nix";
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs = {
