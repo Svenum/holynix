@@ -11,10 +11,6 @@ let
   cfg = config.holynix.services.authentik;
 in
 {
-  imports = [
-    inputs.authentik-nix.nixosModules.default
-  ];
-
   options.holynix.services.authentik = {
     enable = mkOption {
       type = bool;
@@ -29,6 +25,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    imports = [
+      inputs.authentik-nix.nixosModules.default
+    ];
     sops.secrets."services/authentik/env".restartUnits = [ "authentik.service" ];
     services = {
       authentik = {
