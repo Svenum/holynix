@@ -25,9 +25,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    imports = [
-      inputs.authentik-nix.nixosModules.default
-    ];
     sops.secrets."services/authentik/env".restartUnits = [ "authentik.service" ];
     services = {
       authentik = {

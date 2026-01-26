@@ -121,6 +121,7 @@
           catppuccin.nixosModules.catppuccin
           musnix.nixosModules.musnix
           jovian.nixosModules.jovian
+          inputs.authentik-nix.nixosModules.default
         ];
 
         hosts = {
