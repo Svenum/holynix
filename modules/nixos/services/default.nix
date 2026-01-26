@@ -15,8 +15,13 @@ in
     globalSettings = {
       domain = mkOption {
         type = str;
-        default = "${config.networking.hostName}.holypenguin.net";
+        default = "holypenguin.net";
         description = "Domain under which the services are deployed";
+      };
+      hostFQDN = mkOption {
+        type = str;
+        default = "${config.networking.hostName}.${cfg.globalSettings.domain}";
+        description = "FQDN of host";
       };
       adminName = mkOption {
         type = str;

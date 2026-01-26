@@ -36,7 +36,7 @@ in
       nextcloud = {
         enable = true;
         inherit (cfg) datadir;
-        hostName = "nextcloud.${config.holynix.services.globalSettings.domain}";
+        hostName = "nextcloud.${config.holynix.services.globalSettings.hostFQDN}";
         config = {
           adminuser = config.holynix.services.globalSettings.adminName;
           adminpassFile = secrets."services/nextcloud/adminpass".path;
@@ -44,7 +44,7 @@ in
           dbhost = "/var/run/postgresql";
         };
         settings = {
-          trusted_domains = [ "nextcloud.holypenguin.net" ];
+          trusted_domains = [ "nextcloud.${config.holynix.services.globalSettings.domain}" ];
           trusted_proxies = [ "127.0.0.1" ];
           overwriteprotocol = "https";
         };

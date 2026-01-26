@@ -28,15 +28,15 @@ in
     services = {
       authentik = {
         enable = true;
-        environmentFile = config.secrets."services/authentik/env".path;
+        environmentFile = config.sops.secrets."services/authentik/env".path;
         settings = {
           disable_startup_analytics = true;
           avatars = "initials";
         };
       };
       caddy = {
-        virtualHost."authentik.${config.holynix.services.globalSettings.domain}" = {
-          serverAliases = [ "authentik.holypenguin.net" ];
+        virtualHosts."authentik.${config.holynix.services.globalSettings.hostFQDN}" = {
+          serverAliases = [ "authentik.${config.holynix.services.globalSettings.domain}" ];
           extraConfig = ''
             reverse_proxy localhost:9443 
           '';
