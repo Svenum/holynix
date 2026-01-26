@@ -18,7 +18,7 @@ in
     };
     enableLdap = mkOption {
       type = bool;
-      default = false;
+      default = true;
       description = "Enable LDAP Outpost";
     };
   };
@@ -33,6 +33,10 @@ in
           disable_startup_analytics = true;
           avatars = "initials";
         };
+      };
+      authentik-ldap = {
+        enable = cfg.enableLdap;
+        environmentFile = config.sops.secrets."services/authentik/env".path;
       };
       caddy = {
         virtualHosts."authentik.${config.holynix.services.globalSettings.hostFQDN}" = {
