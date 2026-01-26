@@ -41,7 +41,7 @@ in
           adminuser = config.holynix.services.globalSettings.adminName;
           adminpassFile = secrets."services/nextcloud/adminpass".path;
           dbtype = "pgsql";
-          dbhost = "/var/run/postgresql/.s.PSQL.5432";
+          dbhost = "/var/run/postgresql";
         };
         settings = {
           trusted_domains = [ "nextcloud.holypenguin.net" ];
