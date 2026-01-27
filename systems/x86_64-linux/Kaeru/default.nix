@@ -18,6 +18,7 @@
     #};
     services.compose = {
       enable = true;
+      uid = 992;
       stacks = [
         {
           name = "test";
