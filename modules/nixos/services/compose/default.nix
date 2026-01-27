@@ -16,7 +16,7 @@ let
       composePath = pkgs.writeText "compose.yaml" (generators.toYAML { } attrs.composeContent);
     in
     {
-      "${attrs.name}-compose" = {
+      "${attrs.name}-compose" = mkIf attrs.enable {
         enable = true;
         wantedBy = [ "multi-user.target" ];
         path = with pkgs; [
@@ -27,8 +27,9 @@ let
         serviceConfig = {
           Type = "simple";
           User = cfg.uid;
-          ExecStart = "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} up";
-          ExecStop = "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} stop";
+          ExecStartPre = mkIf attrs.autoUpdate "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} pull";
+          ExecStart = "${lib.getExe pkgs.podman} compose --all-resources -p ${attrs.name} -f ${composePath} up";
+          ExecStop = "${lib.getExe pkgs.podman} compose --all-resources -p ${attrs.name} -f ${composePath} stop";
         };
         unitConfig = {
           StartLimitInterval = 10;
@@ -62,6 +63,16 @@ in
       type = nullOr (
         listOf (submodule {
           options = {
+            enable = mkOption {
+              type = bool;
+              default = true;
+              description = "Enable stack";
+            };
+            autoUpdate = mkOption {
+              type = bool;
+              default = true;
+              description = "Auto update images";
+            };
             composeContent = mkOption {
               type = nullOr attrs;
               default = null;
