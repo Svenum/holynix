@@ -75,7 +75,7 @@ in
   config = mkIf cfg.enable {
     systemd.services = foldl (acc: x: acc // mkService x) { } cfg.stacks;
 
-    users.users.${cfg.user} = {
+    users.users.compose = {
       isSystemUser = true;
       inherit (cfg) uid;
       group = "compose";
