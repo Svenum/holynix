@@ -71,13 +71,13 @@ let
   };
 
   mkQuadlet = attrs: {
-    ${attrs.interface} = {
+    ${attrs.name} = {
       autoStart = true;
       networkConfig = {
         driver = "ipvlan";
         gateways = [ attrs.address ];
         subnets = [ "${attrs.subnet}/${toString attrs.prefixLength}" ];
-        options.parent = attrs.interface;
+        options.parent = attrs.name;
       };
     };
   };
