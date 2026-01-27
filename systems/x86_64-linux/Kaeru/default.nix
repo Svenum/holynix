@@ -9,12 +9,27 @@ in
   imports = [
     ./hardware.nix
     ./smb.nix
-  ]
-  ++ containerImports;
+  ];
+  #++ containerImports;
   holynix = {
-    services = {
-      nextcloud.enable = true;
-      authentik.enable = true;
+    #services = {
+    #  nextcloud.enable = true;
+    #  authentik.enable = true;
+    #};
+    services.compose = {
+      enable = true;
+      stacks = [
+        {
+          name = "test";
+          composeContent = {
+            services = {
+              helllo = {
+                image = "hello-world:latest";
+              };
+            };
+          };
+        }
+      ];
     };
     boot = {
       memtest = true;
