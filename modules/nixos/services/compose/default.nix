@@ -19,7 +19,10 @@ let
       "${attrs.name}-compose" = {
         enable = true;
         wantedBy = [ "multi-user.target" ];
-        path = [ pkgs.podman ];
+        path = with pkgs; [
+          podman
+          podman-compose
+        ];
         serviceConfig = {
           Type = "simple";
           User = config.users.users.${cfg.user}.uid;
