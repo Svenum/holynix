@@ -34,6 +34,29 @@
             };
           };
         }
+        {
+          name = "default";
+          composeContent = {
+            networks = {
+              proxy = {
+                driver = "bridge";
+                internal = true;
+              };
+              br0 = {
+                driver = "ipvlan";
+                driver_ops = {
+                  parent = "br0";
+                };
+                ipam.config = [
+                  {
+                    gateway = "172.16.0.1";
+                    subnet = "172.16.0.0/24";
+                  }
+                ];
+              };
+            };
+          };
+        }
       ];
     };
     boot = {
