@@ -52,6 +52,11 @@ in
       default = 123;
       description = "ID under whicht the compose services should run";
     };
+    dataDir = mkOption {
+      type = str;
+      default = "/var/lib/compose";
+      description = "Direcotry for the compose";
+    };
     stacks = mkOption {
       type = nullOr (
         listOf (submodule {
@@ -81,6 +86,8 @@ in
       group = "compose";
       linger = true;
       autoSubUidGidRange = true;
+      home = cfg.dataDir;
+      createHome = true;
     };
 
     users.groups.compose = { };
