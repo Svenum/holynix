@@ -9,6 +9,7 @@ with lib;
 with lib.types;
 let
   cfg = config.holynix.services.compose;
+  podmanCfg = config.holynix.virtualisation.podman;
 
   mkService =
     attrs:
@@ -45,6 +46,19 @@ let
         restartIfChanged = true;
       };
     };
+
+  mkBridge = attrs: {
+    ${attrs.name} = {
+      autoStart = true;
+      rootlessConfig.uid = cfg.uid;
+      networkConfig = {
+        driver = "ipvlan";
+        gateways = [ attrs.address ];
+        subnets = [ "${attrs.subnet}/${toString attrs.prefixLength}" ];
+        options.parent = attrs.name;
+      };
+    };
+  };
 in
 {
   options.holynix.services.compose = {
@@ -90,6 +104,14 @@ in
   };
 
   config = mkIf cfg.enable {
+    holynix.virtualisation.podman.enable = true;
+
+    virtualisation.quadlet = {
+      networks = mkIf (podmanCfg.bridges != null) (
+        foldl (acc: x: acc // mkBridge x) { } podmanCfg.bridges
+      );
+    };
+
     systemd.services = foldl (acc: x: acc // mkService x) { } cfg.stacks;
 
     users.users.compose = {

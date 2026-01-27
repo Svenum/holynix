@@ -807,11 +807,11 @@
     },
     "quadlet": {
       "locked": {
-        "lastModified": 1768997036,
-        "narHash": "sha256-+jVDUseT+7tMK5q12/AprcHGphFCCGhmCzCYRq0OwHc=",
+        "lastModified": 1769552261,
+        "narHash": "sha256-4hM/UqlpWcppU7/c2+ohe+bqLOG8hMNeHWkdBBmPfmg=",
         "owner": "Svenum",
         "repo": "quadlet-nix",
-        "rev": "de761d0bc3ed66df9a1e91d0dd0d61e65b16491c",
+        "rev": "21483b094bcb1c19b1cc879aa97315efc3d28ba2",
         "type": "github"
       },
       "original": {

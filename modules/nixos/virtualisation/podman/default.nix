@@ -69,18 +69,6 @@ let
       ];
     };
   };
-
-  mkQuadlet = attrs: {
-    ${attrs.name} = {
-      autoStart = true;
-      networkConfig = {
-        driver = "ipvlan";
-        gateways = [ attrs.address ];
-        subnets = [ "${attrs.subnet}/${toString attrs.prefixLength}" ];
-        options.parent = attrs.name;
-      };
-    };
-  };
 in
 {
   options.holynix.virtualisation.podman = {
@@ -147,8 +135,6 @@ in
         # Required for containers under podman-compose to be able to talk to each other.
         defaultNetwork.settings.dns_enabled = true;
       };
-      # Create podman bridge
-      quadlet.networks = foldl (acc: x: acc // mkQuadlet x) { } cfg.bridges;
     };
     hardware.nvidia-container-toolkit.enable = config.holynix.gpu.nvidia.enable;
 
