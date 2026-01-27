@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 #let
 #  containerImports = lib.filter (n: lib.strings.hasSuffix ".nix" n) (
@@ -23,8 +23,12 @@
           name = "test";
           composeContent = {
             services = {
-              helllo = {
-                image = "hello-world:latest";
+              ngnix = {
+                image = "nginx:alpine";
+                ports = [ "8080:80" ];
+                volumes = [
+                  "${pkgs.writeText ''index.html'' ''<h1>Hello World</h1>''}:/usr/share/nginx/html/index.html:ro"
+                ];
               };
             };
           };
