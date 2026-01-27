@@ -28,10 +28,7 @@ let
         unitConfig = {
           StartLimitInterval = 10;
         };
-        after = [ "podman.service" ];
-        requires = [ "podman.service" ];
 
-        # Restart the service if the docker-compose file changes
         restartIfChanged = true;
       };
     };
