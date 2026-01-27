@@ -1,10 +1,10 @@
 { lib, ... }:
 
-let
-  containerImports = lib.filter (n: lib.strings.hasSuffix ".nix" n) (
-    lib.filesystem.listFilesRecursive ./container
-  );
-in
+#let
+#  containerImports = lib.filter (n: lib.strings.hasSuffix ".nix" n) (
+#    lib.filesystem.listFilesRecursive ./container
+#  );
+#in
 {
   imports = [
     ./hardware.nix
