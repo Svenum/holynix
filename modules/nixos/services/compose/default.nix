@@ -28,8 +28,8 @@ let
           Type = "simple";
           User = cfg.uid;
           ExecStartPre = mkIf attrs.autoUpdate "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} pull";
-          ExecStart = "${lib.getExe pkgs.podman} compose --all-resources -p ${attrs.name} -f ${composePath} up";
-          ExecStop = "${lib.getExe pkgs.podman} compose --all-resources -p ${attrs.name} -f ${composePath} stop";
+          ExecStart = "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} up";
+          ExecStop = "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} stop";
         };
         unitConfig = {
           StartLimitInterval = 10;
