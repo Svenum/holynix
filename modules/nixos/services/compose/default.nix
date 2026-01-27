@@ -22,6 +22,7 @@ let
         path = with pkgs; [
           podman
           podman-compose
+          su
         ];
         serviceConfig = {
           Type = "simple";
