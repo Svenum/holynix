@@ -19,11 +19,12 @@ let
       "${attrs.name}-compose" = {
         enable = true;
         wantedBy = [ "multi-user.target" ];
+        path = [ pkgs.podman ];
         serviceConfig = {
           Type = "simple";
           User = config.users.users.${cfg.user}.uid;
-          ExecStart = "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} up";
-          ExecStop = "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} stop";
+          ExecStart = "podman compose -p ${attrs.name} -f ${composePath} up";
+          ExecStop = "podman compose -p ${attrs.name} -f ${composePath} stop";
         };
         unitConfig = {
           StartLimitInterval = 10;
