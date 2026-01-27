@@ -25,7 +25,7 @@ let
         ];
         serviceConfig = {
           Type = "simple";
-          User = config.users.users.${cfg.user}.uid;
+          User = cfg.user;
           ExecStart = "${lib.getExe pkgs.podman-compose} -p ${attrs.name} -f ${composePath} up";
           ExecStop = "${lib.getExe pkgs.podman-compose} -p ${attrs.name} -f ${composePath} stop";
         };
