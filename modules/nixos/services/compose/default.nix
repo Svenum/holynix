@@ -25,14 +25,21 @@ let
         ];
         serviceConfig = {
           Type = "simple";
-          User = cfg.user;
+          User = cfg.uid;
           ExecStart = "${lib.getExe pkgs.podman-compose} -p ${attrs.name} -f ${composePath} up";
           ExecStop = "${lib.getExe pkgs.podman-compose} -p ${attrs.name} -f ${composePath} stop";
         };
         unitConfig = {
           StartLimitInterval = 10;
+          After = [
+            "user@${toString cfg.uid}.service"
+            "linger-users.service"
+          ];
+          Wants = [ "linger-users.service" ];
+          Requires = [
+            "user@${toString cfg.uid}.service"
+          ];
         };
-
         restartIfChanged = true;
       };
     };
@@ -40,10 +47,10 @@ in
 {
   options.holynix.services.compose = {
     enable = mkEnableOption "Enable compose Services";
-    user = mkOption {
-      type = str;
-      default = "compose";
-      description = "Name under whicht the compose services should run";
+    uid = mkOption {
+      type = int;
+      default = 123;
+      description = "ID under whicht the compose services should run";
     };
     stacks = mkOption {
       type = nullOr (
@@ -70,7 +77,10 @@ in
 
     users.users.${cfg.user} = {
       isSystemUser = true;
+      inherit (cfg) uid;
       group = "compose";
+      linger = true;
+      autoSubUidGidRange = true;
     };
 
     users.groups.compose = { };
