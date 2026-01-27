@@ -91,6 +91,7 @@
             name = "br0";
             interface = "enp0s31f6";
             address = "172.16.0.14";
+            subnet = "172.16.0.0";
             prefixLength = 24;
             dns = [
               "172.16.0.3"
