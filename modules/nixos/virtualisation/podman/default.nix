@@ -69,6 +69,18 @@ let
       ];
     };
   };
+
+  mkQuadlet = attrs: {
+    ${attrs.interface} = {
+      autoStart = true;
+      networkConfig = {
+        driver = "ipvlan";
+        gateways = [ attrs.address ];
+        subnets = [ "${attrs.subnet}/${toString attrs.prefixLength}" ];
+        options.parent = attrs.interface;
+      };
+    };
+  };
 in
 {
   options.holynix.virtualisation.podman = {
@@ -98,6 +110,10 @@ in
             address = mkOption {
               type = str;
               description = "Ip address of the parent interface";
+            };
+            subnet = mkOption {
+              type = str;
+              description = "Subnet of the network without mask";
             };
             prefixLength = mkOption {
               type = ints.between 0 32;
@@ -131,6 +147,8 @@ in
         # Required for containers under podman-compose to be able to talk to each other.
         defaultNetwork.settings.dns_enabled = true;
       };
+      # Create podman bridge
+      quadlet.networks = foldl (acc: x: acc // mkQuadlet x) { } cfg.bridges;
     };
     hardware.nvidia-container-toolkit.enable = config.holynix.gpu.nvidia.enable;
 
@@ -156,7 +174,6 @@ in
     };
 
     # Bridge
-
     systemd.network = mkIf (cfg.bridges != null) {
       enable = true;
       netdevs = foldl (acc: x: acc // mkNetdevs x) { } cfg.bridges;
