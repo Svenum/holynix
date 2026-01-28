@@ -13,6 +13,9 @@ in
 
   virtualisation.quadlet.networks."proxy" = {
     autoStart = true;
+    rootlessConfig = {
+      inherit (config.holynix.services.compose) uid;
+    };
     networkConfig = {
       driver = "bridge";
       internal = true;
