@@ -30,9 +30,9 @@ let
           WorkingDirectory = cfg.dataDir;
           Type = "simple";
           User = cfg.uid;
-          ExecStartPre = mkIf attrs.autoUpdate "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} pull";
-          ExecStart = "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} up";
-          ExecStop = "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} stop";
+          ExecStartPre = mkIf attrs.autoUpdate "${lib.getExe pkgs.podman-compose} -p ${attrs.name} -f ${composePath} pull";
+          ExecStart = "${lib.getExe pkgs.podman-compose} -p ${attrs.name} -f ${composePath} up";
+          ExecStop = "${lib.getExe pkgs.podman-compose} -p ${attrs.name} -f ${composePath} down";
         };
         unitConfig = {
           StartLimitInterval = 10;
