@@ -84,7 +84,7 @@ in
                 STRATEGY_DYNAMIC_SHOW_DETAILS_BY_DEFAULT = "true";
               };
               volumes = [
-                "/run/user/${uid}/podman/podman.sock:/var/run/docker.sock"
+                "/run/user/${toString uid}/podman/podman.sock:/var/run/docker.sock"
               ];
               networks = [
                 "proxy"
