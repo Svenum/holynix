@@ -41,7 +41,7 @@ in
               ];
               networks = {
                 br0 = {
-                  ipv4_address = "172.16.0.10";
+                  ipv4_address = "172.16.0.220";
                 };
                 proxy = { };
               };
