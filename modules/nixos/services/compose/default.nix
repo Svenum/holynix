@@ -26,6 +26,8 @@ let
           su
         ];
         serviceConfig = {
+          EnvironmentFile = mkIf (attrs.envFile != null) attrs.envFile;
+          WorkingDirectory = "${cfg.dataDir}/${attrs.name}";
           Type = "simple";
           User = cfg.uid;
           ExecStartPre = mkIf attrs.autoUpdate "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} pull";
@@ -63,6 +65,11 @@ in
 {
   options.holynix.services.compose = {
     enable = mkEnableOption "Enable compose Services";
+    user = mkOption {
+      type = str;
+      default = "compose";
+      description = "name of the user";
+    };
     uid = mkOption {
       type = int;
       default = 123;
@@ -97,6 +104,11 @@ in
               default = "";
               description = "Name of the stack";
             };
+            envFile = mkOption {
+              type = nullOr str;
+              default = null;
+              description = "Path to env File used for secrets";
+            };
           };
         })
       );
@@ -114,16 +126,16 @@ in
 
     systemd.services = foldl (acc: x: acc // mkService x) { } cfg.stacks;
 
-    users.users.compose = {
+    users.users.${cfg.user} = {
       isSystemUser = true;
       inherit (cfg) uid;
-      group = "compose";
+      group = cfg.user;
       linger = true;
       autoSubUidGidRange = true;
       home = cfg.dataDir;
       createHome = true;
     };
 
-    users.groups.compose = { };
+    users.groups.${cfg.user} = { };
   };
 }

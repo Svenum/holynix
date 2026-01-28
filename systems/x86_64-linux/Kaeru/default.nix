@@ -9,6 +9,7 @@
   imports = [
     ./hardware.nix
     ./smb.nix
+    ./stacks.nix
   ];
   #++ containerImports;
   holynix = {
@@ -16,26 +17,6 @@
     #  nextcloud.enable = true;
     #  authentik.enable = true;
     #};
-    services.compose = {
-      enable = true;
-      uid = 992;
-      stacks = [
-        {
-          name = "test";
-          composeContent = {
-            services = {
-              ngnix = {
-                image = "nginx:alpine";
-                ports = [ "8080:80" ];
-                volumes = [
-                  "${pkgs.writeText ''index.html'' ''<h1>Hello World</h1>''}:/usr/share/nginx/html/index.html:ro"
-                ];
-              };
-            };
-          };
-        }
-      ];
-    };
     boot = {
       memtest = true;
       uefi-shell = true;
