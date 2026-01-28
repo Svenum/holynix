@@ -92,7 +92,7 @@ in
                 TRAEFIK_ENTRYPOINTS_LDAPS_ADDRESS = ":636";
 
                 # Entry Points - SFTP Pelican
-                TRAEFIK_ENTRYPOINTS_SFTP_PELICAN_ADDRESS = ":2022";
+                TRAEFIK_ENTRYPOINTS_PELICAN_ADDRESS = ":2022";
 
                 # Providers
                 TRAEFIK_PROVIDERS_PROVIDERSTHROTTLEDURATION = "5s";
