@@ -37,7 +37,7 @@ in
               image = "docker.io/traefik:latest";
               volumes = [
                 "/mnt/container/proxy/traefik:/etc/traefik/"
-                "/run/podman/podman.sock:/var/run/docker.sock:z"
+                "/run/podman/podman.sock:/var/run/docker.sock"
               ];
               networks = {
                 br0 = {
@@ -45,7 +45,6 @@ in
                 };
                 proxy = { };
               };
-              security_opt = [ "label=type:container_runtime_t" ];
               environment = {
                 CLOUDFALRE_EMAIL = "\${CLOUDFLARE_EMAIL}";
                 CLOUDFLARE_DNS_API_TOKEN = "\${CLOUDFLARE_DNS_API_TOKEN}";
@@ -65,7 +64,7 @@ in
                 # Entry Points - HTTPS
                 TRAEFIK_ENTRYPOINTS_HTTPS_ADDRESS = ":443";
                 TRAEFIK_ENTRYPOINTS_HTTPS_HTTP_TLS_CERTRESOLVER = "letsencrypt";
-                TRAEFIK_ENTRYPOINTS_HTTPS_HTTP_MIDDLEWARES = "securityHeaders";
+                TRAEFIK_ENTRYPOINTS_HTTPS_HTTP_MIDDLEWARES = "securityheaders";
                 TRAEFIK_ENTRYPOINTS_HTTPS_TRANSPORT_RESPONDINGTIMEOUTS_READTIMEOUT = "0s";
 
                 # Middleware - Security Headers
@@ -131,6 +130,7 @@ in
                 "traefik.enable" = "true";
                 "traefik.http.routers.traefik.entryPoints" = "https";
                 "traefik.http.services.traefik.loadbalancer.server.port" = "8080";
+                "service" = "traefik";
               };
             };
 
