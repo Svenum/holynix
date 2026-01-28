@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ ... }:
 
 #let
 #  containerImports = lib.filter (n: lib.strings.hasSuffix ".nix" n) (
