@@ -42,8 +42,7 @@ in
 
           services = {
             traefik = {
-              restart = "unless-stopped";
-              image = "traefik:latest";
+              image = "docker.io/traefik:latest";
               volumes = [
                 "./proxy/traefik:/etc/traefik/"
                 "/run/user/${toString uid}/podman/podman.sock:/var/run/docker.sock"
@@ -70,8 +69,7 @@ in
             };
 
             sablier = {
-              restart = "unless-stopped";
-              image = "sablierapp/sablier:1.10.2";
+              image = "docker.io/sablierapp/sablier:1.11.1";
               environment = {
                 PROVIDER_NAME = "podman";
                 SERVER_PORT = "10000";
