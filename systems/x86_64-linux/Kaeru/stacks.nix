@@ -2,7 +2,6 @@
 
 let
   inherit (config.sops) secrets;
-  inherit (config.holynix.services.compose) uid;
 in
 {
   sops.secrets = {
