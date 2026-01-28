@@ -46,7 +46,7 @@ in
               image = "traefik:latest";
               volumes = [
                 "./proxy/traefik:/etc/traefik/"
-                "/var/run/docker.sock:/var/run/docker.sock"
+                "/run/user/${toString uid}/podman/podman.sock:/var/run/docker.sock"
               ];
               networks = {
                 br0 = {
