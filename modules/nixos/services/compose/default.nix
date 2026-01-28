@@ -27,21 +27,21 @@ let
         ];
         serviceConfig = {
           EnvironmentFile = mkIf (attrs.envFile != null) attrs.envFile;
-          WorkingDirectory = cfg.dataDir;
+          WorkingDirectory = mkIf attrs.rootless cfg.dataDir;
           Type = "simple";
-          User = cfg.uid;
+          User = mkIf attrs.rootless cfg.uid;
           ExecStartPre = mkIf attrs.autoUpdate "${lib.getExe pkgs.podman-compose} -p ${attrs.name} -f ${composePath} pull";
           ExecStart = "${lib.getExe pkgs.podman-compose} -p ${attrs.name} -f ${composePath} up";
           ExecStop = "${lib.getExe pkgs.podman-compose} -p ${attrs.name} -f ${composePath} down";
         };
         unitConfig = {
           StartLimitInterval = 10;
-          After = [
+          After = mkIf attrs.rootless [
             "user@${toString cfg.uid}.service"
             "linger-users.service"
           ];
-          Wants = [ "linger-users.service" ];
-          Requires = [
+          Wants = mkIf attrs.rootless [ "linger-users.service" ];
+          Requires = mkIf attrs.rootless [
             "user@${toString cfg.uid}.service"
           ];
         };
@@ -52,7 +52,6 @@ let
   mkBridge = attrs: {
     ${attrs.name} = {
       autoStart = true;
-      rootlessConfig.uid = cfg.uid;
       networkConfig = {
         driver = "ipvlan";
         gateways = [ attrs.address ];
@@ -66,19 +65,19 @@ in
   options.holynix.services.compose = {
     enable = mkEnableOption "Enable compose Services";
     user = mkOption {
-      type = str;
+      type = nullOr str;
       default = "compose";
-      description = "name of the user";
+      description = "name of the user if stack is rootless";
     };
     uid = mkOption {
-      type = int;
+      type = nullOr int;
       default = 123;
-      description = "ID under whicht the compose services should run";
+      description = "ID under whicht the compose services should run if is rootless";
     };
     dataDir = mkOption {
-      type = str;
+      type = nullOr str;
       default = "/var/lib/compose";
-      description = "Direcotry for the compose";
+      description = "Direcotry for the compose user if stack is rootless";
     };
     stacks = mkOption {
       type = nullOr (
@@ -109,6 +108,11 @@ in
               default = null;
               description = "Path to env File used for secrets";
             };
+            rootless = mkOption {
+              type = bool;
+              default = false;
+              description = "run stack rootless";
+            };
           };
         })
       );
@@ -125,15 +129,16 @@ in
     };
 
     systemd.services = foldl (acc: x: acc // mkService x) { } cfg.stacks;
-
-    users.users.${cfg.user} = {
-      isSystemUser = true;
-      inherit (cfg) uid;
-      group = cfg.user;
-      linger = true;
-      autoSubUidGidRange = true;
-      home = cfg.dataDir;
-      createHome = true;
+    users.users = mkIf (cfg.user != null) {
+      ${cfg.user} = {
+        isSystemUser = true;
+        inherit (cfg) uid;
+        group = cfg.user;
+        linger = true;
+        autoSubUidGidRange = true;
+        home = cfg.dataDir;
+        createHome = true;
+      };
     };
 
     users.groups.${cfg.user} = { };

@@ -2,23 +2,14 @@
 
 let
   inherit (config.sops) secrets;
-  inherit (config.holynix.services.compose) uid;
-  inherit (config.holynix.services.compose) dataDir;
 in
 {
-  boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 80;
   sops.secrets = {
-    "compose/proxy" = {
-      owner = config.holynix.services.compose.user;
-      group = config.holynix.services.compose.user;
-    };
+    "compose/proxy" = { };
   };
 
   virtualisation.quadlet.networks."proxy" = {
     autoStart = true;
-    rootlessConfig = {
-      inherit uid;
-    };
     networkConfig = {
       driver = "bridge";
       internal = true;
@@ -27,7 +18,6 @@ in
 
   holynix.services.compose = {
     enable = true;
-    uid = 992;
     stacks = [
       {
         name = "proxy";
@@ -46,8 +36,8 @@ in
             traefik = {
               image = "docker.io/traefik:latest";
               volumes = [
-                "${dataDir}/proxy/traefik:/etc/traefik/"
-                "/run/user/${toString uid}/podman/podman.sock:/var/run/docker.sock:z"
+                "/mnt/container/proxy/traefik:/etc/traefik/"
+                "/run/podman/podman.sock:/var/run/docker.sock:z"
               ];
               networks = {
                 br0 = {
@@ -158,7 +148,7 @@ in
                 SABLIER_STRATEGY_DYNAMIC_SHOW_DETAILS_BY_DEFAULT = "true";
               };
               volumes = [
-                "/run/user/${toString uid}/podman/podman.sock:/run/podman/podman.sock"
+                "/run/podman/podman.sock:/run/podman/podman.sock"
               ];
               networks = [
                 "proxy"
