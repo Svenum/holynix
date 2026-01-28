@@ -2,6 +2,7 @@
 
 let
   inherit (config.sops) secrets;
+  inherit (config.holynix.services.compose) uid;
 in
 {
   sops.secrets = {
@@ -14,7 +15,7 @@ in
   virtualisation.quadlet.networks."proxy" = {
     autoStart = true;
     rootlessConfig = {
-      inherit (config.holynix.services.compose) uid;
+      inherit uid;
     };
     networkConfig = {
       driver = "bridge";
@@ -83,7 +84,7 @@ in
                 STRATEGY_DYNAMIC_SHOW_DETAILS_BY_DEFAULT = "true";
               };
               volumes = [
-                "/var/run/docker.sock:/var/run/docker.sock"
+                "/run/user/${uid}/podman/podman.sock:/var/run/docker.sock"
               ];
               networks = [
                 "proxy"
