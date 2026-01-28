@@ -51,8 +51,8 @@ in
                 proxy = { };
               };
               environment = {
-                CLOUDFALRE_EMAIL = "$${CLOUDFLARE_EMAIL}";
-                CLOUDFLARE_DNS_API_TOKEN = "$${CLOUDFLARE_DNS_API_TOKEN}";
+                CLOUDFALRE_EMAIL = "\${CLOUDFLARE_EMAIL}";
+                CLOUDFLARE_DNS_API_TOKEN = "\${CLOUDFLARE_DNS_API_TOKEN}";
               };
               dns = [
                 "9.9.9.9"

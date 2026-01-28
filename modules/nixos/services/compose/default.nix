@@ -27,7 +27,7 @@ let
         ];
         serviceConfig = {
           EnvironmentFile = mkIf (attrs.envFile != null) attrs.envFile;
-          WorkingDirectory = "${cfg.dataDir}/${attrs.name}";
+          WorkingDirectory = cfg.dataDir;
           Type = "simple";
           User = cfg.uid;
           ExecStartPre = mkIf attrs.autoUpdate "${lib.getExe pkgs.podman} compose -p ${attrs.name} -f ${composePath} pull";
