@@ -5,6 +5,7 @@ let
   inherit (config.holynix.services.compose) uid;
 in
 {
+  boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 80;
   sops.secrets = {
     "compose/proxy" = {
       owner = config.holynix.services.compose.user;
@@ -45,7 +46,7 @@ in
               image = "docker.io/traefik:latest";
               volumes = [
                 "./proxy/traefik:/etc/traefik/"
-                "/run/user/${toString uid}/podman/podman.sock:/var/run/docker.sock"
+                "/run/user/${toString uid}/podman/podman.sock:/var/run/docker.sock:z"
               ];
               networks = {
                 br0 = {
@@ -53,6 +54,7 @@ in
                 };
                 proxy = { };
               };
+              security_opt = [ "label=type:container_runtime_t" ];
               environment = {
                 CLOUDFALRE_EMAIL = "\${CLOUDFLARE_EMAIL}";
                 CLOUDFLARE_DNS_API_TOKEN = "\${CLOUDFLARE_DNS_API_TOKEN}";
@@ -155,7 +157,7 @@ in
                 STRATEGY_DYNAMIC_SHOW_DETAILS_BY_DEFAULT = "true";
               };
               volumes = [
-                "/run/user/${toString uid}/podman/podman.sock:/var/run/docker.sock"
+                "/run/user/${toString uid}/podman/podman.sock:/run/podman/podman.sock"
               ];
               networks = [
                 "proxy"
