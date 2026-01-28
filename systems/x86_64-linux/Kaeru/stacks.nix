@@ -3,6 +3,7 @@
 let
   inherit (config.sops) secrets;
   inherit (config.holynix.services.compose) uid;
+  inherit (config.holynix.services.compose) dataDir;
 in
 {
   boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 80;
@@ -45,7 +46,7 @@ in
             traefik = {
               image = "docker.io/traefik:latest";
               volumes = [
-                "./proxy/traefik:/etc/traefik/"
+                "${dataDir}/proxy/traefik:/etc/traefik/"
                 "/run/user/${toString uid}/podman/podman.sock:/var/run/docker.sock:z"
               ];
               networks = {
@@ -146,15 +147,15 @@ in
             sablier = {
               image = "docker.io/sablierapp/sablier:1.11.1";
               environment = {
-                PROVIDER_NAME = "podman";
-                SERVER_PORT = "10000";
-                SERVER_BASE_PATH = "/";
-                SESSIONS_DEFAULT_DURATION = "5m";
-                SESSIONS_EXPIRATION_INTERVAL = "1m";
-                LOGGING_LEVEL = "info";
-                STRATEGY_DYNAMIC_DEFAULT_THEME = "ghost";
-                STRATEGY_DYNAMIC_DEFAULT_REFRESH_FREQUENCY = "5s";
-                STRATEGY_DYNAMIC_SHOW_DETAILS_BY_DEFAULT = "true";
+                SABLIER_PROVIDER_NAME = "podman";
+                SABLIER_SERVER_PORT = "10000";
+                SABLIER_SERVER_BASE_PATH = "/";
+                SABLIER_SESSIONS_DEFAULT_DURATION = "5m";
+                SABLIER_SESSIONS_EXPIRATION_INTERVAL = "1m";
+                SABLIER_LOGGING_LEVEL = "info";
+                SABLIER_STRATEGY_DYNAMIC_DEFAULT_THEME = "ghost";
+                SABLIER_STRATEGY_DYNAMIC_DEFAULT_REFRESH_FREQUENCY = "5s";
+                SABLIER_STRATEGY_DYNAMIC_SHOW_DETAILS_BY_DEFAULT = "true";
               };
               volumes = [
                 "/run/user/${toString uid}/podman/podman.sock:/run/podman/podman.sock"
