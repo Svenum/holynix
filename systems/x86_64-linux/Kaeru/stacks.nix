@@ -73,7 +73,7 @@ in
               restart = "unless-stopped";
               image = "sablierapp/sablier:1.8.5";
               environment = {
-                PROVIDER_NAME = "docker";
+                PROVIDER_NAME = "podman";
                 SERVER_PORT = "10000";
                 SERVER_BASE_PATH = "/";
                 SESSIONS_DEFAULT_DURATION = "5m";
