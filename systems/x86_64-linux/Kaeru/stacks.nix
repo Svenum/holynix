@@ -71,7 +71,7 @@ in
 
             sablier = {
               restart = "unless-stopped";
-              image = "sablierapp/sablier:1.8.5";
+              image = "sablierapp/sablier:1.10.2";
               environment = {
                 PROVIDER_NAME = "podman";
                 SERVER_PORT = "10000";
