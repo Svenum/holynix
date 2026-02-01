@@ -165,5 +165,30 @@ in
       netdevs = foldl (acc: x: acc // mkNetdevs x) { } cfg.bridges;
       networks = foldl (acc: x: acc // mkNetworks x) { } cfg.bridges;
     };
+
+    networking.firewall.interfaces =
+      let
+        netCfg = config.virtualisation.quadlet.networks;
+        networksWithInterface = builtins.filter (
+          name:
+          # Only create Network rule if:
+          # 1) networkConfig has "interfaceName" != null
+          # 2) networkConfig has "driver" == "bridge"
+          netCfg.${name}.networkConfig ? interfaceName
+          && netCfg.${name}.networkConfig ? driver
+          && netCfg.${name}.networkConfig.driver == "bridge"
+          && netCfg.${name}.networkConfig.interfaceName != null
+        ) (builtins.attrNames netCfg);
+
+        firewallConfig = builtins.listToAttrs (
+          map (name: {
+            name = netCfg.${name}.networkConfig.interfaceName;
+            value = {
+              allowedUDPPorts = [ 53 ];
+            };
+          }) networksWithInterface
+        );
+      in
+      lib.mkIf config.networking.firewall.enable firewallConfig;
   };
 }

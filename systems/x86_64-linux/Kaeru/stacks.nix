@@ -13,6 +13,7 @@ in
     networkConfig = {
       driver = "bridge";
       internal = true;
+      interfaceName = "proxy";
     };
   };
 

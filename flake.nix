@@ -43,10 +43,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    quadlet = {
-      #url = "github:SEIAROTg/quadlet-nix";
-      url = "github:Svenum/quadlet-nix";
-    };
+    quadlet.url = "github:SEIAROTg/quadlet-nix";
 
     authentik-nix.url = "github:nix-community/authentik-nix";
 
