@@ -13,7 +13,7 @@ in
     networkConfig = {
       driver = "bridge";
       internal = true;
-      interfaceName = "proxy";
+      interfaceName = "podman2";
     };
   };
 
