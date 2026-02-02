@@ -73,8 +73,8 @@ services:
       - 149.112.112.112
     labels:
       traefik.enable: true
-      traefik.http.routers.dashboard.entryPoints: "https"
-      traefik.http.routers.dashboard.service: "api@internal"
+      traefik.http.routers.traefik.entryPoints: https
+      traefik.http.services.traefik.loadbalancer.server.port: 8080
       service: "traefik"
 
       traefik.http.middlewares.securityheaders.headers.customresponseheaders.X-Robots-Tag: noindex,nofollow"
