@@ -32,28 +32,8 @@ services:
       # Entry Points - HTTPS
       TRAEFIK_ENTRYPOINTS_HTTPS_ADDRESS: ":443"
       TRAEFIK_ENTRYPOINTS_HTTPS_HTTP_TLS_CERTRESOLVER: "letsencrypt"
-      TRAEFIK_ENTRYPOINTS_HTTPS_HTTP_MIDDLEWARES: "securityheaders@internal"
+      TRAEFIK_ENTRYPOINTS_HTTPS_HTTP_MIDDLEWARES: "securityheaders"
       TRAEFIK_ENTRYPOINTS_HTTPS_TRANSPORT_RESPONDINGTIMEOUTS_READTIMEOUT: "0s"
-
-      # Middleware - Security Headers
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_CUSTOMRESPONSEHEADERS_X-Robots-Tag: "noindex,nofollow"
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_CUSTOMRESPONSEHEADERS_Server: ""
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_CUSTOMRESPONSEHEADERS_X-Forwarded-Proto: "https"
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_SSLPROXYHEADERS_X-Forwarded-Proto: "https"
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_REFERRERPOLICY: "strict-origin-when-cross-origin"
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_HOSTSPROXYHEADERS: "X-Forwarded-Host"
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_CUSTOMREQUESTHEADERS_X-Forwarded-Proto: "https"
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_ACCESSCONTROLALLOWMETHODS: "OPTION,POST,GET,PUT,DELETE"
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_ACCESSCONTROLALLOWHEADERS: "*"
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_ACCESSCONTROLALLOWORIGINLIST: "*"
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_ACCESSCONTROLMAXAGE: "100"
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_ADDVARYHEADER: true
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_CONTENTTYPENOSNIFF: true
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_BROWSERXSSFILTER: true
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_FORCESTSHEADER: true
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_STSINCLUDESUBDOMAINS: true
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_STSSECONDS: "63072000"
-      TRAEFIK_HTTP_MIDDLEWARES_SECURITYHEADERS_HEADERS_STSPRELOAD: true
 
       # Entry Points - LDAPS
       TRAEFIK_ENTRYPOINTS_LDAPS_ADDRESS: ":636"
@@ -96,6 +76,25 @@ services:
       traefik.http.routers.dashboard.entryPoints: "https"
       traefik.http.routers.dashboard.service: "api@internal"
       service: "traefik"
+
+      traefik.http.middlewares.securityheaders.headers.customresponseheaders.X-Robots-Tag: noindex,nofollow"
+      traefik.http.middlewares.securityheaders.headers.customresponseheaders.Server: ""
+      traefik.http.middlewares.securityheaders.headers.customresponseheaders.X-Forwarded-Proto: "https"
+      traefik.http.middlewares.securityheaders.headers.sslproxyheaders.X-Forwarded-Proto: "https"
+      traefik.http.middlewares.securityheaders.headers.referrerPolicy: "strict-origin-when-cross-origin"
+      traefik.http.middlewares.securityheaders.headers.hostsProxyHeaders: "X-Forwarded-Host"
+      traefik.http.middlewares.securityheaders.headers.customrequestheaders.X-Forwarded-Proto: "https"
+      traefik.http.middlewares.securityheaders.headers.accessControlAllowMethods: "OPTION,POST,GET,PUT,DELETE"
+      traefik.http.middlewares.securityheaders.headers.accessControlAllowHeaders: "*"
+      traefik.http.middlewares.securityheaders.headers.accessControlAllowOriginList: "*"
+      traefik.http.middlewares.securityheaders.headers.accessControlMaxAge: 100
+      traefik.http.middlewares.securityheaders.headers.addVaryHeader: true
+      traefik.http.middlewares.securityheaders.headers.contentTypeNosniff: true
+      traefik.http.middlewares.securityheaders.headers.browserXssFilter: true
+      traefik.http.middlewares.securityheaders.headers.forceSTSHeader: true
+      traefik.http.middlewares.securityheaders.headers.stsIncludeSubdomains: true
+      traefik.http.middlewares.securityheaders.headers.stsSeconds: 63072000
+      traefik.http.middlewares.securityheaders.headers.stsPreload: true
 
   sablier:
     image: docker.io/sablierapp/sablier:1.11.1
