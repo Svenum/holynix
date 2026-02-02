@@ -8,12 +8,23 @@ in
     "compose/proxy" = { };
   };
 
-  virtualisation.quadlet.networks."proxy" = {
-    autoStart = true;
-    networkConfig = {
-      driver = "bridge";
-      internal = true;
-      interfaceName = "br-proxy";
+  virtualisation.quadlet.networks = {
+    "br0" = {
+      autoStart = true;
+      networkConfig = {
+        driver = "ipvlan";
+        gateways = [ "172.16.0.1" ];
+        subnets = [ "172.16.0.0/24" ];
+        options.parent = "br0";
+      };
+    };
+    "proxy" = {
+      autoStart = true;
+      networkConfig = {
+        driver = "bridge";
+        internal = true;
+        interfaceName = "br-proxy";
+      };
     };
   };
 
