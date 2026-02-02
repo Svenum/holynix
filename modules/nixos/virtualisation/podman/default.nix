@@ -189,6 +189,6 @@ in
           }) networksWithInterface
         );
       in
-      lib.mkIf config.networking.firewall.enable firewallConfig;
+      firewallConfig;
   };
 }

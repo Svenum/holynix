@@ -47,6 +47,8 @@
 
     authentik-nix.url = "github:nix-community/authentik-nix";
 
+    compose2nix.url = "github:Svenum/compose2nix";
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs = {
@@ -119,6 +121,7 @@
           musnix.nixosModules.musnix
           jovian.nixosModules.jovian
           authentik-nix.nixosModules.default
+          quadlet.nixosModules.quadlet
         ];
 
         hosts = {
@@ -141,7 +144,7 @@
             };
           };
           Kaeru.modules = with inputs; [
-            quadlet.nixosModules.quadlet
+            compose2nix.nixosModules.compose-containers
           ];
         };
       };
