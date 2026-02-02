@@ -3,6 +3,7 @@ networks:
     external: true
   proxy:
     external: true
+  default: {}
 
 services:
   traefik:
@@ -14,6 +15,7 @@ services:
       br0:
         ipv4_address: 172.16.0.220
       proxy: {}
+      default: {}
     environment:
       # Global
       TRAEFIK_GLOBAL_CHECKNEWVERSION: "true"
@@ -111,3 +113,4 @@ services:
       - /run/podman/podman.sock:/run/podman/podman.sock
     networks:
       - proxy
+      - default
