@@ -22,7 +22,6 @@ in
     convertOptions = {
       env_files = secrets."compose/proxy".path;
       ignore_missing_env_files = true;
-      env_files_only = true;
       include_env_files = true;
     };
   };
