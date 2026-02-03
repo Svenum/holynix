@@ -35,6 +35,7 @@ in
       convertOptions = {
         env_files = secrets."compose/proxy".path;
         ignore_missing_env_files = true;
+        include_env_files = true;
       };
     };
     "vpn" = {
@@ -42,6 +43,7 @@ in
       convertOptions = {
         env_files = secrets."compose/vpn".path;
         ignore_missing_env_files = true;
+        include_env_files = true;
       };
     };
   };
