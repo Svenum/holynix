@@ -6,6 +6,7 @@ in
 {
   sops.secrets = {
     "compose/proxy" = { };
+    "compose/vpn" = { };
   };
 
   virtualisation.quadlet.networks = {
@@ -28,11 +29,20 @@ in
     };
   };
 
-  virtualisation.oci-containers.compose-containers."proxy" = {
-    path = ./compose/proxy.yml;
-    convertOptions = {
-      env_files = secrets."compose/proxy".path;
-      ignore_missing_env_files = true;
+  virtualisation.oci-containers.compose-containers = {
+    "proxy" = {
+      path = ./compose/proxy.yml;
+      convertOptions = {
+        env_files = secrets."compose/proxy".path;
+        ignore_missing_env_files = true;
+      };
+    };
+    "vpn" = {
+      path = ./compose/vpn.yml;
+      convertOptions = {
+        env_files = secrets."compose/vpn".path;
+        ignore_missing_env_files = true;
+      };
     };
   };
 
