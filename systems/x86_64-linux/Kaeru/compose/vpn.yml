@@ -1,43 +1,44 @@
 networks:
   default: {}
 
-gluetun:
-  image: qmcgaw/gluetun
-  environment:
-    VPN_SERVICE_PROVIDER: protonvpn
-    VPN_TYPE: wireguard
-    SERVER_COUNTRIES: "Switzerland"
-    STREAM_ONLY: on
-    PORT_FORWARD_ONLY: on
-    VPN_PORT_FORWARDING: on
-    TZ: Europe/Berlin
-  cap_add:
-    - NET_ADMIN
-  devices:
-    - /dev/net/tun:/dev/net/tun
-  sysctls:
-    net.ipv4.ip_forward: 1
-    net.ipv6.conf.all.forwarding: 1
-    net.ipv4.conf.all.src_valid_mark: 1
+services:
+  gluetun:
+    image: qmcgaw/gluetun
+    environment:
+      VPN_SERVICE_PROVIDER: protonvpn
+      VPN_TYPE: wireguard
+      SERVER_COUNTRIES: "Switzerland"
+      STREAM_ONLY: on
+      PORT_FORWARD_ONLY: on
+      VPN_PORT_FORWARDING: on
+      TZ: Europe/Berlin
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    sysctls:
+      net.ipv4.ip_forward: 1
+      net.ipv6.conf.all.forwarding: 1
+      net.ipv4.conf.all.src_valid_mark: 1
 
-tailscale:
-  image: tailscale/tailscale:latest
-  environment:
-    - TS_STATE_DIR=/var/lib/tailscale
-    - TS_USERSPACE=true
-    - TS_EXTRA_ARGS=--hostname=vpn-schweiz --reset --advertise-exit-node
-    - TS_TAILSCALED_EXTRA_ARGS=--encrypt-state=false
-  volumes:
-    - /mnt/container/tailscale/state:/var/lib/tailscale
-  devices:
-    - /dev/net/tun:/dev/net/tun
-    - /dev/tpm0:/dev/tpm0
-  cap_add:
-    - NET_ADMIN
-  sysctls:
-    net.ipv4.ip_forward: 1
-    net.ipv6.conf.all.forwarding: 1
-    net.ipv4.conf.all.src_valid_mark: 1
-  network_mode: service:gluetun
-  depends_on:
-    - gluetun
+  tailscale:
+    image: tailscale/tailscale:latest
+    environment:
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_USERSPACE=true
+      - TS_EXTRA_ARGS=--hostname=vpn-schweiz --reset --advertise-exit-node
+      - TS_TAILSCALED_EXTRA_ARGS=--encrypt-state=false
+    volumes:
+      - /mnt/container/tailscale/state:/var/lib/tailscale
+    devices:
+      - /dev/net/tun:/dev/net/tun
+      - /dev/tpm0:/dev/tpm0
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      net.ipv4.ip_forward: 1
+      net.ipv6.conf.all.forwarding: 1
+      net.ipv4.conf.all.src_valid_mark: 1
+    network_mode: service:gluetun
+    depends_on:
+      - gluetun
