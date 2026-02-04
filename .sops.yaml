@@ -7,6 +7,7 @@ keys:
     - &Yon age1ep4rg94wa7qgasz584jg8rddyyrcgta2fqsddc0qmlsek6wtvvgql0tnxz
     - &Kaeru age1tvwng7xyjekmc4nddvnmhu5zzrnmnryt8paa5cp6n73ak7gqzqdshysg8v
     - &Dashu1 age1jfzgcfl5hxyfdzmytgqn6dhqcf5g35775rp4597e28a3cpdktevqvzr56v
+    - &Dashu2 age1y77lt4wysh733g4r0sjvc4ufz5m9e3kmvzqnj5qcptyavfrfrukq3vwkfe
 creation_rules:
   - path_regex: secrets/Dashu.yaml
     key_groups:
@@ -15,6 +16,7 @@ creation_rules:
           - *node2
           - *node3
           - *Dashu1
+          - *Dashu2
   - path_regex: secrets/wireguard.yaml
     key_groups:
       - age:
