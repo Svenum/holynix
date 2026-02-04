@@ -41,7 +41,7 @@ in
       enable = true;
       clusterCIDR = "10.11.0.0/16";
       tokenFile = config.sops.secrets."kube_token".path;
-      serverAddress = "https://172.16.0.31:6443";
+      serverAddr = "https://172.16.0.31:6443";
     };
 
     network.enable = true;

@@ -27,7 +27,7 @@ in
       default = null;
       description = "Path to the file wich contains the token for k3s";
     };
-    serverAddress = mkOption {
+    serverAddr = mkOption {
       type = nullOr str;
       default = null;
       description = "Address of the first K3S node";
@@ -46,6 +46,7 @@ in
       inherit (cfg) tokenFile;
       extraFlags = "--cluster-cidr ${cfg.clusterCIDR}";
       clusterInit = true;
+      inherit (cfg) serverAddr;
     };
 
     environment.systemPackages =
