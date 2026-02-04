@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -101,7 +106,7 @@ in
               };
               shell = mkOption {
                 type = nullOr shellPackage;
-                default = null;
+                default = pkgs.zsh;
               };
               authorizedKeys = mkOption {
                 type = nullOr (listOf singleLineStr);
