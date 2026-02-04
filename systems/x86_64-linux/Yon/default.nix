@@ -208,9 +208,6 @@
     "wg_nl".restartUnits = [ "NetworkManager.service" ];
   };
 
-  # Enable musnix
-  musnix.enable = true;
-
   # ld
   programs.nix-ld = {
     enable = true;

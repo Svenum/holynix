@@ -1,22 +1,11 @@
 { ... }:
 
-#let
-#  containerImports = lib.filter (n: lib.strings.hasSuffix ".nix" n) (
-#    lib.filesystem.listFilesRecursive ./container
-#  );
-#in
 {
   imports = [
     ./hardware.nix
     ./smb.nix
-    ./stacks.nix
   ];
-  #++ containerImports;
   holynix = {
-    #services = {
-    #  nextcloud.enable = true;
-    #  authentik.enable = true;
-    #};
     boot = {
       memtest = true;
       uefi-shell = true;

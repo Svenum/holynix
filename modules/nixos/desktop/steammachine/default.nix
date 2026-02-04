@@ -39,7 +39,6 @@ in
     jovian = {
       steam = {
         enable = true;
-        desktopSession = config.services.displayManager.defaultSession;
         updater.splash = "vendor";
       };
       steamos.useSteamOSConfig = false;

@@ -3,11 +3,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     snowfall-lib = {
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,12 +38,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    quadlet.url = "github:SEIAROTg/quadlet-nix";
-
-    authentik-nix.url = "github:nix-community/authentik-nix";
-
-    compose2nix.url = "github:Svenum/compose2nix";
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs = {
@@ -71,11 +60,6 @@
     };
 
     catppuccin.url = "github:catppuccin/nix";
-
-    musnix = {
-      url = "github:musnix/musnix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
@@ -116,12 +100,8 @@
           solaar.nixosModules.default
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
-          nur.modules.nixos.default
           catppuccin.nixosModules.catppuccin
-          musnix.nixosModules.musnix
           jovian.nixosModules.jovian
-          authentik-nix.nixosModules.default
-          quadlet.nixosModules.quadlet
         ];
 
         hosts = {
@@ -134,17 +114,8 @@
             nixos-generators.nixosModules.qcow-efi
           ];
 
-          Yon = {
-            modules = with inputs; [
-              nixos-hardware.nixosModules.framework-16-7040-amd
-            ];
-
-            specialArgs = {
-              inherit (inputs) nur;
-            };
-          };
-          Kaeru.modules = with inputs; [
-            compose2nix.nixosModules.compose-containers
+          Yon.modules = with inputs; [
+            nixos-hardware.nixosModules.framework-16-7040-amd
           ];
         };
       };
