@@ -7,7 +7,7 @@ keys:
     - &Yon age1ep4rg94wa7qgasz584jg8rddyyrcgta2fqsddc0qmlsek6wtvvgql0tnxz
     - &Kaeru age1tvwng7xyjekmc4nddvnmhu5zzrnmnryt8paa5cp6n73ak7gqzqdshysg8v
 creation_rules:
-  - path_regex: secrets/kube.yaml
+  - path_regex: secrets/Dashu.yaml
     key_groups:
       - age:
           - *node1

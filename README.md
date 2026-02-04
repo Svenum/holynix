@@ -12,11 +12,10 @@ My own little nix config to manage multiple systems.
 - **[PC-Carmen](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/PC-Carmen/default.nix)**: A Lenovo Laptop for office work and websurfing.
 
 ## VMs
-- **[node1](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/node1/default.nix)**: VM for Kubernetes (k3s)
-- **[node2](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/node2/default.nix)**: VM for Kubernetes (k3s)
-- **[node3](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/node3/default.nix)**: VM for Kubernetes (k3s)
+- **[Dashu1](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/Dashu1/default.nix)**: VM for Kubernetes (k3s)
+- **[Dashu2](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/Dashu2/default.nix)**: VM for Kubernetes (k3s)
+- **[Dashu3](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/Dashu3/default.nix)**: VM for Kubernetes (k3s)
 
 ## Server
 - **[srv-raspi5](https://github.com/Svenum/holynix/blob/main/systems/aarch64-linux/srv-raspi5/default.nix)**: Raspberry Pi 5 8GB RAM as little home-server.
-- **[srv-dev](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/srv-dev/default.nix)**: VM for development over RDP/VNC.
-- **[srv-oracle](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/srv-oracle/default.nix)** VM inside of the Oracle Cloud (CPU: 2.0 GHz AMD EPYC™ 7551, Shape: VM.Standard.E2.1.Micro) for Docker.
+- **[Kaeru](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/Kaeru/default.nix)**: NixOS server for NFS, SMB, ZFS, libvirt and Podman.

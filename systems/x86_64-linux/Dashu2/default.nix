@@ -21,6 +21,7 @@ in
       "sudouser" = {
         isSudoUser = true;
         inherit authorizedKeys;
+        initialPassword = "Dashu";
       };
       "kube" = {
         isSudoUser = false;
@@ -33,7 +34,7 @@ in
 
     sops = {
       enableHostKey = true;
-      defaultSopsFile = ../../../secrets/kube.yaml;
+      defaultSopsFile = ../../../secrets/Dashu.yaml;
     };
 
     virtualisation.k3s = {
@@ -48,4 +49,18 @@ in
 
   # Initial Secrets
   sops.secrets."kube_token".restartUnits = [ "k3s.service" ];
+
+  networking = {
+    interfaces.enp1s0.ipv4.addresses = [
+      {
+        address = "172.16.0.32";
+        prefixLength = 24;
+      }
+    ];
+    defaultGateway = "172.16.0.1";
+    nameservers = [
+      "172.16.0.3"
+      "172.16.0.4"
+    ];
+  };
 }
