@@ -37,18 +37,21 @@ let
       homeDirectory = "/home/${name}";
       inherit (config.system) stateVersion;
     };
-    programs.home-manager.enable = true;
+    programs = {
+      home-manager.enable = true;
+      zsh.enable = true;
 
-    # Git Config
-    programs.git = mkIf (if builtins.hasAttr "git" user then true else false) {
-      enable = true;
-      settings = {
-        user = {
-          email = user.git.userEmail;
-          name = user.git.userName;
+      # Git Config
+      git = mkIf (if builtins.hasAttr "git" user then true else false) {
+        enable = true;
+        settings = {
+          user = {
+            email = user.git.userEmail;
+            name = user.git.userName;
+          };
+          safe.directory = "/etc/nixos";
+          pager.branch = false;
         };
-        safe.directory = "/etc/nixos";
-        pager.branch = false;
       };
     };
 
