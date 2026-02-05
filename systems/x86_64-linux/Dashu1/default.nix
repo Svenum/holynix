@@ -43,6 +43,12 @@ in
       enable = true;
       clusterCIDR = "10.11.0.0/16";
       tokenFile = config.sops.secrets."kube_token".path;
+      nfs = {
+        enable = true;
+        server = "172.16.0.11";
+        path = "/DashuTest";
+        onlyNFS = true;
+      };
     };
   };
 
