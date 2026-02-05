@@ -78,31 +78,29 @@ in
       clusterInit = true;
       serverAddr = mkIf (cfg.serverAddr != null) cfg.serverAddr;
       manifests = {
-        nfs.content = [
-          {
-            apiVersion = "helm.cattle.io/v1";
-            kind = "HelmChart";
-            metadata = {
-              name = "nfs";
-              namespace = "default";
-            };
-            spec = {
-              chart = "nfs-subdir-external-provisioner";
-              repo = "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner";
-              targetNamespace = "default";
-              set = {
-                nfs = {
-                  inherit (cfg.nfs) server;
-                  inherit (cfg.nfs) path;
-                };
-                storageClass = {
-                  name = "nfs";
-                  reclaimPolicy = "Retain";
-                };
+        nfs.content = {
+          apiVersion = "helm.cattle.io/v1";
+          kind = "HelmChart";
+          metadata = {
+            name = "nfs";
+            namespace = "default";
+          };
+          spec = {
+            chart = "nfs-subdir-external-provisioner";
+            repo = "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner";
+            targetNamespace = "default";
+            set = {
+              nfs = {
+                inherit (cfg.nfs) server;
+                inherit (cfg.nfs) path;
+              };
+              storageClass = {
+                name = "nfs";
+                reclaimPolicy = "Retain";
               };
             };
-          }
-        ];
+          };
+        };
       };
     };
 
