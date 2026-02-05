@@ -46,7 +46,7 @@ in
       nfs = {
         enable = true;
         server = "172.16.0.11";
-        path = "/DashuTest";
+        path = "/mnt/user/DashuTest";
         onlyNFS = true;
       };
     };
