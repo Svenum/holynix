@@ -90,14 +90,10 @@ in
             repo = "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner";
             targetNamespace = "default";
             set = {
-              nfs = {
-                inherit (cfg.nfs) server;
-                inherit (cfg.nfs) path;
-              };
-              storageClass = {
-                name = "nfs";
-                reclaimPolicy = "Retain";
-              };
+              "nfs.server" = cfg.nfs.server;
+              "nfs.path" = cfg.nfs.path;
+              "storageClass.name" = "nfs";
+              "storageClass.reclaimPolicy" = "Retain";
             };
           };
         };
