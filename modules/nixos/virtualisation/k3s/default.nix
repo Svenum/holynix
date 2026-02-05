@@ -68,33 +68,36 @@ in
 
   config = mkIf cfg.enable {
     # Enable K3S
-    services.k3s = {
-      enable = true;
-      inherit (cfg) tokenFile;
-      extraFlags = [
-        "--cluster-cidr ${cfg.clusterCIDR}"
-      ]
-      ++ optional cfg.nfs.onlyNFS "--disable local-storage";
-      clusterInit = true;
-      serverAddr = mkIf (cfg.serverAddr != null) cfg.serverAddr;
-      manifests = {
-        nfs.content = {
-          apiVersion = "helm.cattle.io/v1";
-          kind = "HelmChart";
-          metadata = {
-            name = "nfs";
-            namespace = "default";
-          };
-          spec = {
-            chart = "nfs-subdir-external-provisioner";
-            repo = "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner";
-            targetNamespace = "default";
-            set = {
-              "nfs.server" = cfg.nfs.server;
-              "nfs.path" = cfg.nfs.path;
-              "storageClass.name" = "nfs";
-              "storageClass.reclaimPolicy" = "Retain";
-              "storageClass.defaultClass" = toString cfg.nfs.setDefault;
+    services = {
+      rpcbind.enable = cfg.nfs.enable;
+      k3s = {
+        enable = true;
+        inherit (cfg) tokenFile;
+        extraFlags = [
+          "--cluster-cidr ${cfg.clusterCIDR}"
+        ]
+        ++ optional cfg.nfs.onlyNFS "--disable local-storage";
+        clusterInit = true;
+        serverAddr = mkIf (cfg.serverAddr != null) cfg.serverAddr;
+        manifests = {
+          nfs.content = {
+            apiVersion = "helm.cattle.io/v1";
+            kind = "HelmChart";
+            metadata = {
+              name = "nfs";
+              namespace = "default";
+            };
+            spec = {
+              chart = "nfs-subdir-external-provisioner";
+              repo = "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner";
+              targetNamespace = "default";
+              set = {
+                "nfs.server" = cfg.nfs.server;
+                "nfs.path" = cfg.nfs.path;
+                "storageClass.name" = "nfs";
+                "storageClass.reclaimPolicy" = "Retain";
+                "storageClass.defaultClass" = toString cfg.nfs.setDefault;
+              };
             };
           };
         };
