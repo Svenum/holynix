@@ -94,7 +94,7 @@ in
               "nfs.path" = cfg.nfs.path;
               "storageClass.name" = "nfs";
               "storageClass.reclaimPolicy" = "Retain";
-              "storageClass.defaultClass" = cfg.nfs.setDefault;
+              "storageClass.defaultClass" = toString cfg.nfs.setDefault;
             };
           };
         };
