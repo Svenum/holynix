@@ -23,25 +23,25 @@
   # Filesystems
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/a39bfdb5-4c1f-491e-b33a-4886651391de";
+      device = "/dev/disk/by-uuid/ba86d10f-029f-4048-8ae7-3454f0f8f2fa";
       fsType = "btrfs";
       options = [ "subvol=@root" ];
     };
 
     "/nix" = {
-      device = "/dev/disk/by-uuid/a39bfdb5-4c1f-491e-b33a-4886651391de";
+      device = "/dev/disk/by-uuid/ba86d10f-029f-4048-8ae7-3454f0f8f2fa";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
     "/var/log" = {
-      device = "/dev/disk/by-uuid/a39bfdb5-4c1f-491e-b33a-4886651391de";
+      device = "/dev/disk/by-uuid/ba86d10f-029f-4048-8ae7-3454f0f8f2fa";
       fsType = "btrfs";
       options = [ "subvol=@var-log" ];
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/A124-2919";
+      device = "/dev/disk/by-uuid/B978-DB8A";
       fsType = "vfat";
       options = [
         "fmask=0022"
