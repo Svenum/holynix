@@ -114,7 +114,10 @@ in
 
     # enable port
     networking.firewall = {
-      interfaces."cni*".allowedUDPPorts = [ 53 ];
+      interfaces = {
+        "cni0".allowedUDPPorts = [ 53 ];
+        "flannel.1".allowedUDPPorts = [ 53 ];
+      };
       allowedTCPPorts = [
         80
         443 # Traefik
