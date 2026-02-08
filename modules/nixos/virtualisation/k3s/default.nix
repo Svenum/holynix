@@ -27,6 +27,11 @@ in
       default = null;
       description = "Path to the file wich contains the token for k3s";
     };
+    domain = mkOption {
+      type = nullOr str;
+      default = null;
+      description = "Domain for the cluster!";
+    };
     serverAddr = mkOption {
       type = nullOr str;
       default = null;
@@ -79,7 +84,7 @@ in
         ++ optional cfg.nfs.onlyNFS "--disable local-storage";
         clusterInit = true;
         serverAddr = mkIf (cfg.serverAddr != null) cfg.serverAddr;
-        manifests = {
+        manifests = mkIf (cfg.serverAddr == null) {
           nfs.content = {
             apiVersion = "helm.cattle.io/v1";
             kind = "HelmChart";
@@ -90,7 +95,7 @@ in
             spec = {
               chart = "nfs-subdir-external-provisioner";
               repo = "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner";
-              targetNamespace = "default";
+              targetNamespace = "kube-system";
               set = {
                 "nfs.server" = cfg.nfs.server;
                 "nfs.path" = cfg.nfs.path;
@@ -98,6 +103,41 @@ in
                 "storageClass.reclaimPolicy" = "Retain";
                 "storageClass.defaultClass" = toString cfg.nfs.setDefault;
               };
+            };
+          };
+        };
+        autoDeployCharts = mkIf (cfg.serverAddr == null) {
+          rancher = {
+            enable = true;
+
+            repo = "https://releases.rancher.com/server-charts/stable";
+            name = "rancher";
+            version = "stable";
+
+            targetNamespace = "cattle-system";
+            createNamespace = true;
+
+            values = {
+              hostname = "rancher." + cfg.domain;
+
+              persistence = {
+                storageClass = "nfs";
+              };
+
+              bootstrapPassword = "rancher";
+
+              replicas = 3;
+            };
+          };
+          cert-manager = {
+            enable = true;
+            repo = "https://charts.jetstack.io";
+            name = "cert-manager";
+            version = "v1.14.0";
+            targetNamespace = "cert-manager";
+            createNamespace = true;
+            values = {
+              installCRDs = true;
             };
           };
         };

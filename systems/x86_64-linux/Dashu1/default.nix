@@ -43,6 +43,7 @@ in
       enable = true;
       clusterCIDR = "10.11.0.0/16";
       tokenFile = config.sops.secrets."kube_token".path;
+      domain = "dashu.holypenguin.net";
       nfs = {
         enable = true;
         server = "172.16.0.11";
