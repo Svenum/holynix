@@ -112,7 +112,8 @@ in
 
             repo = "https://releases.rancher.com/server-charts/stable";
             name = "rancher";
-            version = "stable";
+            version = "2.13.2";
+            hash = "sha256-x9LG0mQJX+JfkTf3VQ+9h1m0PYmtj3Hbbtyr50qrmlc=";
 
             targetNamespace = "cattle-system";
             createNamespace = true;
@@ -133,6 +134,7 @@ in
             enable = true;
             repo = "https://charts.jetstack.io";
             name = "cert-manager";
+            hash = "sha256-GmfKTeQj4DSmj6Eyf8CT/dkmql0UsKWdN3IdHYw3YsQ=";
             version = "v1.14.0";
             targetNamespace = "cert-manager";
             createNamespace = true;
