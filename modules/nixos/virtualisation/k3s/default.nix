@@ -105,6 +105,20 @@ in
               };
             };
           };
+          cstmTraefik.content = {
+            apiVersion = "helm.cattle.io/v1";
+            kind = "HelmChartConfig";
+            metadata = {
+              name = "traefik";
+              namespace = "kube-system";
+            };
+            spec = {
+              valuesContent = ''
+                additionalArguments:
+                  - "--entryPoints.web.forwardedHeaders.insecure"
+              '';
+            };
+          };
         };
         autoDeployCharts = mkIf (cfg.serverAddr == null) {
           rancher = {
