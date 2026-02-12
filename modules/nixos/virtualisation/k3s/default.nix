@@ -120,6 +120,67 @@ in
               '';
             };
           };
+          traefikDashboardService.content = {
+            apiVersion = "v1";
+            kind = "Service";
+            metadata = {
+              name = "traefik-dashboard";
+              namespace = "kube-system";
+              labels = {
+                "app.kubernetes.io/instance" = "traefik";
+                "app.kubernetes.io/name" = "traefik-dashboard";
+              };
+            };
+            spec = {
+              type = "ClusterIP";
+              ports = [
+                {
+                  name = "traefik";
+                  port = 9000;
+                  targetPort = "traefik";
+                  protocol = "TCP";
+                }
+              ];
+              selector = {
+                "app.kubernetes.io/instance" = "traefik-kube-system";
+                "app.kubernetes.io/name" = "traefik";
+              };
+            };
+          };
+          traefikDashboardIngress.content = {
+            apiVersion = "networking.k8s.io/v1";
+            kind = "Ingress";
+            metadata = {
+              name = "traefik-ingress";
+              namespace = "kube-system";
+              annotations = {
+                "spec.ingressClassName" = "traefik";
+              };
+            };
+            spec = {
+              rules = [
+                {
+                  host = "traefik.${cfg.domain}";
+                  http = {
+                    paths = [
+                      {
+                        path = "/";
+                        pathType = "Prefix";
+                        backend = {
+                          service = {
+                            name = "traefik-dashboard";
+                            port = {
+                              number = 9000;
+                            };
+                          };
+                        };
+                      }
+                    ];
+                  };
+                }
+              ];
+            };
+          };
         };
         autoDeployCharts = mkIf (cfg.serverAddr == null) {
           rancher = {
