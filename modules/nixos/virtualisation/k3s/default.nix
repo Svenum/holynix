@@ -114,10 +114,9 @@ in
             };
             spec = {
               valuesContent = ''
-                deployment:
-                  kind: DaemonSet
                 additionalArguments:
                   - "--entryPoints.web.forwardedHeaders.insecure"
+                  - "--entryPoints.websecure.forwardedHeaders.insecure"
               '';
             };
           };
