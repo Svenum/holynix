@@ -8,7 +8,7 @@ keys:
     - &Kaeru age1tvwng7xyjekmc4nddvnmhu5zzrnmnryt8paa5cp6n73ak7gqzqdshysg8v
     - &Dashu1 age1jfzgcfl5hxyfdzmytgqn6dhqcf5g35775rp4597e28a3cpdktevqvzr56v
     - &Dashu2 age1a84ps3a0h4lmu7t7v9g8s48pnws832thaxyf3rqudscuu8k5r4tq6hdgq2
-    - &Dashu3 age100245f0jzn7ckx620z4udmzhvu9jc2gjhx60vzpl8wknfa265gxq6tzhnl
+    - &Dashu3 age18vgk0a7juc4w8h02jelqfqqaq0t6gaa2e0v7kxvj2q3derm3guts9zevxm
 creation_rules:
   - path_regex: secrets/Dashu.yaml
     key_groups:
