@@ -49,6 +49,7 @@
     printer = {
       enable = true;
       defaultPrinter = "Epson_ET-2720-Series";
+      discovery = true;
       printers = [
         {
           name = "Epson_ET-2720-Series";

@@ -23,6 +23,8 @@ in
       enable = true;
       extraBackends = with pkgs; [
         sane-airscan
+        hplipWithPlugin
+        epkowa
       ];
     };
 
