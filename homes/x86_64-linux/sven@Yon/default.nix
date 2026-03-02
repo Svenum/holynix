@@ -37,9 +37,14 @@
     tetris
 
     # School
-    gcc
+    stdenv.cc.cc.lib
     live-server
     mysql-workbench
+    python311
+
+    # KI
+    ollama-vulkan
+    claude-code
 
     # Nextcloud
     nextcloud-client
