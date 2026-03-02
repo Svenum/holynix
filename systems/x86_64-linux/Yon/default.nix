@@ -215,7 +215,7 @@
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
-      glibc
+      stdenv.cc.cc.lib
     ];
   };
 
