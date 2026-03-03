@@ -10,29 +10,20 @@ with lib;
 with lib.types;
 let
   cfg = config.holynix.tools.flatpak;
-  themeCfg = config.holynix.theme;
   usersCfg = config.holynix.users;
   plasmaCfg = config.holynix.desktop.plasma;
-
-  flavor = "${lib.toUpper (builtins.substring 0 1 themeCfg.flavor)}${
-    builtins.substring 1 99 themeCfg.flavor
-  }";
-  accent = "${lib.toUpper (builtins.substring 0 1 themeCfg.accent)}${
-    builtins.substring 1 99 themeCfg.accent
-  }";
-  mode = if themeCfg.flavor != "latte" then "Dark" else "Light";
 
   mkUserConfig = _name: user: {
     imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
 
     home.activation = lib.mkIf (if builtins.hasAttr "isGuiUser" user then user.isGuiUser else false) {
       configureFlatpak = ''
-        ${
-          if plasmaCfg.enable then
-            (pkgs.rsync + "/bin/rsync -vrkL /run/current-system/sw/share/themes/* ~/.themes/")
-          else
-            ""
-        }
+        if [[ ! -h "$HOME/.icons" ]]; then
+          ln -s "$HOME/.icons" "/var/run/current-system/sw/share/icons"
+        fi
+        if [[ ! -h "$HOME/.themes" ]]; then
+          ln -s "$HOME/.themes" "/var/run/current-system/sw/share/themes"
+        fi
       '';
     };
 
@@ -55,8 +46,9 @@ let
             "xdg-config/gtk-4.0:ro"
             "xdg-config/gtkrc:ro"
             "~/.themes:ro"
+            "~/.icons:ro"
+            "/nix/store:ro"
           ];
-          Environment.GTK_THEME = "Catppuccin-${flavor}-Standard-${accent}-${mode}";
         };
       };
     };
@@ -85,26 +77,5 @@ in
 
     # Fix fonts
     fonts.fontDir.enable = true;
-    system.fsPackages = [ pkgs.bindfs ];
-    fileSystems =
-      let
-        mkRoSymBind = path: {
-          device = path;
-          fsType = "fuse.bindfs";
-          options = [
-            "ro"
-            "resolve-symlinks"
-            "x-gvfs-hide"
-          ];
-        };
-        aggregatedFonts = pkgs.buildEnv {
-          name = "system-fonts";
-          paths = config.fonts.packages;
-          pathsToLink = [ "/share/fonts" ];
-        };
-      in
-      {
-        "/usr/local/share/fonts" = mkRoSymBind "${aggregatedFonts}/share/fonts";
-      };
   };
 }
