@@ -43,6 +43,7 @@
 
     # KI
     claude-code
+    ollama-vulkan
 
     # Nextcloud
     nextcloud-client

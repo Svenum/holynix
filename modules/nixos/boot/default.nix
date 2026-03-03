@@ -54,7 +54,7 @@ in
       supportedFilesystems = [ "ntfs" ];
 
       # Kernel
-      kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+      #kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
       # Bootloader
       loader = {
