@@ -37,7 +37,6 @@
     tetris
 
     # School
-    stdenv.cc.cc.lib
     live-server
     mysql-workbench
     python311
