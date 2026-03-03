@@ -59,7 +59,7 @@ in
       with pkgs;
       [
         # XWayland compability
-        xorg.xrdb
+        xrdb
         xsettingsd
         xdg-desktop-portal-gtk
         # KDE Backup

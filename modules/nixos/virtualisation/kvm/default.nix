@@ -13,6 +13,10 @@ let
 
   isAMD = config.hardware.cpu.amd.updateMicrocode;
   isIntel = config.hardware.cpu.intel.updateMicrocode;
+
+  toggleDrv = pkgs.holynix.toggle-amd-gpu.override {
+    dgpuPCI = cfg.vfioPCIDevices;
+  };
 in
 {
   imports = [ inputs.nixVirt.nixosModules.default ];
@@ -34,6 +38,7 @@ in
       # Prepare Kernel
       extraModprobeConfig = mkIf (cfg.vfioPCIDevices != null) ''
         options vfio_pci ids=${strings.concatMapStrings (x: "," + x) cfg.vfioPCIDevices}
+        softdep drm pre: vfio-pci
         options kvm ignore_msrs=1
         options kvm report_ignored_msrs=0
         options kvmfr static_size_mb=128
@@ -66,31 +71,22 @@ in
     };
 
     # Toggle GPU script
-    environment.systemPackages =
-      with pkgs;
-      [
-        virtiofsd
-      ]
-      ++ lib.lists.optionals (cfg.vfioPCIDevices != null) [
-        (pkgs.holynix.toggle-amd-gpu.override {
-          dgpuPCI = cfg.vfioPCIDevices;
-        })
-      ];
-
-    security.sudo.extraRules = mkIf (cfg.vfioPCIDevices != null) [
-      {
-        groups = [
-          "kvm"
-          "libvirtd"
-        ];
-        runAs = "ALL:ALL";
-        commands = [
-          {
-            command = "/run/current-system/sw/bin/toggle-amd-gpu";
-            options = [ "NOPASSWD" ];
-          }
-        ];
-      }
+    environment.systemPackages = with pkgs; [
+      virtiofsd
     ];
+
+    systemd.services."toggle-amd-gpu" = mkIf (cfg.vfioPCIDevices != null) {
+      unitConfig = {
+        Description = "Enables amd GPU after startup";
+        After = [ "graphical.target" ];
+        Requires = [ "display-manager.service" ];
+      };
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${lib.getExe toggleDrv}/bin/toggle-amd-gpu amd";
+        RemainAfterExit = false;
+      };
+      wantedBy = [ "graphical.target" ];
+    };
   };
 }
