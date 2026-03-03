@@ -83,7 +83,7 @@ in
       };
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "${lib.getExe toggleDrv}/bin/toggle-amd-gpu amd";
+        ExecStart = "${lib.getExe toggleDrv} amd";
         RemainAfterExit = false;
       };
       wantedBy = [ "graphical.target" ];
