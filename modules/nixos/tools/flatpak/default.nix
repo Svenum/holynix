@@ -21,8 +21,14 @@ let
         if [[ ! -h "$HOME/.icons" ]]; then
           ln -s /var/run/current-system/sw/share/icons $HOME/.icons
         fi
+        if [[ ! -h "$HOME/.local/share/icons" ]]; then
+          ln -s /var/run/current-system/sw/share/icons $HOME/.local/share/icons
+        fi
         if [[ ! -h "$HOME/.themes" ]]; then
           ln -s /var/run/current-system/sw/share/themes $HOME/.themes 
+        fi
+        if [[ ! -h "$HOME/.local/share/fonts" ]]; then
+          ln -s /run/current-system/sw/share/X11/fonts $HOME/.local/share/fonts 
         fi
       '';
     };
@@ -40,6 +46,7 @@ let
       ];
       overrides = {
         global = {
+          Environment.XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
           Context.fileSystems = [
             "xdg-config/gtk-3.0:ro"
             "xdg-config/gtkrc-2.0:ro"
@@ -47,7 +54,9 @@ let
             "xdg-config/gtkrc:ro"
             "~/.themes:ro"
             "~/.icons:ro"
+            "~/.local/share/icons:ro"
             "/nix/store:ro"
+            "/run/current-system/sw/share/X11/fonts:ro"
           ];
         };
       };
