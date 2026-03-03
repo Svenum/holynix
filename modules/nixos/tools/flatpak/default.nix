@@ -19,10 +19,10 @@ let
     home.activation = lib.mkIf (if builtins.hasAttr "isGuiUser" user then user.isGuiUser else false) {
       configureFlatpak = ''
         if [[ ! -h "$HOME/.icons" ]]; then
-          ln -s "$HOME/.icons" "/var/run/current-system/sw/share/icons"
+          ln -s "/var/run/current-system/sw/share/icons" "~/.icons"
         fi
         if [[ ! -h "$HOME/.themes" ]]; then
-          ln -s "$HOME/.themes" "/var/run/current-system/sw/share/themes"
+          ln -s "/var/run/current-system/sw/share/themes" "~/.themes" 
         fi
       '';
     };
