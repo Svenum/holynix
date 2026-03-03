@@ -42,7 +42,6 @@
     python311
 
     # KI
-    ollama-vulkan
     claude-code
 
     # Nextcloud
