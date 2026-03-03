@@ -55,6 +55,7 @@ in
 
       # Kernel
       #kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+      kernelPackages = lib.mkDefault pkgs.linuxPackages_6_12;
 
       # Bootloader
       loader = {
