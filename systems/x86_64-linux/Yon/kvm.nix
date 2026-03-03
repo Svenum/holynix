@@ -1,15 +1,26 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
 
 let
   inherit (inputs) nixVirt;
   nixvirt.lib = nixVirt.lib;
+
+  toggleDrv = pkgs.holynix.toggle-amd-gpu.override {
+    dgpuPCI = config.holynix.virtualisation.kvm.vfioPCIDevices;
+  };
+
   toggle_gpu = pkgs.writeShellScriptBin "toggle_gpu" ''
     if [[ $1 == "${win10gpuConfig.name}" ]]; then
       if [[ $2 == "prepare" ]]; then
-        /run/current-system/sw/bin/toggle-amd-gpu vfio
+        ${lib.getExe toggleDrv} vfio
       elif [[ $2 == "release" ]]; then
         ${pkgs.busybox}/bin/sleep 10
-        /run/current-system/sw/bin/toggle-amd-gpu amd
+        ${lib.getExe toggleDrv} amd
       fi
     fi
   '';
