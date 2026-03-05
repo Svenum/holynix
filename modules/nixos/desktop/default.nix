@@ -45,11 +45,5 @@ in
 
     # Add Catppuccin wallpaper
     environment.etc.wallpaper.source = ./images;
-
-    # set Hibernate delay
-    systemd.sleep.extraConfig = ''
-      HibernateDelaySec=0
-    '';
-
   };
 }
