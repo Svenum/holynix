@@ -34,7 +34,7 @@ in
       usbutils
       clinfo
       killall
-      neofetch
+      fastfetch
       cifs-utils
       btop
       dig
