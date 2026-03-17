@@ -4,7 +4,6 @@ with lib;
 with lib.types;
 let
   cfg = config.holynix.locale;
-  desktopCfg = config.holynix.desktop;
 
   singleLocale = [
     "de_DE"
@@ -71,7 +70,7 @@ in
           { };
     };
 
-    services.xserver.xkb = mkIf desktopCfg.enable {
+    services.xserver.xkb = {
       layout = strings.toLower (lists.last (strings.splitString "_" cfg.name));
       variant = "";
     };

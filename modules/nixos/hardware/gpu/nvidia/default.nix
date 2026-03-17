@@ -8,10 +8,10 @@
 with lib;
 with lib.types;
 let
-  cfg = config.holynix.gpu.nvidia;
+  cfg = config.holynix.hardware.gpu.nvidia;
 in
 {
-  options.holynix.gpu.nvidia = {
+  options.holynix.hardware.gpu.nvidia = {
     enable = mkOption {
       type = bool;
       default = false;

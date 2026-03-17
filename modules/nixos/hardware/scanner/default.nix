@@ -8,10 +8,10 @@
 with lib;
 with lib.types;
 let
-  cfg = config.holynix.scanner;
+  cfg = config.holynix.hardware.scanner;
 in
 {
-  options.holynix.scanner = {
+  options.holynix.hardware.scanner = {
     enable = mkOption {
       type = bool;
       default = false;

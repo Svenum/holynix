@@ -8,10 +8,10 @@
 with lib;
 with lib.types;
 let
-  cfg = config.holynix.gpu.amd;
+  cfg = config.holynix.hardware.gpu.amd;
 in
 {
-  options.holynix.gpu.amd = {
+  options.holynix.hardware.gpu.amd = {
     enable = mkOption {
       type = bool;
       default = false;

@@ -8,7 +8,7 @@
 with lib;
 with lib.types;
 let
-  cfg = config.holynix.printer;
+  cfg = config.holynix.hardware.printer;
 
   mkPrinterConfig = props: {
     inherit (props) name;
@@ -18,7 +18,7 @@ let
   };
 in
 {
-  options.holynix.printer = {
+  options.holynix.hardware.printer = {
     enable = mkOption {
       type = bool;
       default = false;

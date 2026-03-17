@@ -9,7 +9,7 @@ let
   mkUser = name: user: {
     isNormalUser = true;
     description = name;
-    inherit (user) shell;
+    shell = mkIf (user.shell != null) user.shell;
     inherit (user) password;
     inherit (user) initialPassword;
     extraGroups = [
