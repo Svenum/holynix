@@ -66,7 +66,9 @@
     network.enable = true;
     network.useIWD = false;
 
-    hardware.headsetcontrol.enable = true;
+    hardware = {
+      headsetcontrol.enable = true;
+    };
 
     virtualisation = {
       podman = {
@@ -190,6 +192,7 @@
       openFirewall = false;
     };
   };
+  hardware.katana-usb-audio.enable = true;
 
   environment.variables = {
     # Needed to fix Kwin if gpu gets detatched

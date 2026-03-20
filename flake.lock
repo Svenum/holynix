@@ -450,16 +450,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1772963539,
-        "narHash": "sha256-9jVDGZnvCckTGdYT53d/EfznygLskyLQXYwJLKMPsZs=",
-        "owner": "nixos",
+        "lastModified": 1773999775,
+        "narHash": "sha256-AipKeX7h85P2bdDRe9oFcEB2oS+726w1zFr+WJgESMs=",
+        "owner": "Svenum",
         "repo": "nixpkgs",
-        "rev": "9dcb002ca1690658be4a04645215baea8b95f31d",
+        "rev": "9f3347a038c7b5cc314b16bf978e279998a17d2a",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
+        "owner": "Svenum",
+        "ref": "add-katana-usb-audio",
         "repo": "nixpkgs",
         "type": "github"
       }
