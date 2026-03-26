@@ -3,6 +3,7 @@
 {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
+    ./hardware.nix
   ];
 
   holynix = {
@@ -22,6 +23,16 @@
       };
     };
     tools.cliTools.enable = true;
+
+    services = {
+      publicDomain = "holypenguin.net";
+      vaultwarden.enable = true;
+    };
+
+    sops = {
+      defaultSopsFile = ../../../secrets/kaeru/default.yaml;
+      enableHostKey = true;
+    };
   };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
