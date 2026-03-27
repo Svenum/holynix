@@ -41,19 +41,11 @@ in
           serverAliases = [ "vaultwarden.${cfgS.privateDomain}" ];
           extraConfig = ''
             reverse_proxy /notifications/anonymous-hub http://127.0.0.1:${port} {
-              transport http {
-                versions h1
-              }
-              header_up Connection "Upgrade"
-              header_up Upgrade {http.request.header.Upgrade}
+              websocket
             }
 
             reverse_proxy /notifications/hub http://127.0.0.1:${port} {
-              transport http {
-                versions h1
-              }
-              header_up Connection "Upgrade"
-              header_up Upgrade {http.request.header.Upgrade}
+              websocket
             }
 
             reverse_proxy http://127.0.0.1:${port}
