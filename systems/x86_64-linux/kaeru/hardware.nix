@@ -18,10 +18,14 @@
   };
 
   fileSystems = {
-    "/".device = "/dev/vda2";
-  };
-  fileSystems = {
-    "/boot".device = "/dev/vda1";
+    "/" = {
+      device = "/dev/vda2";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/vda1";
+      fsType = "vfat";
+    };
   };
 
   swapDevices = [ ];
