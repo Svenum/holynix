@@ -35,6 +35,7 @@
     };
   };
 
+  networking.domain = "kaeru.holypenguin.net";
   services.qemuGuest.enable = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
