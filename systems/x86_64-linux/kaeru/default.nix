@@ -35,6 +35,7 @@
     };
   };
 
+  services.qemuGuest.enable = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   virtualisation.vmVariant.virtualisation = {
