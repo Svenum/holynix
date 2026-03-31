@@ -20,7 +20,7 @@ in
         default = false;
         description = "Enabel ldap for nextcloud";
       };
-      bindDn = mkOption {
+      bindDN = mkOption {
         type = nullOr str;
         default = null;
         description = "BindDN for nextcloud";
