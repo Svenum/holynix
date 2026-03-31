@@ -34,8 +34,6 @@ in
             X-Robots-Tag "noindex,nofollow"
             -Server
             X-Forwarded-Proto "https"
-            X-Forwarded-For "{http.request.remote_ip}"
-            X-Real-IP "{http.request.remote_ip}"
             Referrer-Policy "strict-origin-when-cross-origin"
             Access-Control-Allow-Methods "OPTION, POST, GET, PUT, DELETE"
             Access-Control-Allow-Headers "*"

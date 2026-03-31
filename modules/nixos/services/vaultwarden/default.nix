@@ -31,6 +31,7 @@ in
         ENABLE_WEBSOCKET = true;
         ROCKET_ADDRESS = "127.0.0.1";
         ROCKET_PORT = lib.mkDefault 8222;
+        IP_HEADER = "X-Forwarded-For";
       };
       configurePostgres = true;
       environmentFile = [
