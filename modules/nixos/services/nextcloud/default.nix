@@ -40,7 +40,7 @@ in
 
       caddy = {
         enable = true;
-        virtualHosts."nextcloud.${cfg.publicDomain}" = {
+        virtualHosts."nextcloud.${cfgS.publicDomain}" = {
           serverAliases = "nextcloud.${cfgS.privateDomain}";
           extraConfig = ''
             header {
