@@ -10,9 +10,6 @@ in
   options.holynix.services.nextcloud.enable = mkEnableOption "Enable Nextcloud service";
 
   config = mkIf cfg.enable {
-    # Shoulc contain:
-    # AMDINPASSWORD
-    sops.secrets."services/nextcloud/admin_pass".enable = true;
 
     users.groups.nextcloud.members = [
       "nextcloud"
@@ -28,7 +25,10 @@ in
         imaginary.enable = true;
         config = {
           dbtype = "pgsql";
+          # Shoulc contain:
+          # AMDINPASSWORD
           adminpassFile = config.sops.secrets."services/nextcloud/admin_pass".path;
+          adminuser = "holyadmin";
         };
         package = pkgs.nextcloud33;
       };
