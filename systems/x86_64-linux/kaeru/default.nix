@@ -1,4 +1,4 @@
-{ modulesPath, ... }:
+{ modulesPath, config, ... }:
 
 {
   imports = [
@@ -26,7 +26,12 @@
 
     services = {
       publicDomain = "holypenguin.net";
-      vaultwarden.enable = true;
+      vaultwarden = {
+        enable = true;
+        environmentFile = [
+          config.sops.secrets."services/vaultwarden/config".path
+        ];
+      };
     };
 
     sops = {
