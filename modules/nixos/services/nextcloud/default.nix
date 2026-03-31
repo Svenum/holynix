@@ -89,9 +89,9 @@ in
       ];
       script = ''
         nextcloud-occ app:enable user_ldap
-        nextcloud-occ ldap:set-config hasMemberOfFilterSupport 1
-        nextcloud-occ ldap:set-config ldapAgentName ${cfg.ldap.bindDN}
-        nextcloud-occ ldap:set-config ldapAgentPassword $(cat ${
+        nextcloud-occ ldap:set-config s01 hasMemberOfFilterSupport 1
+        nextcloud-occ ldap:set-config s01 ldapAgentName ${cfg.ldap.bindDN}
+        nextcloud-occ ldap:set-config s01 ldapAgentPassword $(cat ${
           config.sops.secrets."services/nextcloud/ldap_pass".path
         })
         nextcloud-occ ldap:set-config s01 ldapAttributeForUserSearch ${cfg.ldap.userAttribute}
