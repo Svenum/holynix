@@ -27,6 +27,7 @@
     services = {
       publicDomain = "holypenguin.net";
       vaultwarden.enable = true;
+      nextcloud.enable = true;
     };
 
     sops = {

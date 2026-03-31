@@ -28,9 +28,13 @@ in
   };
 
   config = {
-    services.postgresqlBackup = {
-      compression = "zstd";
-      startAt = "*-*-* 12:00:00";
+    services = {
+      nginx.enable = false;
+      postgresqlBackup = {
+        compression = "zstd";
+        startAt = "*-*-* 12:00:00";
+        location = "/var/lib/backup/postgresql";
+      };
     };
   };
 }
