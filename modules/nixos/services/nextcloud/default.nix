@@ -107,8 +107,8 @@ in
         nextcloud-occ ldap:set-config s01 ldapGidNumber gidnumber
         nextcloud-occ ldap:set-config s01 ldapGroupDisplayName cn
         nextcloud-occ ldap:set-config s01 ldapHost ${cfg.ldap.host}
-        nextcloud-occ ldap:set-config s01 ldapPort ${cfg.ldap.port}
-        nextcloud-occ ldap:set-config s01 ldapLoginFilter '${loginFilter}'
+        nextcloud-occ ldap:set-config s01 ldapPort ${toString cfg.ldap.port}
+        nextcloud-occ ldap:set-config s01 ldapLoginFilter '${cfg.ldap.loginFilter}'
         nextcloud-occ ldap:set-config s01 ldapLoginFilterEmail 1
         nextcloud-occ ldap:set-config s01 ldapLoginFilterMode 1
         nextcloud-occ ldap:set-config s01 ldapLoginFilterUsername 1
