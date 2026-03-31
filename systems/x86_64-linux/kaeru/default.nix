@@ -49,6 +49,11 @@
         prefixLength = 24;
       }
     ];
+    defaultGateway = "192.168.122.1";
+    nameservers = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
   };
   services.qemuGuest.enable = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
