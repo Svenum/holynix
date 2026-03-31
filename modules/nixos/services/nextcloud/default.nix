@@ -115,6 +115,8 @@ in
         nextcloud-occ ldap:set-config s01 ldapLoginFilterAttributes 'cn;displayName;mail'
         nextcloud-occ ldap:set-config s01 ldapUserFilter '${cfg.ldap.userFilter}'
       '';
+      after = [ "nextcloud-setup.service" ];
+      wantedBy = [ "multi-user.target" ];
     };
 
     services = {
