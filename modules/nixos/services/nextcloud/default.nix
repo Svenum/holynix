@@ -88,7 +88,7 @@ in
         config.services.nextcloud.occ
       ];
       script = ''
-        nextcloud-occ app:enabel user_ldap
+        nextcloud-occ app:enable user_ldap
         nextcloud-occ ldap:set-config hasMemberOfFilterSupport 1
         nextcloud-occ ldap:set-config ldapAgentName ${cfg.ldap.bindDN}
         nextcloud-occ ldap:set-config ldapAgentPassword $(cat ${
