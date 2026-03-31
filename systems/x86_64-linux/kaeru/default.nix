@@ -27,7 +27,17 @@
     services = {
       publicDomain = "holypenguin.net";
       vaultwarden.enable = true;
-      nextcloud.enable = true;
+      nextcloud = {
+        enable = true;
+        ldap = {
+          host = "ldaps://authentik.holypenguin.net";
+          bindDn = "cn=sa-nextcloud,ou=users,dc=nextcloud,dc=holypenguin,dc=net";
+          dn = "dc=nextcloud,dc=holypenguin,dc=net";
+          groupFilter = "(&(|(objectclass=group))(|(cn=Family)(cn=Holypenguin)(cn=Media)(cn=Share)))";
+          loginFilter = "(&(&(objectClass=user)(memberof=cn=Nextcloud,ou=groups,dc=nextcloud,dc=holypenguin,dc=net))(|(uid=%uid)(|(mailPrimaryAddress=%uid)(mail=%uid))(|(cn=%uid)(displayName=%uid)(mail=%uid))))";
+          userFilter = "(&(objectClass=user)(memberof=cn=Nextcloud,ou=groups,dc=nextcloud,dc=holypenguin,dc=net))";
+        };
+      };
     };
 
     sops = {

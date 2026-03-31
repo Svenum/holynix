@@ -12,7 +12,62 @@ let
   cfgS = config.holynix.services;
 in
 {
-  options.holynix.services.nextcloud.enable = mkEnableOption "Enable Nextcloud service";
+  options.holynix.services.nextcloud = {
+    enable = mkEnableOption "Enable Nextcloud service";
+    ldap = {
+      enable = mkOption {
+        type = bool;
+        default = false;
+        description = "Enabel ldap for nextcloud";
+      };
+      bindDn = mkOption {
+        type = nullOr str;
+        default = null;
+        description = "BindDN for nextcloud";
+      };
+      userAttribute = mkOption {
+        type = str;
+        default = "cn";
+        description = "Unique ldap attribute for the name of the users";
+      };
+      emailAttribute = mkOption {
+        type = str;
+        default = "mail";
+        description = "Ldap attribute for the mail of the users";
+      };
+      dn = mkOption {
+        type = nullOr str;
+        default = null;
+        description = "Base dn of ldap";
+      };
+      groupFilter = mkOption {
+        type = nullOr str;
+        default = null;
+        description = "Filter for the groups";
+      };
+      loginFilter = mkOption {
+        type = nullOr str;
+        default = null;
+        description = "Filter for the login";
+      };
+      userFilter = mkOption {
+        type = nullOr str;
+        default = null;
+        description = "Filter for the users";
+      };
+      host = mkOption {
+        type = nullOr str;
+        default = null;
+        description = "Host of the ldap";
+        example = "ldaps://ldap.example.com";
+      };
+      port = mkOption {
+        type = int;
+        default = 636;
+        description = "Port of the ldap";
+      };
+    };
+  };
 
   config = mkIf cfg.enable {
 
@@ -21,7 +76,46 @@ in
       config.services.caddy.user
     ];
 
-    sops.secrets."services/nextcloud/admin_pass" = { };
+    sops.secrets = {
+      "services/nextcloud/admin_pass" = { };
+      "services/nextcloud/ldap_pass".restartUnits = mkIf cfg.ldap.enable [
+        "nextcloud-setup-ldap.service"
+      ];
+    };
+
+    systemd.services.nextcloud-setup-ldap = mkIf cfg.ldap.enable {
+      path = [
+        config.services.nextcloud.occ
+      ];
+      script = ''
+        nextcloud-occ app:enabel user_ldap
+        nextcloud-occ ldap:set-config hasMemberOfFilterSupport 1
+        nextcloud-occ ldap:set-config ldapAgentName ${cfg.ldap.bindDN}
+        nextcloud-occ ldap:set-config ldapAgentPassword $(cat ${
+          config.sops.secrets."services/nextcloud/ldap_pass".path
+        })
+        nextcloud-occ ldap:set-config ldapAttributeForUserSearch ${cfg.ldap.userAttribute}
+        nextcloud-occ ldap:set-config ldapBase ${cfg.ldap.dn}
+        nextcloud-occ ldap:set-config ldapBaseGroups ${cfg.ldap.dn}
+        nextcloud-occ ldap:set-config ldapBaseUsers ${cfg.ldap.dn}
+        nextcloud-occ ldap:set-config ldapConfigurationActive 1
+        nextcloud-occ ldap:set-config ldapExpertUUIDGroupAttr ${cfg.ldap.userAttribute}
+        nextcloud-occ ldap:set-config ldapExpertUUIDUserAttr ${cfg.ldap.userAttribute}
+        nextcloud-occ ldap:set-config ldapExpertUsernameAttr ${cfg.ldap.userAttribute}
+        nextcloud-occ ldap:set-config ldapGroupFilter '${cfg.ldap.groupFilter}'
+        nextcloud-occ ldap:set-config ldapGroupFilterObjectclass group
+        nextcloud-occ ldap:set-config ldapGidNumber gidnumber
+        nextcloud-occ ldap:set-config ldapGroupDisplayName cn
+        nextcloud-occ ldap:set-config ldapHost ${host}
+        nextcloud-occ ldap:set-config ldapPort ${port}
+        nextcloud-occ ldap:set-config ldapLoginFilter '${loginFilter}'
+        nextcloud-occ ldap:set-config ldapLoginFilterEmail 1
+        nextcloud-occ ldap:set-config ldapLoginFilterMode 1
+        nextcloud-occ ldap:set-config ldapLoginFilterUsername 1
+        nextcloud-occ ldap:set-config ldapLoginFilterAttributes 'cn;displayName;mail'
+        nextcloud-occ ldap:set-config ldapUserFilter '${cfg.ldap.userFilter}'
+      '';
+    };
 
     services = {
       nextcloud = {
