@@ -26,4 +26,11 @@ in
       description = "Directory in which the sopssecrets are stored";
     };
   };
+
+  config = {
+    services.postgresqlBackup = {
+      compression = "zstd";
+      startAt = "*-*-* 12:00:00";
+    };
+  };
 }
