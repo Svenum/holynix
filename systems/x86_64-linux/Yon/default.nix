@@ -215,6 +215,15 @@
   # Enable musnix
   musnix.enable = true;
 
+  # Hosts
+  networking.hosts."192.168.122.128" = [
+    "vaultwarden.kaeru.holypenguin.net"
+    "nextcloud.kaeru.holypenguin.net"
+    "authentik.kaeru.holypenguin.net"
+    "pelican.kaeru.holypenguin.net"
+    "grafana.kaeru.holypenguin.net"
+  ];
+
   # ld
   programs.nix-ld = {
     enable = true;
