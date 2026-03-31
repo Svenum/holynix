@@ -52,16 +52,16 @@ in
               transport http {
                 keepalive off
               }
-              header_up Connection {http.upgrade}
-              header_up Upgrade {http.upgrade}
+              header_up Connection {http.request.header.Connection}
+              header_up Upgrade {http.request.header.Upgrade}
             }
 
             reverse_proxy /notifications/hub http://127.0.0.1:${port} {
               transport http {
                 keepalive off
               }
-              header_up Connection {http.upgrade}
-              header_up Upgrade {http.upgrade}
+              header_up Connection {http.request.header.Connection}
+              header_up Upgrade {http.request.header.Upgrade}
             }
 
             reverse_proxy http://127.0.0.1:${port}
