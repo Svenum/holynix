@@ -35,7 +35,21 @@
     };
   };
 
-  networking.domain = "kaeru.holypenguin.net";
+  networking = {
+    hosts."127.0.0.1" = [
+      "vaultwarden.kaeru.holypenguin.net"
+      "nextcloud.kaeru.holypenguin.net"
+      "authentik.kaeru.holypenguin.net"
+      "pelican.kaeru.holypenguin.net"
+      "grafana.kaeru.holypenguin.net"
+    ];
+    interfaces.enp1s0.ipv4.addresses = [
+      {
+        address = "192.168.122.128";
+        prefixLength = 24;
+      }
+    ];
+  };
   services.qemuGuest.enable = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
