@@ -41,7 +41,7 @@ in
       caddy = {
         enable = true;
         virtualHosts."nextcloud.${cfgS.publicDomain}" = {
-          serverAliases = "nextcloud.${cfgS.privateDomain}";
+          serverAliases = [ "nextcloud.${cfgS.privateDomain}" ];
           extraConfig = ''
             header {
               Strict-Transport-Security max-age=31536000;
