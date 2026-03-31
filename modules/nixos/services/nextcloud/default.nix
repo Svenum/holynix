@@ -21,6 +21,8 @@ in
       config.services.caddy.user
     ];
 
+    sops.secrets."services/nextcloud/admin_pass" = { };
+
     services = {
       nextcloud = {
         enable = true;
