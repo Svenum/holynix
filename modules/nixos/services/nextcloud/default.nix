@@ -143,6 +143,13 @@ in
         "listen.group" = config.services.caddy.group;
       };
 
+      postgresqlBackup = {
+        enable = true;
+        databases = [
+          "nextcloud"
+        ];
+      };
+
       caddy = {
         enable = true;
         virtualHosts."nextcloud.${cfgS.publicDomain}" = {

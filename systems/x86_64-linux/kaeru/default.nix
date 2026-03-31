@@ -30,6 +30,7 @@
       nextcloud = {
         enable = true;
         ldap = {
+          enable = true;
           host = "ldaps://authentik.holypenguin.net";
           bindDn = "cn=sa-nextcloud,ou=users,dc=nextcloud,dc=holypenguin,dc=net";
           dn = "dc=nextcloud,dc=holypenguin,dc=net";
