@@ -89,6 +89,9 @@ in
       ];
       script = ''
         nextcloud-occ app:enable user_ldap
+        if [[ -z "$(nextcloud-occ ldap:show-config)" ]]; then
+          nextcloud-occ ldap:create-empty-config
+        fi
         nextcloud-occ ldap:set-config s01 hasMemberOfFilterSupport 1
         nextcloud-occ ldap:set-config s01 ldapAgentName ${cfg.ldap.bindDN}
         nextcloud-occ ldap:set-config s01 ldapAgentPassword $(cat ${
