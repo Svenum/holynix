@@ -30,12 +30,10 @@ in
         maxUploadSize = "100G";
         database.createLocally = true;
         imaginary.enable = true;
-        phpOptions = {
-          trusted_domains = [
-            "nextcloud.${cfgS.publicDomain}"
-            "nextcloud.${cfgS.privateDomain}"
-          ];
-        };
+        settings.trusted_domains = [
+          "nextcloud.${cfgS.publicDomain}"
+          "nextcloud.${cfgS.privateDomain}"
+        ];
         config = {
           dbtype = "pgsql";
           # Shoulc contain:
