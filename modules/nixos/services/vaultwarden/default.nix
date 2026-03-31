@@ -17,6 +17,11 @@ in
   };
 
   config = mkIf cfg.enable {
+    # Should contain:
+    # ADMIN_TOKEN=SECRET_TOKEN
+    sops.secrets."services/vaultwarden/admin_token" = {
+      restartUnits = [ "vaultwarden.service" ];
+    };
     services.vaultwarden = {
       enable = true;
       dbBackend = "postgresql";
@@ -28,7 +33,10 @@ in
         ROCKET_PORT = lib.mkDefault 8222;
       };
       configurePostgres = true;
-      inherit (cfg) environmentFile;
+      environmentFile = [
+        config.sops.secrets."services/vaultwarden/admin_token".path
+      ]
+      ++ cfg.environmentFile;
     };
 
     services.caddy = {

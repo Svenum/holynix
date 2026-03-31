@@ -46,7 +46,8 @@ in
         }
       '';
     };
-
+    # Should contain:
+    # CLOUDFLARE_DNS_API_TOKEN=SECRET_KEY
     sops.secrets."services/caddy/cloudflare_dns_api_token" = {
       restartUnits = [ "caddy.service" ];
     };

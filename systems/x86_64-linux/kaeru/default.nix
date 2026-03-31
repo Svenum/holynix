@@ -26,12 +26,7 @@
 
     services = {
       publicDomain = "holypenguin.net";
-      vaultwarden = {
-        enable = true;
-        environmentFile = [
-          config.sops.secrets."services/vaultwarden/config".path
-        ];
-      };
+      vaultwarden.enable = true;
     };
 
     sops = {
