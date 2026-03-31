@@ -94,26 +94,26 @@ in
         nextcloud-occ ldap:set-config ldapAgentPassword $(cat ${
           config.sops.secrets."services/nextcloud/ldap_pass".path
         })
-        nextcloud-occ ldap:set-config ldapAttributeForUserSearch ${cfg.ldap.userAttribute}
-        nextcloud-occ ldap:set-config ldapBase ${cfg.ldap.dn}
-        nextcloud-occ ldap:set-config ldapBaseGroups ${cfg.ldap.dn}
-        nextcloud-occ ldap:set-config ldapBaseUsers ${cfg.ldap.dn}
-        nextcloud-occ ldap:set-config ldapConfigurationActive 1
-        nextcloud-occ ldap:set-config ldapExpertUUIDGroupAttr ${cfg.ldap.userAttribute}
-        nextcloud-occ ldap:set-config ldapExpertUUIDUserAttr ${cfg.ldap.userAttribute}
-        nextcloud-occ ldap:set-config ldapExpertUsernameAttr ${cfg.ldap.userAttribute}
-        nextcloud-occ ldap:set-config ldapGroupFilter '${cfg.ldap.groupFilter}'
-        nextcloud-occ ldap:set-config ldapGroupFilterObjectclass group
-        nextcloud-occ ldap:set-config ldapGidNumber gidnumber
-        nextcloud-occ ldap:set-config ldapGroupDisplayName cn
-        nextcloud-occ ldap:set-config ldapHost ${host}
-        nextcloud-occ ldap:set-config ldapPort ${port}
-        nextcloud-occ ldap:set-config ldapLoginFilter '${loginFilter}'
-        nextcloud-occ ldap:set-config ldapLoginFilterEmail 1
-        nextcloud-occ ldap:set-config ldapLoginFilterMode 1
-        nextcloud-occ ldap:set-config ldapLoginFilterUsername 1
-        nextcloud-occ ldap:set-config ldapLoginFilterAttributes 'cn;displayName;mail'
-        nextcloud-occ ldap:set-config ldapUserFilter '${cfg.ldap.userFilter}'
+        nextcloud-occ ldap:set-config s01 ldapAttributeForUserSearch ${cfg.ldap.userAttribute}
+        nextcloud-occ ldap:set-config s01 ldapBase ${cfg.ldap.dn}
+        nextcloud-occ ldap:set-config s01 ldapBaseGroups ${cfg.ldap.dn}
+        nextcloud-occ ldap:set-config s01 ldapBaseUsers ${cfg.ldap.dn}
+        nextcloud-occ ldap:set-config s01 ldapConfigurationActive 1
+        nextcloud-occ ldap:set-config s01 ldapExpertUUIDGroupAttr ${cfg.ldap.userAttribute}
+        nextcloud-occ ldap:set-config s01 ldapExpertUUIDUserAttr ${cfg.ldap.userAttribute}
+        nextcloud-occ ldap:set-config s01 ldapExpertUsernameAttr ${cfg.ldap.userAttribute}
+        nextcloud-occ ldap:set-config s01 ldapGroupFilter '${cfg.ldap.groupFilter}'
+        nextcloud-occ ldap:set-config s01 ldapGroupFilterObjectclass group
+        nextcloud-occ ldap:set-config s01 ldapGidNumber gidnumber
+        nextcloud-occ ldap:set-config s01 ldapGroupDisplayName cn
+        nextcloud-occ ldap:set-config s01 ldapHost ${cfg.ldap.host}
+        nextcloud-occ ldap:set-config s01 ldapPort ${cfg.ldap.port}
+        nextcloud-occ ldap:set-config s01 ldapLoginFilter '${loginFilter}'
+        nextcloud-occ ldap:set-config s01 ldapLoginFilterEmail 1
+        nextcloud-occ ldap:set-config s01 ldapLoginFilterMode 1
+        nextcloud-occ ldap:set-config s01 ldapLoginFilterUsername 1
+        nextcloud-occ ldap:set-config s01 ldapLoginFilterAttributes 'cn;displayName;mail'
+        nextcloud-occ ldap:set-config s01 ldapUserFilter '${cfg.ldap.userFilter}'
       '';
     };
 
