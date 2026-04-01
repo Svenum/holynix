@@ -6,8 +6,10 @@
 
 let
   inherit (config.boot.kernelPackages) kernel;
-  usb-kernel-module = pkgs.stdenv.mkDerivation {
-    pname = "usb-kernel-module";
+
+  snd-usb-audio = pkgs.stdenv.mkDerivation {
+    pname = "snd-usb-audio";
+
     inherit (kernel)
       src
       version
@@ -17,6 +19,13 @@ let
 
     kernel_dev = kernel.dev;
     kernelVersion = kernel.modDirVersion;
+
+    patches = [
+      (pkgs.fetchpatch {
+        url = "https://github.com/torvalds/linux/commit/435ed8045aa6fb8d7dbef16b618d5341d88aa6e3.patch";
+        hash = "sha256-T1eMOoVHXFt9uS7QYR116NfIi7ev64PVC2qrdLvWts8=";
+      })
+    ];
 
     modulePath = "sound/usb";
 
@@ -42,13 +51,6 @@ let
 in
 {
   boot.extraModulePackages = [
-    (usb-kernel-module.overrideAttrs (_: {
-      patches = [
-        (pkgs.fetchpatch {
-          url = "https://github.com/torvalds/linux/commit/435ed8045aa6fb8d7dbef16b618d5341d88aa6e3.patch";
-          hash = "sha256-T1eMOoVHXFt9uS7QYR116NfIi7ev64PVC2qrdLvWts8=";
-        })
-      ];
-    }))
+    snd-usb-audio
   ];
 }
