@@ -4,6 +4,7 @@
   imports = [
     ./hardware.nix
     ./kvm.nix
+    ./kernel-patch.nix
   ];
 
   holynix = {
@@ -192,8 +193,6 @@
       openFirewall = false;
     };
   };
-  hardware.katana-usb-audio.enable = true;
-
   environment.variables = {
     # Needed to fix Kwin if gpu gets detatched
     KWIN_DRM_DEVICES = "/dev/dri/card1";
