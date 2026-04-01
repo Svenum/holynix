@@ -1,24 +1,16 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 
 let
-  inherit (config.boot.kernelPackages) kernel;
-
-  snd-usb-audio = pkgs.stdenv.mkDerivation {
-    pname = "snd-usb-audio";
-
-    inherit (kernel)
-      src
-      version
-      postPatch
-      nativeBuildInputs
-      ;
-
-    kernel_dev = kernel.dev;
-    kernelVersion = kernel.modDirVersion;
+  inherit (config.boot) kernelPackages;
+  module = "sound/usb";
+  snd-usb-audio = kernelPackages.stdenv.mkDerivation {
+    pname = baseNameOf module;
+    inherit (kernelPackages.kernel) version src;
 
     patches = [
       (pkgs.fetchpatch {
@@ -27,30 +19,23 @@ let
       })
     ];
 
-    modulePath = "sound/usb";
+    nativeBuildInputs = kernelPackages.kernel.moduleBuildDependencies;
 
-    buildPhase = ''
-      BUILT_KERNEL=$kernel_dev/lib/modules/$kernelVersion/build
+    enableParallelBuilding = true;
 
-      cp $BUILT_KERNEL/Module.symvers .
-      cp $BUILT_KERNEL/.config        .
-      cp $kernel_dev/vmlinux          .
+    makeFlags = kernelPackages.kernelModuleMakeFlags ++ [
+      "INSTALL_MOD_PATH=$(out)"
+      "INSTALL_MOD_DIR=kernel/${module}"
+      "M=$(PWD)/${module}"
+    ];
 
-      make "-j$NIX_BUILD_CORES" modules_prepare
-      make "-j$NIX_BUILD_CORES" M=$modulePath modules
-    '';
+    buildFlags = [ "modules" ];
 
-    installPhase = ''
-      make \
-        INSTALL_MOD_PATH="$out" \
-        XZ="xz -T$NIX_BUILD_CORES" \
-        M="$modulePath" \
-        modules_install
-    '';
+    installFlags = [ "modules_install" ];
   };
 in
 {
   boot.extraModulePackages = [
-    snd-usb-audio
+    (lib.hiPrio snd-usb-audio)
   ];
 }
