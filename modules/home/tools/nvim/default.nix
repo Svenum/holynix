@@ -118,7 +118,7 @@ in
         # LSP
         lsp = {
           enable = true;
-          inlayHints.enable = true;
+          inlayHints = true;
 
           keymaps = {
             diagnostic = {
