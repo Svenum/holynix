@@ -155,11 +155,39 @@ in
             };
 
             # Python
-            pyright.enable = true;
+            basedpyright = {
+              enable = true;
+              settings.basedpyright.analysis.inlayHints = {
+                callArgumentNames = true;
+                variableTypes = true;
+                returnTypes = true;
+              };
+            };
 
             # TypeScript/JavaScript
-            ts_ls.enable = true;
-            eslint.enable = true;
+            ts_ls = {
+              enable = true;
+              settings = {
+                typescript.inlayHints = {
+                  includeInlayParameterNameHints = "all";
+                  includeInlayParameterNameHintsWhenArgumentMatchesName = true;
+                  includeInlayFunctionParameterTypeHints = true;
+                  includeInlayVariableTypeHints = true;
+                  includeInlayPropertyDeclarationTypeHints = true;
+                  includeInlayFunctionLikeReturnTypeHints = true;
+                  includeInlayEnumMemberValueHints = true;
+                };
+                javascript.inlayHints = {
+                  includeInlayParameterNameHints = "all";
+                  includeInlayParameterNameHintsWhenArgumentMatchesName = true;
+                  includeInlayFunctionParameterTypeHints = true;
+                  includeInlayVariableTypeHints = true;
+                  includeInlayPropertyDeclarationTypeHints = true;
+                  includeInlayFunctionLikeReturnTypeHints = true;
+                  includeInlayEnumMemberValueHints = true;
+                };
+              };
+            };
 
             # HTML
             html.enable = true;
@@ -187,11 +215,24 @@ in
             # Lua
             lua_ls = {
               enable = true;
-              settings.telemetry.enable = false;
+              settings = {
+                telemetry.enable = false;
+                Lua.hint = {
+                  enable = true;
+                  arrayIndex = "Enable";
+                  await = true;
+                  paramName = "All";
+                  paramType = true;
+                  setType = true;
+                };
+              };
             };
 
             # Nix
-            nixd.enable = true;
+            nixd = {
+              enable = true;
+              config.cmd = [ "--inlay-hints" ];
+            };
 
             statix.enable = true;
 
