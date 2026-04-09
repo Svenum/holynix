@@ -188,6 +188,7 @@ in
                 };
               };
             };
+            biome.enable = true;
 
             # HTML
             html.enable = true;
