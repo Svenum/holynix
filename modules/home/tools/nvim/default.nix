@@ -32,6 +32,8 @@ in
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
+      withNodeJs = true;
+      withPython3 = true;
 
       # Global settings
       opts = {
