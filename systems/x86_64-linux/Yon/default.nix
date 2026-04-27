@@ -85,7 +85,7 @@
       };
     };
 
-    powerManagement.enable = true;
+    #powerManagement.enable = true;
 
     hardware = {
       gpu.amd.enable = true;
@@ -192,6 +192,9 @@
       enable = true;
       openFirewall = false;
     };
+
+    # Enable switcherooControl
+    switcherooControl.enable = true;
   };
   environment.variables = {
     # Needed to fix Kwin if gpu gets detatched
