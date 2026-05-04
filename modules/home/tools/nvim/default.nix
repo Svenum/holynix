@@ -87,6 +87,7 @@ in
             };
             indent_blankline = {
               enable = true;
+              scope_color = "";
               colored_indent_levels = true;
             };
             cmp = true;

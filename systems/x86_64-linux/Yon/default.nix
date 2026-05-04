@@ -15,6 +15,7 @@
       uefi-shell = true;
     };
     desktop.plasma.enable = true;
+    shell.zsh.enable = true;
     locale.name = "en_DE";
     systemType.laptop.enable = true;
     users = {
