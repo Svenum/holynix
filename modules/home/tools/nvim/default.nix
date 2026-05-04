@@ -87,11 +87,11 @@ in
             };
             indent_blankline = {
               enable = true;
-              scope_color = "";
               colored_indent_levels = true;
             };
             cmp = true;
             treesitter = true;
+            treesitter_context = true;
             nvimtree = true;
           };
         };
@@ -333,7 +333,18 @@ in
         };
 
         # Syntax
-        rainbow-delimiters.enable = true;
+        rainbow-delimiters = {
+          enable = true;
+          highlight = [
+            "RainbowDelimiterRed"
+            "RainbowDelimiterYellow"
+            "RainbowDelimiterBlue"
+            "RainbowDelimiterOrange"
+            "RainbowDelimiterGreen"
+            "RainbowDelimiterViolet"
+            "RainbowDelimiterCyan"
+          ];
+        };
 
         # UI
         web-devicons.enable = true;
@@ -409,7 +420,19 @@ in
         vim-surround.enable = true;
 
         # Indent
-        indent-blankline.enable = true;
+        indent-blankline = {
+          enable = true;
+          settings.scope.highlight = [
+            "RainbowDelimiterRed"
+            "RainbowDelimiterYellow"
+            "RainbowDelimiterBlue"
+            "RainbowDelimiterOrange"
+            "RainbowDelimiterGreen"
+            "RainbowDelimiterViolet"
+            "RainbowDelimiterCyan"
+          ];
+        };
+
       };
 
       # Key mappings
@@ -648,6 +671,14 @@ in
 
         " Auto enter insert mode in terminal
         autocmd BufWinEnter,WinEnter term://* startinsert
+      '';
+
+      extraConfigLua = ''
+        local hooks = require "ibl.hooks"
+        hooks.register(
+          hooks.type.SCOPE_HIGHLIGHT,
+          hooks.builtin.scope_highlight_from_extmark
+        )
       '';
     };
   };
