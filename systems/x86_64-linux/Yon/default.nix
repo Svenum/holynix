@@ -14,14 +14,7 @@
       memtest = true;
       uefi-shell = true;
     };
-    desktop = {
-      plasma.enable = true;
-      steammachine = {
-        enable = true;
-        hasAmdGpu = true;
-      };
-    };
-    shell.zsh.enable = true;
+    desktop.plasma.enable = true;
     locale.name = "en_DE";
     systemType.laptop.enable = true;
     users = {

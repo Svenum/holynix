@@ -85,6 +85,10 @@ in
                 information = [ "underline" ];
               };
             };
+            indent_blankline = {
+              enable = true;
+              colored_indent_levels = true;
+            };
             cmp = true;
             treesitter = true;
             nvimtree = true;
