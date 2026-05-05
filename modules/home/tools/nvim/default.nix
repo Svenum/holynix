@@ -300,7 +300,6 @@ in
               { name = "luasnip"; }
               { name = "async_path"; }
               { name = "buffer"; }
-              { name = "spell"; }
               { name = "tmux"; }
               { name = "treesitter"; }
               { name = "vimtex"; }
@@ -335,7 +334,7 @@ in
         # Syntax
         rainbow-delimiters = {
           enable = true;
-          highlight = [
+          settings.highlight = [
             "RainbowDelimiterRed"
             "RainbowDelimiterYellow"
             "RainbowDelimiterBlue"
