@@ -63,9 +63,6 @@ let
     inherit diskPath;
     inherit nvramPath;
   };
-
-  # MacOS VM
-  #macosConfig = import ./vms/macos.nix { inherit pkgs; uuid = "46ca6849-65c3-4c14-af1d-e0254845f4a3"; inherit diskPath; };
 in
 {
   virtualisation = {
@@ -270,7 +267,6 @@ in
           { definition = nixvirt.lib.domain.writeXML node1Config; }
           { definition = nixvirt.lib.domain.writeXML node2Config; }
           { definition = nixvirt.lib.domain.writeXML node3Config; }
-          #{ definition = nixvirt.lib.domain.writeXML macosConfig; }
         ];
       };
     };
