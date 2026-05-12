@@ -152,10 +152,16 @@
     # Enable switcherooControl
     switcherooControl.enable = true;
   };
-  environment.variables = {
-    # Needed to fix Kwin if gpu gets detatched
-    KWIN_DRM_DEVICES = "/dev/dri/card1";
-    KWIN_USE_OVERLAYS = "1";
+  environment = {
+    variables = {
+      # Needed to fix Kwin if gpu gets detatched
+      KWIN_DRM_DEVICES = "/dev/dri/card1";
+      KWIN_USE_OVERLAYS = "1";
+    };
+    systemPackages = with pkgs; [
+      framework-tool
+      framework-tool-tui
+    ];
   };
 
   # Enable Waydroid
