@@ -5,7 +5,6 @@
   inputs,
   ...
 }:
-
 with lib;
 with lib.types;
 let
@@ -76,7 +75,7 @@ in
           };
         };
         efi.canTouchEfiVariables = true;
-        timeout = mkDefault 1;
+        timeout = mkDefault 0;
       };
 
       initrd.systemd.enable = true;
