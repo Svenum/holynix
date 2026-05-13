@@ -67,7 +67,6 @@ in
         bup
         # GUI Tools
         kdePackages.sddm-kcm
-        caffeine-ng
         kdePackages.korganizer
         kdePackages.kdepim-runtime
         kdePackages.kdepim-addons
