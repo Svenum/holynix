@@ -34,10 +34,6 @@
     network.enable = true;
     network.useIWD = false;
 
-    hardware = {
-      headsetcontrol.enable = true;
-    };
-
     virtualisation = {
       podman = {
         enable = true;
@@ -55,6 +51,7 @@
     #powerManagement.enable = true;
 
     hardware = {
+      headsetcontrol.enable = true;
       gpu.amd.enable = true;
       scanner.enable = true;
       printer = {
@@ -95,6 +92,9 @@
   hardware = {
     # enable Steam input
     steam-hardware.enable = true;
+
+    # Framework input modules
+    inputmodule.enable = true;
 
     # enable fw-fanctrl
     fw-fanctrl = {
@@ -152,6 +152,9 @@
     # Enable switcherooControl
     switcherooControl.enable = true;
   };
+
+  powerManagement.powertop.enable = true;
+
   environment = {
     variables = {
       # Needed to fix Kwin if gpu gets detatched
