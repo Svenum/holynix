@@ -45,6 +45,8 @@ in
     catppuccin = {
       enable = true;
       cache.enable = true;
+      cursors.enable = true;
+      sddm.loginBackground = true;
       inherit (cfg) flavor;
       inherit (cfg) accent;
     };
