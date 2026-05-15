@@ -55,75 +55,50 @@ in
     programs.dconf.enable = true;
 
     # Install Needed packages
-    environment.systemPackages =
-      with pkgs;
-      [
-        # XWayland compability
-        xrdb
-        xsettingsd
-        xdg-desktop-portal-gtk
-        # KDE Backup
-        kdePackages.kup
-        bup
-        # GUI Tools
-        kdePackages.sddm-kcm
-        kdePackages.korganizer
-        kdePackages.kdepim-runtime
-        kdePackages.kdepim-addons
-        kdePackages.kaccounts-providers
-        kdePackages.kaccounts-integration
-        kdePackages.signond
-        kdePackages.qtwebengine
-        # Add Konsole profiles and colorshcemes
-        holynix.konsole-catppuccin
-        # Add plasmoids
-        holynix.shutdown_or_switch
-        # Other
-        mesa-demos
-        vulkan-tools
-        playerctl
-        wayland-utils
-        aha
+    environment.systemPackages = with pkgs; [
+      # XWayland compability
+      xrdb
+      xsettingsd
+      xdg-desktop-portal-gtk
+      # KDE Backup
+      kdePackages.kup
+      bup
+      # GUI Tools
+      kdePackages.korganizer
+      kdePackages.kdepim-runtime
+      kdePackages.kdepim-addons
+      kdePackages.kaccounts-providers
+      kdePackages.kaccounts-integration
+      kdePackages.signond
+      kdePackages.qtwebengine
+      # Add Konsole profiles and colorshcemes
+      holynix.konsole-catppuccin
+      # Add plasmoids
+      holynix.shutdown_or_switch
+      # Other
+      mesa-demos
+      vulkan-tools
+      playerctl
+      wayland-utils
+      aha
 
-        # Icons
-        (catppuccin-papirus-folders.override {
-          flavor = "latte";
-          inherit (themeCfg) accent;
-        })
-        # KDE Themes
-        (catppuccin-kde.override {
-          flavour = [ themeCfg.flavor ];
-          accents = [ themeCfg.accent ];
-          winDecStyles = [ "modern" ];
-        })
-        (catppuccin-sddm.override {
-          inherit (themeCfg) flavor;
-        })
-        # GTK Themes
-        (catppuccin-gtk.override {
-          variant = themeCfg.flavor;
-          accents = [ themeCfg.accent ];
-        })
-      ]
-      ++ (
-        if themeCfg.accent == "teal" then
-          [
-            catppuccin-cursors.latteTeal
-            catppuccin-cursors.mochaTeal
-          ]
-        else if themeCfg.accent == "red" then
-          [
-            catppuccin-cursors.latteRed
-            catppuccin-cursors.mochaRed
-          ]
-        else if themeCfg.accent == "peach" then
-          [
-            catppuccin-cursors.lattePeach
-            catppuccin-cursors.mochaPeach
-          ]
-        else
-          [ ]
-      );
+      # Icons
+      (catppuccin-papirus-folders.override {
+        flavor = "latte";
+        inherit (themeCfg) accent;
+      })
+      # KDE Themes
+      (catppuccin-kde.override {
+        flavour = [ themeCfg.flavor ];
+        accents = [ themeCfg.accent ];
+        winDecStyles = [ "modern" ];
+      })
+      # GTK Themes
+      (catppuccin-gtk.override {
+        variant = themeCfg.flavor;
+        accents = [ themeCfg.accent ];
+      })
+    ];
 
     programs = {
       # Enable partitionmanager

@@ -44,6 +44,7 @@ in
   config = {
     catppuccin = {
       enable = true;
+      cache.enable = true;
       inherit (cfg) flavor;
       inherit (cfg) accent;
     };
