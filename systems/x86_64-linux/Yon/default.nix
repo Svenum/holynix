@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -153,7 +158,19 @@
     switcherooControl.enable = true;
   };
 
-  powerManagement.powertop.enable = true;
+  powerManagement.powertop = {
+    enable = true;
+    postStart = ''
+      ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -s usb -a idVendor=32ac -a idProduct=0014
+      ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -s usb -a idVendor=32ac -a idProduct=0018
+    '';
+  };
+
+  services.udev.extraRules = ''
+    # disable USB auto suspend for Keyboard + Numpad
+    ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="32ac", ATTR{idProduct}=="0014", TEST=="power/control", ATTR{power/control}="on"
+    ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="32ac", ATTR{idProduct}=="0018", TEST=="power/control", ATTR{power/control}="on"
+  '';
 
   environment = {
     variables = {
