@@ -1,13 +1,12 @@
 {
   kernel,
   fetchpatch,
-  stdenv,
 }:
 
 let
-  module = "sound/snd";
+  module = "sound/usb";
 in
-stdenv.mkDerivation {
+kernel.stdenv.mkDerivation {
   pname = baseNameOf module;
   inherit (kernel) version src;
 
@@ -22,13 +21,17 @@ stdenv.mkDerivation {
 
   enableParallelBuilding = true;
 
-  makeFlags = kernel.kernelModuleMakeFlags ++ [
-    "INSTALL_MOD_PATH=$(out)"
-    "INSTALL_MOD_DIR=kernel/${module}"
-    "M=$(PWD)/${module}"
-  ];
+  buildPhase = ''
+    make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build \
+      M=$(pwd)/${module} \
+      modules
+  '';
 
-  buildFlags = [ "modules" ];
-
-  installFlags = [ "modules_install" ];
+  installPhase = ''
+    make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build \
+      M=$(pwd)/${module} \
+      INSTALL_MOD_PATH=$out \
+      INSTALL_MOD_DIR=kernel/${module} \
+      modules_install
+  '';
 }
