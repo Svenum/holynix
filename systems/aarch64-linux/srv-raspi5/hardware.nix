@@ -1,12 +1,20 @@
-{ lib, ... }:
+{
+  lib,
+  pkgs,
+  nixos-raspberrypi,
+  ...
+}:
 
 {
-  raspberry-pi-nix = {
-    board = "bcm2712";
-  };
-
-  boot.supportedFilesystems = {
-    zfs = lib.mkForce false;
+  boot = {
+    supportedFilesystems = {
+      zfs = lib.mkForce false;
+    };
+    loader = {
+      generic-extlinux-compatible.enable = lib.mkForce false;
+      raspberry-pi.bootloader = "kernel";
+    };
+    kernelPackages = nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi5;
   };
 
   fileSystems."/" = {

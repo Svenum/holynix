@@ -16,36 +16,40 @@
     };
   };
 
-  home.shellAliases = {
-    "ts" = "cd /home/sven/Documents/TS/Unterricht";
-    "pc" = "podman compose";
-    "sls" = "live-server -o";
-    "nd" = "nix develop";
-  };
   programs.zsh.enable = true;
-  # Add extgra packages
-  home.packages = with pkgs; [
-    # Crypto
-    ccrypt
+  home = {
+    shellAliases = {
+      "ts" = "cd /home/sven/Documents/TS/Unterricht";
+      "pc" = "podman compose";
+      "sls" = "live-server -o";
+      "nd" = "nix develop";
+    };
 
-    #nix config
-    sops
+    packages = with pkgs; [
+      # Crypto
+      ccrypt
 
-    # fun
-    sl
-    asciiquarium-transparent
-    tetris
+      #nix config
+      sops
 
-    # School
-    live-server
-    mysql-workbench
-    python311
+      # fun
+      sl
+      asciiquarium-transparent
+      tetris
 
-    # KI
-    claude-code
-    ollama-rocm
+      # School
+      live-server
+      mysql-workbench
+      python311
 
-    # Nextcloud
-    nextcloud-client
-  ];
+      # KI
+      claude-code
+      ollama-rocm
+
+      # Nextcloud
+      nextcloud-client
+    ];
+
+    stateVersion = "26.05";
+  };
 }

@@ -9,7 +9,6 @@
   imports = [
     ./hardware.nix
     ./kvm.nix
-    ./kernel-patch.nix
   ];
 
   holynix = {
@@ -94,55 +93,6 @@
     };
   };
 
-  hardware = {
-    # enable Steam input
-    steam-hardware.enable = true;
-
-    # Framework input modules
-    inputmodule.enable = true;
-
-    # enable fw-fanctrl
-    fw-fanctrl = {
-      enable = true;
-      config = {
-        defaultStrategy = "lazy";
-        strategyOnDischarging = "school";
-        strategies = {
-          "school" = {
-            fanSpeedUpdateFrequency = 5;
-            movingAverageInterval = 40;
-            speedCurve = [
-              {
-                temp = 45;
-                speed = 0;
-              }
-              {
-                temp = 55;
-                speed = 15;
-              }
-              {
-                temp = 65;
-                speed = 25;
-              }
-              {
-                temp = 70;
-                speed = 35;
-              }
-              {
-                temp = 80;
-                speed = 45;
-              }
-              {
-                temp = 90;
-                speed = 50;
-              }
-            ];
-          };
-        };
-      };
-    };
-  };
-
   services = {
     # Enable solaar
     solaar = {
@@ -172,26 +122,11 @@
     ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="32ac", ATTR{idProduct}=="0018", TEST=="power/control", ATTR{power/control}="on"
   '';
 
-  environment = {
-    variables = {
-      # Needed to fix Kwin if gpu gets detatched
-      KWIN_DRM_DEVICES = "/dev/dri/card1";
-      KWIN_USE_OVERLAYS = "1";
-    };
-    systemPackages = with pkgs; [
-      framework-tool
-      framework-tool-tui
-    ];
+  environment.variables = {
+    # Needed to fix Kwin if gpu gets detatched
+    KWIN_DRM_DEVICES = "/dev/dri/card1";
+    KWIN_USE_OVERLAYS = "1";
   };
-
-  # Enable Waydroid
-  #virtualisation.waydroid.enable = true;
-
-  # Enable aarch64 emulation
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-  # Enable musnix
-  musnix.enable = true;
 
   # Hosts
   networking.hosts."192.168.122.128" = [

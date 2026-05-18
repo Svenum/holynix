@@ -3,11 +3,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     snowfall-lib = {
       url = "github:anntnzrb/snowfall-lib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,12 +47,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix/v0.4.1";
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -66,17 +56,7 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
-    musnix = {
-      url = "github:musnix/musnix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-
-    jovian = {
-      url = "github:jovian-experiments/Jovian-NixOS";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -101,40 +81,29 @@
         cudaSupport = true;
       };
 
-      overlays = with inputs; [
-        jovian.overlays.jovian
-      ];
-
       systems = {
         modules.nixos = with inputs; [
           solaar.nixosModules.default
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
-          nur.modules.nixos.default
           catppuccin.nixosModules.catppuccin
-          musnix.nixosModules.musnix
-          jovian.nixosModules.jovian
         ];
 
         hosts = {
-          srv-raspi5.modules = with inputs; [
-            nixos-hardware.nixosModules.raspberry-pi-5
-            raspberry-pi-nix.nixosModules.raspberry-pi
-          ];
-
-          srv-oracle.modules = with inputs; [
-            nixos-generators.nixosModules.qcow-efi
-          ];
-
-          Yon = {
+          srv-raspi5 = {
             modules = with inputs; [
-              nixos-hardware.nixosModules.framework-16-7040-amd
+              nixos-hardware.nixosModules.raspberry-pi-5
+              nixos-raspberrypi.nixosModules.raspberry-pi-5.base
+              nixos-raspberrypi.nixosModules.raspberry-pi-5.page-size-16k
             ];
-
             specialArgs = {
-              inherit (inputs) nur;
+              inherit (inputs) nixos-raspberrypi;
             };
           };
+
+          Yon.modules = with inputs; [
+            nixos-hardware.nixosModules.framework-16-7040-amd
+          ];
         };
       };
 

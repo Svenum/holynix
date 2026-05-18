@@ -54,6 +54,9 @@ in
 
       # Kernel
       kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+      extraModulePackages = [
+        (lib.hiPrio config.boot.kernelPackages.callPackage ./snd-usb-audio)
+      ];
 
       # Bootloader
       loader = {

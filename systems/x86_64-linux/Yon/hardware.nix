@@ -1,28 +1,12 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
 
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-
-  # Fix Wlan after suspend or Hibernate
-  environment.etc."systemd/system-sleep/fix-wifi.sh".source = pkgs.writeShellScript "fix-wifi.sh" ''
-    case $1/$2 in
-      pre/*)
-        ${pkgs.kmod}/bin/modprobe -r mt7921e mt792x_lib mt76
-        echo 1 > /sys/bus/pci/devices/0000:04:00.0/remove
-        ;;
-
-      post/*)
-        ${pkgs.kmod}/bin/modprobe mt7921e
-        echo 1 > /sys/bus/pci/rescan
-        ;;
-    esac
-  '';
 
   # Add AMD CPU driver
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -43,6 +27,9 @@
       "mem_sleep_default=deep"
       "amd_pstate=active"
     ];
+
+    # Enable aarch64 emulation
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 
   # Configure Filesystem
@@ -76,7 +63,56 @@
     }
   ];
 
-  hardware.framework.enableKmod = true;
+  hardware = {
+    framework.enableKmod = true;
+
+    # enable Steam input
+    steam-hardware.enable = true;
+
+    # Framework input modules
+    inputmodule.enable = true;
+
+    # enable fw-fanctrl
+    fw-fanctrl = {
+      enable = true;
+      config = {
+        defaultStrategy = "lazy";
+        strategyOnDischarging = "school";
+        strategies = {
+          "school" = {
+            fanSpeedUpdateFrequency = 5;
+            movingAverageInterval = 40;
+            speedCurve = [
+              {
+                temp = 45;
+                speed = 0;
+              }
+              {
+                temp = 55;
+                speed = 15;
+              }
+              {
+                temp = 65;
+                speed = 25;
+              }
+              {
+                temp = 70;
+                speed = 35;
+              }
+              {
+                temp = 80;
+                speed = 45;
+              }
+              {
+                temp = 90;
+                speed = 50;
+              }
+            ];
+          };
+        };
+      };
+    };
+  };
 
   # disable Wakup on Keyboard
   services.udev.extraRules = ''

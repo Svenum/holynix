@@ -15,13 +15,18 @@
     };
   };
 
-  home.shellAliases = {
-    "pc" = "podman compose";
-  };
   programs.zsh.enable = true;
-  # Add extgra packages
-  home.packages = with pkgs; [
-    #nix config
-    sops
-  ];
+
+  home = {
+    shellAliases = {
+      "pc" = "podman compose";
+    };
+
+    packages = with pkgs; [
+      #nix config
+      sops
+    ];
+
+    stateVersion = "26.05";
+  };
 }
