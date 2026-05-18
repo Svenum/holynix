@@ -3,10 +3,6 @@ _:
 final: prev: {
   kdePackages = prev.kdePackages.overrideScope (
     _kfinal: kprev: {
-      # enable bluetooth support
-      kdeconnect-kde = kprev.kdeconnect-kde.overrideAttrs (old: {
-        cmakeFlags = (old.cmakeFlags or [ ]) ++ [ "-DBLUETOOTH_ENABLED=ON" ];
-      });
       # Make Plasma faster
       plasma-workspace =
         let
