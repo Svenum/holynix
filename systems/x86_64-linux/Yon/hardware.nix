@@ -114,13 +114,15 @@
     };
   };
 
-  # disable Wakup on Keyboard
   services.udev.extraRules = ''
-    # Framework Laptop 16 Keyboard
+    # disable Wakup on Keyboard
     ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0018", ATTR{power/wakeup}="disabled"
-
-    # Framework Laptop 16 Numpad Module
     ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0014", ATTR{power/wakeup}="disabled"
+
+    # disable USB auto suspend for Keyboard + Numpad
+    ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="32ac", ATTR{idProduct}=="0014", TEST=="power/control", ATTR{power/control}="on"
+    ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="32ac", ATTR{idProduct}=="0018", TEST=="power/control", ATTR{power/control}="on"
+    ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="2b89", ATTR{idProduct}=="0043", TEST=="power/control", ATTR{power/control}="on"
   '';
 
   security.pam.services.sddm.text = lib.mkForce (
@@ -130,7 +132,6 @@
       )
     )
     + ''
-
       account   include   login
       password  substack  login
       session   include   login

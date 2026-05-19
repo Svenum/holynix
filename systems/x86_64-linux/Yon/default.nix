@@ -113,14 +113,9 @@
     postStart = ''
       ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -s usb -a idVendor=32ac -a idProduct=0014
       ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -s usb -a idVendor=32ac -a idProduct=0018
+      ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -s usb -a idVendor=2b89 -a idProduct=0043
     '';
   };
-
-  services.udev.extraRules = ''
-    # disable USB auto suspend for Keyboard + Numpad
-    ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="32ac", ATTR{idProduct}=="0014", TEST=="power/control", ATTR{power/control}="on"
-    ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="32ac", ATTR{idProduct}=="0018", TEST=="power/control", ATTR{power/control}="on"
-  '';
 
   environment.variables = {
     # Needed to fix Kwin if gpu gets detatched
