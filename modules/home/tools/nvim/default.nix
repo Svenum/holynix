@@ -122,6 +122,9 @@ in
           };
         };
 
+        # Fuzzy Finder
+        telescope.enable = true;
+
         # LSP
         lsp = {
           enable = true;
