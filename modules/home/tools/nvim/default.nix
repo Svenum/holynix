@@ -24,6 +24,7 @@ in
       vale
       shellcheck
       eslint
+      ripgrep-all
     ];
 
     programs.nixvim = {
@@ -58,6 +59,7 @@ in
       globals = {
         loaded_netrw = 1;
         loaded_netrwPlugin = 1;
+        mapleader = " ";
       };
 
       # Clipboard
@@ -445,6 +447,31 @@ in
 
       # Key mappings
       keymaps = [
+        # Telescope
+        {
+          mode = "n";
+          key = "<leader>ff";
+          action = "telescope_builtin.find_files";
+          options = {
+            silent = true;
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>fg";
+          action = "telescope_builtin.live_grep";
+          options = {
+            silent = true;
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>fb";
+          action = "telescope_builtin.buffer";
+          options = {
+            silent = true;
+          };
+        }
         # NvimTree
         {
           mode = "n";
@@ -463,70 +490,10 @@ in
           options = { };
         }
 
-        # Tab navigation
-        {
-          mode = "n";
-          key = "<C-Right>";
-          action = "<cmd>tabnext<CR>";
-          options = {
-            silent = true;
-          };
-        }
-        {
-          mode = "n";
-          key = "<C-Left>";
-          action = "<cmd>tabprevious<CR>";
-          options = {
-            silent = true;
-          };
-        }
-        {
-          mode = "n";
-          key = "<C-Down>";
-          action = "<cmd>tabclose<CR>";
-          options = {
-            silent = true;
-          };
-        }
-        {
-          mode = "t";
-          key = "<C-Right>";
-          action = "<C-\\><C-n><cmd>tabnext<CR>";
-          options = {
-            silent = true;
-          };
-        }
-        {
-          mode = "t";
-          key = "<C-Left>";
-          action = "<C-\\><C-n><cmd>tabprevious<CR>";
-          options = {
-            silent = true;
-          };
-        }
-        {
-          mode = "t";
-          key = "<C-Down>";
-          action = "<C-\\><C-n><cmd>tabclose<CR>";
-          options = {
-            silent = true;
-          };
-        }
-
-        # Search
-        {
-          mode = "n";
-          key = "<C-f>";
-          action = "<Esc>/";
-          options = {
-            silent = true;
-          };
-        }
-
         # Window resizing
         {
           mode = "n";
-          key = "<C-S-Right>";
+          key = "<C-Right>";
           action = "<cmd>vert res +5<CR>";
           options = {
             silent = true;
@@ -534,7 +501,7 @@ in
         }
         {
           mode = "n";
-          key = "<C-S-Left>";
+          key = "<C-Left>";
           action = "<cmd>vert res -5<CR>";
           options = {
             silent = true;
@@ -542,7 +509,7 @@ in
         }
         {
           mode = "n";
-          key = "<C-S-Up>";
+          key = "<C-Up>";
           action = "<cmd>res +5<CR>";
           options = {
             silent = true;
@@ -550,45 +517,12 @@ in
         }
         {
           mode = "n";
-          key = "<C-S-Down>";
+          key = "<C-Down>";
           action = "<cmd>res -5<CR>";
           options = {
             silent = true;
           };
         }
-        {
-          mode = "t";
-          key = "<C-S-Right>";
-          action = "<C-\\><C-n><cmd>vert res +5<CR>i";
-          options = {
-            silent = true;
-          };
-        }
-        {
-          mode = "t";
-          key = "<C-S-Left>";
-          action = "<C-\\><C-n><cmd>vert res -5<CR>i";
-          options = {
-            silent = true;
-          };
-        }
-        {
-          mode = "t";
-          key = "<C-S-Up>";
-          action = "<C-\\><C-n><cmd>res +5<CR>i";
-          options = {
-            silent = true;
-          };
-        }
-        {
-          mode = "t";
-          key = "<C-S-Down>";
-          action = "<C-\\><C-n><cmd>res -5<CR>i";
-          options = {
-            silent = true;
-          };
-        }
-
         # Quit commands
         {
           mode = "n";
@@ -606,12 +540,6 @@ in
           mode = "i";
           key = "<C-q>";
           action = "<Esc><cmd>q<CR>";
-          options = { };
-        }
-        {
-          mode = "t";
-          key = "<C-q>";
-          action = "<C-\\><C-n><cmd>q<CR>";
           options = { };
         }
 
@@ -632,7 +560,7 @@ in
         # Split windows
         {
           mode = "n";
-          key = "<A-Down>";
+          key = "<\">";
           action = "<cmd>split<CR>";
           options = {
             silent = true;
@@ -640,45 +568,19 @@ in
         }
         {
           mode = "n";
-          key = "<A-Right>";
+          key = "<%>";
           action = "<cmd>vsplit<CR>";
           options = {
             silent = true;
           };
         }
-
-        # Delete word in insert mode
-        {
-          mode = "i";
-          key = "<C-h>";
-          action = "<C-w>";
-          options = { };
-        }
-
-        # Disable n key in normal mode
-        {
-          mode = "n";
-          key = "<n>";
-          action = "<Nop>";
-          options = { };
-        }
       ];
 
       # Extra configuration
       extraConfigVim = ''
-        " Terminal: click to enter insert mode
-        if has('nvim')
-            augroup terminal_setup | au!
-                autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
-            augroup end
-        endif
-
         " Open on last line before closed
         autocmd BufRead * autocmd FileType <buffer> ++once
           \ if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif
-
-        " Auto enter insert mode in terminal
-        autocmd BufWinEnter,WinEnter term://* startinsert
       '';
 
       extraConfigLua = ''
