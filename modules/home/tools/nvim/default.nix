@@ -123,7 +123,13 @@ in
         };
 
         # Fuzzy Finder
-        telescope.enable = true;
+        telescope = {
+          enable = true;
+          extensions = {
+            file-browser.enable = true;
+            fzf-native.enable = true;
+          };
+        };
 
         # LSP
         lsp = {
