@@ -24,7 +24,7 @@ in
       vale
       shellcheck
       eslint
-      ripgrep-all
+      ripgrep
     ];
 
     programs.nixvim = {
@@ -442,7 +442,6 @@ in
             "RainbowDelimiterCyan"
           ];
         };
-
       };
 
       # Key mappings
@@ -451,7 +450,7 @@ in
         {
           mode = "n";
           key = "<leader>ff";
-          action = "telescope_builtin.find_files";
+          action = "<cmd>Telescope find_files<CR>";
           options = {
             silent = true;
           };
@@ -459,7 +458,7 @@ in
         {
           mode = "n";
           key = "<leader>fg";
-          action = "telescope_builtin.live_grep";
+          action = "<cmd>Telescope live_grep<CR>";
           options = {
             silent = true;
           };
@@ -467,7 +466,7 @@ in
         {
           mode = "n";
           key = "<leader>fb";
-          action = "telescope_builtin.buffer";
+          action = "<cmd>Telescope buffers<CR>";
           options = {
             silent = true;
           };
@@ -497,6 +496,7 @@ in
           action = "<cmd>vert res +5<CR>";
           options = {
             silent = true;
+            noremap = true;
           };
         }
         {
@@ -505,6 +505,7 @@ in
           action = "<cmd>vert res -5<CR>";
           options = {
             silent = true;
+            noremap = true;
           };
         }
         {
@@ -513,6 +514,7 @@ in
           action = "<cmd>res +5<CR>";
           options = {
             silent = true;
+            noremap = true;
           };
         }
         {
@@ -521,6 +523,7 @@ in
           action = "<cmd>res -5<CR>";
           options = {
             silent = true;
+            noremap = true;
           };
         }
         # Quit commands
@@ -560,18 +563,20 @@ in
         # Split windows
         {
           mode = "n";
-          key = "<\">";
+          key = "\"";
           action = "<cmd>split<CR>";
           options = {
             silent = true;
+            noremap = true;
           };
         }
         {
           mode = "n";
-          key = "<%>";
+          key = "%";
           action = "<cmd>vsplit<CR>";
           options = {
             silent = true;
+            noremap = true;
           };
         }
       ];
