@@ -60,6 +60,7 @@ in
         loaded_netrw = 1;
         loaded_netrwPlugin = 1;
         mapleader = " ";
+        loaded_matchit = 1;
       };
 
       # Clipboard
@@ -616,8 +617,6 @@ in
           hooks.type.SCOPE_HIGHLIGHT,
           hooks.builtin.scope_highlight_from_extmark
         )
-        -- Manually set % keymap until https://github.com/nix-community/nixvim/issues/4353 is resolved
-        vim.keymap.set("n", "%%", "<Cmd>vsplit<CR>", {noremap = true, silent = true})
       '';
     };
   };
