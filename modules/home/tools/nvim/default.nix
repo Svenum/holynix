@@ -453,6 +453,7 @@ in
           action = "<cmd>Telescope find_files<CR>";
           options = {
             silent = true;
+            desc = "Telescope find_files";
           };
         }
         {
@@ -461,6 +462,7 @@ in
           action = "<cmd>Telescope live_grep<CR>";
           options = {
             silent = true;
+            desc = "Telescope live_grep";
           };
         }
         {
@@ -469,6 +471,7 @@ in
           action = "<cmd>Telescope buffers<CR>";
           options = {
             silent = true;
+            desc = "Telescope buffers";
           };
         }
         # NvimTree
@@ -478,6 +481,7 @@ in
           action = "<cmd>NvimTreeToggle<CR>";
           options = {
             silent = true;
+            desc = "Toggle NvimTree";
           };
         }
 
@@ -486,7 +490,9 @@ in
           mode = "n";
           key = "<M-m>";
           action = "<cmd>MarkdownPreview<CR>";
-          options = { };
+          options = {
+            desc = "Toggle MarkdownPreview";
+          };
         }
 
         # Window resizing
@@ -497,6 +503,7 @@ in
           options = {
             silent = true;
             noremap = true;
+            desc = "Grow window vertically";
           };
         }
         {
@@ -506,6 +513,7 @@ in
           options = {
             silent = true;
             noremap = true;
+            desc = "Shrink window vertically";
           };
         }
         {
@@ -515,6 +523,7 @@ in
           options = {
             silent = true;
             noremap = true;
+            desc = "Grow window horizontally";
           };
         }
         {
@@ -524,6 +533,7 @@ in
           options = {
             silent = true;
             noremap = true;
+            desc = "Shrink window horizontally";
           };
         }
         # Quit commands
@@ -531,19 +541,25 @@ in
           mode = "n";
           key = "<C-c>";
           action = "<cmd>quitall<CR>";
-          options = { };
+          options = {
+            desc = "Quitall";
+          };
         }
         {
           mode = "n";
           key = "<C-q>";
           action = "<cmd>q<CR>";
-          options = { };
+          options = {
+            desc = "Quit";
+          };
         }
         {
           mode = "i";
           key = "<C-q>";
           action = "<Esc><cmd>q<CR>";
-          options = { };
+          options = {
+            desc = "Quit";
+          };
         }
 
         # Save
@@ -551,13 +567,17 @@ in
           mode = "n";
           key = "<A-w>";
           action = "<cmd>w<CR>";
-          options = { };
+          options = {
+            desc = "Save";
+          };
         }
         {
           mode = "i";
           key = "<A-w>";
           action = "<Esc><cmd>w<CR>";
-          options = { };
+          options = {
+            desc = "Save";
+          };
         }
 
         # Split windows
@@ -568,6 +588,7 @@ in
           options = {
             silent = true;
             noremap = true;
+            desc = "Split window horizontally";
           };
         }
         {
@@ -577,6 +598,7 @@ in
           options = {
             silent = true;
             noremap = true;
+            desc = "Split window vertically";
           };
         }
       ];
@@ -594,6 +616,8 @@ in
           hooks.type.SCOPE_HIGHLIGHT,
           hooks.builtin.scope_highlight_from_extmark
         )
+        -- Manually set % keymap until https://github.com/nix-community/nixvim/issues/4353 is resolved
+        vim.keymap.set("n", "%%", "<Cmd>vsplit<CR>", {noremap = true, silent = true})
       '';
     };
   };
