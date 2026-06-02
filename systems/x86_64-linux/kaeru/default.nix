@@ -1,4 +1,4 @@
-{ modulesPath, ... }:
+{ modulesPath, config, ... }:
 
 let
   myKey = "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBABz8jUkUacu8PahA+mlDCCp3780yrcpAcNZIJ1CFswAbgbWoK+FZxdQ3P43X4cBjKVtz8tthf4xHhkGe6eNC1+ofgHq5bXfIP15ba7AEncdUvreQzPx2Aao7yZFw94piTiZqlQA193SZTw8ggbYPwn3hnXkFT/6ttIEr+18xUMGFM9c1A==";
@@ -36,6 +36,7 @@ in
 
     services = {
       publicDomain = "holypenguin.net";
+      listeningIp = (builtins.head config.networking.interfaces.enp1s0.ipv4.addresses).address;
       vaultwarden.enable = true;
       adguard.enable = true;
       nextcloud = {

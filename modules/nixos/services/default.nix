@@ -20,6 +20,11 @@ in
         if (cfg.publicDomain == null) then null else "${config.networking.hostName}.${cfg.publicDomain}";
       description = "The private domain for the services";
     };
+    listeningIp = mkOption {
+      type = nullOr str;
+      default = null;
+      description = "Set the default ip address for exported services";
+    };
     sopsDir = mkOption {
       type = path;
       default = ../../../secrets/${config.networking.hostName}/services;

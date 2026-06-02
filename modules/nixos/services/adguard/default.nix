@@ -14,7 +14,20 @@ in
     services = {
       adguardhome = {
         enable = true;
-        host = "https://adguard.${cfgS.publicDomain}";
+        host = "0.0.0.0";
+        settings =
+          let
+            baseConfig = import ./AdGuardHome.nix;
+          in
+          lib.recursiveUpdate baseConfig {
+            filtering.rewrites = baseConfig.filtering.rewrites ++ [
+              {
+                domain = "*.${cfgS.privateDomain}";
+                enabled = true;
+                answer = cfgS.listeningIp;
+              }
+            ];
+          };
       };
 
       caddy = {
