@@ -124,13 +124,10 @@
   };
 
   # Hosts
-  networking.hosts."192.168.122.128" = [
-    "vaultwarden.kaeru.holypenguin.net"
-    "nextcloud.kaeru.holypenguin.net"
-    "authentik.kaeru.holypenguin.net"
-    "pelican.kaeru.holypenguin.net"
-    "grafana.kaeru.holypenguin.net"
-  ];
+  networking.networkmanager.dns = "dnsmasq";
+  environment.etc."NetworkManager/dnsmasq.d/kaeru.conf".text = ''
+    address=/kaeru.holypenguin.net/192.168.122.128
+  '';
 
   # ld
   programs.nix-ld = {
