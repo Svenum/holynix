@@ -32,6 +32,10 @@
       #nix config
       sops
 
+      # nixpkgs development
+      nixpkgs-review
+      gh
+
       # fun
       sl
       asciiquarium-transparent
