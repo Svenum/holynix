@@ -48,14 +48,6 @@
       device = "/dev/disk/by-uuid/142B-16BD";
       fsType = "vfat";
     };
-    "/mnt/share" = {
-      device = "/home/share";
-      fsType = "fuse.bindfs";
-      options = [
-        "perms=0660:+X"
-        "mirror=@users"
-      ];
-    };
   };
   swapDevices = [
     {
