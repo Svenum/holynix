@@ -145,6 +145,18 @@ in
           adminuser = "holyadmin";
         };
         package = pkgs.nextcloud33;
+        extraApps = {
+          inherit (config.services.nextcloud.package.packages.apps)
+            calendar
+            contacts
+            cookbook
+            cospend
+            end_to_end_encryption
+            notes
+            onlyoffice
+            theming_customcss
+            ;
+        };
       };
 
       phpfpm.pools.nextcloud.settings = {
