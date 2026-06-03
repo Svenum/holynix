@@ -16,5 +16,6 @@ in
 
   config = mkIf cfg.enable {
     services.libinput.touchpad.disableWhileTyping = true;
+    holynix.systemType.desktop.enable = true;
   };
 }
