@@ -69,7 +69,7 @@
     };
   };
   tls = {
-    enabled = true;
+    enabled = false;
     server_name = "holypenguin.net";
     force_https = false;
     port_https = 443;
