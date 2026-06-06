@@ -61,6 +61,11 @@
     catppuccin.url = "github:catppuccin/nix";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    authentik = {
+      url = "github:nix-community/authentik-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -108,6 +113,10 @@
 
           Yon.modules = with inputs; [
             nixos-hardware.nixosModules.framework-16-7040-amd
+          ];
+
+          kaeru.modules = with inputs; [
+            authentik.nixosModules.default
           ];
         };
       };
