@@ -41,7 +41,7 @@ in
         globalConfig = ''
           layer4 {
             tcp/0.0.0.0:636 {
-              @ldaps tls sni ldap.example.com
+              @ldaps tls sni authentik.${cfgS.publicDomain} authentik.${cfgS.privateDomain}
               route @ldaps {
                 tls {
                 }
