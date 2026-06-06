@@ -39,6 +39,7 @@ in
       listeningIp = (builtins.head config.networking.interfaces.enp1s0.ipv4.addresses).address;
       vaultwarden.enable = true;
       adguard.enable = true;
+      authentik.enable = true;
       nextcloud = {
         enable = true;
         ldap = {
