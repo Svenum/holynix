@@ -28,6 +28,11 @@ in
                 enabled = true;
                 answer = cfgS.listeningIp;
               }
+              {
+                domain = "*.${cfgS.publicDomain}";
+                enabled = true;
+                answer = cfgS.listeningIp;
+              }
             ];
           };
       };

@@ -792,11 +792,6 @@
     safebrowsing_block_host = "standard-block.dns.adguard.com";
     rewrites = [
       {
-        domain = "srv-unraid.intra.holypenguin.net";
-        answer = "172.16.0.11";
-        enabled = true;
-      }
-      {
         domain = "srv-raspi.intra.holypenguin.net";
         answer = "172.16.0.12";
         enabled = true;
@@ -822,18 +817,8 @@
         enabled = true;
       }
       {
-        domain = "*.unraid.holypenguin.net";
-        answer = "172.16.0.10";
-        enabled = true;
-      }
-      {
         domain = "srv-raspi5.intra.holypenguin.net";
         answer = "172.16.0.13";
-        enabled = true;
-      }
-      {
-        domain = "*.holypenguin.net";
-        answer = "172.16.0.10";
         enabled = true;
       }
       {
@@ -844,16 +829,6 @@
       {
         domain = "notes.holypenguin.net";
         answer = "notes.holypenguin.net";
-        enabled = true;
-      }
-      {
-        domain = "terraria.holypenguin.net";
-        answer = "172.16.0.11";
-        enabled = true;
-      }
-      {
-        domain = "minecraft.holypenguin.net";
-        answer = "172.16.0.11";
         enabled = true;
       }
       {
@@ -869,36 +844,6 @@
       {
         domain = "burpee.holypenguin.net";
         answer = "burpee.holypenguin.net";
-        enabled = true;
-      }
-      {
-        domain = "*.oracle.holypenguin.net";
-        answer = "*.oracle.holypenguin.net";
-        enabled = true;
-      }
-      {
-        domain = "bitwarden.holypenguin.net";
-        answer = "bitwarden.holypenguin.net";
-        enabled = true;
-      }
-      {
-        domain = "games.holypenguin.net";
-        answer = "games.holypenguin.net";
-        enabled = true;
-      }
-      {
-        domain = "hytale.holypenguin.net";
-        answer = "hytale.holypenguin.net";
-        enabled = true;
-      }
-      {
-        domain = "*.kaeru.holypenguin.net";
-        answer = "172.16.0.220";
-        enabled = false;
-      }
-      {
-        domain = "*.dashu.holypenguin.net";
-        answer = "172.16.0.32";
         enabled = true;
       }
     ];

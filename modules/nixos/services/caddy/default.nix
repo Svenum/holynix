@@ -22,8 +22,11 @@ in
   config = mkIf cfg.enable {
     services.caddy = {
       package = pkgs.caddy.withPlugins {
-        plugins = [ "github.com/caddy-dns/cloudflare@v0.2.4" ];
-        hash = "sha256-bzMqxWTqrJ1skZmRTXyEMCKStXpljbqe5r0Ve2cnBfM=";
+        plugins = [
+          "github.com/caddy-dns/cloudflare@v0.2.4"
+          "github.com/mholt/caddy-l4@v0.1.1"
+        ];
+        hash = "sha256-sRavhJJpZ8TXGIVQafAE8GbzPldT7Rw+r6fl/XaXHBc=";
       };
       globalConfig = ''
         acme_dns cloudflare {$CLOUDFLARE_DNS_API_TOKEN}
