@@ -25,6 +25,8 @@ in
       };
     };
 
+    networking.firewall.allowedTCPPorts = [ 636 ];
+
     services = {
       authentik = {
         enable = true;
@@ -36,6 +38,18 @@ in
       };
       caddy = {
         enable = true;
+        globalConfig = ''
+          layer4 {
+            tcp/0.0.0.0:636 {
+              @ldaps tls sni ldap.example.com
+              route @ldaps {
+                tls {
+                }
+                proxy 127.0.0.1:3389
+              }
+            }
+          }
+        '';
         virtualHosts."authentik.${cfgS.publicDomain}" = {
           serverAliases = [ "authentik.${cfgS.privateDomain}" ];
           extraConfig = ''
