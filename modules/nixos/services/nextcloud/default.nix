@@ -83,47 +83,63 @@ in
       ];
     };
 
-    systemd.services.nextcloud-setup-ldap = mkIf cfg.ldap.enable {
-      path = [
-        config.services.nextcloud.occ
-      ];
-      script = ''
-        nextcloud-occ app:enable user_ldap
-        if [[ -z "$(nextcloud-occ ldap:show-config)" ]]; then
-          nextcloud-occ ldap:create-empty-config
-        fi
-        nextcloud-occ ldap:set-config s01 hasMemberOfFilterSupport 1
-        nextcloud-occ ldap:set-config s01 ldapAgentName ${cfg.ldap.bindDN}
-        nextcloud-occ ldap:set-config s01 ldapAttributesForUserSearch ${cfg.ldap.userAttribute}
-        nextcloud-occ ldap:set-config s01 ldapBase ${cfg.ldap.dn}
-        nextcloud-occ ldap:set-config s01 ldapBaseGroups ${cfg.ldap.dn}
-        nextcloud-occ ldap:set-config s01 ldapBaseUsers ${cfg.ldap.dn}
-        nextcloud-occ ldap:set-config s01 ldapConfigurationActive 1
-        nextcloud-occ ldap:set-config s01 ldapExperiencedAdmin mail 
-        nextcloud-occ ldap:set-config s01 ldapExpertUUIDGroupAttr ${cfg.ldap.userAttribute}
-        nextcloud-occ ldap:set-config s01 ldapExpertUUIDUserAttr ${cfg.ldap.userAttribute}
-        nextcloud-occ ldap:set-config s01 ldapExpertUsernameAttr ${cfg.ldap.userAttribute}
-        nextcloud-occ ldap:set-config s01 ldapGroupFilterGroups '${cfg.ldap.groupFilter}'
-        nextcloud-occ ldap:set-config s01 ldapGroupMemberAssocAttr member
-        nextcloud-occ ldap:set-config s01 ldapGroupFilterObjectclass group
-        nextcloud-occ ldap:set-config s01 ldapGidNumber gidnumber
-        nextcloud-occ ldap:set-config s01 ldapGroupDisplayName cn
-        nextcloud-occ ldap:set-config s01 ldapHost ${cfg.ldap.host}
-        nextcloud-occ ldap:set-config s01 ldapPort ${toString cfg.ldap.port}
-        nextcloud-occ ldap:set-config s01 ldapLoginFilter '${cfg.ldap.loginFilter}'
-        nextcloud-occ ldap:set-config s01 ldapLoginFilterEmail 1
-        nextcloud-occ ldap:set-config s01 ldapLoginFilterMode 1
-        nextcloud-occ ldap:set-config s01 ldapLoginFilterUsername 1
-        nextcloud-occ ldap:set-config s01 ldapLoginFilterAttributes 'cn;displayName;mail'
-        nextcloud-occ ldap:set-config s01 ldapUserFilter '${cfg.ldap.userFilter}'
-        nextcloud-occ ldap:set-config s01 ldapUserFilterMode 1
-        nextcloud-occ ldap:set-config s01 ldapUserFilterObjectclass user
-        nextcloud-occ ldap:set-config s01 ldapAgentPassword $(cat ${
-          config.sops.secrets."services/nextcloud/ldap_pass".path
-        })
-      '';
-      after = [ "nextcloud-setup.service" ];
-      wantedBy = [ "multi-user.target" ];
+    systemd.services = {
+      nextcloud-setup-ldap = mkIf cfg.ldap.enable {
+        path = [
+          config.services.nextcloud.occ
+        ];
+        script = ''
+          nextcloud-occ app:enable user_ldap
+          if [[ -z "$(nextcloud-occ ldap:show-config)" ]]; then
+            nextcloud-occ ldap:create-empty-config
+          fi
+          nextcloud-occ ldap:set-config s01 hasMemberOfFilterSupport 1
+          nextcloud-occ ldap:set-config s01 ldapAgentName ${cfg.ldap.bindDN}
+          nextcloud-occ ldap:set-config s01 ldapAttributesForUserSearch ${cfg.ldap.userAttribute}
+          nextcloud-occ ldap:set-config s01 ldapBase ${cfg.ldap.dn}
+          nextcloud-occ ldap:set-config s01 ldapBaseGroups ${cfg.ldap.dn}
+          nextcloud-occ ldap:set-config s01 ldapBaseUsers ${cfg.ldap.dn}
+          nextcloud-occ ldap:set-config s01 ldapConfigurationActive 1
+          nextcloud-occ ldap:set-config s01 ldapExperiencedAdmin mail 
+          nextcloud-occ ldap:set-config s01 ldapExpertUUIDGroupAttr ${cfg.ldap.userAttribute}
+          nextcloud-occ ldap:set-config s01 ldapExpertUUIDUserAttr ${cfg.ldap.userAttribute}
+          nextcloud-occ ldap:set-config s01 ldapExpertUsernameAttr ${cfg.ldap.userAttribute}
+          nextcloud-occ ldap:set-config s01 ldapGroupFilterGroups '${cfg.ldap.groupFilter}'
+          nextcloud-occ ldap:set-config s01 ldapGroupMemberAssocAttr member
+          nextcloud-occ ldap:set-config s01 ldapGroupFilterObjectclass group
+          nextcloud-occ ldap:set-config s01 ldapGidNumber gidnumber
+          nextcloud-occ ldap:set-config s01 ldapGroupDisplayName cn
+          nextcloud-occ ldap:set-config s01 ldapHost ${cfg.ldap.host}
+          nextcloud-occ ldap:set-config s01 ldapPort ${toString cfg.ldap.port}
+          nextcloud-occ ldap:set-config s01 ldapLoginFilter '${cfg.ldap.loginFilter}'
+          nextcloud-occ ldap:set-config s01 ldapLoginFilterEmail 1
+          nextcloud-occ ldap:set-config s01 ldapLoginFilterMode 1
+          nextcloud-occ ldap:set-config s01 ldapLoginFilterUsername 1
+          nextcloud-occ ldap:set-config s01 ldapLoginFilterAttributes 'cn;displayName;mail'
+          nextcloud-occ ldap:set-config s01 ldapUserFilter '${cfg.ldap.userFilter}'
+          nextcloud-occ ldap:set-config s01 ldapUserFilterMode 1
+          nextcloud-occ ldap:set-config s01 ldapUserFilterObjectclass user
+          nextcloud-occ ldap:set-config s01 ldapAgentPassword $(cat ${
+            config.sops.secrets."services/nextcloud/ldap_pass".path
+          })
+        '';
+        after = [ "nextcloud-setup.service" ];
+        wantedBy = [ "multi-user.target" ];
+      };
+      nextcloud-setup-theming = {
+        path = [
+          config.services.nextcloud.occ
+        ];
+        script = ''
+          nextcloud-occ theming:config url https://${config.services.nextcloud.hostName}
+          nextcloud-occ theming:config primary_color '#94E2D5'
+          nextcloud-occ theming:config background_color '#313244'
+          nextcloud-occ theming:config background backgroundColor
+          nextcloud-occ config:app:set theming_customcss customcss --value '${readFile ./custom.css}'
+        '';
+        after = [ "nextcloud-setup.service" ];
+        wantedBy = [ "multi-user.target" ];
+      };
     };
 
     services = {
@@ -139,7 +155,7 @@ in
         ];
         config = {
           dbtype = "pgsql";
-          # Shoulc contain:
+          # Should contain:
           # AMDINPASSWORD
           adminpassFile = config.sops.secrets."services/nextcloud/admin_pass".path;
           adminuser = "holyadmin";
