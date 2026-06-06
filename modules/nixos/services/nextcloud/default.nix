@@ -201,25 +201,13 @@ in
             redir /.well-known/webfinger /index.php/.well-known/webfinger
             redir /.well-known/nodeinfo  /index.php/.well-known/nodeinfo
 
-            @store_apps path_regexp ^/store-apps
-            root @store_apps ${config.services.nextcloud.home}
-
-            @nix_apps path_regexp ^/nix-apps
-            root @nix_apps ${config.services.nextcloud.home}
-
-            root * ${config.services.nextcloud.package}
-
-
             @davClnt {
               header_regexp User-Agent ^DavClnt
               path /
             }
-
             redir @davClnt /remote.php/webdev{uri} 302
 
-
             @sensitive {
-              # ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/)
               path /build     /build/*
               path /tests     /tests/*
               path /config    /config/*
@@ -227,8 +215,6 @@ in
               path /3rdparty  /3rdparty/*
               path /templates /templates/*
               path /data      /data/*
-
-              # ^/(?:\.|autotest|occ|issue|indie|db_|console)
               path /.*
               path /autotest*
               path /occ*
@@ -238,6 +224,8 @@ in
               path /console*
             }
             respond @sensitive 404
+
+            root * ${config.services.nextcloud.finalPackage}
 
             php_fastcgi unix/${config.services.phpfpm.pools.nextcloud.socket} {
               env front_controller_active true
