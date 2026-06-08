@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs = {
@@ -86,6 +91,7 @@
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
           catppuccin.nixosModules.catppuccin
+          disko.nixosModules.disko
         ];
 
         hosts = {
