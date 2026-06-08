@@ -3,12 +3,12 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme0n1"; # adjust to your device
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
-              size = "512M";
+              size = "2048M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -92,7 +92,7 @@
                       "noatime"
                     ];
                     swap = {
-                      swapfile.size = "8G"; # adjust to your RAM
+                      swapfile.size = "40G";
                     };
                   };
                 };
