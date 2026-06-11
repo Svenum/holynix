@@ -32,6 +32,7 @@ in
         configureTika = true;
         database.createLocally = true;
         environmentFile = mkIf cfg.enableOidc config.sops.secrets."services/paperless/oidc".path;
+        passwordFile = config.sops.secrets."services/paperless/admin_pass".path;
         domain = "paperless.${cfgS.publicDomain}";
         settings = {
           # OCR
@@ -59,14 +60,12 @@ in
         virtualHosts."paperless.${cfgS.publicDomain}" = {
           serverAliases = [ "paperless.${cfgS.privateDomain}" ];
           extraConfig = ''
-            reverse_proxy / localhost:${toString config.services.paperless.port}
+            reverse_proxy localhost:${toString config.services.paperless.port}
 
-            reverse_proxy /ws/status localhost:${toString config.services.paperless.port}
-
-            handle_path /static/* {
-              root * ${config.services.paperless.package}/share/paperless/static
+            handle /static/* {
+              root * ${config.services.paperless.package}
+              rewrite * /lib/paperless-ngx{path}
               file_server
-              rewrite * /lib/paperless-ngx/{path}
             }
           '';
         };
