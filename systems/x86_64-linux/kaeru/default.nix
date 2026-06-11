@@ -53,7 +53,7 @@ in
         };
       };
       paperless = {
-        enable = false;
+        enable = true;
         enableOidc = true;
       };
     };
