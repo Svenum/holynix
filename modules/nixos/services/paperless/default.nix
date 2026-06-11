@@ -62,10 +62,18 @@ in
           extraConfig = ''
             reverse_proxy localhost:${toString config.services.paperless.port}
 
-            handle /static/* {
-              root * ${config.services.paperless.package}
-              rewrite * /lib/paperless-ngx{path}
+            handle_path /ws/status* {
+              reverse_proxy localhost:${toString cfg.port}
+            }
+
+            handle_path /static/* {
+              root * ${config.services.paperless.package}/lib/paperless-ngx
               file_server
+              rewrite * /{path}
+            }
+
+            handle {
+              reverse_proxy ${cfg.address}:${toString cfg.port}
             }
           '';
         };
