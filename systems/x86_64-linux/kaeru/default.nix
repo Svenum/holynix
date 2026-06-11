@@ -52,6 +52,10 @@ in
           userFilter = "(&(objectClass=user)(memberof=cn=Nextcloud,ou=groups,dc=nextcloud,dc=holypenguin,dc=net))";
         };
       };
+      paperless = {
+        enable = true;
+        enableOidc = true;
+      };
     };
 
     virtualisation = {

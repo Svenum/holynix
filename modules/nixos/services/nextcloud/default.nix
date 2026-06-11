@@ -18,7 +18,7 @@ in
       enable = mkOption {
         type = bool;
         default = false;
-        description = "Enabel ldap for nextcloud";
+        description = "Enable ldap for nextcloud";
       };
       bindDN = mkOption {
         type = nullOr str;
