@@ -30,6 +30,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    arctis-sound-manager = {
+      url = "github:loteran/Arctis-Sound-Manager?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixvim.url = "github:nix-community/nixvim";
 
     auto-cpufreq = {
@@ -108,6 +113,7 @@
 
           Yon.modules = with inputs; [
             nixos-hardware.nixosModules.framework-16-7040-amd
+            arctis-sound-manager.nixosModules.default
           ];
         };
       };

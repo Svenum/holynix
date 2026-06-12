@@ -101,6 +101,9 @@
       extraArgs = "--restart-on-wake-up";
     };
 
+    # Enable arctis-sound-manager
+    arctis-sound-manager.enable = true;
+
     # Enable fwupd
     fwupd.enable = true;
 

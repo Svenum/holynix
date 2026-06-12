@@ -1,5 +1,27 @@
 {
   "nodes": {
+    "arctis-sound-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "nix",
+        "lastModified": 1781246429,
+        "narHash": "sha256-Qm3kx6UUHL/EBz4Y8uhkxvLsdzVLYRvQJE3r8PGcOxk=",
+        "owner": "loteran",
+        "repo": "Arctis-Sound-Manager",
+        "rev": "780a77c2f757598aff72374ee735b42867750d84",
+        "type": "github"
+      },
+      "original": {
+        "dir": "nix",
+        "owner": "loteran",
+        "repo": "Arctis-Sound-Manager",
+        "type": "github"
+      }
+    },
     "argononed": {
       "flake": false,
       "locked": {
@@ -66,6 +88,26 @@
       "original": {
         "owner": "ipetkov",
         "repo": "crane",
+        "type": "github"
+      }
+    },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781152676,
+        "narHash": "sha256-RxWs5ND31KzTG7wvMM+PMfUjyNpmIEr999lqNARaM5o=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "ff8702b4de27f72b4c78573dfb89ec74e36abdf1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
         "type": "github"
       }
     },
@@ -473,8 +515,10 @@
     },
     "root": {
       "inputs": {
+        "arctis-sound-manager": "arctis-sound-manager",
         "auto-cpufreq": "auto-cpufreq",
         "catppuccin": "catppuccin",
+        "disko": "disko",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "nix-flatpak": "nix-flatpak",
