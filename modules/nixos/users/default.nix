@@ -64,6 +64,7 @@ let
 
     catppuccin = {
       enable = true;
+      autoEnable = true;
       inherit (themeCfg) flavor;
       inherit (themeCfg) accent;
     };

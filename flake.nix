@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:Svenum/nixpkgs/add-lam";
 
     snowfall-lib = {
       url = "github:anntnzrb/snowfall-lib";
@@ -27,11 +27,6 @@
 
     solaar = {
       url = "github:Svenum/Solaar-Flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    arctis-sound-manager = {
-      url = "github:loteran/Arctis-Sound-Manager?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -113,7 +108,6 @@
 
           Yon.modules = with inputs; [
             nixos-hardware.nixosModules.framework-16-7040-amd
-            arctis-sound-manager.nixosModules.default
           ];
         };
       };

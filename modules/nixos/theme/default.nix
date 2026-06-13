@@ -44,6 +44,7 @@ in
   config = {
     catppuccin = {
       enable = true;
+      autoEnable = true;
       cache.enable = true;
       cursors.enable = true;
       sddm.loginBackground = true;
