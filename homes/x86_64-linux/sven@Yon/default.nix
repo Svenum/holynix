@@ -21,7 +21,6 @@
     shellAliases = {
       "ts" = "cd /home/sven/Documents/TS/Unterricht";
       "pc" = "podman compose";
-      "sls" = "live-server -o";
       "nd" = "nix develop";
     };
 
@@ -40,11 +39,6 @@
       sl
       asciiquarium-transparent
       tetris
-
-      # School
-      live-server
-      mysql-workbench
-      python311
 
       # KI
       claude-code
