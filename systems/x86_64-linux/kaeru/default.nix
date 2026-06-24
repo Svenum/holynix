@@ -7,6 +7,7 @@ in
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     ./hardware.nix
+    ./disko.nix
   ];
 
   holynix = {
@@ -70,6 +71,7 @@ in
   };
 
   networking = {
+    hostId = "f488d788";
     interfaces.enp1s0.ipv4.addresses = [
       {
         address = "192.168.122.128";
