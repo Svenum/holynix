@@ -1,21 +1,31 @@
-{ lib, ... }:
+{
+  config,
+  lib,
+  modulesPath,
+  ...
+}:
 
 {
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
+
   boot = {
     initrd = {
       availableKernelModules = [
-        "uhci_hcd"
-        "ehci_pci"
+        "xhci_pci"
         "ahci"
-        "virtio_pci"
-        "sr_mod"
-        "virtio_blk"
+        "nvme"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
       ];
       kernelModules = [ ];
     };
-    kernelModules = [ "kvm-amd" ];
+    kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

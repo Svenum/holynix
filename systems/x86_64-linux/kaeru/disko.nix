@@ -1,13 +1,11 @@
-{ config, ... }:
-
 let
-  os = "/dev/sd";
-  data1 = "/dev/sd";
-  data2 = "/dev/sd";
-  data3 = "/dev/sd";
-  data4 = "/dev/sd";
-  special1 = "/dev/nvme";
-  special2 = "/dev/nvme";
+  os = "/dev/sdc";
+  data1 = "/dev/sda";
+  data2 = "/dev/sdb";
+  data3 = "/dev/sdd";
+  data4 = "/dev/loop1";
+  special1 = "/dev/nvme0n1";
+  special2 = "/dev/loop2";
 in
 {
   disko.devices = {
@@ -132,11 +130,11 @@ in
           acltype = "posixacl";
           xattr = "sa";
           mountpoint = "none";
-        };
-        options = {
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
           keylocation = "prompt";
+        };
+        options = {
           ashift = "12";
         };
         datasets = {
@@ -151,7 +149,10 @@ in
           "root" = {
             type = "zfs_fs";
             mountpoint = "/";
-
+            options = {
+              "com.sun:auto-snapshot" = "false";
+              compression = "zstd";
+            };
           };
           "root/nix" = {
             type = "zfs_fs";
@@ -164,15 +165,15 @@ in
         type = "zpool";
         options = {
           ashift = "12";
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "file:///etc/secrets/tank.key";
         };
         rootFsOptions = {
           compression = "zstd";
           "com.sun:auto-snapshot" = "false";
           mountpoint = "none";
           special_small_blocks = "64K";
+          encryption = "aes-256-gcm";
+          keyformat = "passphrase";
+          keylocation = "file:///root/key";
         };
         mode.topology = {
           type = "topology";
