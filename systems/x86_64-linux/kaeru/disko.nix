@@ -173,7 +173,7 @@ in
           special_small_blocks = "64K";
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "file:///root/key";
+          keylocation = "file:///etc/secrets/tank.key";
         };
         mode.topology = {
           type = "topology";
