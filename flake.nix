@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:Svenum/nixpkgs/add-lam";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     snowfall-lib = {
       url = "github:anntnzrb/snowfall-lib";
