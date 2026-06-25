@@ -130,9 +130,6 @@ in
           acltype = "posixacl";
           xattr = "sa";
           mountpoint = "none";
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "prompt";
         };
         options = {
           ashift = "12";
@@ -152,9 +149,12 @@ in
             options = {
               "com.sun:auto-snapshot" = "false";
               compression = "zstd";
+              encryption = "aes-256-gcm";
+              keyformat = "passphrase";
+              keylocation = "prompt";
             };
           };
-          "root/nix" = {
+          "nix" = {
             type = "zfs_fs";
             options.mountpoint = "/nix";
             mountpoint = "/nix";
@@ -173,7 +173,7 @@ in
           special_small_blocks = "64K";
           encryption = "aes-256-gcm";
           keyformat = "passphrase";
-          keylocation = "file:///etc/secrets/tank.key";
+          keylocation = "prompt";
         };
         mode.topology = {
           type = "topology";
@@ -246,14 +246,5 @@ in
         };
       };
     };
-  };
-  sops.secrets."tank-key" = {
-    path = "/etc/secrets/tank.key";
-    mode = "0400";
-  };
-
-  systemd.services."zfs-import-tank" = {
-    after = [ "sops-nix.service" ];
-    requires = [ "sops-nix.service" ];
   };
 }
