@@ -228,7 +228,7 @@ in
             type = "zfs_fs";
             mountpoint = "/srv/media";
             options = {
-              compression = "off";
+              compression = "zstd";
               atime = "off";
               recordsize = "1M";
               "com.sun:auto-snapshot" = "false";
