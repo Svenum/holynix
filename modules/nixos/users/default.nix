@@ -140,10 +140,7 @@ in
 
   config = mkIf (if cfg != { } then true else false) {
     # Create user
-    users.users = mkMerge [
-      (mapAttrs mkUser cfg)
-      { root.hashedPassword = "!"; }
-    ];
+    users.users = mapAttrs mkUser cfg;
 
     # Configure user
     home-manager.users = mapAttrs mkUserConfig cfg;
