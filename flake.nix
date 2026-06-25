@@ -1,4 +1,26 @@
 {
+  nixConfig = {
+    extra-substituters = [
+      # nix community's cache server
+      "https://nix-community.cachix.org"
+
+      # catppuccin
+      "https://catppuccin.cachix.org"
+
+      # own cache
+      "https://iglu.holypenguin.net/default"
+    ];
+    extra-trusted-public-keys = [
+      # nix community's cache server public key
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+
+      # catppuccin
+      "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
+
+      # own cache
+      "default:xZJwKM6k5SCrviOA50/5RKldgPHRPkOrv/uziJVAm2U="
+    ];
+  };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
