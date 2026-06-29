@@ -57,19 +57,18 @@ in
           ];
           inherit (cfg.zfsSshDecryption) authorizedKeys;
         };
+        systemd.services.zfs-setup-root-profile = mkIf cfg.zfsSshDecryption.enable {
+          description = "Prepare root .profile for ZFS unlocking via SSH";
+          wantedBy = [ "initrd.target" ];
+          before = [ "initrd-root-fs.target" ];
+          unitConfig.DefaultDependencies = false;
+          script = ''
+            mkdir -p /var/empty
+            echo "systemd-tty-ask-password-agent --watch" > /var/empty/.profile
+          '';
+          serviceConfig.Type = "oneshot";
+        };
       };
-    };
-
-    systemd.services.zfs-setup-root-profile = mkIf cfg.zfsSshDecryption.enable {
-      description = "Prepare root .profile for ZFS unlocking via SSH";
-      wantedBy = [ "initrd.target" ];
-      before = [ "initrd-root-fs.target" ];
-      unitConfig.DefaultDependencies = false;
-      script = ''
-        mkdir -p /var/empty
-        echo "systemd-tty-ask-password-agent --watch" > /var/empty/.profile
-      '';
-      serviceConfig.Type = "oneshot";
     };
 
     # SSH

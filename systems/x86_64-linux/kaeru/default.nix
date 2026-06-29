@@ -77,8 +77,7 @@ in
 
   networking = {
     hostId = "f488d788";
-    useDHCP = true;
-    interfaces.enp1s0.ipv4.addresses = [
+    interfaces.enp0s31f6.ipv4.addresses = [
       {
         address = "172.16.0.150";
         prefixLength = 24;
@@ -86,7 +85,7 @@ in
     ];
     defaultGateway = "172.16.0.1";
     nameservers = [
-      "172.16.0.3"
+      "127.0.0.1"
       "172.16.0.4"
       "1.1.1.1"
       "8.8.8.8"
