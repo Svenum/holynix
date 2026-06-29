@@ -95,7 +95,7 @@ in
   boot = {
     binfmt.emulatedSystems = [ "aarch64-linux" ];
     kernelParams = [
-      "ip=172.16.0.150::172.16.0.1:255.255.255.0::enp0s31f6:off"
+      "ip=172.16.0.150::172.16.0.1:255.255.255.0:kaeru:enp0s31f6:off"
     ];
   };
 }
