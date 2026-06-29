@@ -94,7 +94,7 @@ in
   services.qemuGuest.enable = true;
   boot = {
     binfmt.emulatedSystems = [ "aarch64-linux" ];
-    network = {
+    initrd.systemd.network = {
       enable = true;
       networks."10-enp0s31f6" = {
         matchConfig.Name = "enp0s31f6";
