@@ -19,8 +19,11 @@
         "usbhid"
         "usb_storage"
         "sd_mod"
+        "igb"
+        "e1000e"
       ];
-      kernelModules = [ ];
+      kernelModules = [
+      ];
     };
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];

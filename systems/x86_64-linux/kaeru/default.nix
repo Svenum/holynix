@@ -77,6 +77,7 @@ in
 
   networking = {
     hostId = "f488d788";
+    useDHCP = true;
     interfaces.enp1s0.ipv4.addresses = [
       {
         address = "172.16.0.150";
