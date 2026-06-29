@@ -15,6 +15,10 @@ in
     systemType = {
       vm.enable = true;
       server.enable = true;
+      zfsSshDecryption = {
+        enable = true;
+        authorizedKeys = [ myKey ];
+      };
     };
     users = {
       "holyadmin" = {
