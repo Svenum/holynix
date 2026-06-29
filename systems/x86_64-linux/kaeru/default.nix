@@ -94,8 +94,14 @@ in
   services.qemuGuest.enable = true;
   boot = {
     binfmt.emulatedSystems = [ "aarch64-linux" ];
-    kernelParams = [
-      "ip=172.16.0.150::172.16.0.1:255.255.255.0:kaeru:enp0s31f6:off"
-    ];
+    network = {
+      enable = true;
+      networks."10-enp0s31f6" = {
+        matchConfig.Name = "enp0s31f6";
+        address = [ "172.16.0.150/24" ];
+        gateway = [ "172.16.0.1" ];
+        linkConfig.RequiredForOnline = "routable";
+      };
+    };
   };
 }
