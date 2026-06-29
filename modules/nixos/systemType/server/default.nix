@@ -58,24 +58,24 @@ in
           inherit (cfg.zfsSshDecryption) authorizedKeys;
         };
       };
+    };
 
-      systemd.services.zfs-setup-root-profile = {
-        description = "Prepare root .profile for ZFS unlocking via SSH";
-        wantedBy = [ "initrd.target" ];
-        before = [ "initrd-root-fs.target" ];
-        unitConfig.DefaultDependencies = false;
-        script = ''
-          mkdir -p /var/empty
-          echo "systemd-tty-ask-password-agent --watch" > /var/empty/.profile
-        '';
-        serviceConfig.Type = "oneshot";
-      };
+    systemd.services.zfs-setup-root-profile = mkIf cfg.zfsSshDecryption.enable {
+      description = "Prepare root .profile for ZFS unlocking via SSH";
+      wantedBy = [ "initrd.target" ];
+      before = [ "initrd-root-fs.target" ];
+      unitConfig.DefaultDependencies = false;
+      script = ''
+        mkdir -p /var/empty
+        echo "systemd-tty-ask-password-agent --watch" > /var/empty/.profile
+      '';
+      serviceConfig.Type = "oneshot";
     };
 
     # SSH
     services.openssh = {
       enable = true;
-      hostKeys = mkIf cfg.zfs [
+      hostKeys = mkIf cfg.zfsSshDecryption.enable [
         {
           bits = 4096;
           path = "/etc/ssh/ssh_host_rsa_key";
