@@ -42,7 +42,7 @@ in
 
     services = {
       publicDomain = "holypenguin.net";
-      listeningIp = (builtins.head config.networking.interfaces.enp1s0.ipv4.addresses).address;
+      listeningIp = (builtins.head config.networking.interfaces.enp0s31f6.ipv4.addresses).address;
       vaultwarden.enable = true;
       adguard.enable = true;
       authentik.enable = true;
