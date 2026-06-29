@@ -14,10 +14,12 @@ in
     locale.name = "en_DE";
     systemType = {
       vm.enable = true;
-      server.enable = true;
-      zfsSshDecryption = {
+      server = {
         enable = true;
-        authorizedKeys = [ myKey ];
+        zfsSshDecryption = {
+          enable = true;
+          authorizedKeys = [ myKey ];
+        };
       };
     };
     users = {
