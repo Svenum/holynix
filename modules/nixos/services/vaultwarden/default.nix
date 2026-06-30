@@ -56,7 +56,10 @@ in
             port = toString config.services.vaultwarden.config.ROCKET_PORT;
           in
           {
-            serverAliases = [ "vaultwarden.${cfgS.privateDomain}" ];
+            serverAliases = [
+              "bitwarden.${cfgS.publicDomain}"
+              "vaultwarden.${cfgS.privateDomain}"
+            ];
             extraConfig = ''
               reverse_proxy /notifications/anonymous-hub http://127.0.0.1:${port} {
                 transport http {
