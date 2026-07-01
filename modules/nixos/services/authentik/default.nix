@@ -21,7 +21,10 @@ in
         restartUnits = [ "authentik-migrate.service" ];
       };
       "services/authentik/ldap" = {
-        restartUnits = [ "authentik-migrate.service" ];
+        restartUnits = [
+          "authentik-migrate.service"
+          "authentik-ldap"
+        ];
       };
     };
 
