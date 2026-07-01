@@ -7,6 +7,7 @@ in
   imports = [
     ./hardware.nix
     ./disko.nix
+    ./zfs.nix
   ];
 
   holynix = {
@@ -91,7 +92,7 @@ in
       "8.8.8.8"
     ];
   };
-  services.qemuGuest.enable = true;
+
   boot = {
     binfmt.emulatedSystems = [ "aarch64-linux" ];
     initrd.systemd.network = {
