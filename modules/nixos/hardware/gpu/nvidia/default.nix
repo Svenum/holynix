@@ -37,7 +37,7 @@ in
         enable = true;
         inherit (config.hardware.nvidia) package;
         extraPackages = with pkgs; [
-          vaapiVdpau
+          libva-vdpau-driver
           libvdpau-va-gl
         ];
         extraPackages32 = with pkgs.pkgsi686Linux; [
@@ -53,5 +53,8 @@ in
 
     # Install ToggleScript
     environment.systemPackages = with pkgs; [ nvtopPackages.full ];
+
+    # enable cuda
+    nixpkgs.config.cudaSupport = true;
   };
 }
