@@ -63,6 +63,7 @@ in
         enable = true;
         enableOidc = true;
       };
+      protonbridge.enable = true;
     };
 
     virtualisation = {
