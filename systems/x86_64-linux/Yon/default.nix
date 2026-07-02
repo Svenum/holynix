@@ -92,7 +92,7 @@
       ];
     };
 
-    linux-arctis-manager.enable = true;
+    #linux-arctis-manager.enable = true;
   };
 
   services = {

@@ -43,10 +43,8 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.0.0";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      url = "github:nix-community/lanzaboote/v1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -67,6 +65,7 @@
     inputs:
     let
       lib = inputs.snowfall-lib.mkLib {
+        nixpkgs = inputs.nixpkgs-patcher;
         inherit inputs;
         src = ./.;
         snowfall = {
