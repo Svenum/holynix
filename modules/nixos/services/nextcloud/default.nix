@@ -9,6 +9,7 @@ with lib;
 with lib.types;
 let
   cfg = config.holynix.services.nextcloud;
+  cfgC = config.holynix.services.cloudflared;
   cfgS = config.holynix.services;
 in
 {
@@ -143,6 +144,8 @@ in
     };
 
     services = {
+      cloudflared.tunnels."${cfgC.tunnelId}".ingress."nextcloud.${cfgS.publicDomain}" =
+        mkIf cfgC.enable "https://nextcloud.${cfgS.privateDomain}";
       nextcloud = {
         enable = true;
         hostName = "nextcloud.${cfgS.publicDomain}";

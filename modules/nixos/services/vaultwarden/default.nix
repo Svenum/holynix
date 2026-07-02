@@ -5,6 +5,7 @@ with lib.types;
 let
   cfg = config.holynix.services.vaultwarden;
   cfgS = config.holynix.services;
+  cfgC = config.holynix.services.cloudflared;
 in
 {
   options.holynix.services.vaultwarden = {
@@ -24,6 +25,8 @@ in
     };
 
     services = {
+      cloudflared.tunnels."${cfgC.tunnelId}".ingress."bitwarden.${cfgS.publicDomain}" =
+        mkIf cfgC.enable "https://vaultwarden.${cfgS.privateDomain}";
       vaultwarden = {
         enable = true;
         dbBackend = "postgresql";

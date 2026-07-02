@@ -64,6 +64,11 @@ in
         enableOidc = true;
       };
       protonbridge.enable = true;
+      cloudflare-ddns.enable = true;
+      cloudflared = {
+        enable = true;
+        tunnelId = "f9822e76-cf75-43fa-b340-00092f5f53b3";
+      };
     };
 
     virtualisation = {

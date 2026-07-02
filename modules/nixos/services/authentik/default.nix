@@ -8,6 +8,7 @@ with lib;
 with lib.types;
 let
   cfg = config.holynix.services.authentik;
+  cfgC = config.holynix.services.cloudflared;
   cfgS = config.holynix.services;
 in
 {
@@ -31,6 +32,8 @@ in
     networking.firewall.allowedTCPPorts = [ 636 ];
 
     services = {
+      cloudflared.tunnels."${cfgC.tunnelId}".ingress."authentik.${cfgS.publicDomain}" =
+        mkIf cfgC.enable "https://authentik.${cfgS.privateDomain}";
       authentik = {
         enable = true;
         environmentFile = config.sops.secrets."services/authentik/core".path;

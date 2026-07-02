@@ -8,6 +8,7 @@ with lib;
 with lib.types;
 let
   cfg = config.holynix.services.paperless;
+  cfgC = config.holynix.services.cloudflared;
   cfgS = config.holynix.services;
 in
 {
@@ -27,6 +28,8 @@ in
     };
 
     services = {
+      cloudflared.tunnels."${cfgC.tunnelId}".ingress."paperless.${cfgS.publicDomain}" =
+        mkIf cfgC.enable "https://paperless.${cfgS.privateDomain}";
       paperless = {
         enable = true;
         configureTika = true;
