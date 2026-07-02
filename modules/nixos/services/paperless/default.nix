@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 
@@ -63,6 +64,75 @@ in
             reverse_proxy localhost:${toString config.services.paperless.port}
           '';
         };
+      };
+    };
+
+    # Protonmail
+    systemd.services.protonmail-bridge = {
+      description = "ProtonMail Bridge";
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
+      wantedBy = [ "multi-user.target" ];
+
+      environment.HOME = "/var/lib/protonmail-bridge";
+
+      serviceConfig = {
+        Type = "simple";
+
+        DynamicUser = true;
+
+        ExecStart = "${pkgs.protonmail-bridge}/bin/protonmail-bridge --noninteractive --log-level info";
+        Restart = "on-failure";
+        RestartSec = 5;
+
+        StateDirectory = "protonmail-bridge";
+        StateDirectoryMode = "0700";
+
+        # Hardening
+        NoNewPrivileges = true;
+        ProtectSystem = "strict";
+        ProtectHome = true;
+        PrivateTmp = true;
+        PrivateDevices = true;
+        PrivateUsers = true;
+        ProtectClock = true;
+        ProtectHostname = true;
+        ProtectKernelLogs = true;
+        ProtectKernelModules = true;
+        ProtectKernelTunables = true;
+        ProtectControlGroups = true;
+        ProtectProc = "invisible";
+        ProcSubset = "pid";
+        RestrictNamespaces = true;
+        RestrictRealtime = true;
+        RestrictSUIDSGID = true;
+        LockPersonality = true;
+        MemoryDenyWriteExecute = true;
+        RemoveIPC = true;
+        UMask = "0077";
+
+        CapabilityBoundingSet = "";
+        AmbientCapabilities = "";
+
+        SystemCallFilter = [
+          "@system-service"
+          "~@privileged"
+          "~@resources"
+        ];
+        SystemCallArchitectures = "native";
+        SystemCallErrorNumber = "EPERM";
+
+        RestrictAddressFamilies = [
+          "AF_INET"
+          "AF_INET6"
+          "AF_UNIX"
+        ];
+        IPAddressAllow = [
+          "localhost"
+          "any"
+        ];
+
+        DeviceAllow = [ ];
       };
     };
   };
