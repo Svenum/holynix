@@ -125,12 +125,6 @@
     KWIN_USE_OVERLAYS = "1";
   };
 
-  # Hosts
-  networking.networkmanager.dns = "dnsmasq";
-  environment.etc."NetworkManager/dnsmasq.d/kaeru.conf".text = ''
-    address=/kaeru.holypenguin.net/192.168.122.128
-  '';
-
   # ld
   programs.nix-ld = {
     enable = true;
