@@ -36,6 +36,7 @@ in
     services = {
       nginx.enable = false;
       postgresqlBackup = {
+        enable = config.services.postgresql.enable;
         compression = "zstd";
         startAt = "*-*-* 12:00:00";
         location = "/var/lib/backup/postgresql";

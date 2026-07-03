@@ -52,6 +52,16 @@ in
       authentik.enable = true;
       jellyfin.enable = true;
       prometheus.enable = true;
+      grafana = {
+        enable = true;
+        smtp.host = "smtp.zoho.eu:465";
+        oauth = {
+          auth_url = "https://authentik.holypenguin.net/application/o/authorize/";
+          token_url = "https://authentik.holypenguin.net/application/o/token/";
+          api_url = "https://authentik.holypenguin.net/application/o/userinfo/";
+          signout_redirect_url = "https://authentik.holypenguin.net/application/o/grafana/end-session/";
+        };
+      };
       ups.enable = true;
       nextcloud = {
         enable = true;

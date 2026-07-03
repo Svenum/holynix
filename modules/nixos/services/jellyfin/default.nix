@@ -14,14 +14,7 @@ in
 {
 
   options.holynix.services.jellyfin = {
-    enable = mkEnableOption "Enable Caddy";
-    dataDir = mkOption {
-      type = path;
-      default = "/srv/media/jellyfin";
-      description = ''
-        JellyFin's Base data directory
-      '';
-    };
+    enable = mkEnableOption "Enable JellyFin";
     gpuType = mkOption {
       type = enum [
         "none"
