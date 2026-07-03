@@ -792,23 +792,18 @@
     safebrowsing_block_host = "standard-block.dns.adguard.com";
     rewrites = [
       {
-        domain = "srv-raspi.intra.holypenguin.net";
+        domain = "pr-epson.intra.holypenguin.net";
+        answer = "172.18.0.148";
+        enabled = true;
+      }
+      {
+        domain = "pr-hp.intra.holypenguin.net";
+        answer = "172.18.0.152";
+        enabled = true;
+      }
+      {
+        domain = "pi.holypenguin.net";
         answer = "172.16.0.12";
-        enabled = true;
-      }
-      {
-        domain = "39750284a7ac57253f88c1f187ba5427347bac04.unraid.net";
-        answer = "172.16.0.11";
-        enabled = true;
-      }
-      {
-        domain = "srv-dev.intra.holypenguin.net";
-        answer = "172.16.0.111";
-        enabled = true;
-      }
-      {
-        domain = "rou-udm.intra.holypenguin.net";
-        answer = "172.16.0.1";
         enabled = true;
       }
       {
@@ -817,7 +812,7 @@
         enabled = true;
       }
       {
-        domain = "srv-raspi5.intra.holypenguin.net";
+        domain = "pi5.holypenguin.net";
         answer = "172.16.0.13";
         enabled = true;
       }
@@ -829,16 +824,6 @@
       {
         domain = "notes.holypenguin.net";
         answer = "notes.holypenguin.net";
-        enabled = true;
-      }
-      {
-        domain = "pr-epson.intra.holypenguin.net";
-        answer = "172.18.0.148";
-        enabled = true;
-      }
-      {
-        domain = "pr-hp.intra.holypenguin.net";
-        answer = "172.18.0.152";
         enabled = true;
       }
       {
