@@ -40,7 +40,10 @@ in
       };
     };
     tools.cliTools.enable = true;
-    hardware.gpu.nvidia.enable = true;
+    hardware.gpu.nvidia = {
+      enable = true;
+      packageChannel = "legacy_580";
+    };
     services = {
       publicDomain = "holypenguin.net";
       listeningIp = (builtins.head config.networking.interfaces.enp0s31f6.ipv4.addresses).address;

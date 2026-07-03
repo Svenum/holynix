@@ -16,12 +16,8 @@ in
       type = bool;
       default = false;
     };
-    packageChanel = mkOption {
-      type = enum [
-        "stable"
-        "production"
-        "beta"
-      ];
+    packageChannel = mkOption {
+      type = str;
       default = "stable";
       description = "Specify the nvidia driver package channel";
     };
@@ -46,7 +42,7 @@ in
       };
       nvidia = {
         open = false;
-        package = config.boot.kernelPackages.nvidiaPackages."${cfg.packageChanel}";
+        package = config.boot.kernelPackages.nvidiaPackages."${cfg.packageChannel}";
         modesetting.enable = true;
       };
     };
