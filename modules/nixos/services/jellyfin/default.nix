@@ -73,6 +73,13 @@ in
         };
       };
     };
+    systemd.services.jellyfin.serviceConfig.DeviceAllow = [
+      "/dev/dri/renderD128 rw"
+      "char-nvidia rw"
+      "/dev/nvidiactl rw"
+      "/dev/nvidia-uvm rw"
+      "/dev/nvidia-uvm-tools rw"
+    ];
     networking.firewall = {
       allowedUDPPorts = [
         1900
