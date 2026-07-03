@@ -51,6 +51,8 @@ in
       adguard.enable = true;
       authentik.enable = true;
       jellyfin.enable = true;
+      prometheus.enable = true;
+      ups.enable = true;
       nextcloud = {
         enable = true;
         ldap = {

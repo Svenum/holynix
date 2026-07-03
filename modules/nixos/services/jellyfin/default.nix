@@ -65,8 +65,8 @@ in
       };
       caddy = {
         enable = true;
-        virtualHosts."jellyfin.${cfgS.privateDomain}" = {
-          serverAliases = [ "jellyfin.${cfgS.publicDomain}" ];
+        virtualHosts."jellyfin.${cfgS.publicDomain}" = {
+          serverAliases = [ "jellyfin.${cfgS.privateDomain}" ];
           extraConfig = ''
             reverse_proxy http://127.0.0.1:8096
           '';
