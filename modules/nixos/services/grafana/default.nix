@@ -219,12 +219,8 @@ in
       "grafana-dashboards/postgesql_exporter.json".source =
         mkIf cpe.postgres.enable ./dashboards/postgresql.json;
 
-      "grafana-dashboards/zfs_exporter.json".source = mkIf cpe.zfs.enable (
-        pkgs.fetchurl {
-          url = "https://grafana.com/api/dashboards/11364/revisions/2/download";
-          hash = "sha256-8pNOiU5zm7dJu9yYuOku19jqcAH7NbrQ8q8x5xdXKjI=";
-        }
-      );
+      "grafana-dashboards/zfs_exporter.json".source = mkIf cpe.zfs.enable ./dashboards/zfs.json;
+
       "grafana-dashboards/smartctl_exporter.json".source = mkIf cpe.smartctl.enable (
         pkgs.fetchurl {
           url = "https://grafana.com/api/dashboards/20204/revisions/1/download";
