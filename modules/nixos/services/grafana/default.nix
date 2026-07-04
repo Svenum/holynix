@@ -171,7 +171,7 @@ in
           dashboards.settings.providers = [
             {
               name = "default";
-              disableDeletion = true;
+              disableDeletion = false;
               options = {
                 path = "/etc/grafana-dashboards";
                 foldersFromFilesStructure = true;
