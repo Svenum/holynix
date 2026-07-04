@@ -217,17 +217,9 @@ in
         }
       );
       "grafana-dashboards/postgesql.json".source = mkIf cpe.postgres.enable ./dashboards/postgresql.json;
-
       "grafana-dashboards/zfs.json".source = mkIf cpe.zfs.enable ./dashboards/zfs.json;
-
-      "grafana-dashboards/smartctl_exporter.json".source = mkIf cpe.smartctl.enable (
-        pkgs.fetchurl {
-          url = "https://grafana.com/api/dashboards/20204/revisions/1/download";
-          hash = "sha256-2/JP+1OXQMnucpuxuiN4p8gM22bsDnJtHQDpgJ4lmXc=";
-        }
-      );
+      "grafana-dashboards/smartctl.json".source = mkIf cpe.smartctl.enable ./dashboards/smartctl.json;
       "grafana-dashboards/blackbox.json".source = mkIf cpe.blackbox.enable ./dashboards/blackbox.json;
-
       "grafana-dashboards/libvirt_exporter.json".source = mkIf cpe.libvirt.enable (
         pkgs.fetchurl {
           url = "https://grafana.com/api/dashboards/15682/revisions/1/download";

@@ -1829,7 +1829,7 @@
       "timezone": "browser",
       "to": "now"
     },
-    "title": "Systemd exporter",
+    "title": "Systemd",
     "variables": [
       {
         "kind": "QueryVariable",

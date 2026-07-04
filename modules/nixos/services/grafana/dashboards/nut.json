@@ -4,19 +4,19 @@
   "metadata": {
     "name": "39-PZnrfH",
     "namespace": "default",
-    "uid": "8842ba6a-d6e6-4adc-98a3-f2be1c685c8e",
-    "resourceVersion": "1783114046939930",
+    "uid": "cef389c3-2f49-48d9-bf22-8a0c141166fc",
+    "resourceVersion": "1783186289234145",
     "generation": 1,
-    "creationTimestamp": "2026-07-03T21:27:26Z",
+    "creationTimestamp": "2026-07-04T17:31:29Z",
     "labels": {
-      "grafana.app/deprecatedInternalID": "1500861382635520"
+      "grafana.app/deprecatedInternalID": "1803867528720384"
     },
     "annotations": {
       "grafana.app/createdBy": "access-policy:service",
       "grafana.app/managedBy": "classic-file-provisioning",
       "grafana.app/managerId": "default",
-      "grafana.app/sourceChecksum": "5af15100d47f9ecdb8ff10f945e74acc",
-      "grafana.app/sourcePath": "/etc/grafana-dashboards/nut_exporter.json",
+      "grafana.app/sourceChecksum": "b753389e95fd81171f6ebc0172284750",
+      "grafana.app/sourcePath": "/etc/grafana-dashboards/nut.json",
       "grafana.app/sourceTimestamp": "1000",
       "grafana.app/folder": ""
     }
@@ -52,128 +52,6 @@
     "description": "UPS Monitoring using DRuggeri/nut_exporter",
     "editable": true,
     "elements": {
-      "panel-11": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "PBFA97CFB590B2093"
-                      },
-                      "group": "prometheus",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "editorMode": "code",
-                        "expr": "avg_over_time(network_ups_tools_battery_voltage[$smoothing_interval])",
-                        "legendFormat": "{{ups}}",
-                        "range": true
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "",
-          "id": 11,
-          "links": [],
-          "title": "Battery Voltage [$smoothing_interval]",
-          "vizConfig": {
-            "group": "timeseries",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "palette-classic"
-                  },
-                  "custom": {
-                    "axisBorderShow": false,
-                    "axisCenteredZero": false,
-                    "axisColorMode": "text",
-                    "axisLabel": "",
-                    "axisPlacement": "auto",
-                    "barAlignment": 0,
-                    "barWidthFactor": 0.6,
-                    "drawStyle": "line",
-                    "fillOpacity": 10,
-                    "gradientMode": "opacity",
-                    "hideFrom": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": false
-                    },
-                    "insertNulls": false,
-                    "lineInterpolation": "linear",
-                    "lineWidth": 1,
-                    "pointSize": 5,
-                    "scaleDistribution": {
-                      "type": "linear"
-                    },
-                    "showPoints": "never",
-                    "showValues": false,
-                    "spanNulls": false,
-                    "stacking": {
-                      "group": "A",
-                      "mode": "none"
-                    },
-                    "thresholdsStyle": {
-                      "mode": "off"
-                    }
-                  },
-                  "decimals": 1,
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      },
-                      {
-                        "color": "red",
-                        "value": 80
-                      }
-                    ]
-                  },
-                  "unit": "volt"
-                },
-                "overrides": []
-              },
-              "options": {
-                "annotations": {
-                  "clustering": -1,
-                  "multiLane": false
-                },
-                "legend": {
-                  "calcs": [
-                    "lastNotNull"
-                  ],
-                  "displayMode": "list",
-                  "placement": "bottom",
-                  "showLegend": false
-                },
-                "tooltip": {
-                  "hideZeros": false,
-                  "mode": "multi",
-                  "sort": "none"
-                }
-              }
-            },
-            "version": "13.0.2"
-          }
-        }
-      },
       "panel-14": {
         "kind": "Panel",
         "spec": {
@@ -292,7 +170,7 @@
                       "spec": {
                         "editorMode": "code",
                         "exemplar": false,
-                        "expr": "network_ups_tools_input_voltage",
+                        "expr": "network_ups_tools_output_voltage",
                         "instant": true,
                         "legendFormat": "{{ups}}",
                         "range": false
@@ -310,7 +188,7 @@
           "description": "",
           "id": 15,
           "links": [],
-          "title": "Input Voltage",
+          "title": "Output Voltage",
           "vizConfig": {
             "group": "stat",
             "kind": "VizConfig",
@@ -1084,7 +962,7 @@
                         "disableTextWrap": false,
                         "editorMode": "code",
                         "exemplar": false,
-                        "expr": "network_ups_tools_ups_realpower_nominal * network_ups_tools_ups_load / 100",
+                        "expr": "network_ups_tools_ups_power_nominal * network_ups_tools_ups_load / 100",
                         "fullMetaSearch": false,
                         "includeNullMetadata": true,
                         "instant": true,
@@ -1180,7 +1058,7 @@
                       "spec": {
                         "disableTextWrap": false,
                         "editorMode": "code",
-                        "expr": "avg_over_time((network_ups_tools_ups_load * network_ups_tools_ups_realpower_nominal / 100)[$smoothing_interval:])",
+                        "expr": "avg_over_time((network_ups_tools_ups_load * network_ups_tools_ups_power_nominal / 100)[$smoothing_interval:])",
                         "fullMetaSearch": false,
                         "includeNullMetadata": true,
                         "legendFormat": "{{ups}}",
@@ -1765,7 +1643,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "avg_over_time(network_ups_tools_input_voltage[$smoothing_interval])",
+                        "expr": "avg_over_time(network_ups_tools_output_voltage[$smoothing_interval])",
                         "legendFormat": "{{ups}}",
                         "range": true
                       },
@@ -1782,7 +1660,7 @@
           "description": "",
           "id": 9,
           "links": [],
-          "title": "Input Voltage [$smoothing_interval]",
+          "title": "Output Voltage [$smoothing_interval]",
           "vizConfig": {
             "group": "timeseries",
             "kind": "VizConfig",
@@ -2058,25 +1936,12 @@
             "spec": {
               "element": {
                 "kind": "ElementReference",
-                "name": "panel-11"
+                "name": "panel-9"
               },
               "height": 6,
               "width": 12,
               "x": 12,
               "y": 19
-            }
-          },
-          {
-            "kind": "GridLayoutItem",
-            "spec": {
-              "element": {
-                "kind": "ElementReference",
-                "name": "panel-9"
-              },
-              "height": 6,
-              "width": 12,
-              "x": 0,
-              "y": 25
             }
           }
         ]
@@ -2106,7 +1971,7 @@
       "timezone": "browser",
       "to": "now"
     },
-    "title": "Prometheus NUT Exporter for DRuggeri",
+    "title": "NUT",
     "variables": [
       {
         "kind": "CustomVariable",
