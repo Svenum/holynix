@@ -11,6 +11,8 @@ let
   cfgS = config.holynix.services;
   cpe = config.services.prometheus.exporters;
 
+  hostName = config.networking.hostName;
+
   hasZfs = lib.any (fs: fs.fsType == "zfs") (lib.attrValues config.fileSystems);
 in
 {
@@ -100,38 +102,92 @@ in
         scrapeConfigs =
           lists.optional cpe.zfs.enable {
             job_name = "zfs";
-            static_configs = [ { targets = [ "localhost:${toString cpe.zfs.port}" ]; } ];
+            static_configs = [
+              {
+                labels = {
+                  host = hostName;
+                };
+                targets = [ "localhost:${toString cpe.zfs.port}" ];
+              }
+            ];
           }
           ++ lists.optional cpe.postgres.enable {
             job_name = "postgres";
-            static_configs = [ { targets = [ "localhost:${toString cpe.postgres.port}" ]; } ];
+            static_configs = [
+              {
+                labels = {
+                  host = hostName;
+                };
+                targets = [ "localhost:${toString cpe.postgres.port}" ];
+              }
+            ];
           }
           ++ lists.optional cpe.systemd.enable {
             job_name = "systemd";
-            static_configs = [ { targets = [ "localhost:${toString cpe.systemd.port}" ]; } ];
+            static_configs = [
+              {
+                labels = {
+                  host = hostName;
+                };
+                targets = [ "localhost:${toString cpe.systemd.port}" ];
+              }
+            ];
           }
           ++ lists.optional cpe.smartctl.enable {
             job_name = "smartctl";
-            static_configs = [ { targets = [ "localhost:${toString cpe.smartctl.port}" ]; } ];
+            static_configs = [
+              {
+                labels = {
+                  host = hostName;
+                };
+                targets = [ "localhost:${toString cpe.smartctl.port}" ];
+              }
+            ];
           }
           ++ lists.optional cpe.nut.enable {
             job_name = "nut";
             metrics_path = "ups_metrics";
-            static_configs = [ { targets = [ "localhost:${toString cpe.nut.port}" ]; } ];
+            static_configs = [
+              {
+                labels = {
+                  host = hostName;
+                };
+                targets = [ "localhost:${toString cpe.nut.port}" ];
+              }
+            ];
           }
           ++ lists.optional cpe.libvirt.enable {
             job_name = "libvirt";
-            static_configs = [ { targets = [ "localhost:${toString cpe.libvirt.port}" ]; } ];
+            static_configs = [
+              {
+                labels = {
+                  host = hostName;
+                };
+                targets = [ "localhost:${toString cpe.libvirt.port}" ];
+              }
+            ];
           }
           ++ lists.optional cpe.node.enable {
             job_name = "node";
-            static_configs = [ { targets = [ "localhost:${toString cpe.node.port}" ]; } ];
+            static_configs = [
+              {
+                labels = {
+                  host = hostName;
+                };
+                targets = [ "localhost:${toString cpe.node.port}" ];
+              }
+            ];
           }
           ++ lists.optional cpe.blackbox.enable {
             job_name = "blackbox";
             metrics_path = "/probe";
             static_configs = [
-              { targets = builtins.attrNames config.services.caddy.virtualHosts; }
+              {
+                labels = {
+                  host = hostName;
+                };
+                targets = builtins.attrNames config.services.caddy.virtualHosts;
+              }
             ];
             params.module = [ "http_2xx" ];
             relabel_configs = [
