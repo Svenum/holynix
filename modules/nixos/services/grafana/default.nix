@@ -216,10 +216,9 @@ in
           hash = "sha256-GExrdAnzBtp1Ul13cvcZRbEM6iOtFrXXjEaY6g6lGYY=";
         }
       );
-      "grafana-dashboards/postgesql_exporter.json".source =
-        mkIf cpe.postgres.enable ./dashboards/postgresql.json;
+      "grafana-dashboards/postgesql.json".source = mkIf cpe.postgres.enable ./dashboards/postgresql.json;
 
-      "grafana-dashboards/zfs_exporter.json".source = mkIf cpe.zfs.enable ./dashboards/zfs.json;
+      "grafana-dashboards/zfs.json".source = mkIf cpe.zfs.enable ./dashboards/zfs.json;
 
       "grafana-dashboards/smartctl_exporter.json".source = mkIf cpe.smartctl.enable (
         pkgs.fetchurl {
@@ -227,8 +226,7 @@ in
           hash = "sha256-2/JP+1OXQMnucpuxuiN4p8gM22bsDnJtHQDpgJ4lmXc=";
         }
       );
-      "grafana-dashboards/blackbox_exporter.json".source =
-        mkIf cpe.blackbox.enable ./dashboards/blackbox.json;
+      "grafana-dashboards/blackbox.json".source = mkIf cpe.blackbox.enable ./dashboards/blackbox.json;
 
       "grafana-dashboards/libvirt_exporter.json".source = mkIf cpe.libvirt.enable (
         pkgs.fetchurl {
