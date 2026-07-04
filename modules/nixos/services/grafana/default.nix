@@ -234,18 +234,8 @@ in
           hash = "sha256-9NHUPIIM6hVKk5ewWGq92uSruutkzPBrs0Am20ihTZw=";
         }
       );
-      "grafana-dashboards/nut_exporter.json".source = mkIf cpe.nut.enable (
-        pkgs.fetchurl {
-          url = "https://grafana.com/api/dashboards/19308/revisions/4/download";
-          hash = "sha256-t6dXRo3EWWvYZosS9VmkC/oPGoEkUNDB4DHeBAW2/AQ=";
-        }
-      );
-      "grafana-dashboards/systemd_exporter.json".source = mkIf cpe.systemd.enable (
-        pkgs.fetchurl {
-          url = "https://grafana.com/api/dashboards/22872/revisions/1/download";
-          hash = "sha256-ZlvD6Gt5dJsv2ud4f0t1AuAIMImL9I9zxoE0Rx9yvzM=";
-        }
-      );
+      "grafana-dashboards/nut.json".source = mkIf cpe.nut.enable ./dashboards/nut.json;
+      "grafana-dashboards/systemd.json".source = mkIf cpe.systemd.enable ./dashboards/systemd.json;
     };
   };
 }

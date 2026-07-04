@@ -45,6 +45,9 @@ in
             enable = true;
             nutUser = "exporter";
             passwordPath = config.power.ups.users.exporter.passwordFile;
+            extraFlags = [
+              "--nut.vars_enable=\"\""
+            ];
           };
           systemd.enable = true;
           smartctl.enable = true;
