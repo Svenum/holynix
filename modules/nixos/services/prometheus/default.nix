@@ -49,7 +49,13 @@ in
           systemd.enable = true;
           smartctl.enable = true;
           libvirt.enable = config.virtualisation.libvirtd.enable;
-          node.enable = true;
+          node = {
+            enable = true;
+            enabledCollectors = [
+              "systemd"
+              "processes"
+            ];
+          };
           blackbox = mkIf config.services.caddy.enable {
             enable = true;
             configFile = builtins.toFile "config.yaml" ''

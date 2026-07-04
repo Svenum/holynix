@@ -4246,7 +4246,7 @@
             "group": "prometheus",
             "kind": "DataQuery",
             "spec": {
-              "__legacyStringValue": "query_result(pg_up{release=\"$release\"})"
+              "__legacyStringValue": "query_result(pg_up)"
             },
             "version": "v0"
           },
