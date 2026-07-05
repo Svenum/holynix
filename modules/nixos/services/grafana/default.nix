@@ -217,6 +217,12 @@ in
           }
         ];
       };
+      postgresqlBackup = {
+        enable = true;
+        databases = [
+          "grafana"
+        ];
+      };
     };
     environment.etc = {
       "grafana-dashboards/node_exporter.json".source = mkIf cpe.node.enable (
