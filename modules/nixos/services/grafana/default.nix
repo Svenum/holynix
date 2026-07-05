@@ -175,6 +175,7 @@ in
         provision = {
           alerting = {
             contactPoints.path = config.sops.secrets."services/grafana/contactPoints".path;
+            templates.path = ./alerting/templates.yaml;
           };
           dashboards.settings.providers = [
             {
