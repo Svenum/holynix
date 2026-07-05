@@ -115,6 +115,11 @@ in
         owner = "grafana";
         group = "grafana";
       };
+      "services/grafana/contactPoints" = {
+        restartUnits = [ "grafana.service" ];
+        owner = "grafana";
+        group = "grafana";
+      };
     };
     services = {
       cloudflared.tunnels."${cfgC.tunnelId}".ingress."grafana.${cfgS.publicDomain}" =
@@ -168,12 +173,15 @@ in
           };
         };
         provision = {
+          alerting = {
+            contactPoints.path = config.sops.secrets."services/grafana/contactPoints".path;
+          };
           dashboards.settings.providers = [
             {
               name = "default";
               disableDeletion = false;
               options = {
-                path = "/etc/grafana-dashboards";
+                path = "/etc/grafana/dashboards";
                 foldersFromFilesStructure = true;
               };
             }
@@ -216,18 +224,18 @@ in
           hash = "sha256-GExrdAnzBtp1Ul13cvcZRbEM6iOtFrXXjEaY6g6lGYY=";
         }
       );
-      "grafana-dashboards/postgesql.json".source = mkIf cpe.postgres.enable ./dashboards/postgresql.json;
-      "grafana-dashboards/zfs.json".source = mkIf cpe.zfs.enable ./dashboards/zfs.json;
-      "grafana-dashboards/smartctl.json".source = mkIf cpe.smartctl.enable ./dashboards/smartctl.json;
-      "grafana-dashboards/blackbox.json".source = mkIf cpe.blackbox.enable ./dashboards/blackbox.json;
-      "grafana-dashboards/libvirt_exporter.json".source = mkIf cpe.libvirt.enable (
+      "grafana/dashboards/postgesql.json".source = mkIf cpe.postgres.enable ./dashboards/postgresql.json;
+      "grafana/dashboards/zfs.json".source = mkIf cpe.zfs.enable ./dashboards/zfs.json;
+      "grafana/dashboards/smartctl.json".source = mkIf cpe.smartctl.enable ./dashboards/smartctl.json;
+      "grafana/dashboards/blackbox.json".source = mkIf cpe.blackbox.enable ./dashboards/blackbox.json;
+      "grafana/dashboards/libvirt_exporter.json".source = mkIf cpe.libvirt.enable (
         pkgs.fetchurl {
           url = "https://grafana.com/api/dashboards/15682/revisions/1/download";
           hash = "sha256-9NHUPIIM6hVKk5ewWGq92uSruutkzPBrs0Am20ihTZw=";
         }
       );
-      "grafana-dashboards/nut.json".source = mkIf cpe.nut.enable ./dashboards/nut.json;
-      "grafana-dashboards/systemd.json".source = mkIf cpe.systemd.enable ./dashboards/systemd.json;
+      "grafana/dashboards/nut.json".source = mkIf cpe.nut.enable ./dashboards/nut.json;
+      "grafana/dashboards/systemd.json".source = mkIf cpe.systemd.enable ./dashboards/systemd.json;
     };
   };
 }
