@@ -85,6 +85,18 @@ in
     };
 
     systemd.services = {
+      nextcloud-setup-files_external = {
+        path = [
+          config.services.nextcloud.occ
+        ];
+        script = ''
+          nextcloud-occ app:enable files_external
+          nextcloud-occ config:app:set files_external allow_user_mounting --value=1
+          nextcloud-occ config:app:set files_external user_mounting_backends --value="dav,owncloud,sftp,\OC\Files\Storage\SFTP_Key"
+        '';
+        after = [ "nextcloud-setup.service" ];
+        wantedBy = [ "multi-user.target" ];
+      };
       nextcloud-setup-ldap = mkIf cfg.ldap.enable {
         path = [
           config.services.nextcloud.occ
@@ -175,6 +187,11 @@ in
             onlyoffice
             theming_customcss
             ;
+          groupfolders = pkgs.fetchNextcloudApp {
+            url = "https://github.com/nextcloud-releases/groupfolders/releases/download/v21.0.9/groupfolders-v21.0.9.tar.gz";
+            hash = "sha256-2LlfB3hCX2RvIxG6W0LY4vz9833C/TX8rI0/Ab3jiiE=";
+            license = "agpl3Only";
+          };
         };
       };
 
