@@ -53,6 +53,7 @@ in
       jellyfin.enable = true;
       prometheus.enable = true;
       stirlingpdf.enable = true;
+      it-tools.enable = true;
       grafana = {
         enable = true;
         smtp.host = "smtp.zoho.eu:465";
