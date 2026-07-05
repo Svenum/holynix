@@ -10,14 +10,16 @@ templates:
       {{ end -}}
       {{ end -}}
       {{ define "alert.summary_and_description" -}}
-        ## __**Status:** {{ .Status }}__
+
+        ## ~~-------------------------~~ **{{ .Status }}** ~~-------------------------~~
+
         **Summary:** {{.Annotations.summary}}
         **Description:** {{.Annotations.description}}
         **Source:**
-        {{- if gt (len .DashboardURL) 0 -}}
+        {{ if gt (len .DashboardURL) 0 -}}
         - [Dashboard]({{.DashboardURL}})
         {{ end -}}
         {{ if gt (len .PanelURL) 0 -}}
         - [Panel]({{.PanelURL}})
-        {{ end -}}
+        {{ end }}
       {{ end -}}
