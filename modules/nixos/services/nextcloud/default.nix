@@ -153,6 +153,18 @@ in
         after = [ "nextcloud-setup.service" ];
         wantedBy = [ "multi-user.target" ];
       };
+      nextcloud-setup-other = {
+        path = [
+          config.services.nextcloud.occ
+        ];
+        script = ''
+          nextcloud-occ app:disable logreader
+          nextcloud-occ app:disable app_api
+          nextcloud-occ config:app:set core emailTestSuccessful --value=1
+        '';
+        after = [ "nextcloud-setup.service" ];
+        wantedBy = [ "multi-user.target" ];
+      };
     };
 
     services = {
@@ -162,12 +174,21 @@ in
         enable = true;
         hostName = "nextcloud.${cfgS.publicDomain}";
         maxUploadSize = "100G";
+        phpOptions."opcache.interned_strings_buffer" = "24";
         database.createLocally = true;
         imaginary.enable = true;
-        settings.trusted_domains = [
-          "nextcloud.${cfgS.publicDomain}"
-          "nextcloud.${cfgS.privateDomain}"
-        ];
+        settings = {
+          trusted_domains = [
+            "nextcloud.${cfgS.publicDomain}"
+            "nextcloud.${cfgS.privateDomain}"
+          ];
+          trusted_proxies = [ "127.0.0.1" ];
+          maintenance_window_start = 1;
+          "integrity.check.disabled" = true;
+          default_phone_region = "DE";
+          serverid = 1;
+          log_type = "systemd";
+        };
         config = {
           dbtype = "pgsql";
           # Should contain:
@@ -186,12 +207,8 @@ in
             notes
             onlyoffice
             theming_customcss
+            groupfolders
             ;
-          groupfolders = pkgs.fetchNextcloudApp {
-            url = "https://github.com/nextcloud-releases/groupfolders/releases/download/v21.0.9/groupfolders-v21.0.9.tar.gz";
-            hash = "sha256-2LlfB3hCX2RvIxG6W0LY4vz9833C/TX8rI0/Ab3jiiE=";
-            license = "agpl3Only";
-          };
         };
       };
 
