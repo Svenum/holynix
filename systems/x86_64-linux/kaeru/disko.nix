@@ -235,9 +235,20 @@ in
               special_small_blocks = "0";
             };
           };
-          "smb" = {
+          "photos" = {
             type = "zfs_fs";
-            mountpoint = "/srv/smb";
+            mountpoint = "/srv/photos";
+            options = {
+              compression = "zstd";
+              recordsize = "128K";
+              special_small_blocks = "32K";
+              atime = "off";
+              "com.sun:auto-snapshot" = "true";
+            };
+          };
+          "data" = {
+            type = "zfs_fs";
+            mountpoint = "/srv/data";
             options = {
               compression = "zstd";
               "com.sun:auto-snapshot" = "true";

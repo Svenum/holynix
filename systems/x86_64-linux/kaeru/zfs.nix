@@ -50,12 +50,17 @@
         recursive = false;
       };
 
-      "tank/smb" = {
+      "tank/data" = {
         useTemplate = [ "standard" ];
         recursive = false;
       };
 
       "tank/media" = {
+        useTemplate = [ "archive" ];
+        recursive = false;
+      };
+
+      "tank/photos" = {
         useTemplate = [ "archive" ];
         recursive = false;
       };
