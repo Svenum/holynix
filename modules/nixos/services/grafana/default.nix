@@ -225,12 +225,7 @@ in
       };
     };
     environment.etc = {
-      "grafana-dashboards/node_exporter.json".source = mkIf cpe.node.enable (
-        pkgs.fetchurl {
-          url = "https://grafana.com/api/dashboards/1860/revisions/45/download";
-          hash = "sha256-GExrdAnzBtp1Ul13cvcZRbEM6iOtFrXXjEaY6g6lGYY=";
-        }
-      );
+      "grafana/dashboards/node.json".source = mkIf cpe.node.enable ./dashboards/node.json;
       "grafana/dashboards/postgesql.json".source = mkIf cpe.postgres.enable ./dashboards/postgresql.json;
       "grafana/dashboards/zfs.json".source = mkIf cpe.zfs.enable ./dashboards/zfs.json;
       "grafana/dashboards/smartctl.json".source = mkIf cpe.smartctl.enable ./dashboards/smartctl.json;
