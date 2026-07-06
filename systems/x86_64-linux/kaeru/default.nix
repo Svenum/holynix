@@ -77,6 +77,7 @@ in
           userFilter = "(&(objectClass=user)(memberof=cn=Nextcloud,ou=groups,dc=nextcloud,dc=holypenguin,dc=net))";
         };
       };
+      collabora.enable = true;
       paperless = {
         enable = true;
         enableOidc = true;

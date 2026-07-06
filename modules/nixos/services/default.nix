@@ -33,8 +33,16 @@ in
   };
 
   config = {
+    # dummy nginx user
+    users = {
+      users.nginx = {
+        isSystemUser = true;
+        group = "nginx";
+      };
+      groups.nginx = { };
+    };
     services = {
-      nginx.enable = false;
+      nginx.enable = mkForce false;
       postgresqlBackup = {
         enable = config.services.postgresql.enable;
         compression = "zstd";

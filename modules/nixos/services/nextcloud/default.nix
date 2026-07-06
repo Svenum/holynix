@@ -15,6 +15,11 @@ in
 {
   options.holynix.services.nextcloud = {
     enable = mkEnableOption "Enable Nextcloud service";
+    enableRichdocuments = mkOption {
+      type = bool;
+      default = config.services.collabora-online.enable;
+      description = "Enable richdocuments integration";
+    };
     ldap = {
       enable = mkOption {
         type = bool;
@@ -72,10 +77,13 @@ in
 
   config = mkIf cfg.enable {
 
-    users.groups.nextcloud.members = [
-      "nextcloud"
-      config.services.caddy.user
-    ];
+    users = {
+      users.nextcloud.extraGroups = [ "video" ];
+      groups.nextcloud.members = [
+        "nextcloud"
+        config.services.caddy.user
+      ];
+    };
 
     sops.secrets = {
       "services/nextcloud/admin_pass" = { };
@@ -85,6 +93,24 @@ in
     };
 
     systemd.services = {
+      phpfpm-nextcloud.serviceConfig = {
+        DeviceAllow = "/dev/dri/renderD128 rw";
+        PrivateDevices = mkForce false;
+      };
+
+      nextcloud-setup-richdocuments = mkIf cfg.enableRichdocuments {
+        path = [
+          config.services.nextcloud.occ
+        ];
+        script = ''
+          nextcloud-occ app:enable richdocuments
+          nextcloud-occ config:app:set richdocuments wopi_url --value https://collabora.${cfgS.publicDomain}
+          nextcloud-occ richdocuments:activate-config
+        '';
+        after = [ "nextcloud-setup.service" ];
+        wantedBy = [ "multi-user.target" ];
+      };
+
       nextcloud-setup-files_external = {
         path = [
           config.services.nextcloud.occ
@@ -205,9 +231,9 @@ in
             cospend
             end_to_end_encryption
             notes
-            onlyoffice
             theming_customcss
             groupfolders
+            richdocuments
             ;
         };
       };
