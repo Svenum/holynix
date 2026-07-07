@@ -230,12 +230,7 @@ in
       "grafana/dashboards/zfs.json".source = mkIf cpe.zfs.enable ./dashboards/zfs.json;
       "grafana/dashboards/smartctl.json".source = mkIf cpe.smartctl.enable ./dashboards/smartctl.json;
       "grafana/dashboards/blackbox.json".source = mkIf cpe.blackbox.enable ./dashboards/blackbox.json;
-      "grafana/dashboards/libvirt_exporter.json".source = mkIf cpe.libvirt.enable (
-        pkgs.fetchurl {
-          url = "https://grafana.com/api/dashboards/15682/revisions/1/download";
-          hash = "sha256-9NHUPIIM6hVKk5ewWGq92uSruutkzPBrs0Am20ihTZw=";
-        }
-      );
+      "grafana/dashboards/libvirt.json".source = mkIf cpe.libvirt.enable ./dashboards/libvirt.json;
       "grafana/dashboards/nut.json".source = mkIf cpe.nut.enable ./dashboards/nut.json;
       "grafana/dashboards/systemd.json".source = mkIf cpe.systemd.enable ./dashboards/systemd.json;
     };

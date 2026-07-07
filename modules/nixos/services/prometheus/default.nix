@@ -228,11 +228,26 @@ in
         };
       };
     };
-    users.users.nut-exporter = {
-      isSystemUser = true;
-      group = "nut-exporter";
+    users = {
+      users = {
+        nut-exporter = {
+          isSystemUser = true;
+          group = "nut-exporter";
+        };
+        libvirt-exporter = {
+          isSystemUser = true;
+          group = "libvirt-exporter";
+          extraGroups = mkIf config.virtualisation.libvirtd.enable [
+            "kvm"
+            "libvirtd"
+          ];
+        };
+      };
+      groups = {
+        nut-exporter = { };
+        libvirt-exporter = { };
+      };
     };
-    users.groups.nut-exporter = { };
     systemd.services.prometheus-nut-exporter.serviceConfig.DynamicUser = lib.mkForce false;
   };
 }
