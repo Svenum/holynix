@@ -1,11 +1,23 @@
 {
   inputs,
+  pkgs,
   ...
 }:
 
 let
   inherit (inputs) nixVirt;
   virtLib = nixVirt.lib;
+
+  # Paths
+  nvramPath = "/var/lib/libvirt/qemu/nvram";
+  zvolPath = "/dev/zvol/tank/datadir/libvirt";
+
+  # VMs
+  homeassistant = import ./vms/homeassistant.nix {
+    inherit pkgs;
+    inherit nvramPath;
+    inherit zvolPath;
+  };
 in
 {
   virtualisation.libvirt = {
@@ -62,13 +74,13 @@ in
             uuid = "bf534b7c-610d-496b-8cc4-636278f8cbcc";
             type = "dir";
             target = {
-              path = "/var/lib/libvirt/isos";
+              path = "/srv/data/isos";
             };
           };
         }
       ];
       domains = [
-        #{ definition = virtLib.domain.writeXML homeassistant; }
+        { definition = virtLib.domain.writeXML homeassistant; }
       ];
     };
   };

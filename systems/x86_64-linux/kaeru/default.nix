@@ -1,7 +1,8 @@
 { config, ... }:
-
 let
   myKey = "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBABz8jUkUacu8PahA+mlDCCp3780yrcpAcNZIJ1CFswAbgbWoK+FZxdQ3P43X4cBjKVtz8tthf4xHhkGe6eNC1+ofgHq5bXfIP15ba7AEncdUvreQzPx2Aao7yZFw94piTiZqlQA193SZTw8ggbYPwn3hnXkFT/6ttIEr+18xUMGFM9c1A==";
+  ipDMZ = "172.16.0.150";
+  ipIoT = "172.18.0.150";
 in
 {
   imports = [
@@ -27,6 +28,7 @@ in
     users = {
       "holyadmin" = {
         isSudoUser = true;
+        isKvmUser = true;
         password = "";
         authorizedKeys = [
           myKey
@@ -47,13 +49,13 @@ in
     };
     services = {
       publicDomain = "holypenguin.net";
-      listeningIp = (builtins.head config.networking.interfaces.enp0s31f6.ipv4.addresses).address;
+      listeningIp = ipDMZ;
       vaultwarden.enable = true;
       adguard = {
         enable = true;
         dnsHosts = [
-          "172.16.0.150"
-          "172.18.0.150"
+          ipDMZ
+          ipIoT
         ];
       };
       authentik.enable = true;
@@ -116,16 +118,20 @@ in
         interface = "enp0s31f6";
       };
     };
+    bridges = {
+      br0.interfaces = [ "enp0s31f6" ];
+      "br0.180".interfaces = [ "enp0s31f6.180" ];
+    };
     interfaces = {
-      "enp0s31f6.180".ipv4.addresses = [
+      "br0.180".ipv4.addresses = [
         {
-          address = "172.18.0.150";
+          address = ipIoT;
           prefixLength = 24;
         }
       ];
-      enp0s31f6.ipv4.addresses = [
+      br0.ipv4.addresses = [
         {
-          address = "172.16.0.150";
+          address = ipDMZ;
           prefixLength = 24;
         }
       ];
@@ -137,7 +143,24 @@ in
       "1.1.1.1"
       "8.8.8.8"
     ];
+    firewall.trustedInterfaces = [
+      "br0"
+      "br0.180"
+    ];
   };
+
+  services.caddy =
+    let
+      cfgS = config.holynix.services;
+    in
+    {
+      virtualHosts."homeassistant.${cfgS.publicDomain}" = {
+        serverAliases = [ "homeassistant.${cfgS.privateDomain}" ];
+        extraConfig = ''
+          reverse_proxy http://172.16.0.151:8123
+        '';
+      };
+    };
 
   boot = {
     binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -145,7 +168,7 @@ in
       enable = true;
       networks."10-enp0s31f6" = {
         matchConfig.Name = "enp0s31f6";
-        address = [ "172.16.0.150/24" ];
+        address = [ "${ipDMZ}/24" ];
         gateway = [ "172.16.0.1" ];
         linkConfig.RequiredForOnline = "routable";
       };
