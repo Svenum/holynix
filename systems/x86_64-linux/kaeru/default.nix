@@ -3,6 +3,9 @@ let
   myKey = "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBABz8jUkUacu8PahA+mlDCCp3780yrcpAcNZIJ1CFswAbgbWoK+FZxdQ3P43X4cBjKVtz8tthf4xHhkGe6eNC1+ofgHq5bXfIP15ba7AEncdUvreQzPx2Aao7yZFw94piTiZqlQA193SZTw8ggbYPwn3hnXkFT/6ttIEr+18xUMGFM9c1A==";
   ipDMZ = "172.16.0.150";
   ipIoT = "172.18.0.150";
+
+  cfgS = config.holynix.services;
+  cfgC = config.holynix.services.cloudflared;
 in
 {
   imports = [
@@ -149,18 +152,19 @@ in
     ];
   };
 
-  services.caddy =
-    let
-      cfgS = config.holynix.services;
-    in
-    {
+  services = {
+    cloudflared.tunnels."${cfgC.tunnelId}".ingress."homeassistant.${cfgS.publicDomain}" =
+      "https://homeassistant.${cfgS.privateDomain}";
+    caddy = {
+      enable = true;
       virtualHosts."homeassistant.${cfgS.publicDomain}" = {
         serverAliases = [ "homeassistant.${cfgS.privateDomain}" ];
         extraConfig = ''
-          reverse_proxy http://172.16.0.151:8123
+          reverse_proxy 172.16.0.151:8123
         '';
       };
     };
+  };
 
   boot = {
     binfmt.emulatedSystems = [ "aarch64-linux" ];
