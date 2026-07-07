@@ -5,8 +5,8 @@
     "name": "hok4rwq",
     "namespace": "default",
     "uid": "66b73e60-0c45-4eae-9932-e9a327bc825a",
-    "resourceVersion": "1783339528508944",
-    "generation": 1,
+    "resourceVersion": "1783344990632694",
+    "generation": 2,
     "creationTimestamp": "2026-07-06T12:05:28Z",
     "labels": {
       "grafana.app/deprecatedInternalID": "2446599625924608"
@@ -15,9 +15,11 @@
       "grafana.app/createdBy": "access-policy:service",
       "grafana.app/managedBy": "classic-file-provisioning",
       "grafana.app/managerId": "default",
-      "grafana.app/sourceChecksum": "e2c3d023d819301eed9042c8c2ab8006",
+      "grafana.app/sourceChecksum": "50bbd4b7cfc4191396ca5c92b0d66ee6",
       "grafana.app/sourcePath": "/etc/grafana/dashboards/node.json",
       "grafana.app/sourceTimestamp": "1000",
+      "grafana.app/updatedBy": "access-policy:service",
+      "grafana.app/updatedTimestamp": "2026-07-06T13:36:30Z",
       "grafana.app/folder": ""
     }
   },
@@ -86,7 +88,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "sum by(host)((node_memory_MemAvailable_bytes{host=~\"$host\"} - node_memory_MemFree_bytes{host=~\"$host\"}) * 100 / node_memory_MemAvailable_bytes{host=~\"$host\"})",
+                        "expr": "sum by(host) (\n  100 * (1 - node_memory_MemAvailable_bytes{host=~\"$host\"} / node_memory_MemTotal_bytes{host=~\"$host\"})\n)",
                         "instant": false,
                         "legendFormat": "{{host}} RAM %",
                         "range": true
@@ -306,7 +308,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "sum by(host)((node_memory_MemAvailable_bytes{host=~\"$host\"} - node_memory_MemFree_bytes{host=~\"$host\"}) * 100 / node_memory_MemAvailable_bytes{host=~\"$host\"})",
+                        "expr": "sum by(host) (\n  100 * (1 - node_memory_MemAvailable_bytes{host=~\"$host\"} / node_memory_MemTotal_bytes{host=~\"$host\"})\n)",
                         "legendFormat": "__auto",
                         "range": true
                       },
@@ -938,6 +940,175 @@
             "version": "13.0.2"
           }
         }
+      },
+      "panel-8": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "PBFA97CFB590B2093"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "count(sum by(host,cpu)(node_cpu_seconds_total{host=~\"$host\"}))",
+                        "legendFormat": "__auto",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 8,
+          "links": [],
+          "title": "Cores",
+          "vizConfig": {
+            "group": "stat",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  }
+                },
+                "overrides": []
+              },
+              "options": {
+                "colorMode": "none",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+              }
+            },
+            "version": "13.0.2"
+          }
+        }
+      },
+      "panel-9": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "PBFA97CFB590B2093"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "builder",
+                        "expr": "node_memory_MemTotal_bytes",
+                        "legendFormat": "__auto",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 9,
+          "links": [],
+          "title": "RAM",
+          "vizConfig": {
+            "group": "stat",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "bytes"
+                },
+                "overrides": []
+              },
+              "options": {
+                "colorMode": "none",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+              }
+            },
+            "version": "13.0.2"
+          }
+        }
       }
     },
     "layout": {
@@ -958,8 +1129,8 @@
                           "kind": "ElementReference",
                           "name": "panel-6"
                         },
-                        "height": 7,
-                        "width": 5,
+                        "height": 8,
+                        "width": 4,
                         "x": 0,
                         "y": 0
                       }
@@ -971,9 +1142,9 @@
                           "kind": "ElementReference",
                           "name": "panel-5"
                         },
-                        "height": 7,
+                        "height": 8,
                         "width": 8,
-                        "x": 5,
+                        "x": 4,
                         "y": 0
                       }
                     },
@@ -984,9 +1155,9 @@
                           "kind": "ElementReference",
                           "name": "panel-7"
                         },
-                        "height": 7,
-                        "width": 5,
-                        "x": 13,
+                        "height": 4,
+                        "width": 6,
+                        "x": 12,
                         "y": 0
                       }
                     },
@@ -997,7 +1168,7 @@
                           "kind": "ElementReference",
                           "name": "panel-2"
                         },
-                        "height": 7,
+                        "height": 8,
                         "width": 3,
                         "x": 18,
                         "y": 0
@@ -1010,10 +1181,36 @@
                           "kind": "ElementReference",
                           "name": "panel-3"
                         },
-                        "height": 7,
+                        "height": 8,
                         "width": 3,
                         "x": 21,
                         "y": 0
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-8"
+                        },
+                        "height": 4,
+                        "width": 3,
+                        "x": 12,
+                        "y": 4
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-9"
+                        },
+                        "height": 4,
+                        "width": 3,
+                        "x": 15,
+                        "y": 4
                       }
                     },
                     {
@@ -1026,7 +1223,7 @@
                         "height": 9,
                         "width": 24,
                         "x": 0,
-                        "y": 7
+                        "y": 8
                       }
                     },
                     {
@@ -1039,7 +1236,7 @@
                         "height": 13,
                         "width": 24,
                         "x": 0,
-                        "y": 16
+                        "y": 17
                       }
                     }
                   ]
@@ -1097,9 +1294,7 @@
         "spec": {
           "allowCustomValue": true,
           "current": {
-            "text": [
-              "All"
-            ],
+            "text": "All",
             "value": [
               "$__all"
             ]
