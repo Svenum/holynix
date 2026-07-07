@@ -8,6 +8,7 @@ in
     ./hardware.nix
     ./disko.nix
     ./zfs.nix
+    ./kvm.nix
   ];
 
   holynix = {
