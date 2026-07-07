@@ -146,10 +146,6 @@ in
       "1.1.1.1"
       "8.8.8.8"
     ];
-    firewall.trustedInterfaces = [
-      "br0"
-      "br0.180"
-    ];
   };
 
   services = {
