@@ -8,6 +8,11 @@ in
 {
   options.holynix.services.adguard = {
     enable = mkEnableOption "Enable Adguard service";
+    dnsHosts = mkOption {
+      type = listOf str;
+      default = [ ];
+      description = "IP Adresses on which the dns server will listen on.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -23,6 +28,7 @@ in
             baseConfig = import ./AdGuardHome.nix;
           in
           lib.recursiveUpdate baseConfig {
+            dns.bind_hosts = [ "127.0.0.1" ] ++ cfg.dnsHosts;
             filtering.rewrites = baseConfig.filtering.rewrites ++ [
               {
                 domain = "*.${cfgS.privateDomain}";

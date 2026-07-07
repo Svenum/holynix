@@ -49,7 +49,13 @@ in
       publicDomain = "holypenguin.net";
       listeningIp = (builtins.head config.networking.interfaces.enp0s31f6.ipv4.addresses).address;
       vaultwarden.enable = true;
-      adguard.enable = true;
+      adguard = {
+        enable = true;
+        dnsHosts = [
+          "172.16.0.150"
+          "172.18.0.150"
+        ];
+      };
       authentik.enable = true;
       jellyfin.enable = true;
       prometheus.enable = true;
@@ -104,12 +110,26 @@ in
 
   networking = {
     hostId = "f488d788";
-    interfaces.enp0s31f6.ipv4.addresses = [
-      {
-        address = "172.16.0.150";
-        prefixLength = 24;
-      }
-    ];
+    vlans = {
+      "enp0s31f6.180" = {
+        id = 180;
+        interface = "enp0s31f6";
+      };
+    };
+    interfaces = {
+      "enp0s31f6.180".ipv4.addresses = [
+        {
+          address = "172.18.0.150";
+          prefixLength = 24;
+        }
+      ];
+      enp0s31f6.ipv4.addresses = [
+        {
+          address = "172.16.0.150";
+          prefixLength = 24;
+        }
+      ];
+    };
     defaultGateway = "172.16.0.1";
     nameservers = [
       "127.0.0.1"
