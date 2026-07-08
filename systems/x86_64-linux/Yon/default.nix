@@ -28,7 +28,11 @@
         };
       };
     };
-    vpn.tailscale.enable = true;
+    services.tailscale = {
+      enable = true;
+      useAuthKeyFile = false;
+      acceptDNS = true;
+    };
     tools = {
       flatpak.enable = true;
       cliTools.enable = true;
@@ -91,8 +95,6 @@
         "sven"
       ];
     };
-
-    linux-arctis-manager.enable = true;
   };
 
   services = {

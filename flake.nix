@@ -129,6 +129,7 @@
           sops-nix.nixosModules.sops
           catppuccin.nixosModules.catppuccin
           disko.nixosModules.disko
+          authentik.nixosModules.default
         ];
 
         hosts = {
@@ -145,10 +146,6 @@
 
           Yon.modules = with inputs; [
             nixos-hardware.nixosModules.framework-16-7040-amd
-          ];
-
-          kaeru.modules = with inputs; [
-            authentik.nixosModules.default
           ];
         };
       };

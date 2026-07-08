@@ -100,6 +100,10 @@ in
         enable = true;
         tunnelId = "f9822e76-cf75-43fa-b340-00092f5f53b3";
       };
+      tailscale = {
+        enable = true;
+        advertiseRoutes = [ "172.16.0.0/24" ];
+      };
     };
 
     virtualisation = {

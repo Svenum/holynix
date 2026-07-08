@@ -13,7 +13,7 @@ let
 in
 {
   options.holynix.services.authentik = {
-    enable = mkEnableOption "Enable Caddy";
+    enable = mkEnableOption "Enable Authentik";
   };
 
   config = mkIf cfg.enable {
