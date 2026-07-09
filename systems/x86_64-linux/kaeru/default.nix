@@ -104,6 +104,13 @@ in
         enable = true;
         advertiseRoutes = [ "172.16.0.0/24" ];
       };
+      immich = {
+        enable = true;
+        oauth = {
+          enable = true;
+          issuerUrl = "https://authentik.holypenguin.net/application/o/immich/.well-known/openid-configuration";
+        };
+      };
     };
 
     virtualisation = {

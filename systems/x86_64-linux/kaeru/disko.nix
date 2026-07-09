@@ -224,6 +224,17 @@ in
               "com.sun:auto-snapshot" = "true";
             };
           };
+          "datadir/immich" = {
+            type = "zfs_fs";
+            mountpoint = "/var/lib/immich";
+            options = {
+              compression = "zstd";
+              atime = "off";
+              xattr = "sa";
+              acltype = "posixacl";
+              recordsize = "1M";
+            };
+          };
           "media" = {
             type = "zfs_fs";
             mountpoint = "/srv/media";

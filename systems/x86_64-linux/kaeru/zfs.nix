@@ -55,6 +55,11 @@
         recursive = false;
       };
 
+      "tank/datadir/immich" = {
+        useTemplate = [ "standard" ];
+        recursive = false;
+      };
+
       "tank/media" = {
         useTemplate = [ "archive" ];
         recursive = false;
