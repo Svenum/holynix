@@ -56,6 +56,21 @@ in
             }
           }
         '';
+        extraConfig = ''
+          (authentik) {
+            route {
+              forward_auth https://localhost:9443 {
+                transport http {
+                  tls
+                  tls_insecure_skip_verify
+                }
+                uri /outpost.goauthentik.io/auth/caddy
+                copy_headers Authorization X-Authentik-Username X-Authentik-Groups X-Authentik-Entitlements X-Authentik-Email X-Authentik-Name X-Authentik-Uid X-Authentik-Jwt X-Authentik-Meta-Jwks X-Authentik-Meta-Outpost X-Authentik-Meta-Provider X-Authentik-Meta-App X-Authentik-Meta-Version
+                trusted_proxies private_ranges
+              }
+            }
+          }
+        '';
         virtualHosts."authentik.${cfgS.publicDomain}" = {
           serverAliases = [ "authentik.${cfgS.privateDomain}" ];
           extraConfig = ''

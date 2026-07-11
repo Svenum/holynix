@@ -111,6 +111,10 @@ in
           issuerUrl = "https://authentik.holypenguin.net/application/o/immich/.well-known/openid-configuration";
         };
       };
+      restic = {
+        enable = true;
+        proxyAuth.enable = true;
+      };
     };
 
     virtualisation = {
