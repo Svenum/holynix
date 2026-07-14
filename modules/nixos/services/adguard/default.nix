@@ -36,6 +36,11 @@ in
                 answer = cfgS.listeningIp;
               }
               {
+                domain = "${cfgS.privateDomain}";
+                enabled = true;
+                answer = cfgS.listeningIp;
+              }
+              {
                 domain = "*.${cfgS.publicDomain}";
                 enabled = true;
                 answer = cfgS.listeningIp;
