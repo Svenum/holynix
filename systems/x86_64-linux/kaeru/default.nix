@@ -37,8 +37,12 @@ in
           myKey
         ];
       };
+      "sven".authorizedKeys = [ myKey ];
+      "martin" = { };
+      "rick" = { };
+      "carmen" = { };
+      "zoe" = { };
       "podman" = {
-        isSudoUser = false;
         password = "podman";
         authorizedKeys = [
           myKey
@@ -114,6 +118,16 @@ in
       restic = {
         enable = true;
         proxyAuth.enable = true;
+      };
+      samba = {
+        enable = true;
+        userShares = [
+          "sven"
+          "martin"
+          "carmen"
+          "zoe"
+          "rick"
+        ];
       };
     };
 
