@@ -15,7 +15,7 @@ services:
     image: ghcr.io/kanbn/kan:0.6.0
     environment:
       POSTGRES_URL: postgresql://kanbn@/kanbn?host=/var/run/postgresql
-    user: "kanbn:kanbn"
+    user: "kanbn"
     volumes:
       - /var/run/postgresql:/var/run/postgresql
       - /etc/passwd:/etc/passwd:ro

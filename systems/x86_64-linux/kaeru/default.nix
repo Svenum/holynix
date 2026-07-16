@@ -13,6 +13,7 @@ in
     ./disko.nix
     ./zfs.nix
     ./kvm.nix
+    ./smb.nix
   ];
 
   holynix = {
@@ -40,8 +41,6 @@ in
       "sven".authorizedKeys = [ myKey ];
       "martin" = { };
       "rick" = { };
-      "carmen" = { };
-      "zoe" = { };
       "podman" = {
         password = "podman";
         authorizedKeys = [
@@ -125,8 +124,6 @@ in
         userShares = [
           "sven"
           "martin"
-          "carmen"
-          "zoe"
           "rick"
         ];
       };

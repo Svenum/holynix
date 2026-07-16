@@ -28,6 +28,11 @@ in
   };
 
   config = mkIf cfg.enable {
+    assertions = map (u: {
+      assertion = hasAttr u config.users.users;
+      message = "holynix.services.samba.userShares: user '${u}' is not defined in users.users";
+    }) cfg.userShares;
+
     services = {
       samba-wsdd = {
         enable = true;

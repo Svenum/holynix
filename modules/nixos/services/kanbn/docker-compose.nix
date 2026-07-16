@@ -70,7 +70,7 @@
     dependsOn = [
       "kanbn-migrate"
     ];
-    user = "kanbn:kanbn";
+    user = "kanbn";
     log-driver = "journald";
     extraOptions = [
       "--network-alias=web"
