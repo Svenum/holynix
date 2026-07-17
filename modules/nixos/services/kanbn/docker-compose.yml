@@ -1,0 +1,37 @@
+name: kanbn
+services:
+  migrate:
+    image: ghcr.io/kanbn/kan-migrate:0.6.0
+    restart: "no"
+    labels:
+      - "compose2nix.settings.sops.secrets=services/kanbn/compose2nix"
+
+  web:
+    image: ghcr.io/kanbn/kan:0.6.0
+    ports:
+      - 127.0.0.1:3345:3000
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    labels:
+      - "compose2nix.settings.sops.secrets=services/kanbn/compose2nix"
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: kanbn
+      POSTGRES_USER: kanbn
+    volumes:
+      - kanbn_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kanbn -d kabn"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+    labels:
+      - "compose2nix.settings.sops.secrets=services/kanbn/compose2nix"
+
+volumes:
+  kanbn_postgres_data:

@@ -16,12 +16,8 @@ in
       type = bool;
       default = false;
     };
-    packageChanel = mkOption {
-      type = enum [
-        "stable"
-        "production"
-        "beta"
-      ];
+    packageChannel = mkOption {
+      type = str;
       default = "stable";
       description = "Specify the nvidia driver package channel";
     };
@@ -37,7 +33,7 @@ in
         enable = true;
         inherit (config.hardware.nvidia) package;
         extraPackages = with pkgs; [
-          vaapiVdpau
+          libva-vdpau-driver
           libvdpau-va-gl
         ];
         extraPackages32 = with pkgs.pkgsi686Linux; [
@@ -46,12 +42,15 @@ in
       };
       nvidia = {
         open = false;
-        package = config.boot.kernelPackages.nvidiaPackages."${cfg.packageChanel}";
+        package = config.boot.kernelPackages.nvidiaPackages."${cfg.packageChannel}";
         modesetting.enable = true;
       };
     };
 
     # Install ToggleScript
     environment.systemPackages = with pkgs; [ nvtopPackages.full ];
+
+    # enable cuda
+    nixpkgs.config.cudaSupport = true;
   };
 }

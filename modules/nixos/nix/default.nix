@@ -36,6 +36,15 @@ in
           # nix community's cache server
           "https://nix-community.cachix.org"
 
+          # catppuccin
+          "https://catppuccin.cachix.org"
+
+          # jellyfin
+          "https://cache.flox.dev"
+
+          # cuda
+          "https://cache.nixos-cuda.org"
+
           # own cache
           "https://iglu.holypenguin.net/default"
 
@@ -44,12 +53,30 @@ in
           # nix community's cache server
           "https://nix-community.cachix.org"
 
+          # catppuccin
+          "https://catppuccin.cachix.org"
+
+          # jellyfin
+          "https://cache.flox.dev"
+
+          # cuda
+          "https://cache.nixos-cuda.org"
+
           # own cache
           "https://iglu.holypenguin.net/default"
         ];
         trusted-public-keys = [
           # nix community's cache server public key
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+
+          # catppuccin
+          "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
+
+          # jellyfin
+          "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
+
+          # cuda
+          "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
 
           # own cache
           "default:xZJwKM6k5SCrviOA50/5RKldgPHRPkOrv/uziJVAm2U="

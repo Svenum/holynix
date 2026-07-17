@@ -1,0 +1,24 @@
+apiVersion: 1
+templates:
+  - orgId: 1
+    name: custom.short.alerts
+    template: |
+      {{ define "custom.short.alerts" -}}
+      {{ len .Alerts }} alert(s)
+      {{ range .Alerts -}}
+        {{ template "alert.summary_and_description" . -}}
+      {{ end -}}
+      {{ end -}}
+      {{ define "alert.summary_and_description" -}}
+      ## ~~-------------------------~~ **{{ .Status }}** ~~-------------------------~~
+
+      **Summary:** {{.Annotations.summary}}
+      **Description:** {{.Annotations.description}}
+      **Source:** 
+      {{ if gt (len .DashboardURL) 0 -}}
+      - [Dashboard]({{.DashboardURL}}) 
+      {{ end -}}
+      {{- if gt (len .PanelURL) 0 -}}
+      - [Panel]({{.PanelURL}})
+      {{ end }}
+      {{ end -}}
