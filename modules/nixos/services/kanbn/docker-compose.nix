@@ -22,15 +22,12 @@
   # Containers
   virtualisation.oci-containers.containers."kanbn-migrate" = {
     image = "ghcr.io/kanbn/kan-migrate:0.6.0";
-    environment = {
-      "POSTGRES_URL" = "postgresql://kanbn@/kanbn?host=/var/run/postgresql";
-    };
-    volumes = [
-      "/etc/group:/etc/group:ro"
-      "/etc/passwd:/etc/passwd:ro"
-      "/var/run/postgresql:/var/run/postgresql:rw"
+    environmentFiles = [
+      config.sops.secrets."services/kanbn/compose2nix".path
     ];
-    user = "kanbn:kanbn";
+    labels = {
+      "compose2nix.settings.sops.secrets" = "services/kanbn/compose2nix";
+    };
     log-driver = "journald";
     extraOptions = [
       "--network-alias=migrate"
@@ -54,23 +51,64 @@
       "podman-compose-kanbn-root.target"
     ];
   };
+  virtualisation.oci-containers.containers."kanbn-postgres" = {
+    image = "postgres:15";
+    environment = {
+      "POSTGRES_DB" = "kanbn";
+      "POSTGRES_USER" = "kanbn";
+    };
+    environmentFiles = [
+      config.sops.secrets."services/kanbn/compose2nix".path
+    ];
+    volumes = [
+      "kanbn_kanbn_postgres_data:/var/lib/postgresql/data:rw"
+    ];
+    labels = {
+      "compose2nix.settings.sops.secrets" = "services/kanbn/compose2nix";
+    };
+    log-driver = "journald";
+    extraOptions = [
+      "--health-cmd=pg_isready -U kan -d kan_db"
+      "--health-interval=5s"
+      "--health-retries=10"
+      "--health-timeout=5s"
+      "--network-alias=postgres"
+      "--network=kanbn_default"
+    ];
+  };
+  systemd.services."podman-kanbn-postgres" = {
+    serviceConfig = {
+      Restart = lib.mkOverride 90 "always";
+    };
+    after = [
+      "podman-network-kanbn_default.service"
+      "podman-volume-kanbn_kanbn_postgres_data.service"
+    ];
+    requires = [
+      "podman-network-kanbn_default.service"
+      "podman-volume-kanbn_kanbn_postgres_data.service"
+    ];
+    partOf = [
+      "podman-compose-kanbn-root.target"
+    ];
+    wantedBy = [
+      "podman-compose-kanbn-root.target"
+    ];
+  };
   virtualisation.oci-containers.containers."kanbn-web" = {
     image = "ghcr.io/kanbn/kan:0.6.0";
-    environment = {
-      "POSTGRES_URL" = "postgresql://kanbn@/kanbn?host=/var/run/postgresql";
-    };
-    volumes = [
-      "/etc/group:/etc/group:ro"
-      "/etc/passwd:/etc/passwd:ro"
-      "/var/run/postgresql:/var/run/postgresql:rw"
+    environmentFiles = [
+      config.sops.secrets."services/kanbn/compose2nix".path
     ];
     ports = [
-      "127.0.0.0:3345:3000/tcp"
+      "127.0.0.1:3345:3000/tcp"
     ];
+    labels = {
+      "compose2nix.settings.sops.secrets" = "services/kanbn/compose2nix";
+    };
     dependsOn = [
       "kanbn-migrate"
     ];
-    user = "kanbn";
     log-driver = "journald";
     extraOptions = [
       "--network-alias=web"
@@ -105,6 +143,20 @@
     };
     script = ''
       podman network inspect kanbn_default || podman network create kanbn_default
+    '';
+    partOf = [ "podman-compose-kanbn-root.target" ];
+    wantedBy = [ "podman-compose-kanbn-root.target" ];
+  };
+
+  # Volumes
+  systemd.services."podman-volume-kanbn_kanbn_postgres_data" = {
+    path = [ pkgs.podman ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      podman volume inspect kanbn_kanbn_postgres_data || podman volume create kanbn_kanbn_postgres_data
     '';
     partOf = [ "podman-compose-kanbn-root.target" ];
     wantedBy = [ "podman-compose-kanbn-root.target" ];

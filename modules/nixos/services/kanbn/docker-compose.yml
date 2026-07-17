@@ -2,27 +2,36 @@ name: kanbn
 services:
   migrate:
     image: ghcr.io/kanbn/kan-migrate:0.6.0
-    user: "kanbn:kanbn"
-    environment:
-      POSTGRES_URL: postgresql://kanbn@/kanbn?host=/var/run/postgresql
-    volumes:
-      - /var/run/postgresql:/var/run/postgresql
-      - /etc/passwd:/etc/passwd:ro
-      - /etc/group:/etc/group:ro
     restart: "no"
+    labels:
+      - "compose2nix.settings.sops.secrets=services/kanbn/compose2nix"
 
   web:
     image: ghcr.io/kanbn/kan:0.6.0
-    environment:
-      POSTGRES_URL: postgresql://kanbn@/kanbn?host=/var/run/postgresql
-    user: "kanbn"
-    volumes:
-      - /var/run/postgresql:/var/run/postgresql
-      - /etc/passwd:/etc/passwd:ro
-      - /etc/group:/etc/group:ro
     ports:
-      - 127.0.0.0:3345:3000
+      - 127.0.0.1:3345:3000
     depends_on:
       migrate:
         condition: service_completed_successfully
     restart: unless-stopped
+    labels:
+      - "compose2nix.settings.sops.secrets=services/kanbn/compose2nix"
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: kanbn
+      POSTGRES_USER: kanbn
+    volumes:
+      - kanbn_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kanbn -d kabn"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+    labels:
+      - "compose2nix.settings.sops.secrets=services/kanbn/compose2nix"
+
+volumes:
+  kanbn_postgres_data:

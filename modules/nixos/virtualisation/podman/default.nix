@@ -40,6 +40,17 @@ in
       };
     };
 
+    services.postgresql = mkIf config.services.postgresql.enable {
+      enableTCPIP = true;
+      authentication = pkgs.lib.mkAfter ''
+        host  all all 10.88.0.0/13    md5   # 10.88.0.0  - 10.95.255.255
+        host  all all 10.96.0.0/11    md5   # 10.96.0.0  - 10.127.255.255
+        host  all all 10.128.0.0/9    md5   # 10.128.0.0 - 10.255.255.255
+      '';
+    };
+
+    networking.firewall.interfaces."podman+".allowedTCPPorts = [ 5432 ];
+
     systemd = {
       services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
       sockets.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);
