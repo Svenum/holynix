@@ -49,7 +49,9 @@ in
       '';
     };
 
-    networking.firewall.interfaces."podman+".allowedTCPPorts = [ 5432 ];
+    networking.firewall.interfaces = mkIf config.services.postgresql.enable {
+      "podman+".allowedTCPPorts = [ 5432 ];
+    };
 
     systemd = {
       services.podman.wantedBy = mkIf cfg.disableAutoStart (mkForce [ ]);

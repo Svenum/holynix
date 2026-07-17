@@ -22,6 +22,7 @@
         isGuiUser = true;
         isSudoUser = true;
         isKvmUser = true;
+        backupHome = true;
         git = {
           userName = "Svenum";
           userEmail = "s.ziegler@holypenguin.net";

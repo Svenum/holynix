@@ -69,7 +69,9 @@ let
       inherit (themeCfg) accent;
     };
 
-    # Import user specific modues if needed
+    # Restic
+    holynix.services.restic.enable =
+      if builtins.hasAttr "backupHome" user then user.backupHome else false;
   };
 in
 {
@@ -94,6 +96,10 @@ in
                 default = false;
               };
               isKvmUser = mkOption {
+                type = bool;
+                default = false;
+              };
+              backupHome = mkOption {
                 type = bool;
                 default = false;
               };
