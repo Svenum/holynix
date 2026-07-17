@@ -16,7 +16,19 @@ in
   };
 
   config = mkIf cfg.enable {
-    networking.nameservers = [ "127.0.0.1" ];
+    networking = {
+      nameservers = [ "127.0.0.1" ];
+      firewall = {
+        allowedTCPPorts = [
+          53
+          853
+        ];
+        allowedUDPPorts = [
+          53
+          784
+        ];
+      };
+    };
 
     services = {
       adguardhome = {
