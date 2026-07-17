@@ -1,8 +1,8 @@
 { config, ... }:
 let
   myKey = "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBABz8jUkUacu8PahA+mlDCCp3780yrcpAcNZIJ1CFswAbgbWoK+FZxdQ3P43X4cBjKVtz8tthf4xHhkGe6eNC1+ofgHq5bXfIP15ba7AEncdUvreQzPx2Aao7yZFw94piTiZqlQA193SZTw8ggbYPwn3hnXkFT/6ttIEr+18xUMGFM9c1A==";
-  ipDMZ = "172.16.0.150";
-  ipIoT = "172.18.0.150";
+  ipDMZ = "172.16.0.11";
+  ipIoT = "172.18.0.11";
 
   cfgS = config.holynix.services;
   cfgC = config.holynix.services.cloudflared;
@@ -143,14 +143,14 @@ in
   networking = {
     hostId = "f488d788";
     vlans = {
-      "enp0s31f6.180" = {
+      "enp38s0.180" = {
         id = 180;
-        interface = "enp0s31f6";
+        interface = "enp38s0";
       };
     };
     bridges = {
-      br0.interfaces = [ "enp0s31f6" ];
-      "br0.180".interfaces = [ "enp0s31f6.180" ];
+      br0.interfaces = [ "enp38s0" ];
+      "br0.180".interfaces = [ "enp38s0.180" ];
     };
     interfaces = {
       "br0.180".ipv4.addresses = [
@@ -193,8 +193,8 @@ in
     binfmt.emulatedSystems = [ "aarch64-linux" ];
     initrd.systemd.network = {
       enable = true;
-      networks."10-enp0s31f6" = {
-        matchConfig.Name = "enp0s31f6";
+      networks."10-enp38s0" = {
+        matchConfig.Name = "enp38s0";
         address = [ "${ipDMZ}/24" ];
         gateway = [ "172.16.0.1" ];
         linkConfig.RequiredForOnline = "routable";
