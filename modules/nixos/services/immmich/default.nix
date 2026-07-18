@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -35,10 +36,20 @@ in
       "services/immich/client_id".restartUnits = [ "immich-server.service" ];
       "services/immich/client_secret".restartUnits = [ "immich-server.service" ];
     };
+    users.users.immich.extraGroups = [
+      "render"
+      "video"
+    ];
     services = {
       immich = {
         enable = true;
-        accelerationDevices = [ "/dev/dri/renderD128" ];
+        accelerationDevices = [
+          "/dev/dri/renderD128"
+          "char-nvidia"
+          "/dev/nvidiactl"
+          "/dev/nvidia-uvm"
+          "/dev/nvidia-uvm-tools"
+        ];
         settings = {
           server = {
             externalDomain = "https://immich.${cfgS.publicDomain}";
@@ -73,5 +84,8 @@ in
         };
       };
     };
+    environment.systemPackages = with pkgs; [
+      cudaPackages.cudnn
+    ];
   };
 }
