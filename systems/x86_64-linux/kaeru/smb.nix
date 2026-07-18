@@ -8,7 +8,7 @@
       "force user" = "nobody";
       "force group" = "users";
       "create mask" = "0644";
-      "directory mask" = "0755";
+      "directory mask" = "0775";
     };
     jellyfin = {
       path = "/srv/media/jellyfin";
@@ -18,7 +18,7 @@
       "force user" = "jellyfin";
       "force group" = "jellyfin";
       "create mask" = "0644";
-      "directory mask" = "0755";
+      "directory mask" = "0775";
     };
   };
 }
