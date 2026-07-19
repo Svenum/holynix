@@ -17,6 +17,8 @@
     kernelPackages = nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi5;
   };
 
+  hardware.deviceTree.enable = true;
+
   fileSystems."/" = {
     label = "NIXOS_SD";
     fsType = "ext4";

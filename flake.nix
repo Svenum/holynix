@@ -12,9 +12,6 @@
 
       # cuda
       "https://cache.nixos-cuda.org"
-
-      # own cache
-      "https://iglu.holypenguin.net/default"
     ];
     extra-trusted-public-keys = [
       # nix community's cache server public key
@@ -28,9 +25,6 @@
 
       # cuda
       "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
-
-      # own cache
-      "default:xZJwKM6k5SCrviOA50/5RKldgPHRPkOrv/uziJVAm2U="
     ];
   };
   inputs = {
@@ -83,7 +77,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/develop";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";

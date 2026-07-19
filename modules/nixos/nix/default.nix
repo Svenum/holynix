@@ -44,10 +44,6 @@ in
 
           # cuda
           "https://cache.nixos-cuda.org"
-
-          # own cache
-          "https://iglu.holypenguin.net/default"
-
         ];
         trusted-substituters = [
           # nix community's cache server
@@ -61,9 +57,6 @@ in
 
           # cuda
           "https://cache.nixos-cuda.org"
-
-          # own cache
-          "https://iglu.holypenguin.net/default"
         ];
         trusted-public-keys = [
           # nix community's cache server public key
@@ -77,9 +70,6 @@ in
 
           # cuda
           "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
-
-          # own cache
-          "default:xZJwKM6k5SCrviOA50/5RKldgPHRPkOrv/uziJVAm2U="
         ];
 
         # Configure Nix

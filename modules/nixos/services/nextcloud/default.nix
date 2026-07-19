@@ -222,7 +222,7 @@ in
           adminpassFile = config.sops.secrets."services/nextcloud/admin_pass".path;
           adminuser = "holyadmin";
         };
-        package = pkgs.nextcloud33;
+        package = pkgs.nextcloud34;
         extraApps = {
           inherit (config.services.nextcloud.package.packages.apps)
             calendar
@@ -231,10 +231,15 @@ in
             cospend
             end_to_end_encryption
             notes
-            theming_customcss
             groupfolders
             richdocuments
             ;
+          theming_customcss = pkgs.nextcloud33.packages.apps.theming_customcss.overrideAttrs (old: {
+            patches = pkgs.fetchpatch {
+              url = "https://patch-diff.githubusercontent.com/raw/nextcloud/theming_customcss/pull/59.diff";
+              hash = "sha256-/LpFtp0HMcI6sxU2QHkWhFvcYP2tjQv+vL4zPv/Za3I=";
+            };
+          });
         };
       };
 
