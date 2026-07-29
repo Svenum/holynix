@@ -84,8 +84,5 @@ in
         };
       };
     };
-    environment.systemPackages = with pkgs; [
-      cudaPackages.cudnn
-    ];
   };
 }
