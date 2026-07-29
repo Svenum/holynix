@@ -234,12 +234,18 @@ in
             groupfolders
             richdocuments
             ;
-          theming_customcss = pkgs.nextcloud33.packages.apps.theming_customcss.overrideAttrs (old: {
-            patches = pkgs.fetchpatch {
-              url = "https://patch-diff.githubusercontent.com/raw/nextcloud/theming_customcss/pull/59.diff";
-              hash = "sha256-/LpFtp0HMcI6sxU2QHkWhFvcYP2tjQv+vL4zPv/Za3I=";
-            };
-          });
+          theming_customcss = pkgs.fetchNextcloudApp {
+            url = "https://github.com/nextcloud-releases/theming_customcss/releases/download/v1.21.0/theming_customcss-v1.21.0.tar.gz";
+            hash = "sha256-gJcQJv0tD7lykS+26cLr5zlujJjajNqITWmTv0ki2T0=";
+            license = "agpl3Only";
+          };
+          immich = mkIf config.holynix.services.immich.enable (
+            pkgs.fetchNextcloudApp {
+              url = "https://github.com/xXRoxXeRXx/integration_immich/releases/download/untagged-3d6c61c931ba34ccddf4/integration_immich.tar.gz";
+              hash = "sha256-58J5T1AHNsGL9I7FjlouLXe6RgPlfMKng2aVPmVdSdM=";
+              license = "agpl3Only";
+            }
+          );
         };
       };
 
