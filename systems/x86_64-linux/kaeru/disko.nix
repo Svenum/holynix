@@ -3,9 +3,9 @@ let
   data1 = "/dev/sda";
   data2 = "/dev/sdb";
   data3 = "/dev/sdd";
-  data4 = "/dev/loop1";
+  data4 = "/dev/sde";
   special1 = "/dev/nvme0n1";
-  special2 = "/dev/loop2";
+  special2 = "/dev/nvme1n1";
 in
 {
   disko.devices = {

@@ -87,7 +87,7 @@ in
           host = "ldaps://authentik.holypenguin.net";
           bindDN = "cn=sa-nextcloud,ou=users,dc=nextcloud,dc=holypenguin,dc=net";
           dn = "dc=nextcloud,dc=holypenguin,dc=net";
-          groupFilter = "Family;Share";
+          groupFilter = "Family;Share;Calender";
           loginFilter = "(&(&(objectClass=user)(memberof=cn=Nextcloud,ou=groups,dc=nextcloud,dc=holypenguin,dc=net))(|(uid=%uid)(|(mailPrimaryAddress=%uid)(mail=%uid))(|(cn=%uid)(displayName=%uid)(mail=%uid))))";
           userFilter = "(&(objectClass=user)(memberof=cn=Nextcloud,ou=groups,dc=nextcloud,dc=holypenguin,dc=net))";
         };
