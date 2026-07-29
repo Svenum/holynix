@@ -1,6 +1,6 @@
 # https://github.com/NixOS/nixpkgs/pull/542348
 # horrible formatting is optional, the code will also work if you make it look okay
-final: prev: {
+_: final: prev: {
   ceph =
     (prev.ceph.overrideScope (
       _: prev: {
