@@ -7,6 +7,9 @@ keys:
     - &Yon age1ep4rg94wa7qgasz584jg8rddyyrcgta2fqsddc0qmlsek6wtvvgql0tnxz
     - &KaeruVM age1yhfdp6klh4gwpcmnjd5h0dfdkw6s0xn6s7dzc59wf468zk4zmcpq6cudu9
     - &kaeru age1epqmf9klxhawd89kd5v0typw9fdvhysvrmfx8fllls4lncknrcwqfcnew9
+    - &Zeta age1v2764amlcmt66ehvjs84lxdturesvxeaqvcdyp62vuzvssafl3rq6yl89h
+    - &PC-Carmen age19qputpwf6cnptj7emvyk4lhr22m5mp0f070hlk49zttka8rhd46qjdlvk7
+
 creation_rules:
   - path_regex: secrets/kube.yaml
     key_groups:
@@ -23,3 +26,11 @@ creation_rules:
       - age:
           - *KaeruVM
           - *kaeru
+  - path_regex: secrets/Zeta/.*
+    key_groups:
+      - age:
+          - *Zeta
+  - path_regex: secrets/PC-Carmen/.*
+    key_groups:
+      - age:
+          - *PC-Carmen

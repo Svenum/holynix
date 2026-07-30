@@ -69,6 +69,11 @@
 
     # Open firewall for the AusweisApp
     firewall.ausweisapp.open = true;
+    sops = {
+      defaultSopsFile = ../../../secrets/Zeta/default.yaml;
+      enableHostKey = true;
+    };
+    services.tailscale.enable = true;
   };
 
   services = {

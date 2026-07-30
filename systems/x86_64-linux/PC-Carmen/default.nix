@@ -58,6 +58,11 @@
         ];
       };
     };
+    sops = {
+      defaultSopsFile = ../../../secrets/PC-Carmen/default.yaml;
+      enableHostKey = true;
+    };
+    services.tailscale.enable = true;
   };
 
   services = {
