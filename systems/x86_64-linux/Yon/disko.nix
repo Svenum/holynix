@@ -23,76 +23,88 @@
             root = {
               size = "100%";
               content = {
-                type = "btrfs";
-                extraArgs = [
-                  "-L"
-                  "nixos"
-                  "-f"
-                ];
-                subvolumes = {
-                  "@" = {
-                    mountpoint = "/";
-                    mountOptions = [
-                      "subvol=@"
-                      "compress=zstd:3"
-                      "noatime"
-                      "space_cache=v2"
-                      "ssd"
-                      "discard=async"
-                    ];
-                  };
-                  "@home" = {
-                    mountpoint = "/home";
-                    mountOptions = [
-                      "subvol=@home"
-                      "compress=zstd:3"
-                      "noatime"
-                      "space_cache=v2"
-                      "ssd"
-                      "discard=async"
-                    ];
-                  };
-                  "@nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = [
-                      "subvol=@nix"
-                      "compress=zstd:3"
-                      "noatime"
-                      "space_cache=v2"
-                      "ssd"
-                      "discard=async"
-                    ];
-                  };
-                  "@log" = {
-                    mountpoint = "/var/log";
-                    mountOptions = [
-                      "subvol=@log"
-                      "compress=zstd:3"
-                      "noatime"
-                      "space_cache=v2"
-                      "ssd"
-                      "discard=async"
-                    ];
-                  };
-                  "@snapshots" = {
-                    mountpoint = "/.snapshots";
-                    mountOptions = [
-                      "subvol=@snapshots"
-                      "compress=zstd:3"
-                      "noatime"
-                      "space_cache=v2"
-                      "ssd"
-                      "discard=async"
-                    ];
-                  };
-                  "@swap" = {
-                    mountpoint = "/swap";
-                    mountOptions = [
-                      "subvol=@swap"
-                      "noatime"
-                    ];
-                    swap = {
-                      swapfile.size = "40G";
+                type = "luks";
+                name = "crypted";
+                extraOpenArgs = [ "--allow-discards" ];
+                settings = {
+                  allowDiscards = true;
+                  crypttabExtraOpts = [
+                    "tpm2-device=auto"
+                    "tpm2-measure-pcr=yes"
+                  ];
+                };
+                content = {
+                  type = "btrfs";
+                  extraArgs = [
+                    "-L"
+                    "nixos"
+                    "-f"
+                  ];
+                  subvolumes = {
+                    "@" = {
+                      mountpoint = "/";
+                      mountOptions = [
+                        "subvol=@"
+                        "compress=zstd:3"
+                        "noatime"
+                        "space_cache=v2"
+                        "ssd"
+                        "discard=async"
+                      ];
+                    };
+                    "@home" = {
+                      mountpoint = "/home";
+                      mountOptions = [
+                        "subvol=@home"
+                        "compress=zstd:3"
+                        "noatime"
+                        "space_cache=v2"
+                        "ssd"
+                        "discard=async"
+                      ];
+                    };
+                    "@nix" = {
+                      mountpoint = "/nix";
+                      mountOptions = [
+                        "subvol=@nix"
+                        "compress=zstd:3"
+                        "noatime"
+                        "space_cache=v2"
+                        "ssd"
+                        "discard=async"
+                      ];
+                    };
+                    "@log" = {
+                      mountpoint = "/var/log";
+                      mountOptions = [
+                        "subvol=@log"
+                        "compress=zstd:3"
+                        "noatime"
+                        "space_cache=v2"
+                        "ssd"
+                        "discard=async"
+                      ];
+                    };
+                    "@snapshots" = {
+                      mountpoint = "/.snapshots";
+                      mountOptions = [
+                        "subvol=@snapshots"
+                        "compress=zstd:3"
+                        "noatime"
+                        "space_cache=v2"
+                        "ssd"
+                        "discard=async"
+                      ];
+                    };
+                    "@swap" = {
+                      mountpoint = "/swap";
+                      mountOptions = [
+                        "subvol=@swap"
+                        "noatime"
+                      ];
+                      swap = {
+                        swapfile.size = "40G";
+                      };
                     };
                   };
                 };

@@ -9,6 +9,7 @@
   imports = [
     ./hardware.nix
     ./kvm.nix
+    ./disko.nix
   ];
 
   holynix = {

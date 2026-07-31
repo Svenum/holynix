@@ -12,6 +12,7 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   boot = {
+    resumeDevice = "/dev/mapper/crypted";
     initrd = {
       availableKernelModules = [
         "xhci_pci"
@@ -31,29 +32,6 @@
     # Enable aarch64 emulation
     binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
-
-  # Configure Filesystem
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/0abec576-e226-4276-8e4f-deabb395bf65";
-      fsType = "ext4";
-    };
-
-    "/home" = {
-      device = "/dev/disk/by-uuid/59dfb4d5-9964-4797-84a1-342adc189e94";
-      fsType = "ext4";
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/142B-16BD";
-      fsType = "vfat";
-    };
-  };
-  swapDevices = [
-    {
-      label = "Swap";
-    }
-  ];
 
   hardware = {
     framework.enableKmod = true;

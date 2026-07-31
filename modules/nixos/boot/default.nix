@@ -99,9 +99,7 @@ in
     # Firmware
     hardware.enableRedistributableFirmware = true;
 
-    environment.systemPackages = mkIf cfg.secureBoot [
-      pkgs.sbctl
-    ];
+    environment.systemPackages = [ pkgs.tpm2-tools ] ++ lists.optional cfg.secureBoot pkgs.sbctl;
 
     security.pam.loginLimits = [
       {
