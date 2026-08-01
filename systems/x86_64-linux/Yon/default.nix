@@ -123,6 +123,11 @@
     '';
   };
 
+  systemd.tmpfiles.rules = [
+    "d /home/sven/Games 0755 sven users -"
+  ];
+
+
   environment.variables = {
     # Needed to fix Kwin if gpu gets detatched
     KWIN_DRM_DEVICES = "/dev/dri/card1";

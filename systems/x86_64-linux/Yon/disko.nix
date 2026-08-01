@@ -3,7 +3,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        device = "/dev/disk/by-id/nvme-CT4000P3PSSD8_2348E8867ED1";
         content = {
           type = "gpt";
           partitions = {
@@ -78,6 +78,17 @@
                       mountpoint = "/var/log";
                       mountOptions = [
                         "subvol=@log"
+                        "compress=zstd:3"
+                        "noatime"
+                        "space_cache=v2"
+                        "ssd"
+                        "discard=async"
+                      ];
+                    };
+                    "@games" = {
+                      mountpoint = "/home/sven/Games";
+                      mountOptions = [
+                        "subvol=@games"
                         "compress=zstd:3"
                         "noatime"
                         "space_cache=v2"

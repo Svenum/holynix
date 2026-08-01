@@ -10,7 +10,6 @@
 
   # Add AMD CPU driver
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
   boot = {
     resumeDevice = "/dev/mapper/crypted";
     initrd = {
@@ -27,6 +26,7 @@
     kernelParams = [
       "mem_sleep_default=deep"
       "amd_pstate=active"
+      "resume_offset=533760"
     ];
 
     # Enable aarch64 emulation
