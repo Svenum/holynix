@@ -30,5 +30,10 @@ in
 
     # Enable usb scanner support
     services.ipp-usb.enable = true;
+
+    # Install skanpage if needed
+    environment.systemPackages = mkIf config.holynix.desktop.plasma.enable [
+      pkgs.kdePackages.skanpage
+    ];
   };
 }
