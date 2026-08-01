@@ -66,6 +66,7 @@
       scanner.enable = true;
       printer = {
         enable = true;
+        discovery = true;
         defaultPrinter = "Epson_ET-2720-Series";
         printers = [
           {
@@ -126,7 +127,6 @@
   systemd.tmpfiles.rules = [
     "d /home/sven/Games 0755 sven users -"
   ];
-
 
   environment.variables = {
     # Needed to fix Kwin if gpu gets detatched
