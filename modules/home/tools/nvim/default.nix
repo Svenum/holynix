@@ -111,6 +111,173 @@ in
         };
       };
 
+      # LSP
+      lsp = {
+        inlayHints.enable = true;
+        keymaps = [
+          {
+            key = "gD";
+            lspBufAction = "declaration";
+          }
+          {
+            key = "gd";
+            lspBufAction = "definition";
+          }
+          {
+            key = "K";
+            lspBufAction = "hover";
+          }
+          {
+            key = "gi";
+            lspBufAction = "implementation";
+          }
+          {
+            key = "<C-k>";
+            lspBufAction = "signature_help";
+          }
+          {
+            key = "<leader>wa";
+            lspBufAction = "add_workspace_folder";
+          }
+          {
+            key = "<leader>wr";
+            lspBufAction = "remove_workspace_folder";
+          }
+          {
+            key = "<leader>D";
+            lspBufAction = "type_definition";
+          }
+          {
+            key = "<leader>rn";
+            lspBufAction = "rename";
+          }
+          {
+            key = "<leader>ca";
+            lspBufAction = "code_action";
+          }
+          {
+            key = "gr";
+            lspBufAction = "references";
+          }
+          {
+            key = "<leader>f";
+            lspBufAction = "format";
+          }
+          {
+            key = "[d";
+            action = "goto_prev";
+          }
+          {
+            key = "]d";
+            action = "goto_next";
+          }
+          {
+            key = "<leader>e";
+            action = "open_float";
+          }
+          {
+            key = "<leader>q";
+            action = "setloclist";
+          }
+
+        ];
+        servers = {
+          # C/C++
+          clangd.enable = true;
+
+          # Python
+          basedpyright = {
+            enable = true;
+            config.basedpyright.analysis.inlayHints = {
+              callArgumentNames = true;
+              variableTypes = true;
+              returnTypes = true;
+            };
+          };
+
+          # TypeScript/JavaScript
+          ts_ls = {
+            enable = true;
+            config = {
+              typescript.inlayHints = {
+                includeInlayParameterNameHints = "all";
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true;
+                includeInlayFunctionParameterTypeHints = true;
+                includeInlayVariableTypeHints = true;
+                includeInlayPropertyDeclarationTypeHints = true;
+                includeInlayFunctionLikeReturnTypeHints = true;
+                includeInlayEnumMemberValueHints = true;
+              };
+              javascript.inlayHints = {
+                includeInlayParameterNameHints = "all";
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true;
+                includeInlayFunctionParameterTypeHints = true;
+                includeInlayVariableTypeHints = true;
+                includeInlayPropertyDeclarationTypeHints = true;
+                includeInlayFunctionLikeReturnTypeHints = true;
+                includeInlayEnumMemberValueHints = true;
+              };
+            };
+          };
+          biome.enable = true;
+
+          # HTML
+          html.enable = true;
+          emmet_language_server.enable = true;
+
+          # CSS
+          cssls.enable = true;
+          tailwindcss.enable = true;
+
+          # JSON
+          jsonls.enable = true;
+
+          # YAML
+          yamlls.enable = true;
+
+          # Docker
+          dockerls.enable = true;
+
+          # Bash
+          bashls.enable = true;
+
+          # Postgres
+          postgres_lsp.enable = true;
+
+          # Lua
+          lua_ls = {
+            enable = true;
+            config = {
+              telemetry.enable = false;
+              Lua.hint = {
+                enable = true;
+                arrayIndex = "Enable";
+                await = true;
+                paramName = "All";
+                paramType = true;
+                setType = true;
+              };
+            };
+          };
+
+          # Nix
+          nixd = {
+            enable = true;
+            config.cmd = [ "--inlay-hints" ];
+          };
+
+          statix.enable = true;
+
+          # VimScript
+          vimls.enable = true;
+
+          # LaTeX
+          texlab.enable = true;
+
+          # Markdown
+          marksman.enable = true;
+        };
+      };
       # Plugins
       plugins = {
         # File explorer
@@ -131,139 +298,6 @@ in
           extensions = {
             file-browser.enable = true;
             fzf-native.enable = true;
-          };
-        };
-
-        # LSP
-        lsp = {
-          enable = true;
-          inlayHints = true;
-
-          keymaps = {
-            diagnostic = {
-              "[d" = "goto_prev";
-              "]d" = "goto_next";
-              "<leader>e" = "open_float";
-              "<leader>q" = "setloclist";
-            };
-            lspBuf = {
-              "gD" = "declaration";
-              "gd" = "definition";
-              "K" = "hover";
-              "gi" = "implementation";
-              "<C-k>" = "signature_help";
-              "<leader>wa" = "add_workspace_folder";
-              "<leader>wr" = "remove_workspace_folder";
-              "<leader>D" = "type_definition";
-              "<leader>rn" = "rename";
-              "<leader>ca" = "code_action";
-              "gr" = "references";
-              "<leader>f" = "format";
-            };
-          };
-
-          servers = {
-            # C/C++
-            clangd = {
-              enable = true;
-              extraOptions = {
-                capabilities = {
-                  offsetEncoding = [ "utf-16" ];
-                };
-              };
-            };
-
-            # Python
-            basedpyright = {
-              enable = true;
-              settings.basedpyright.analysis.inlayHints = {
-                callArgumentNames = true;
-                variableTypes = true;
-                returnTypes = true;
-              };
-            };
-
-            # TypeScript/JavaScript
-            ts_ls = {
-              enable = true;
-              settings = {
-                typescript.inlayHints = {
-                  includeInlayParameterNameHints = "all";
-                  includeInlayParameterNameHintsWhenArgumentMatchesName = true;
-                  includeInlayFunctionParameterTypeHints = true;
-                  includeInlayVariableTypeHints = true;
-                  includeInlayPropertyDeclarationTypeHints = true;
-                  includeInlayFunctionLikeReturnTypeHints = true;
-                  includeInlayEnumMemberValueHints = true;
-                };
-                javascript.inlayHints = {
-                  includeInlayParameterNameHints = "all";
-                  includeInlayParameterNameHintsWhenArgumentMatchesName = true;
-                  includeInlayFunctionParameterTypeHints = true;
-                  includeInlayVariableTypeHints = true;
-                  includeInlayPropertyDeclarationTypeHints = true;
-                  includeInlayFunctionLikeReturnTypeHints = true;
-                  includeInlayEnumMemberValueHints = true;
-                };
-              };
-            };
-            biome.enable = true;
-
-            # HTML
-            html.enable = true;
-            emmet_language_server.enable = true;
-
-            # CSS
-            cssls.enable = true;
-            tailwindcss.enable = true;
-
-            # JSON
-            jsonls.enable = true;
-
-            # YAML
-            yamlls.enable = true;
-
-            # Docker
-            dockerls.enable = true;
-
-            # Bash
-            bashls.enable = true;
-
-            # Postgres
-            postgres_lsp.enable = true;
-
-            # Lua
-            lua_ls = {
-              enable = true;
-              settings = {
-                telemetry.enable = false;
-                Lua.hint = {
-                  enable = true;
-                  arrayIndex = "Enable";
-                  await = true;
-                  paramName = "All";
-                  paramType = true;
-                  setType = true;
-                };
-              };
-            };
-
-            # Nix
-            nixd = {
-              enable = true;
-              config.cmd = [ "--inlay-hints" ];
-            };
-
-            statix.enable = true;
-
-            # VimScript
-            vimls.enable = true;
-
-            # LaTeX
-            texlab.enable = true;
-
-            # Markdown
-            marksman.enable = true;
           };
         };
 
@@ -360,10 +394,7 @@ in
         # UI
         web-devicons.enable = true;
 
-        lualine = {
-          enable = true;
-          theme = "auto";
-        };
+        lualine.enable = true;
 
         # Markdown preview
         markdown-preview = {

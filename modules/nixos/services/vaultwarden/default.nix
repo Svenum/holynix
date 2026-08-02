@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.types;
@@ -30,6 +35,7 @@ in
       vaultwarden = {
         enable = true;
         dbBackend = "postgresql";
+        webVaultPackage = pkgs.holynix.webvault;
         config = {
           DATABASE_URL = "postgresql:///vaultwarden?host=/run/postgresql";
           DOMAIN = "https://bitwarden.${cfgS.publicDomain}";
