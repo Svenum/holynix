@@ -241,8 +241,8 @@ in
           };
           immich = mkIf config.holynix.services.immich.enable (
             pkgs.fetchNextcloudApp {
-              url = "https://github.com/xXRoxXeRXx/integration_immich/releases/download/untagged-3d6c61c931ba34ccddf4/integration_immich.tar.gz";
-              hash = "sha256-58J5T1AHNsGL9I7FjlouLXe6RgPlfMKng2aVPmVdSdM=";
+              url = "https://github.com/xXRoxXeRXx/integration_immich/releases/download/v1.4.0/integration_immich.tar.gz";
+              hash = "sha256-PKL0FtM2oVWqlo1lAm3G3pC8Tkfzm/W4ySWAa4HG9R4=";
               license = "agpl3Only";
             }
           );
