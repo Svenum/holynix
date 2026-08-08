@@ -51,6 +51,6 @@ in
     environment.systemPackages = with pkgs; [ nvtopPackages.full ];
 
     # enable cuda
-    nixpkgs.config.cudaSupport = true;
+    #nixpkgs.config.cudaSupport = true;
   };
 }

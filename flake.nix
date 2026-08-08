@@ -114,7 +114,7 @@
       channels-config = {
         allowUnfree = true;
         nvidia.acceptLicense = true;
-        cudaSupport = true;
+        #cudaSupport = true;
       };
 
       systems = {
