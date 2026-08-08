@@ -239,7 +239,7 @@ in
             hash = "sha256-gJcQJv0tD7lykS+26cLr5zlujJjajNqITWmTv0ki2T0=";
             license = "agpl3Only";
           };
-          immich = mkIf config.holynix.services.immich.enable (
+          integration_immich = mkIf config.holynix.services.immich.enable (
             pkgs.fetchNextcloudApp {
               url = "https://github.com/xXRoxXeRXx/integration_immich/releases/download/v1.4.0/integration_immich.tar.gz";
               hash = "sha256-PKL0FtM2oVWqlo1lAm3G3pC8Tkfzm/W4ySWAa4HG9R4=";
