@@ -28,10 +28,37 @@ in
       default = true;
       description = "Enable prometheus server";
     };
+    targets = {
+      homeassistant = {
+        enable = mkOption {
+          type = bool;
+          default = false;
+          description = "Enable the target for Homeassistant.";
+        };
+        address = mkOption {
+          type = str;
+          default = "";
+          description = "The address of homeassistant without the scheme";
+        };
+        scheme = mkOption {
+          type = enum [
+            "http"
+            "https"
+          ];
+          default = "https";
+          description = "The scheme of the target";
+        };
+      };
+    };
   };
 
   config = mkIf cfg.enable {
 
+    sops.secrets."services/prometheus/targets/homeassistant/token" =
+      mkIf cfg.targets.homeassistant.enable
+        {
+          restartUnits = [ "prometheus.service" ];
+        };
     services = {
       prometheus = {
         enable = cfg.enableServer;
@@ -213,6 +240,20 @@ in
               {
                 target_label = "__address__";
                 replacement = "localhost:${toString cpe.blackbox.port}";
+              }
+            ];
+          }
+          ++ lists.optional cfg.targets.homeassistant.enable {
+            job_name = "homeassistant";
+            metrics_path = "/api/prometheus";
+            bearer_token_file = config.sops.secrets."services/prometheus/targets/homeassistant/token".path;
+            scheme = cfg.targets.homeassistant.scheme;
+            static_configs = [
+              {
+                labels = {
+                  host = hostName;
+                };
+                targets = [ cfg.targets.homeassistant.address ];
               }
             ];
           };

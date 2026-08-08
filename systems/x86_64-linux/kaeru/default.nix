@@ -66,7 +66,13 @@ in
       };
       authentik.enable = true;
       jellyfin.enable = true;
-      prometheus.enable = true;
+      prometheus = {
+        enable = true;
+        targets.homeassistant = {
+          enable = true;
+          address = "homeassistant.holypenguin.net";
+        };
+      };
       stirlingpdf.enable = true;
       it-tools.enable = true;
       grafana = {
