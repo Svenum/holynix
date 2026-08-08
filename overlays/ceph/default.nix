@@ -1,12 +1,15 @@
 # https://github.com/NixOS/nixpkgs/pull/542348
-# horrible formatting is optional, the code will also work if you make it look okay
 _: final: prev: {
-  ceph =
-    (prev.ceph.overrideScope (
-      _: prev: {
-        # not sure if needed or effective
+  ceph = builtins.getAttr "ceph" (
+    prev.ceph.overrideScope (
+      _: scopePrev: {
         arrow-cpp = null;
-        ceph = prev.ceph.overrideAttrs (
+
+        ceph-python-common = scopePrev.ceph-python-common.overrideAttrs (old: {
+          dontCheckPythonMetadata = true;
+        });
+
+        ceph = scopePrev.ceph.overrideAttrs (
           {
             cmakeFlags ? [ ],
             ...
@@ -19,5 +22,21 @@ _: final: prev: {
           }
         );
       }
-    )).ceph;
+    )
+  );
+  pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+    (pyfinal: pyprev: {
+      cython_0 = pyprev.cython_0.overrideAttrs (old: {
+        dontCheckPythonMetadata = true;
+      });
+    })
+    (
+      _: pythonPrev:
+      prev.lib.optionalAttrs pythonPrev.python.isPy312 {
+        scipy = pythonPrev.scipy.overrideAttrs (old: {
+          disabledTests = old.disabledTests ++ [ "test_support_moments_sample" ];
+        });
+      }
+    )
+  ];
 }
