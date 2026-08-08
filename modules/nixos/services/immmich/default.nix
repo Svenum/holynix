@@ -64,6 +64,11 @@ in
             issuerUrl = cfg.oauth.issuerUrl;
             timeout = 30000;
           };
+          storageTemplate = {
+            enabled = true;
+            hashVerificationEnabled = true;
+            template = "{{y}}/{{y}}-{{MM}}-{{dd}}/{{#if make}}{{make}}{{#if model}}_{{model}}{{/if}}{{else}}{{#if model}}{{model}}{{else}}unknown{{/if}}{{/if}}/{{filename}}";
+          };
         };
       };
       cloudflared.tunnels."${cfgC.tunnelId}".ingress."immich.${cfgS.publicDomain}" =
