@@ -233,6 +233,8 @@ in
       "grafana/dashboards/libvirt.json".source = mkIf cpe.libvirt.enable ./dashboards/libvirt.json;
       "grafana/dashboards/nut.json".source = mkIf cpe.nut.enable ./dashboards/nut.json;
       "grafana/dashboards/systemd.json".source = mkIf cpe.systemd.enable ./dashboards/systemd.json;
+      "grafana/dashboards/homeassistant.json".source =
+        mkIf config.holynix.services.prometheus.targets.homeassistant.enable ./dashboards/homeassistant.json;
     };
   };
 }
