@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   myKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGEUe5V5fMgoSTe1kWfi8OxNhxuYIcd35gIp6Zxzkrv";
   ipDMZ = "172.16.0.11";
@@ -159,6 +159,7 @@ in
           prefixLength = 24;
         }
       ];
+      enp38s0.ipv4.addresses = lib.mkForce [ ];
       br0.ipv4.addresses = [
         {
           address = ipDMZ;
