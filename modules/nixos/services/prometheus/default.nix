@@ -54,14 +54,15 @@ in
 
   config = mkIf cfg.enable {
 
-    sops.secrets."services/prometheus/targets/homeassistant/token" =
-      mkIf cfg.targets.homeassistant.enable
-        {
-          restartUnits = [ "prometheus.service" ];
-        };
+    sops.secrets."services/prometheus/homeassistant/token" = mkIf cfg.targets.homeassistant.enable {
+      restartUnits = [ "prometheus.service" ];
+      owner = "prometheus";
+      group = "prometheus";
+    };
     services = {
       prometheus = {
         enable = cfg.enableServer;
+        checkConfig = "syntax-only";
         exporters = mkIf cfg.enableExporters {
           zfs.enable = hasZfs;
           postgres = mkIf config.services.postgresql.enable {
@@ -246,7 +247,7 @@ in
           ++ lists.optional cfg.targets.homeassistant.enable {
             job_name = "homeassistant";
             metrics_path = "/api/prometheus";
-            bearer_token_file = config.sops.secrets."services/prometheus/targets/homeassistant/token".path;
+            bearer_token_file = config.sops.secrets."services/prometheus/homeassistant/token".path;
             scheme = cfg.targets.homeassistant.scheme;
             static_configs = [
               {
