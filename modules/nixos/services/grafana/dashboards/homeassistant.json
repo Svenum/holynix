@@ -2,21 +2,21 @@
   "apiVersion": "dashboard.grafana.app/v2",
   "kind": "Dashboard",
   "metadata": {
-    "name": "bei3tgsohczk0a",
+    "name": "hop8m6q",
     "namespace": "default",
-    "uid": "eHcsWX9EOW6UXOmzs0WJ2demmXYjw3KvaXn4EbvahX8X",
-    "resourceVersion": "1748545200000120",
-    "generation": 20,
-    "creationTimestamp": "2025-04-06T15:19:59Z",
+    "uid": "f77c0cc1-2846-467a-8aa1-d15aec820dc4",
+    "resourceVersion": "1786653899298254",
+    "generation": 2,
+    "creationTimestamp": "2026-08-10T19:53:51Z",
     "labels": {
-      "grafana.app/deprecatedInternalID": "22"
+      "grafana.app/deprecatedInternalID": "1737194265382912"
     },
     "annotations": {
-      "grafana.app/createdBy": "access-policy:service",
-      "grafana.app/managedBy": "classic-file-provisioning",
-      "grafana.app/managerId": "default",
-      "grafana.app/sourceTimestamp": "1000",
-      "grafana.app/folder": ""
+      "grafana.app/createdBy": "user:bfr115nql89ogc",
+      "grafana.app/folder": "",
+      "grafana.app/saved-from-ui": "Grafana v13.1.1 (NA)",
+      "grafana.app/updatedBy": "user:bfr115nql89ogc",
+      "grafana.app/updatedTimestamp": "2026-08-13T20:44:59Z"
     }
   },
   "spec": {
@@ -37,10 +37,7 @@
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
           "name": "Annotations & Alerts",
-          "builtIn": true,
-          "legacyOptions": {
-            "type": "dashboard"
-          }
+          "builtIn": true
         }
       }
     ],
@@ -66,7 +63,7 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "K-MZwXRVk"
+                        "name": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
@@ -91,12 +88,18 @@
           "vizConfig": {
             "kind": "VizConfig",
             "group": "timeseries",
-            "version": "12.0.1",
+            "version": "13.1.1",
             "spec": {
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -115,7 +118,7 @@
                     "mode": "absolute",
                     "steps": [
                       {
-                        "value": null,
+                        "value": 0,
                         "color": "green"
                       },
                       {
@@ -151,6 +154,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -186,7 +190,7 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "K-MZwXRVk"
+                        "name": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
@@ -211,12 +215,18 @@
           "vizConfig": {
             "kind": "VizConfig",
             "group": "timeseries",
-            "version": "12.0.1",
+            "version": "13.1.1",
             "spec": {
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -233,7 +243,7 @@
                     "mode": "absolute",
                     "steps": [
                       {
-                        "value": null,
+                        "value": 0,
                         "color": "green"
                       },
                       {
@@ -269,6 +279,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -304,7 +315,7 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "K-MZwXRVk"
+                        "name": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
@@ -330,12 +341,18 @@
           "vizConfig": {
             "kind": "VizConfig",
             "group": "timeseries",
-            "version": "12.0.1",
+            "version": "13.1.1",
             "spec": {
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -352,7 +369,7 @@
                     "mode": "absolute",
                     "steps": [
                       {
-                        "value": null,
+                        "value": 0,
                         "color": "green"
                       },
                       {
@@ -388,6 +405,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -423,7 +441,7 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "K-MZwXRVk"
+                        "name": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
@@ -448,12 +466,18 @@
           "vizConfig": {
             "kind": "VizConfig",
             "group": "timeseries",
-            "version": "12.0.1",
+            "version": "13.1.1",
             "spec": {
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -470,7 +494,7 @@
                     "mode": "absolute",
                     "steps": [
                       {
-                        "value": null,
+                        "value": 0,
                         "color": "green"
                       },
                       {
@@ -506,6 +530,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -541,12 +566,12 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "K-MZwXRVk"
+                        "name": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
-                        "editorMode": "builder",
-                        "expr": "hass_sensor_precipitation_intensity_mm_per_h",
+                        "editorMode": "code",
+                        "expr": "hass_sensor_precipitation_mm",
                         "fullMetaSearch": false,
                         "includeNullMetadata": true,
                         "legendFormat": "{{friendly_name}}",
@@ -566,12 +591,18 @@
           "vizConfig": {
             "kind": "VizConfig",
             "group": "timeseries",
-            "version": "12.0.1",
+            "version": "13.1.1",
             "spec": {
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -587,7 +618,7 @@
                     "mode": "absolute",
                     "steps": [
                       {
-                        "value": null,
+                        "value": 0,
                         "color": "green"
                       },
                       {
@@ -623,6 +654,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -643,7 +675,7 @@
         "kind": "Panel",
         "spec": {
           "id": 7,
-          "title": "Rain Rate Daily",
+          "title": "Event Rain Rate",
           "description": "",
           "links": [],
           "data": {
@@ -658,12 +690,12 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "K-MZwXRVk"
+                        "name": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
-                        "editorMode": "builder",
-                        "expr": "hass_sensor_precipitation_mm{entity=\"sensor.gw1100a_daily_rain_rate\"}",
+                        "editorMode": "code",
+                        "expr": "hass_sensor_precipitation_mm{entity=\"sensor.gw1100a_event_rain_rate\"}",
                         "fullMetaSearch": false,
                         "includeNullMetadata": true,
                         "legendFormat": "{{friendly_name}}",
@@ -683,12 +715,18 @@
           "vizConfig": {
             "kind": "VizConfig",
             "group": "timeseries",
-            "version": "12.0.1",
+            "version": "13.1.1",
             "spec": {
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -704,7 +742,7 @@
                     "mode": "absolute",
                     "steps": [
                       {
-                        "value": null,
+                        "value": 0,
                         "color": "green"
                       },
                       {
@@ -740,6 +778,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -775,7 +814,7 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "K-MZwXRVk"
+                        "name": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
@@ -800,12 +839,18 @@
           "vizConfig": {
             "kind": "VizConfig",
             "group": "timeseries",
-            "version": "12.0.1",
+            "version": "13.1.1",
             "spec": {
               "options": {
+                "annotations": {
+                  "clustering": -1,
+                  "multiLane": false
+                },
                 "legend": {
                   "calcs": [],
                   "displayMode": "list",
+                  "enableFacetedFilter": false,
+                  "overflow": "ellipsis",
                   "placement": "bottom",
                   "showLegend": true
                 },
@@ -821,7 +866,7 @@
                     "mode": "absolute",
                     "steps": [
                       {
-                        "value": null,
+                        "value": 0,
                         "color": "green"
                       },
                       {
@@ -857,6 +902,7 @@
                       "type": "linear"
                     },
                     "showPoints": "auto",
+                    "showValues": false,
                     "spanNulls": false,
                     "stacking": {
                       "group": "A",
@@ -1012,7 +1058,7 @@
       "hideTimepicker": false,
       "fiscalYearStartMonth": 0
     },
-    "title": "Ecowitt",
+    "title": "Homeassistant",
     "variables": []
   }
 }
