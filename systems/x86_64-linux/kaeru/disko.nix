@@ -126,7 +126,6 @@ in
         type = "zpool";
         rootFsOptions = {
           compression = "zstd";
-          "com.sun:auto-snapshot" = "false";
           acltype = "posixacl";
           xattr = "sa";
           mountpoint = "none";
@@ -139,7 +138,6 @@ in
             type = "zfs_fs";
             mountpoint = "/var/lib/containers/storage/volumes";
             options = {
-              "com.sun:auto-snapshot" = "false";
               compression = "zstd";
             };
           };
@@ -147,7 +145,6 @@ in
             type = "zfs_fs";
             mountpoint = "/";
             options = {
-              "com.sun:auto-snapshot" = "false";
               compression = "zstd";
               encryption = "aes-256-gcm";
               keyformat = "passphrase";
@@ -168,7 +165,6 @@ in
         };
         rootFsOptions = {
           compression = "zstd";
-          "com.sun:auto-snapshot" = "false";
           mountpoint = "none";
           special_small_blocks = "64K";
           encryption = "aes-256-gcm";
@@ -202,7 +198,6 @@ in
             mountpoint = "/var/lib";
             options = {
               compression = "zstd";
-              "com.sun:auto-snapshot" = "true";
             };
           };
           "datadir/postgresql" = {
@@ -212,7 +207,6 @@ in
               compression = "zstd";
               recordsize = "8K";
               logbias = "latency";
-              "com.sun:auto-snapshot" = "true";
             };
           };
           "datadir/libvirt" = {
@@ -221,7 +215,6 @@ in
             options = {
               compression = "zstd";
               recordsize = "64K";
-              "com.sun:auto-snapshot" = "true";
             };
           };
           "datadir/immich" = {
@@ -235,6 +228,14 @@ in
               recordsize = "1M";
             };
           };
+          "datadir/paperless" = {
+            type = "zfs_fs";
+            mountpoint = "/srv/data/paperless";
+            options = {
+              recordsize = "128K";
+              compression = "zstd";
+            };
+          };
           "media" = {
             type = "zfs_fs";
             mountpoint = "/srv/media";
@@ -242,7 +243,6 @@ in
               compression = "zstd";
               atime = "off";
               recordsize = "1M";
-              "com.sun:auto-snapshot" = "false";
               special_small_blocks = "0";
             };
           };
@@ -254,7 +254,6 @@ in
               recordsize = "128K";
               special_small_blocks = "32K";
               atime = "off";
-              "com.sun:auto-snapshot" = "true";
             };
           };
           "data" = {
@@ -262,7 +261,6 @@ in
             mountpoint = "/srv/data";
             options = {
               compression = "zstd";
-              "com.sun:auto-snapshot" = "true";
             };
           };
         };

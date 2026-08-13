@@ -60,6 +60,11 @@
         recursive = false;
       };
 
+      "tank/data/paperless" = {
+        useTemplate = [ "archive" ];
+        recursive = false;
+      };
+
       "tank/media" = {
         useTemplate = [ "archive" ];
         recursive = false;
