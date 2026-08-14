@@ -89,6 +89,10 @@ in
           type = "ed25519";
         }
       ];
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
     };
 
     environment.systemPackages =
