@@ -48,6 +48,17 @@
       nextcloud-client
     ];
 
+    dconf.settings = {
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = [
+          "qemu+ssh://holyadmin@kaeru/system"
+        ];
+        uris = [
+          "qemu+ssh://holyadmin@kaeru/system"
+        ];
+      };
+    };
+
     stateVersion = "26.11";
   };
 }
