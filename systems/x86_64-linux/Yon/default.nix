@@ -16,7 +16,10 @@
     boot.secureBoot = true;
     desktop.plasma.enable = true;
     shell.zsh.enable = true;
-    locale.name = "en_DE";
+    locale = {
+      name = "en_DE";
+      tz = null;
+    };
     systemType.laptop.enable = true;
     users = {
       "sven" = {

@@ -21,7 +21,7 @@ in
       default = "de_DE";
     };
     tz = mkOption {
-      type = str;
+      type = nullOr str;
       default = "Europe/Berlin";
     };
   };
