@@ -46,7 +46,7 @@
     fw-fanctrl = {
       enable = true;
       config = {
-        defaultStrategy = "lazy";
+        defaultStrategy = "school";
         strategyOnDischarging = "school";
         strategies = {
           "school" = {
