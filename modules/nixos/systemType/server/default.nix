@@ -71,24 +71,30 @@ in
       };
     };
 
+    systemd.tmpfiles.rules = mkIf cfg.zfsSshDecryption.enable [
+      "d /run/ssh 0755 root root -"
+    ];
+
     # SSH
     services.openssh = {
       enable = true;
-      hostKeys = mkIf cfg.zfsSshDecryption.enable [
-        {
-          bits = 4096;
-          path = "/etc/ssh/ssh_host_rsa_key";
-          type = "rsa";
-        }
-        {
-          path = "/etc/ssh/ssh_host_ed25519_key";
-          type = "ed25519";
-        }
-        {
+      hostKeys =
+        mkIf cfg.zfsSshDecryption.enable [
+          {
+            bits = 4096;
+            path = "/etc/ssh/ssh_host_rsa_key";
+            type = "rsa";
+          }
+          {
+            path = "/etc/ssh/ssh_host_ed25519_key";
+            type = "ed25519";
+          }
+
+        ]
+        ++ lists.optional cfg.zfsSshDecryption.enable {
           path = "/var/ssh/ssh_host_ed25519_key";
           type = "ed25519";
-        }
-      ];
+        };
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
