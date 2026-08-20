@@ -18,6 +18,11 @@ let
     inherit nvramPath;
     inherit zvolPath;
   };
+  benno_backup = import ./vms/benno_backup.nix {
+    inherit pkgs;
+    inherit nvramPath;
+    inherit zvolPath;
+  };
 in
 {
   virtualisation.libvirt = {
@@ -81,6 +86,7 @@ in
       ];
       domains = [
         { definition = virtLib.domain.writeXML homeassistant; }
+        { definition = virtLib.domain.writeXML benno_backup; }
       ];
     };
   };

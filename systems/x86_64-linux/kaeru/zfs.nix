@@ -50,6 +50,8 @@
         recursive = false;
       };
 
+      "tank/datadir/libvirt/benno_backup/data".autosnap = false;
+
       "tank/data" = {
         useTemplate = [ "standard" ];
         recursive = false;
