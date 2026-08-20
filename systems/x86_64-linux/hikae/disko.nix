@@ -55,6 +55,12 @@
           compression = "zstd";
           mountpoint = "none";
         };
+        datasets = {
+          "kaeru" = {
+            type = "zfs_fs";
+            mountpoint = "/srv/backuppool/kaeru";
+          };
+        };
       };
     };
   };

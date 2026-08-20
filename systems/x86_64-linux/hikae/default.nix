@@ -46,5 +46,7 @@ in
     };
   };
 
+  networking.hostId = "9a95d7e7";
+
   environment.systemPackages = [ pkgs.mbuffer ];
 }
