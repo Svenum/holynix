@@ -19,13 +19,7 @@ in
     locale.name = "en_DE";
     systemType = {
       vm.enable = true;
-      server = {
-        enable = true;
-        zfsSshDecryption = {
-          enable = true;
-          authorizedKeys = [ myKey ];
-        };
-      };
+      server.enable = true;
     };
     users = {
       "holyadmin" = {
