@@ -33,15 +33,10 @@ in
       "backup".authorizedKeys = [ myKey ];
     };
     tools.cliTools.enable = true;
-    services = {
-      tailscale = {
-        enable = true;
-        advertiseRoutes = [ "172.16.0.0/24" ];
-      };
-    };
+    services.tailscale.enable = true;
 
     sops = {
-      defaultSopsFile = ../../../secrets/kaeru/default.yaml;
+      defaultSopsFile = ../../../secrets/hikae/default.yaml;
       enableHostKey = true;
     };
   };
