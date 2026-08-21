@@ -51,7 +51,6 @@ in
     boot = {
       # Filesystems
       supportedFilesystems = [ "ntfs" ];
-      zfs.devNodes = "/dev/disk/by-partuuid";
 
       # Kernel
       extraModulePackages = [
