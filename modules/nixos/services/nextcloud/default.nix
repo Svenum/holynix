@@ -118,7 +118,7 @@ in
         script = ''
           nextcloud-occ app:enable files_external
           nextcloud-occ config:app:set files_external allow_user_mounting --value=1
-          nextcloud-occ config:app:set files_external user_mounting_backends --value="dav,owncloud,sftp,\OC\Files\Storage\SFTP_Key"
+          nextcloud-occ config:app:set files_external user_mounting_backends --value="dav,owncloud,smb,sftp,\OC\Files\Storage\SFTP_Key"
         '';
         after = [ "nextcloud-setup.service" ];
         wantedBy = [ "multi-user.target" ];
@@ -201,6 +201,24 @@ in
         hostName = "nextcloud.${cfgS.publicDomain}";
         maxUploadSize = "100G";
         phpOptions."opcache.interned_strings_buffer" = "24";
+        phpExtraExtensions = all: [ all.smbclient ];
+        phpPackage = lib.mkForce (
+          pkgs.php.override {
+            packageOverrides = final: prev: {
+              extensions = prev.extensions // {
+                smbclient = prev.extensions.smbclient.overrideAttrs (attrs: {
+                  src = pkgs.fetchFromGitHub {
+                    owner = "remicollet";
+                    repo = "libsmbclient-php";
+                    # Newest commit on branch "issue-reg-getxattr" at time of writing.
+                    rev = "b066b6bcd75c8741776d312337f3d69e8484482c";
+                    sha256 = "sha256-BOY51zYgU2rvMSxbm+N6CwZ6SefY0YktF14zh5uTNU4=";
+                  };
+                });
+              };
+            };
+          }
+        );
         database.createLocally = true;
         imaginary.enable = true;
         settings = {
