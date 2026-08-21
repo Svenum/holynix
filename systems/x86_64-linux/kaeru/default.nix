@@ -19,14 +19,11 @@ in
   holynix = {
     shell.zsh.enable = true;
     locale.name = "en_DE";
-    systemType = {
-      vm.enable = true;
-      server = {
+    systemType.server = {
+      enable = true;
+      zfsSshDecryption = {
         enable = true;
-        zfsSshDecryption = {
-          enable = true;
-          authorizedKeys = [ myKey ];
-        };
+        authorizedKeys = [ myKey ];
       };
     };
     users = {
