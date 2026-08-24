@@ -33,6 +33,7 @@
     };
 
     network.enable = true;
+    firewall.ausweisapp.open = true;
     bluetooth.enable = true;
 
     powerManagement.enable = true;
