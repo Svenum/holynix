@@ -31,7 +31,7 @@
 
   home = {
     shellAliases = {
-      "ts" = "cd /home/sven/Documents/TS/Unterricht";
+      "wrx" = "cd /home/sven/Documents/Wrexham/Lessons";
       "pc" = "podman compose";
       "nd" = "nix develop";
     };
@@ -53,7 +53,7 @@
       tetris
 
       # KI
-      claude-code
+      opencode
       ollama-rocm
 
       # Nextcloud
