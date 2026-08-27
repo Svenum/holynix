@@ -92,30 +92,11 @@
     firewall.ausweisapp.open = true;
   };
 
-  programs = {
-    # Enable weylus
-    weylus = {
-      enable = false;
-      openFirewall = true;
-      users = [
-        "sven"
-      ];
-    };
-  };
-
   services = {
-    # Enable solaar
-    solaar = {
-      enable = true;
-      window = "hide";
-      extraArgs = "--restart-on-wake-up";
-    };
-
     # Enable fwupd
     fwupd.enable = true;
 
-    # Enable switcherooControl
-    switcherooControl.enable = true;
+    # Enable switcherooControl switcherooControl.enable = true;
   };
 
   powerManagement.powertop = {
@@ -138,11 +119,32 @@
   };
 
   # ld
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      stdenv.cc.cc.lib
-    ];
+  programs = {
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        stdenv.cc.cc.lib
+      ];
+    };
+
+    # Enable weylus
+    weylus = {
+      enable = false;
+      openFirewall = true;
+      users = [
+        "sven"
+      ];
+    };
+
+    # Enable solaar
+    solaar = {
+      enable = true;
+      userService = {
+        enable = true;
+        window = "hide";
+        extraArgs = [ "--restart-on-wake-up" ];
+      };
+    };
   };
 
 }

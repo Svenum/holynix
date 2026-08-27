@@ -53,11 +53,6 @@
       };
     };
 
-    solaar = {
-      url = "github:Svenum/Solaar-Flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixvim.url = "github:nix-community/nixvim";
 
     auto-cpufreq = {
@@ -119,7 +114,6 @@
 
       systems = {
         modules.nixos = with inputs; [
-          solaar.nixosModules.default
           home-manager.nixosModules.home-manager
           sops-nix.nixosModules.sops
           catppuccin.nixosModules.catppuccin

@@ -66,13 +66,16 @@
     services.tailscale.enable = true;
   };
 
-  services = {
-    # enable solaar
-    solaar = {
+  programs.solaar = {
+    enable = true;
+    userService = {
       enable = true;
       window = "hide";
-      extraArgs = "--restart-on-wake-up";
+      extraArgs = [ "--restart-on-wake-up" ];
     };
+  };
+
+  services = {
     # Enable ssh
     openssh.enable = true;
 
