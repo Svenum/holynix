@@ -55,7 +55,10 @@ in
     virtualisation = {
       libvirtd = {
         enable = true;
-        qemu.swtpm.enable = true;
+        qemu = {
+          swtpm.enable = true;
+          vhostUserPackages = with pkgs; [ virtiofsd ];
+        };
         allowedBridges = [
           "virbr0"
           "virbr1"
@@ -69,14 +72,6 @@ in
 
     networking = {
       firewall = {
-        interfaces."virbr0" = {
-          allowedUDPPorts = [
-            53
-            67
-            68
-          ];
-          allowedTCPPorts = [ 53 ];
-        };
         trustedInterfaces = [
           "virbr0"
           "virbr1"
@@ -104,6 +99,7 @@ in
     environment.systemPackages = with pkgs; [
       inputs.nixVirt.packages.x86_64-linux.default
       swtpm
+      dnsmasq
     ];
   };
 }

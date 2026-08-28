@@ -70,11 +70,6 @@ in
       ++ lists.optional isAMD "amdgpu";
     };
 
-    # Toggle GPU script
-    environment.systemPackages = with pkgs; [
-      virtiofsd
-    ];
-
     systemd.services."toggle-amd-gpu" = mkIf (cfg.vfioPCIDevices != null) {
       unitConfig = {
         Description = "Enables amd GPU after startup";
