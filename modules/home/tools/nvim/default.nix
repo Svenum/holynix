@@ -222,6 +222,9 @@ in
           };
           biome.enable = true;
 
+          # PHP
+          phpantom_lsp.enable = true;
+
           # HTML
           html.enable = true;
           emmet_language_server.enable = true;
