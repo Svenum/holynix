@@ -113,6 +113,7 @@ in
 
       # LSP
       lsp = {
+        codelens.enable = true;
         inlayHints.enable = true;
         keymaps = [
           {
