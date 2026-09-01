@@ -19,8 +19,11 @@ in
     services.ollama = {
       enable = true;
       package = pkgs.ollama-rocm;
+      environmentVariables = {
+        OLLAMA_CONTEXT_LENGTH = "65536";
+      };
       loadModels = [
-        "LisyNeko/qwen3.8-9b-coder"
+        "qwen3.5:9b-q4_K_M"
       ];
     };
   };

@@ -18,7 +18,7 @@ in
     programs.opencode = {
       enable = true;
       settings = {
-        model = "ollama/LisyNeko/qwen3.8-9b-coder:latest";
+        model = "ollama/qwen3.5:9b-q4_K_M";
         provider = {
           ollama = {
             npm = "@ai-sdk/openai-compatible";
@@ -27,8 +27,8 @@ in
               baseURL = "http://localhost:11434/v1";
             };
             models = {
-              "LisyNeko/qwen3.8-9b-coder:latest" = {
-                name = "Qwen3.8 9B Coder";
+              "qwen3.5:9b-q4_K_M" = {
+                name = "Qwen3.5";
               };
             };
           };
