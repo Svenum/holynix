@@ -33,10 +33,13 @@
         };
       };
     };
-    services.tailscale = {
-      enable = true;
-      useAuthKeyFile = false;
-      acceptDNS = true;
+    services = {
+      ollama.enable = true;
+      tailscale = {
+        enable = true;
+        useAuthKeyFile = false;
+        acceptDNS = true;
+      };
     };
     tools = {
       flatpak.enable = true;
