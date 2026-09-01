@@ -304,6 +304,7 @@ in
 
         # LSP UI enhancements
         lsp-lines.enable = true;
+        lspconfig.enable = true;
 
         tiny-inline-diagnostic = {
           enable = true;
