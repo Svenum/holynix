@@ -1,18 +1,21 @@
 { pkgs, ... }:
 
 {
-  holynix.desktop = {
-    plasma = {
-      enable = true;
-      cursorFlavour = "latte";
-      cpuRange = 1600;
-      launchers = [
-        "applications:org.kde.dolphin.desktop"
-        "preferred://browser"
-        "applications:com.logseq.Logseq.desktop"
-        "applications:virt-manager.desktop"
-      ];
-      enableGPUSensor = true;
+  holynix = {
+    opencode.enable = true;
+    desktop = {
+      plasma = {
+        enable = true;
+        cursorFlavour = "latte";
+        cpuRange = 1600;
+        launchers = [
+          "applications:org.kde.dolphin.desktop"
+          "preferred://browser"
+          "applications:com.logseq.Logseq.desktop"
+          "applications:virt-manager.desktop"
+        ];
+        enableGPUSensor = true;
+      };
     };
   };
 
@@ -51,10 +54,6 @@
       sl
       asciiquarium-transparent
       tetris
-
-      # KI
-      opencode
-      ollama-rocm
 
       # Nextcloud
       nextcloud-client
