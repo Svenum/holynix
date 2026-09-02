@@ -99,7 +99,7 @@
     # Enable fwupd
     fwupd.enable = true;
 
-    # Enable switcherooControl switcherooControl.enable = true;
+    resolved.enable = true;
   };
 
   powerManagement.powertop = {
