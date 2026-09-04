@@ -30,6 +30,9 @@ in
               "qwen3.5:9b-q4_K_M" = {
                 name = "Qwen3.5";
               };
+              "qwen3:8b" = {
+                name = "Qwen3";
+              };
             };
           };
         };

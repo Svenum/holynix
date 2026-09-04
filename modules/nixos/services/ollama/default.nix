@@ -24,6 +24,7 @@ in
       };
       loadModels = [
         "qwen3.5:9b-q4_K_M"
+        "qwen3:8b"
       ];
     };
   };
