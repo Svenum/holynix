@@ -204,9 +204,9 @@ in
         phpExtraExtensions = all: [ all.smbclient ];
         phpPackage = lib.mkForce (
           pkgs.php.override {
-            packageOverrides = final: prev: {
+            packageOverrides = _final: prev: {
               extensions = prev.extensions // {
-                smbclient = prev.extensions.smbclient.overrideAttrs (attrs: {
+                smbclient = prev.extensions.smbclient.overrideAttrs (_attrs: {
                   src = pkgs.fetchFromGitHub {
                     owner = "remicollet";
                     repo = "libsmbclient-php";

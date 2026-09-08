@@ -58,8 +58,7 @@ in
       useRoutingFeatures = if isServer then "server" else "both";
       authKeyFile = mkIf cfg.useAuthKeyFile config.sops.secrets."services/tailscale/authKey".path;
       extraUpFlags = mkIf cfg.useAuthKeyFile (
-        [ ]
-        ++ lists.optional cfg.advertiseExitNode "--advertise-exit-node"
+        lists.optional cfg.advertiseExitNode "--advertise-exit-node"
         ++ lists.optional cfg.overrideHostname "--hostname=srv-${config.networking.hostName}"
         ++ lists.optional cfg.enableSSH "--ssh"
         ++ lists.optional cfg.acceptDNS "--accept-dns=true"
@@ -68,8 +67,7 @@ in
             "${lib.concatStringsSep " " (map (x: "--advertise-routes=" + x) cfg.advertiseRoutes)}"
       );
       extraSetFlags = mkIf (!cfg.useAuthKeyFile) (
-        [ ]
-        ++ lists.optional cfg.advertiseExitNode "--advertise-exit-node"
+        lists.optional cfg.advertiseExitNode "--advertise-exit-node"
         ++ lists.optional cfg.overrideHostname "--hostname=srv-${config.networking.hostName}"
         ++ lists.optional cfg.enableSSH "--ssh"
         ++ lists.optional cfg.acceptDNS "--accept-dns=true"

@@ -1,19 +1,13 @@
-#name: "Nix Flake check"
-#on:
-#  pull_request:
-#  push:
-#jobs:
-#  check:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#      - name: Check Nix flake inputs
-#        uses: DeterminateSystems/flake-checker-action@v4
-#      - name: Install Nix
-#        uses: DeterminateSystems/nix-installer-action@v3
-#      - name: Check for dead code in .nix files
-#        run: git ls-files '*.nix' | nix run nixpkgs#deadnix
-#      - name: Check for lints in .nix files
-#        run: nix run nixpkgs#statix -- check
-#      - name: Check formatting in .nix files
-#        run: git ls-files '*.nix' | xargs nix run nixpkgs#nixfmt
+name: "Nix Flake check"
+on:
+  pull_request:
+  push:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v3
+      - name: Check flake
+        run: nix flake check
