@@ -42,6 +42,8 @@ in
       xsel
       # Scripts
       holynix.backup
+      # Nix
+      comma
     ];
   };
 }
