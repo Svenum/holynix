@@ -25,6 +25,8 @@ in
       shellcheck
       eslint
       ripgrep
+      # LaTeX
+      bibtex-tidy
     ];
 
     programs.nixvim = {
@@ -183,6 +185,9 @@ in
 
         ];
         servers = {
+          # spelling
+          ltex.enable = true;
+
           # C/C++
           clangd.enable = true;
 
@@ -396,6 +401,33 @@ in
           ];
         };
 
+        # LaTeX
+        vimtex = {
+          enable = true;
+          texlivePackage = pkgs.texlive.combine {
+            inherit (pkgs.texlive)
+              scheme-medium
+              citation-style-language
+              luatex
+              ;
+          };
+          settings = {
+            compiler_method = "latexmk";
+            compiler_latexmk_engines = {
+              _ = "-lualatex";
+              xelatex = "-xelatex";
+              lualatex = "-lualatex";
+            };
+            compiler_latexmk = {
+              options = [
+                "-file-line-error"
+                "-synctex=1"
+                "-interaction=nonstopmode"
+              ];
+            };
+          };
+        };
+
         # UI
         web-devicons.enable = true;
 
@@ -433,10 +465,19 @@ in
               yaml = [ "prettier" ];
               markdown = [ "prettier" ];
               nix = [ "nixfmt" ];
+              bib = [ "bibtex-tidy" ];
             };
             format_on_save = {
               lsp_fallback = true;
               timeout_ms = 500;
+            };
+            formatters.bibtex-tidy = {
+              command = "${pkgs.bibtex-tidy}/bin/bibtex-tidy";
+              args = [
+                "--modify"
+                "$FILENAME"
+              ];
+              stdin = false;
             };
           };
         };

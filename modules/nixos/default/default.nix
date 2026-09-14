@@ -19,6 +19,7 @@ in
   config = mkIf cfg.enable {
     fonts.packages = with pkgs.nerd-fonts; [
       noto
+      liberation
     ];
   };
 }
