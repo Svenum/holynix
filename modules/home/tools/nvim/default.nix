@@ -404,13 +404,13 @@ in
         # LaTeX
         vimtex = {
           enable = true;
-          texlivePackage = pkgs.texlive.combine {
-            inherit (pkgs.texlive)
+          texlivePackage = pkgs.texlive.withPackages (
+            texPkgs: with texPkgs; [
               scheme-medium
               citation-style-language
               luatex
-              ;
-          };
+            ]
+          );
           settings = {
             compiler_method = "latexmk";
             compiler_latexmk_engines = {
