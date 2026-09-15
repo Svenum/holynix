@@ -18,10 +18,22 @@ in
   };
 
   config = mkIf cfg.enable {
-    # Should contain:
-    # ADMIN_TOKEN=SECRET_TOKEN
-    sops.secrets."services/vaultwarden/admin_token" = {
-      restartUnits = [ "vaultwarden.service" ];
+    sops.secrets = {
+      # Should contain:
+      # ADMIN_TOKEN=SECRET_TOKEN
+      "services/vaultwarden/admin_token" = {
+        restartUnits = [ "vaultwarden.service" ];
+      };
+      # Additional settings:
+      # PUSH_ENABLED=true
+      # PUSH_INSTALLATION_ID=SECRET
+      # PUSH_INSTALLATION_KEY=SECRET
+      # PUSH_RELAY_URI=https://api.bitwarden.eu
+      # PUSH_IDENTITY_URI=https://identity.bitwarden.eu
+      # EXPERIMENTAL_CLIENT_FEATURE_FLAGS=ssh-key-vault-item,ssh-agent
+      "services/vaultwarden/settings" = {
+        restartUnits = [ "vaultwarden.service" ];
+      };
     };
 
     services = {
@@ -41,6 +53,7 @@ in
         configurePostgres = true;
         environmentFile = [
           config.sops.secrets."services/vaultwarden/admin_token".path
+          config.sops.secrets."services/vaultwarden/settings".path
         ]
         ++ cfg.environmentFile;
       };
