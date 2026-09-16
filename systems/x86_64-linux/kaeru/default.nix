@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   myKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGEUe5V5fMgoSTe1kWfi8OxNhxuYIcd35gIp6Zxzkrv";
   ipDMZ = "172.16.0.11";
@@ -199,14 +204,26 @@ in
   boot = {
     binfmt.emulatedSystems = [ "aarch64-linux" ];
     initrd = {
-      network.flushBeforeStage2 = true;
-      systemd.network = {
-        enable = true;
-        networks."10-enp38s0" = {
-          matchConfig.Name = "enp38s0";
-          address = [ "${ipDMZ}/24" ];
-          gateway = [ "172.16.0.1" ];
-          linkConfig.RequiredForOnline = "routable";
+      systemd = {
+        network = {
+          enable = true;
+          networks."10-enp38s0" = {
+            matchConfig.Name = "enp38s0";
+            address = [ "${ipDMZ}/24" ];
+            gateway = [ "172.16.0.1" ];
+            linkConfig.RequiredForOnline = "routable";
+          };
+        };
+        services.flush-enp38s0 = {
+          wantedBy = [ "initrd-switch-root.target" ];
+          before = [ "initrd-switch-root.target" ];
+          unitConfig.DefaultDependencies = false;
+          serviceConfig.Type = "oneshot";
+          path = [ pkgs.iproute2 ];
+          script = ''
+            ip addr flush dev enp38s0
+            ip link set enp38s0 down
+          '';
         };
       };
     };
