@@ -198,13 +198,16 @@ in
 
   boot = {
     binfmt.emulatedSystems = [ "aarch64-linux" ];
-    initrd.systemd.network = {
-      enable = true;
-      networks."10-enp38s0" = {
-        matchConfig.Name = "enp38s0";
-        address = [ "${ipDMZ}/24" ];
-        gateway = [ "172.16.0.1" ];
-        linkConfig.RequiredForOnline = "routable";
+    initrd = {
+      network.flushBeforeStage2 = true;
+      systemd.network = {
+        enable = true;
+        networks."10-enp38s0" = {
+          matchConfig.Name = "enp38s0";
+          address = [ "${ipDMZ}/24" ];
+          gateway = [ "172.16.0.1" ];
+          linkConfig.RequiredForOnline = "routable";
+        };
       };
     };
   };
