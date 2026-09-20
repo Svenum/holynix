@@ -116,7 +116,10 @@ in
       };
       tailscale = {
         enable = true;
-        advertiseRoutes = [ "172.16.0.0/24" ];
+        advertiseRoutes = [
+          "172.16.0.0/24"
+          "172.18.0.0/24"
+        ];
       };
       immich = {
         enable = true;
