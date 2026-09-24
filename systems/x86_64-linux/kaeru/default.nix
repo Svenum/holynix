@@ -70,6 +70,7 @@ in
         ];
       };
       authentik.enable = true;
+      iglu.enable = true;
       jellyfin.enable = true;
       prometheus = {
         enable = true;
