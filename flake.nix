@@ -30,6 +30,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    laminix = {
+      url = "github:jackboykin/laminix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     git-hooks.url = "github:cachix/git-hooks.nix";
 
     snowfall-lib = {
@@ -121,6 +126,7 @@
           catppuccin.nixosModules.catppuccin
           disko.nixosModules.disko
           authentik.nixosModules.default
+          laminix.nixosModules.default
         ];
 
         hosts = {

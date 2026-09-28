@@ -17,6 +17,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.laminix.enable = true;
     fonts.packages = with pkgs.nerd-fonts; [
       noto
       liberation
