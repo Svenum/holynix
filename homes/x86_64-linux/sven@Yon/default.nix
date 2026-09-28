@@ -32,6 +32,8 @@
     };
   };
 
+  services.caffeine.enable = true;
+
   home = {
     shellAliases = {
       "wrx" = "cd /home/sven/Documents/Wrexham/Lessons";
