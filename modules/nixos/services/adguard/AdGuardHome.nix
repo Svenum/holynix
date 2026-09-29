@@ -802,18 +802,23 @@
         enabled = true;
       }
       {
-        domain = "pi.holypenguin.net";
-        answer = "172.16.0.12";
-        enabled = true;
-      }
-      {
-        domain = "*.pi.holypenguin.net";
-        answer = "172.16.0.5";
-        enabled = true;
-      }
-      {
-        domain = "pi5.holypenguin.net";
+        domain = "kage.holypenguin.net";
         answer = "172.16.0.13";
+        enabled = true;
+      }
+      {
+        domain = "*.kage.holypenguin.net";
+        answer = "172.16.0.13";
+        enabled = true;
+      }
+      {
+        domain = "kaeru.holypenguin.net";
+        answer = "172.16.0.11";
+        enabled = true;
+      }
+      {
+        domain = "*.kaeru.holypenguin.net";
+        answer = "172.16.0.11";
         enabled = true;
       }
       {

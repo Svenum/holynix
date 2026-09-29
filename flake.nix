@@ -147,6 +147,18 @@
             };
           };
 
+          kage = {
+            modules = with inputs; [
+              nixos-hardware.nixosModules.raspberry-pi-5
+              nixos-raspberrypi.nixosModules.raspberry-pi-5.base
+              nixos-raspberrypi.nixosModules.raspberry-pi-5.page-size-16k
+            ];
+            specialArgs = {
+              inherit (inputs) nixos-raspberrypi;
+            };
+
+          };
+
           Yon.modules = with inputs; [
             nixos-hardware.nixosModules.framework-16-7040-amd
           ];
