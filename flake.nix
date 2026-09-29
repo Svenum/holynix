@@ -94,6 +94,11 @@
       url = "github:nix-community/authentik-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    iglu = {
+      url = "github:iglu-sh/iglu";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -127,6 +132,7 @@
           disko.nixosModules.disko
           authentik.nixosModules.default
           laminix.nixosModules.default
+          iglu.nixosModules.default
         ];
 
         hosts = {

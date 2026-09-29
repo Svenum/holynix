@@ -75,6 +75,7 @@ in
 
     libvirt = {
       enable = true;
+      swtpm.enable = true;
       connections."qemu:///system" = {
         # Add networks
         networks = [

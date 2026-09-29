@@ -132,12 +132,12 @@
       }
     ];
 
-    interfaces = [
+    interface = [
       {
-        type = "bridge";
-        mac.address = "52:54:00:ba:80:b8";
-        source.bridge = "br0";
-        model.type = "virtio";
+        type = "network";
+        mac.address = "52:54:00:fd:af:74";
+        source.network = "default";
+        model.type = "e1000e";
       }
     ];
 

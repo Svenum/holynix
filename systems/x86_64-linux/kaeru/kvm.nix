@@ -27,6 +27,7 @@ in
 {
   virtualisation.libvirt = {
     enable = true;
+    swtpm.enable = true;
     connections."qemu:///system" = {
       networks = [
         {
@@ -85,8 +86,14 @@ in
         }
       ];
       domains = [
-        { definition = virtLib.domain.writeXML homeassistant; }
-        { definition = virtLib.domain.writeXML benno_backup; }
+        {
+          definition = virtLib.domain.writeXML homeassistant;
+          active = true;
+        }
+        {
+          definition = virtLib.domain.writeXML benno_backup;
+          active = true;
+        }
       ];
     };
   };
