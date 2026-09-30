@@ -190,7 +190,7 @@
         type = "address";
       };
       image = {
-        compression = false;
+        compression = "off";
       };
     };
 

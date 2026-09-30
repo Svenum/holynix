@@ -7,9 +7,9 @@ My own little nix config to manage multiple systems.
 # Systems
 
 ## Personal Computer
-- **[Yon](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/Yon/default.nix)**: Framework 16 Laptop (CPU: AMD Ryzen 7 7840HS; GPU: AMD Radeon 7700S) for gaming, school and development.
-- **[Zeta](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/Zeta/default.nix)**: Tower PC (CPU: Intel I5) for office work and picture editing.
-- **[PC-Carmen](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/PC-Carmen/default.nix)**: A Lenovo Laptop for office work and websurfing.
+ - **[Yon](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/Yon/default.nix)**: Framework 16 Laptop (CPU: AMD Ryzen 7 7840HS; GPU: AMD Radeon 7700S) for gaming, school and development.
+ - **[Zeta](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/Zeta/default.nix)**: Tower PC (CPU: Intel I5) for office work and picture editing.
+ - **[PC-Carmen](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/PC-Carmen/default.nix)**: A Lenovo Laptop for office work and websurfing.
 
 ## VMs
 - **[node1](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/node1/default.nix)**: VM for Kubernetes (k3s)
@@ -17,6 +17,6 @@ My own little nix config to manage multiple systems.
 - **[node3](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/node3/default.nix)**: VM for Kubernetes (k3s)
 
 ## Server
-- **[srv-raspi5](https://github.com/Svenum/holynix/blob/main/systems/aarch64-linux/srv-raspi5/default.nix)**: Raspberry Pi 5 8GB RAM as little home-server.
-- **[srv-dev](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/srv-dev/default.nix)**: VM for development over RDP/VNC.
-- **[kaeru](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/kaeru/default.nix)**: Server running all sort of services with a zfs pool
+ - **[kage](https://github.com/Svenum/holynix/blob/main/systems/aarch64-linux/kage/default.nix)**: Raspberry Pi 5 8GB RAM as little home-server.
+ - **[srv-dev](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/srv-dev/default.nix)**: VM for development over RDP/VNC.
+ - **[kaeru](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/kaeru/default.nix)**: Server running all sort of services with a zfs pool

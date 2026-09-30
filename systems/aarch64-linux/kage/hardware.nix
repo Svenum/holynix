@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  nixos-raspberrypi,
-  ...
-}:
+{ lib, pkgs, ... }:
 
 {
   boot = {
@@ -14,7 +9,7 @@
       generic-extlinux-compatible.enable = lib.mkForce false;
       raspberry-pi.bootloader = "kernel";
     };
-    kernelPackages = nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi5;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_rpi5;
   };
 
   hardware.deviceTree.enable = true;
