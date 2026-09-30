@@ -240,7 +240,7 @@ in
           adminpassFile = config.sops.secrets."services/nextcloud/admin_pass".path;
           adminuser = "holyadmin";
         };
-        package = pkgs.nextcloud34;
+        package = pkgs.nextcloud35;
         extraApps = {
           inherit (config.services.nextcloud.package.packages.apps)
             calendar
@@ -251,16 +251,12 @@ in
             notes
             groupfolders
             richdocuments
+            theming_customcss
             ;
-          theming_customcss = pkgs.fetchNextcloudApp {
-            url = "https://github.com/nextcloud-releases/theming_customcss/releases/download/v1.21.0/theming_customcss-v1.21.0.tar.gz";
-            hash = "sha256-gJcQJv0tD7lykS+26cLr5zlujJjajNqITWmTv0ki2T0=";
-            license = "agpl3Only";
-          };
           integration_immich = mkIf config.holynix.services.immich.enable (
             pkgs.fetchNextcloudApp {
-              url = "https://github.com/xXRoxXeRXx/integration_immich/releases/download/v1.4.0/integration_immich.tar.gz";
-              hash = "sha256-PKL0FtM2oVWqlo1lAm3G3pC8Tkfzm/W4ySWAa4HG9R4=";
+              url = "https://github.com/xXRoxXeRXx/integration_immich/releases/download/v1.5.1/integration_immich.tar.gz";
+              hash = "sha256-BRHNg/hFmFfB21M57yZqVd99+cJswwT4Gxug5JditG0=";
               license = "agpl3Only";
             }
           );
