@@ -79,7 +79,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/develop";
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
