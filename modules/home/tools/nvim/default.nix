@@ -19,16 +19,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      nixfmt
-      vale
-      shellcheck
-      eslint
-      ripgrep
-      # LaTeX
-      bibtex-tidy
-    ];
-
     programs.nixvim = {
       enable = true;
       defaultEditor = true;
@@ -37,6 +27,16 @@ in
       vimdiffAlias = true;
       withNodeJs = true;
       withPython3 = true;
+      extraPackages = with pkgs; [
+        nixfmt
+        vale
+        shellcheck
+        eslint
+        ripgrep
+
+        # LaTeX
+        bibtex-tidy
+      ];
 
       nixpkgs.useGlobalPackages = true;
 
@@ -414,6 +414,8 @@ in
               scheme-medium
               citation-style-language
               luatex
+              minted
+              upquote
             ]
           );
           settings = {
@@ -428,6 +430,7 @@ in
                 "-file-line-error"
                 "-synctex=1"
                 "-interaction=nonstopmode"
+                "-shell-escape"
               ];
             };
           };
