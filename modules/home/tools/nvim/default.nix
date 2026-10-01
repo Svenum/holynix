@@ -38,6 +38,8 @@ in
       withNodeJs = true;
       withPython3 = true;
 
+      nixpkgs.useGlobalPackages = true;
+
       # Global settings
       opts = {
         number = true;

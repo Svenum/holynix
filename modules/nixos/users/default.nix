@@ -149,6 +149,7 @@ in
     users.users = mapAttrs mkUser cfg;
 
     # Configure user
+    home-manager.useGlobalPkgs = true;
     home-manager.users = mapAttrs mkUserConfig cfg;
     home-manager.extraSpecialArgs = {
       systemConfig = config;
