@@ -12,6 +12,9 @@
 
       # cuda
       "https://cache.nixos-cuda.org"
+
+      # raspberry
+      "https://nixos-raspberrypi.cachix.org"
     ];
     extra-trusted-public-keys = [
       # nix community's cache server public key
@@ -25,6 +28,9 @@
 
       # cuda
       "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+
+      # raspberry
+      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
     ];
   };
   inputs = {

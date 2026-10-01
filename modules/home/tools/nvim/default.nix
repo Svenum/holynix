@@ -377,6 +377,9 @@ in
           };
         };
 
+        # Jupyter Notebooks
+        molten.enable = true;
+
         gitgutter = {
           enable = true;
           settings = {
