@@ -57,6 +57,10 @@ in
           "menuone"
           "noselect"
         ];
+        wrap = true;
+        linebreak = true;
+        showbreak = "↪ ";
+        textwidth = 0;
       };
 
       # Global variables
@@ -686,6 +690,18 @@ in
             noremap = true;
             desc = "Split window vertically";
           };
+        }
+
+        # Navigation
+        {
+          mode = "n";
+          key = "j";
+          action = "gj";
+        }
+        {
+          mode = "n";
+          key = "k";
+          action = "gk";
         }
       ];
 
