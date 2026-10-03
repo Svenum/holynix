@@ -85,7 +85,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/v1.20260801.0";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -147,11 +147,14 @@
               nixos-hardware.nixosModules.raspberry-pi-5
               nixos-raspberrypi.nixosModules.raspberry-pi-5.base
               nixos-raspberrypi.nixosModules.raspberry-pi-5.page-size-16k
+              nixos-raspberrypi.lib.inject-overlays
+              nixos-raspberrypi.lib.inject-overlays-global
+              nixos-raspberrypi.nixosModules.trusted-nix-caches
+              nixos-raspberrypi.nixosModules.nixpkgs-rpi
             ];
             specialArgs = {
               inherit (inputs) nixos-raspberrypi;
             };
-
           };
 
           Yon.modules = with inputs; [

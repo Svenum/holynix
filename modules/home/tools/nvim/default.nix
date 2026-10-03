@@ -440,16 +440,6 @@ in
           };
         };
 
-        ltex-extra = {
-          enable = true;
-          settings = {
-            load_langs = [
-              "en-GB"
-              "de-DE"
-            ];
-          };
-        };
-
         # UI
         web-devicons.enable = true;
 

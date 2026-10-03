@@ -1,15 +1,10 @@
-{ nixos-raspberrypi, lib, ... }:
+{ lib, ... }:
 let
   ip = "172.16.0.13";
 in
 {
-  imports = with nixos-raspberrypi.nixosModules; [
-    ./hardware.nix
-    nixos-raspberrypi.lib.inject-overlays
-    trusted-nix-caches
-    nixpkgs-rpi
-    nixos-raspberrypi.lib.inject-overlays-global
-  ];
+  imports = [ ./hardware.nix ];
+
   holynix = {
     boot.enable = false;
     shell.zsh.enable = true;
