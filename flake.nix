@@ -146,7 +146,6 @@
             modules = with inputs; [
               nixos-hardware.nixosModules.raspberry-pi-5
               nixos-raspberrypi.nixosModules.raspberry-pi-5.base
-              nixos-raspberrypi.nixosModules.raspberry-pi-5.page-size-16k
               nixos-raspberrypi.lib.inject-overlays
               nixos-raspberrypi.lib.inject-overlays-global
               nixos-raspberrypi.nixosModules.trusted-nix-caches
