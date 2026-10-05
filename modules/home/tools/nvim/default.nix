@@ -420,6 +420,7 @@ in
               luatex
               minted
               upquote
+              makecell
             ]
           );
           settings = {
