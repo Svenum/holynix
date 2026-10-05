@@ -24,26 +24,31 @@ in
       pbcopy = "xsel --input --clipboard";
     };
 
-    environment.systemPackages = with pkgs; [
-      # CLI Packages
-      git
-      wget
-      tree
-      unzip
-      pciutils
-      usbutils
-      clinfo
-      killall
-      fastfetch
-      cifs-utils
-      btop
-      dig
-      rclone
-      xsel
-      # Scripts
-      holynix.backup
-      # Nix
-      comma
-    ];
+    environment.systemPackages =
+      with pkgs;
+      [
+        # CLI Packages
+        git
+        wget
+        tree
+        unzip
+        pciutils
+        usbutils
+        clinfo
+        killall
+        cifs-utils
+        btop
+        dig
+        rclone
+        xsel
+        # Nix
+        comma
+      ]
+      ++ optionals (!config.holynix.systemType.server.enable) [
+        fastfetch
+
+        # Scripts
+        holynix.backup
+      ];
   };
 }
