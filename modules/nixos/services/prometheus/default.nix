@@ -28,22 +28,19 @@ in
       default = true;
       description = "Enable prometheus server";
     };
-    extraZFSTargets = mkOption {
-      type = listOf str;
-      default = [ ];
-      description = "Extra zfs targets";
-    };
-    extraNodeTargets = mkOption {
-      type = listOf str;
-      default = [ ];
-      description = "Extra node targets";
-    };
-    extraSystemdTargets = mkOption {
-      type = listOf str;
-      default = [ ];
-      description = "Extra systemd targets";
-    };
     targets = {
+      federate = {
+        enable = mkOption {
+          type = bool;
+          default = false;
+          description = "Enable federate host targets";
+        };
+        targets = mkOption {
+          type = listOf str;
+          default = [ ];
+          description = "List of targets to federate";
+        };
+      };
       homeassistant = {
         enable = mkOption {
           type = bool;
@@ -159,7 +156,7 @@ in
                 labels = {
                   host = hostName;
                 };
-                targets = [ "localhost:${toString cpe.zfs.port}" ] ++ cfg.extraZFSTargets;
+                targets = [ "localhost:${toString cpe.zfs.port}" ];
               }
             ];
           }
@@ -181,7 +178,7 @@ in
                 labels = {
                   host = hostName;
                 };
-                targets = [ "localhost:${toString cpe.systemd.port}" ] ++ cfg.extraSystemdTargets;
+                targets = [ "localhost:${toString cpe.systemd.port}" ];
               }
             ];
           }
@@ -226,7 +223,7 @@ in
                 labels = {
                   host = hostName;
                 };
-                targets = [ "localhost:${toString cpe.node.port}" ] ++ cfg.extraNodeTargets;
+                targets = [ "localhost:${toString cpe.node.port}" ];
               }
             ];
           }
@@ -270,6 +267,19 @@ in
                   host = hostName;
                 };
                 targets = [ cfg.targets.homeassistant.address ];
+              }
+            ];
+          }
+          ++ lists.optional cfg.targets.federate.enable {
+            job_name = "federate";
+            honor_labels = true;
+            metrics_path = "/federate";
+            params = {
+              "match[]" = [ "{__name__=~\".+\"}" ];
+            };
+            static_configs = [
+              {
+                inherit (cfg.targets.federate) targets;
               }
             ];
           };
