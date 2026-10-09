@@ -29,17 +29,17 @@ in
       description = "Enable prometheus server";
     };
     extraZFSTargets = mkOption {
-      type = list;
+      type = listOf str;
       default = [ ];
       description = "Extra zfs targets";
     };
     extraNodeTargets = mkOption {
-      type = list;
+      type = listOf str;
       default = [ ];
       description = "Extra node targets";
     };
     extraSystemdTargets = mkOption {
-      type = list;
+      type = listOf str;
       default = [ ];
       description = "Extra systemd targets";
     };
@@ -159,7 +159,7 @@ in
                 labels = {
                   host = hostName;
                 };
-                targets = [ "localhost:${toString cpe.zfs.port}" ] ++ extraZFSTargets;
+                targets = [ "localhost:${toString cpe.zfs.port}" ] ++ cfg.extraZFSTargets;
               }
             ];
           }
@@ -181,7 +181,7 @@ in
                 labels = {
                   host = hostName;
                 };
-                targets = [ "localhost:${toString cpe.systemd.port}" ] ++ extraSystemdTargets;
+                targets = [ "localhost:${toString cpe.systemd.port}" ] ++ cfg.extraSystemdTargets;
               }
             ];
           }
@@ -226,7 +226,7 @@ in
                 labels = {
                   host = hostName;
                 };
-                targets = [ "localhost:${toString cpe.node.port}" ] ++ extraNodeTargets;
+                targets = [ "localhost:${toString cpe.node.port}" ] ++ cfg.extraNodeTargets;
               }
             ];
           }
