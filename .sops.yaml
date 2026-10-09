@@ -31,6 +31,10 @@ creation_rules:
     key_groups:
       - age:
           - *kage
+  - path_regex: secrets/hikae/.*
+    key_groups:
+      - age:
+          - *kage
   - path_regex: secrets/Zeta/.*
     key_groups:
       - age:
