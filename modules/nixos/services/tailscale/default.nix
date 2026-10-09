@@ -27,7 +27,7 @@ in
     };
     enableSSH = mkOption {
       type = bool;
-      default = isServer;
+      default = false;
       description = "Enable ssh over tailscale";
     };
     acceptDNS = mkOption {
