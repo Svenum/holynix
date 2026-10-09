@@ -28,6 +28,7 @@ in
     };
     tools.cliTools.enable = true;
     services = {
+      caddy.enable = false;
       tailscale = {
         enable = true;
         advertiseExitNode = false;
