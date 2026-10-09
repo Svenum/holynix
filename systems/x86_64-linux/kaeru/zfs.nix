@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   systemd.services.zfs-delegate-syncoid = {
     wantedBy = [ "multi-user.target" ];
