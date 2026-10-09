@@ -17,6 +17,11 @@ in
       default = config.services.caddy.enable;
       description = "Enable Caddy";
     };
+    autoEnable = mkOption {
+      type = bool;
+      default = true;
+      description = "Enable Caddy";
+    };
   };
 
   config = mkIf cfg.enable {

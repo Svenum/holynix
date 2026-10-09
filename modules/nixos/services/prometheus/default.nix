@@ -275,7 +275,7 @@ in
           };
       };
 
-      caddy = mkIf config.holynix.services.caddy.enable {
+      caddy = mkIf config.holynix.services.caddy.autoEnable {
         enable = true;
         virtualHosts."prometheus.${cfgS.publicDomain}" = {
           serverAliases = [ "prometheus.${cfgS.privateDomain}" ];
