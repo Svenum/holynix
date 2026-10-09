@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   sops.secrets."services/syncoid/sshKey" = {
@@ -25,7 +25,7 @@
       enable = true;
       interval = "hourly";
       user = "syncoid";
-      sshKey = sops.secrets."services/syncoid/sshKey".path;
+      sshKey = config.sops.secrets."services/syncoid/sshKey".path;
       commonArgs = [
         "--no-sync-snap"
         "--create-bookmark"
