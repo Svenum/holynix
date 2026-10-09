@@ -80,6 +80,9 @@ in
       jellyfin.enable = true;
       prometheus = {
         enable = true;
+        extraNodeTargets = [ "100.124.29.97:9100" ];
+        extraZFSTargets = [ "100.124.29.97:9134" ];
+        extraSystemdTargets = [ "100.124.29.97:9558" ];
         targets.homeassistant = {
           enable = true;
           address = "homeassistant.holypenguin.net";

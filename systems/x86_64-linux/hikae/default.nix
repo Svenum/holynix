@@ -27,9 +27,12 @@ in
       };
     };
     tools.cliTools.enable = true;
-    services.tailscale = {
-      enable = true;
-      advertiseExitNode = false;
+    services = {
+      tailscale = {
+        enable = true;
+        advertiseExitNode = false;
+      };
+      prometheus.enable = true;
     };
     sops = {
       defaultSopsFile = ../../../secrets/hikae/default.yaml;

@@ -28,6 +28,21 @@ in
       default = true;
       description = "Enable prometheus server";
     };
+    extraZFSTargets = mkOption {
+      type = list;
+      default = [ ];
+      description = "Extra zfs targets";
+    };
+    extraNodeTargets = mkOption {
+      type = list;
+      default = [ ];
+      description = "Extra node targets";
+    };
+    extraSystemdTargets = mkOption {
+      type = list;
+      default = [ ];
+      description = "Extra systemd targets";
+    };
     targets = {
       homeassistant = {
         enable = mkOption {
@@ -144,7 +159,7 @@ in
                 labels = {
                   host = hostName;
                 };
-                targets = [ "localhost:${toString cpe.zfs.port}" ];
+                targets = [ "localhost:${toString cpe.zfs.port}" ] ++ extraZFSTargets;
               }
             ];
           }
@@ -166,7 +181,7 @@ in
                 labels = {
                   host = hostName;
                 };
-                targets = [ "localhost:${toString cpe.systemd.port}" ];
+                targets = [ "localhost:${toString cpe.systemd.port}" ] ++ extraSystemdTargets;
               }
             ];
           }
@@ -211,7 +226,7 @@ in
                 labels = {
                   host = hostName;
                 };
-                targets = [ "localhost:${toString cpe.node.port}" ];
+                targets = [ "localhost:${toString cpe.node.port}" ] ++ extraNodeTargets;
               }
             ];
           }
