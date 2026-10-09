@@ -17,6 +17,9 @@ in
 
   options.holynix.services.grafana = {
     enable = mkEnableOption "Enable Grafana";
+    declarativePlugins = with pkgs.grafanaPlugins; [
+      prometheus
+    ];
     smtp = {
       enable = mkOption {
         type = bool;
