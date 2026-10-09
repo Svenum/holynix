@@ -173,6 +173,7 @@ in
           };
         };
         provision = {
+          enable = true;
           alerting = {
             contactPoints.path = config.sops.secrets."services/grafana/contactPoints".path;
             templates.path = ./alerting/templates.yaml;
@@ -187,15 +188,18 @@ in
               };
             }
           ];
-          datasources.settings.datasources = mkIf config.services.prometheus.enable [
-            {
-              name = "Prometheus";
-              type = "prometheus";
-              url = "http://127.0.0.1:${toString config.services.prometheus.port}";
-              isDefault = true;
-              editable = false;
-            }
-          ];
+          datasources.settings = {
+            prune = true;
+            datasources = mkIf config.services.prometheus.enable [
+              {
+                name = "Prometheus";
+                type = "prometheus";
+                url = "http://127.0.0.1:${toString config.services.prometheus.port}";
+                isDefault = true;
+                editable = false;
+              }
+            ];
+          };
         };
       };
       caddy = {
