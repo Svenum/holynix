@@ -16,6 +16,11 @@ in
       type = bool;
       default = false;
     };
+    latex = mkOption {
+      type = bool;
+      default = false;
+      description = "Enable latex support";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -27,16 +32,16 @@ in
       vimdiffAlias = true;
       withNodeJs = true;
       withPython3 = true;
-      extraPackages = with pkgs; [
-        nixfmt
-        vale
-        shellcheck
-        eslint
-        ripgrep
-
-        # LaTeX
-        bibtex-tidy
-      ];
+      extraPackages =
+        with pkgs;
+        [
+          nixfmt
+          vale
+          shellcheck
+          eslint
+          ripgrep
+        ]
+        ++ optional cfg.latex pkgs.bibtex-tidy;
 
       nixpkgs.useGlobalPackages = true;
 
@@ -192,7 +197,7 @@ in
         ];
         servers = {
           # spelling
-          ltex.enable = true;
+          ltex.enable = cfg.latex;
 
           # C/C++
           clangd.enable = true;
@@ -287,7 +292,7 @@ in
           vimls.enable = true;
 
           # LaTeX
-          texlab.enable = true;
+          texlab.enable = cfg.latex;
 
           # Markdown
           marksman.enable = true;
@@ -364,9 +369,9 @@ in
               { name = "buffer"; }
               { name = "tmux"; }
               { name = "treesitter"; }
-              { name = "vimtex"; }
               { name = "nixpkgs_maintainers"; }
-            ];
+            ]
+            ++ optional cfg.latex { name = "vimtex"; };
           };
         };
 
@@ -411,7 +416,7 @@ in
         };
 
         # LaTeX
-        vimtex = {
+        vimtex = mkIf cfg.latex {
           enable = true;
           texlivePackage = pkgs.texlive.withPackages (
             texPkgs: with texPkgs; [

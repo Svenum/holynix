@@ -3,6 +3,7 @@
 {
   holynix = {
     opencode.enable = true;
+    tools.nvim.latex = true;
     desktop = {
       plasma = {
         enable = true;
