@@ -17,5 +17,6 @@ in
     # Libvirt Guest Agents
     services.qemuGuest.enable = true;
     services.spice-vdagentd.enable = true;
+    boot.zfs.devNodes = "/dev/disk/by-partuuid";
   };
 }

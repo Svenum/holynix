@@ -71,6 +71,10 @@ in
       };
     };
 
+    systemd.tmpfiles.rules = mkIf cfg.zfsSshDecryption.enable [
+      "d /run/ssh 0755 root root -"
+    ];
+
     # SSH
     services = {
       openssh = {
