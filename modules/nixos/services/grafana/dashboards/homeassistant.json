@@ -63,7 +63,8 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "PBFA97CFB590B2093"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
@@ -190,7 +191,8 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "PBFA97CFB590B2093"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
@@ -315,7 +317,8 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "PBFA97CFB590B2093"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
@@ -441,7 +444,8 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "PBFA97CFB590B2093"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
@@ -566,7 +570,8 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "PBFA97CFB590B2093"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
@@ -690,7 +695,8 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "PBFA97CFB590B2093"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,
@@ -814,7 +820,8 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "PBFA97CFB590B2093"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "disableTextWrap": false,

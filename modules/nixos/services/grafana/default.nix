@@ -17,9 +17,6 @@ in
 
   options.holynix.services.grafana = {
     enable = mkEnableOption "Enable Grafana";
-    declarativePlugins = with pkgs.grafanaPlugins; [
-      prometheus
-    ];
     smtp = {
       enable = mkOption {
         type = bool;
@@ -132,6 +129,7 @@ in
         declarativePlugins = with pkgs.grafanaPlugins; [
           grafana-piechart-panel
           grafana-clock-panel
+          prometheus
         ];
         settings = {
           database = {
@@ -197,6 +195,7 @@ in
               {
                 name = "Prometheus";
                 type = "prometheus";
+                uid = "PBFA97CFB590B2093";
                 url = "http://127.0.0.1:${toString config.services.prometheus.port}";
                 isDefault = true;
                 editable = false;

@@ -57,7 +57,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -184,7 +185,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -279,7 +281,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -376,7 +379,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -471,7 +475,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -596,7 +601,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -723,7 +729,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -746,7 +753,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -873,7 +881,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1000,7 +1009,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1127,7 +1137,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1224,7 +1235,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1320,7 +1332,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1445,7 +1458,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1539,7 +1553,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1633,7 +1648,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1727,7 +1743,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1822,7 +1839,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1917,7 +1935,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2042,7 +2061,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2136,7 +2156,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2230,7 +2251,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2324,7 +2346,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2418,7 +2441,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2543,7 +2567,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2564,7 +2589,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2688,7 +2714,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2811,7 +2838,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2832,7 +2860,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2853,7 +2882,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2874,7 +2904,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2895,7 +2926,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3019,7 +3051,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3040,7 +3073,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3164,7 +3198,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3288,7 +3323,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3413,7 +3449,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3434,7 +3471,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3558,7 +3596,8 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "${DS_PROMETHEUS}"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -4150,26 +4189,6 @@
     "title": "PostgreSQL",
     "variables": [
       {
-        "kind": "DatasourceVariable",
-        "spec": {
-          "allowCustomValue": true,
-          "current": {
-            "text": "Prometheus",
-            "value": "PBFA97CFB590B2093"
-          },
-          "hide": "dontHide",
-          "includeAll": false,
-          "label": "datasource",
-          "multi": false,
-          "name": "DS_PROMETHEUS",
-          "options": [],
-          "pluginId": "prometheus",
-          "refresh": "onDashboardLoad",
-          "regex": "",
-          "skipUrlSync": false
-        }
-      },
-      {
         "kind": "IntervalVariable",
         "spec": {
           "auto": true,
@@ -4241,7 +4260,8 @@
           "options": [],
           "query": {
             "datasource": {
-              "name": "${DS_PROMETHEUS}"
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
             },
             "group": "prometheus",
             "kind": "DataQuery",
@@ -4278,7 +4298,8 @@
           "options": [],
           "query": {
             "datasource": {
-              "name": "${DS_PROMETHEUS}"
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
             },
             "group": "prometheus",
             "kind": "DataQuery",
@@ -4315,7 +4336,8 @@
           "options": [],
           "query": {
             "datasource": {
-              "name": "${DS_PROMETHEUS}"
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
             },
             "group": "prometheus",
             "kind": "DataQuery",

@@ -68,7 +68,8 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "PBFA97CFB590B2093"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "editorMode": "code",
@@ -962,7 +963,8 @@
                       "group": "prometheus",
                       "version": "v0",
                       "datasource": {
-                        "name": "PBFA97CFB590B2093"
+                        "type": "prometheus",
+                        "uid": "PBFA97CFB590B2093"
                       },
                       "spec": {
                         "editorMode": "code",
@@ -1581,7 +1583,8 @@
             "group": "prometheus",
             "version": "v0",
             "datasource": {
-              "name": "PBFA97CFB590B2093"
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
             },
             "spec": {
               "query": "label_values(probe_success, instance)",
