@@ -8,6 +8,7 @@ keys:
     - &KaeruVM age1yhfdp6klh4gwpcmnjd5h0dfdkw6s0xn6s7dzc59wf468zk4zmcpq6cudu9
     - &kaeru age1epqmf9klxhawd89kd5v0typw9fdvhysvrmfx8fllls4lncknrcwqfcnew9
     - &kage age132zjthznrrjejt2kawgmu3cj33jt65vv0c5tg7vshknnshucrylsdaty4t
+    - &hikae age10gj4zqgnh7ejxhmwn22ft5adzmm7h5zewf05jhm899cdt264pvfskn7kq9
     - &Zeta age1v2764amlcmt66ehvjs84lxdturesvxeaqvcdyp62vuzvssafl3rq6yl89h
     - &PC-Carmen age19qputpwf6cnptj7emvyk4lhr22m5mp0f070hlk49zttka8rhd46qjdlvk7
 
@@ -34,7 +35,7 @@ creation_rules:
   - path_regex: secrets/hikae/.*
     key_groups:
       - age:
-          - *kage
+          - *hikae
   - path_regex: secrets/Zeta/.*
     key_groups:
       - age:
