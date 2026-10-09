@@ -29,6 +29,7 @@
       commonArgs = [
         "--no-sync-snap"
         "--create-bookmark"
+        "--compress=none"
       ];
       commands."tank/data" = {
         target = "backuppool/kaeru";
