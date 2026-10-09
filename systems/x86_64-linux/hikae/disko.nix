@@ -16,6 +16,14 @@
                 mountpoint = "/boot";
               };
             };
+            swap = {
+              size = "16G";
+              content = {
+                type = "swap";
+                randomEncryption = true;
+                discardPolicy = "both";
+              };
+            };
             root = {
               size = "100%";
               content = {

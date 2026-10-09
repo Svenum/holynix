@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  modulesPath,
-  pkgs,
-  ...
-}:
+{ modulesPath, pkgs, ... }:
 let
   myKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGEUe5V5fMgoSTe1kWfi8OxNhxuYIcd35gIp6Zxzkrv";
 in
