@@ -16,7 +16,7 @@
         autosnap = false;
         autoprune = true;
       };
-      datasets."/srv/backuppool/kaeru" = {
+      datasets."backuppool/kaeru" = {
         useTemplate = [ "backup" ];
         recursive = true;
       };
@@ -31,7 +31,7 @@
         "--create-bookmark"
       ];
       commands."tank/data" = {
-        target = "/srv/backuppool/kaeru";
+        target = "backuppool/kaeru";
         source = "syncoid@100.86.235.4:tank";
         recursive = true;
         extraArgs = [
