@@ -6,6 +6,7 @@
 }:
 let
   myKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGEUe5V5fMgoSTe1kWfi8OxNhxuYIcd35gIp6Zxzkrv";
+  backupKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA6e76JnGQ4eJUVT4RYwlTIY+2LaCjkAmia1WMJJXCwh";
   ipDMZ = "172.16.0.11";
   ipIoT = "172.18.0.11";
 
@@ -49,6 +50,7 @@ in
           myKey
         ];
       };
+      "syncoid".authorizedKeys = [ backupKey ];
       "boerg" = {
         isKvmUser = true;
         initialPassword = "boerg";

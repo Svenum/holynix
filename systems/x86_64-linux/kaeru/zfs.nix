@@ -1,4 +1,11 @@
 {
+  systemd.services.zfs-delegate-syncoid = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "zfs.target" ];
+    serviceConfig.Type = "oneshot";
+    script = "${config.boot.zfs.package}/bin/zfs allow -u syncoid send,hold,bookmark,snapshot,mount tank";
+  };
+  users.groups.syncoid = { };
   services.sanoid = {
     enable = true;
 
@@ -86,7 +93,6 @@
         useTemplate = [ "standard" ];
         recursive = false;
       };
-
     };
   };
 }

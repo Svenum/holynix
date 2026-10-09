@@ -1,12 +1,12 @@
 { modulesPath, pkgs, ... }:
 let
   myKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGEUe5V5fMgoSTe1kWfi8OxNhxuYIcd35gIp6Zxzkrv";
-  backupKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA6e76JnGQ4eJUVT4RYwlTIY+2LaCjkAmia1WMJJXCwh";
 in
 {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     ./disko.nix
+    ./zfs.nix
   ];
 
   holynix = {
@@ -25,7 +25,6 @@ in
           myKey
         ];
       };
-      "backup".authorizedKeys = [ backupKey ];
     };
     tools.cliTools.enable = true;
     services.tailscale = {
