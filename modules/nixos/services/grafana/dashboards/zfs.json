@@ -4,20 +4,22 @@
   "metadata": {
     "name": "ho72fkw",
     "namespace": "default",
-    "uid": "2d3fda68-53a3-4fd7-9b01-c8023f08128b",
-    "resourceVersion": "1783162540160738",
-    "generation": 1,
-    "creationTimestamp": "2026-07-04T10:20:20Z",
+    "uid": "69698b2a-7380-4544-a16c-5b267aff209d",
+    "resourceVersion": "1791628395792355",
+    "generation": 3,
+    "creationTimestamp": "2026-07-05T10:41:33Z",
     "labels": {
-      "grafana.app/deprecatedInternalID": "1695366332710912"
+      "grafana.app/deprecatedInternalID": "2063091952177152"
     },
     "annotations": {
       "grafana.app/createdBy": "access-policy:service",
       "grafana.app/managedBy": "classic-file-provisioning",
       "grafana.app/managerId": "default",
-      "grafana.app/sourceChecksum": "a3c4a4bb4b56aed7b572e7b7ca788bbc",
-      "grafana.app/sourcePath": "/etc/grafana-dashboards/zfs.json",
+      "grafana.app/sourceChecksum": "185c0b4be2664425d8696a6020c4c9f8",
+      "grafana.app/sourcePath": "/etc/grafana/dashboards/zfs.json",
       "grafana.app/sourceTimestamp": "1000",
+      "grafana.app/updatedBy": "access-policy:service",
+      "grafana.app/updatedTimestamp": "2026-10-10T10:33:15Z",
       "grafana.app/folder": ""
     }
   },
@@ -55,10 +57,6 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -82,7 +80,7 @@
           "description": "",
           "id": 14,
           "links": [],
-          "title": "Pool status: $list_of_pools",
+          "title": "Pool status",
           "vizConfig": {
             "group": "stat",
             "kind": "VizConfig",
@@ -161,7 +159,7 @@
                 "wideLayout": true
               }
             },
-            "version": "13.0.2"
+            "version": "13.2.3"
           }
         }
       },
@@ -177,10 +175,6 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -199,10 +193,6 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -221,10 +211,6 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -243,10 +229,6 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -265,10 +247,6 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -290,7 +268,7 @@
           "description": "",
           "id": 2,
           "links": [],
-          "title": "ZFS Pool $list_of_pools : size and capacity",
+          "title": "size and capacity",
           "vizConfig": {
             "group": "timeseries",
             "kind": "VizConfig",
@@ -370,7 +348,7 @@
                 }
               }
             },
-            "version": "13.0.2"
+            "version": "13.2.3"
           }
         }
       },
@@ -386,15 +364,11 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "sum by(zpool)(rate(node_zfs_zpool_dataset_nread{host=\"$host\"}[5m]))",
+                        "expr": "sum by(zpool)(rate(node_zfs_zpool_dataset_nread[5m]))",
                         "legendFormat": "{{zpool}} read",
                         "range": true
                       },
@@ -408,15 +382,11 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "sum by(zpool)(rate(node_zfs_zpool_dataset_nwritten{host=\"$host\"}[5m]))",
+                        "expr": "sum by(zpool)(rate(node_zfs_zpool_dataset_nwritten[5m]))",
                         "legendFormat": "{{zpool}} write ",
                         "range": true
                       },
@@ -513,7 +483,7 @@
                 }
               }
             },
-            "version": "13.0.2"
+            "version": "13.2.3"
           }
         }
       },
@@ -529,15 +499,11 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "sum by(zpool)(rate(node_zfs_zpool_dataset_reads{host=\"$host\"}[5m]))",
+                        "expr": "sum by(zpool)(rate(node_zfs_zpool_dataset_reads[5m]))",
                         "legendFormat": "{{zpool}} read",
                         "range": true
                       },
@@ -551,15 +517,11 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "sum by(zpool)(rate(node_zfs_zpool_dataset_writes{host=\"$host\"}[5m]))",
+                        "expr": "sum by(zpool)(rate(node_zfs_zpool_dataset_writes[5m]))",
                         "legendFormat": "{{zpool}} write",
                         "range": true
                       },
@@ -656,7 +618,7 @@
                 }
               }
             },
-            "version": "13.0.2"
+            "version": "13.2.3"
           }
         }
       },
@@ -672,10 +634,6 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -694,10 +652,6 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": {
-                        "type": "prometheus",
-                        "uid": "PBFA97CFB590B2093"
-                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -719,7 +673,7 @@
           "description": "",
           "id": 9,
           "links": [],
-          "title": "Fragmentation & capacity usage - $list_of_pools pool",
+          "title": "Fragmentation & capacity usage",
           "vizConfig": {
             "group": "gauge",
             "kind": "VizConfig",
@@ -778,60 +732,117 @@
                 "textMode": "auto"
               }
             },
-            "version": "13.0.2"
+            "version": "13.2.3"
           }
         }
       }
     },
     "layout": {
-      "kind": "RowsLayout",
+      "kind": "TabsLayout",
       "spec": {
-        "rows": [
+        "tabs": [
           {
-            "kind": "RowsLayoutRow",
+            "kind": "TabsLayoutTab",
             "spec": {
-              "collapse": false,
               "layout": {
-                "kind": "GridLayout",
+                "kind": "RowsLayout",
                 "spec": {
-                  "items": [
+                  "rows": [
                     {
-                      "kind": "GridLayoutItem",
+                      "kind": "RowsLayoutRow",
                       "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-2"
+                        "collapse": false,
+                        "layout": {
+                          "kind": "GridLayout",
+                          "spec": {
+                            "items": [
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-2"
+                                  },
+                                  "height": 8,
+                                  "width": 12,
+                                  "x": 0,
+                                  "y": 0
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-9"
+                                  },
+                                  "height": 8,
+                                  "width": 9,
+                                  "x": 12,
+                                  "y": 0
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-14"
+                                  },
+                                  "height": 8,
+                                  "width": 3,
+                                  "x": 21,
+                                  "y": 0
+                                }
+                              }
+                            ]
+                          }
                         },
-                        "height": 8,
-                        "width": 12,
-                        "x": 0,
-                        "y": 0
+                        "repeat": {
+                          "mode": "variable",
+                          "value": "list_of_pools"
+                        },
+                        "title": "$list_of_pools"
                       }
                     },
                     {
-                      "kind": "GridLayoutItem",
+                      "kind": "RowsLayoutRow",
                       "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-9"
+                        "collapse": false,
+                        "layout": {
+                          "kind": "GridLayout",
+                          "spec": {
+                            "items": [
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-20"
+                                  },
+                                  "height": 8,
+                                  "width": 12,
+                                  "x": 0,
+                                  "y": 0
+                                }
+                              },
+                              {
+                                "kind": "GridLayoutItem",
+                                "spec": {
+                                  "element": {
+                                    "kind": "ElementReference",
+                                    "name": "panel-32"
+                                  },
+                                  "height": 8,
+                                  "width": 12,
+                                  "x": 12,
+                                  "y": 0
+                                }
+                              }
+                            ]
+                          }
                         },
-                        "height": 8,
-                        "width": 9,
-                        "x": 12,
-                        "y": 0
-                      }
-                    },
-                    {
-                      "kind": "GridLayoutItem",
-                      "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-14"
-                        },
-                        "height": 8,
-                        "width": 3,
-                        "x": 21,
-                        "y": 0
+                        "title": "Pool throughput"
                       }
                     }
                   ]
@@ -839,49 +850,48 @@
               },
               "repeat": {
                 "mode": "variable",
-                "value": "list_of_pools"
+                "value": "host"
               },
-              "title": "ZFS Pool"
-            }
-          },
-          {
-            "kind": "RowsLayoutRow",
-            "spec": {
-              "collapse": false,
-              "layout": {
-                "kind": "GridLayout",
-                "spec": {
-                  "items": [
-                    {
-                      "kind": "GridLayoutItem",
-                      "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-20"
-                        },
-                        "height": 8,
-                        "width": 12,
-                        "x": 0,
-                        "y": 0
-                      }
+              "title": "$host",
+              "variables": [
+                {
+                  "kind": "QueryVariable",
+                  "spec": {
+                    "allowCustomValue": false,
+                    "current": {
+                      "text": "All",
+                      "value": [
+                        "$__all"
+                      ]
                     },
-                    {
-                      "kind": "GridLayoutItem",
+                    "definition": "label_values(zfs_pool_health{host=\"$host\"},pool)",
+                    "hide": "dontHide",
+                    "includeAll": true,
+                    "label": "Pools",
+                    "multi": true,
+                    "name": "list_of_pools",
+                    "options": [],
+                    "query": {
+                      "datasource": {
+                        "name": "PBFA97CFB590B2093"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
                       "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-32"
-                        },
-                        "height": 8,
-                        "width": 12,
-                        "x": 12,
-                        "y": 0
-                      }
-                    }
-                  ]
+                        "qryType": 1,
+                        "query": "label_values(zfs_pool_health{host=\"$host\"},pool)",
+                        "refId": "PrometheusVariableQueryEditor-VariableQuery"
+                      },
+                      "version": "v0"
+                    },
+                    "refresh": "onDashboardLoad",
+                    "regex": "",
+                    "regexApplyTo": "value",
+                    "skipUrlSync": false,
+                    "sort": "disabled"
+                  }
                 }
-              },
-              "title": "Pool throughput"
+              ]
             }
           }
         ]
@@ -918,66 +928,24 @@
         "spec": {
           "allowCustomValue": true,
           "current": {
-            "text": "kaeru",
-            "value": "kaeru"
+            "text": "All",
+            "value": [
+              "$__all"
+            ]
           },
           "definition": "label_values(zfs_pool_allocated_bytes,host)",
-          "hide": "dontHide",
-          "includeAll": false,
+          "hide": "hideVariable",
+          "includeAll": true,
           "label": "Host",
-          "multi": false,
+          "multi": true,
           "name": "host",
           "options": [],
           "query": {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
-            },
             "group": "prometheus",
             "kind": "DataQuery",
             "spec": {
               "qryType": 1,
               "query": "label_values(zfs_pool_allocated_bytes,host)",
-              "refId": "PrometheusVariableQueryEditor-VariableQuery"
-            },
-            "version": "v0"
-          },
-          "refresh": "onDashboardLoad",
-          "regex": "",
-          "regexApplyTo": "value",
-          "skipUrlSync": false,
-          "sort": "disabled"
-        }
-      },
-      {
-        "kind": "QueryVariable",
-        "spec": {
-          "allowCustomValue": true,
-          "current": {
-            "text": [
-              "All"
-            ],
-            "value": [
-              "$__all"
-            ]
-          },
-          "definition": "label_values(zfs_pool_allocated_bytes,pool)",
-          "hide": "dontHide",
-          "includeAll": true,
-          "label": "Pools",
-          "multi": true,
-          "name": "list_of_pools",
-          "options": [],
-          "query": {
-            "datasource": {
-              "type": "prometheus",
-              "uid": "PBFA97CFB590B2093"
-            },
-            "group": "prometheus",
-            "kind": "DataQuery",
-            "spec": {
-              "qryType": 1,
-              "query": "label_values(zfs_pool_allocated_bytes,pool)",
               "refId": "PrometheusVariableQueryEditor-VariableQuery"
             },
             "version": "v0"
