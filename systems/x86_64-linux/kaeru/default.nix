@@ -5,7 +5,10 @@
   ...
 }:
 let
-  myKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGEUe5V5fMgoSTe1kWfi8OxNhxuYIcd35gIp6Zxzkrv";
+  myKeys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGEUe5V5fMgoSTe1kWfi8OxNhxuYIcd35gIp6Zxzkrv sven"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHAe8U6Anm9aSEU2yXQqhBnVZHxidSPDJPh/jBuJ0pnY rick"
+  ];
   backupKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA6e76JnGQ4eJUVT4RYwlTIY+2LaCjkAmia1WMJJXCwh";
   ipDMZ = "172.16.0.11";
   ipIoT = "172.18.0.11";
@@ -29,7 +32,7 @@ in
       enable = true;
       zfsSshDecryption = {
         enable = true;
-        authorizedKeys = [ myKey ];
+        authorizedKeys = myKeys;
       };
     };
     users = {
@@ -37,18 +40,16 @@ in
         isSudoUser = true;
         isKvmUser = true;
         initialPassword = "";
-        authorizedKeys = [
-          myKey
-        ];
+        authorizedKeys = myKeys;
       };
-      "sven".authorizedKeys = [ myKey ];
+      "sven".authorizedKeys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGEUe5V5fMgoSTe1kWfi8OxNhxuYIcd35gIp6Zxzkrv sven"
+      ];
       "martin" = { };
       "rick" = { };
       "podman" = {
         initialPassword = "podman";
-        authorizedKeys = [
-          myKey
-        ];
+        authorizedKeys = myKeys;
       };
       "syncoid".authorizedKeys = [ backupKey ];
       "boerg" = {
