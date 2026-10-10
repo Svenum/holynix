@@ -147,6 +147,7 @@ in
         proxyAuth.enable = true;
       };
       kanbn.enable = true;
+      handbrake.enable = true;
       samba = {
         enable = true;
         userShares = [

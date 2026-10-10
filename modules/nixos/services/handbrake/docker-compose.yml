@@ -1,0 +1,26 @@
+name: handbrake
+services:
+  handbrake:
+    restart: "unless-stopped"
+    volumes:
+      - /var/lib/handbrake/config:/config:rw
+      - /srv/media/handbrake/storage:/storage:ro
+      - /srv/media/handbrake/watch:/watch:rw
+      - /srv/media/handbrake/output:/output:rw
+    environment:
+      USER_ID: 99
+      GROUP_ID: 100
+      TZ: "Europe/Berlin"
+      NVIDIA_VISIBLE_DEVICES: GPU-b2f09e13-5cf1-0138-aa8b-7d04ac327bb6
+      NVIDIA_DRIVER_CAPABILITIES: all
+    ports:
+      - 127.0.0.1:5800:5800
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: cdi
+              device_ids:
+                - nvidia.com/gpu=all
+              capabilities: [gpu]
+    image: "docker.io/zocker160/handbrake-nvenc:latest"
