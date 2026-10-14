@@ -250,10 +250,19 @@ in
                 source_labels = [ "__param_target" ];
                 target_label = "instance";
               }
+            ]
+            ++ lists.optional config.holynix.services.iglu.enable {
+              source_labels = [ "__address__" ];
+              regex = "(iglu\\.${cfgS.publicDomain})";
+              target_label = "__param_target";
+              replacement = "https://iglu.${cfgS.publicDomain}/api/v1/iglu/healthcheck";
+            }
+            ++ [
               {
                 target_label = "__address__";
                 replacement = "localhost:${toString cpe.blackbox.port}";
               }
+
             ];
           }
           ++ lists.optional cfg.targets.homeassistant.enable {
