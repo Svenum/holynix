@@ -519,11 +519,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1791534185,
-        "narHash": "sha256-ZzNt4fQJh1TF1/d/IcKvu+N6EUKIG75YbG+p2Q0AF2g=",
+        "lastModified": 1791970495,
+        "narHash": "sha256-aNBR0tI857Kd1bnxyefhtCsnVWHnk9jqA4oXejJAuIg=",
         "owner": "iglu-sh",
         "repo": "iglu",
-        "rev": "81ed272925c26865322bc33b0a1656641316d3a3",
+        "rev": "31a7a08f5feffca773bc38fbbba2a49d67c2b15b",
         "type": "github"
       },
       "original": {
