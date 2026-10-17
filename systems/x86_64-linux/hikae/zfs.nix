@@ -31,7 +31,7 @@
         "--create-bookmark"
         "--compress=none"
       ];
-      commands."tank/data" = {
+      commands."tank" = {
         target = "backuppool/kaeru";
         source = "syncoid@100.86.235.4:tank";
         recursive = true;
