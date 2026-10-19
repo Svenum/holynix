@@ -77,5 +77,10 @@ in
           };
       };
     };
+
+    virtualisation.containers = mkIf config.holynix.virtualisation.podman.enable {
+      enable = true;
+      containersConf.settings.containers.dns_servers = [ "169.254.1.1" ];
+    };
   };
 }
