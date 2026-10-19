@@ -33,14 +33,16 @@ in
     services = {
       adguardhome = {
         enable = true;
-        host = "0.0.0.0";
-        port = 3001;
         settings =
           let
             baseConfig = import ./AdGuardHome.nix;
           in
           lib.recursiveUpdate baseConfig {
             dns.bind_hosts = [ "127.0.0.1" ] ++ cfg.dnsHosts;
+            http = {
+              host = "0.0.0.0";
+              port = 3001;
+            };
             filtering.rewrites = baseConfig.filtering.rewrites ++ [
               {
                 domain = "*.${cfgS.privateDomain}";

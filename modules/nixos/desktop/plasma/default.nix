@@ -50,7 +50,6 @@ in
       elisa
       khelpcenter
       kwrited
-      kwin-x11
     ];
     programs.dconf.enable = true;
 
