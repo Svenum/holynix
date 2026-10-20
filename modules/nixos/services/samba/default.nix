@@ -40,7 +40,7 @@ in
       };
       samba = {
         enable = true;
-        package = pkgs.samba4Full;
+        package = pkgs.samba4Full.override { enableCephFS = false; };
         openFirewall = true;
         usershares.enable = true;
         settings = {
