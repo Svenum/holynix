@@ -39,10 +39,7 @@ in
           in
           lib.recursiveUpdate baseConfig {
             dns.bind_hosts = [ "127.0.0.1" ] ++ cfg.dnsHosts;
-            http = {
-              host = "0.0.0.0";
-              port = 3001;
-            };
+            http.address = "127.0.0.1:3001";
             filtering.rewrites = baseConfig.filtering.rewrites ++ [
               {
                 domain = "*.${cfgS.privateDomain}";
@@ -67,7 +64,7 @@ in
         enable = true;
         virtualHosts."adguard.${cfgS.publicDomain}" =
           let
-            port = toString config.services.adguardhome.port;
+            port = lib.last (lib.splitString ":" config.services.adguardhome.settings.http.address);
           in
           {
             serverAliases = [ "adguard.${cfgS.privateDomain}" ];
