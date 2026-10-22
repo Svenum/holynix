@@ -48,6 +48,10 @@
       };
     };
     datasets = {
+      "tank/datadir" = {
+        useTemplate = [ "system" ];
+        recursive = false;
+      };
       "tank/datadir/postgresql" = {
         useTemplate = [ "frequent" ];
         recursive = false;
