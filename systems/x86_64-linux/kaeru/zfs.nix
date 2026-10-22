@@ -74,6 +74,11 @@
         recursive = false;
       };
 
+      "tank/datadir/nextcloud" = {
+        useTemplate = [ "standard" ];
+        recursive = false;
+      };
+
       "tank/data/paperless" = {
         useTemplate = [ "archive" ];
         recursive = false;
