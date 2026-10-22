@@ -230,10 +230,22 @@ in
           };
           "datadir/paperless" = {
             type = "zfs_fs";
-            mountpoint = "/srv/data/paperless";
+            mountpoint = "/var/lib/paperless";
             options = {
               recordsize = "128K";
               compression = "zstd";
+            };
+          };
+          "datadir/nextcloud" = {
+            type = "zfs_fs";
+            mountpoint = "/var/lib/nextcloud";
+            options = {
+              recordsize = "128K";
+              compression = "zstd";
+              atime = "off";
+              xattr = "sa";
+              acltype = "posixacl";
+              dnodesize = "auto";
             };
           };
           "media" = {
