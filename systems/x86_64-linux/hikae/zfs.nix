@@ -1,5 +1,28 @@
 { config, ... }:
 
+let
+  datasets = [
+    "tank/data"
+    "tank/datadir/immich"
+    "tank/datadir/postgresql"
+    "tank/datadir/nextcloud"
+    "tank/photos"
+  ];
+  mkCommands =
+    datasets:
+    builtins.listToAttrs (
+      map (d: {
+        name = d;
+        value = {
+          source = d;
+          target = "backuppool/kaeru/${d}";
+          recursive = false;
+          sendOptions = "w";
+          recvOptions = "u";
+        };
+      }) datasets
+    );
+in
 {
   sops.secrets."services/syncoid/sshKey" = {
     owner = "syncoid";
@@ -30,18 +53,9 @@
         "--no-sync-snap"
         "--create-bookmark"
         "--compress=none"
+        "--no-privilege-elevation"
       ];
-      commands."tank" = {
-        target = "backuppool/kaeru";
-        source = "syncoid@100.86.235.4:tank";
-        recursive = true;
-        extraArgs = [
-          "--exclude-datasets=^tank/media"
-          "--exclude-datasets=^tank/datadir/libvirt"
-        ];
-        sendOptions = "w"; # raw send, keeps encryption, no key on target
-        recvOptions = "u"; # don't mount received datasets
-      };
+      commands = mkCommands datasets;
       localSourceAllow = [
         "bookmark"
         "hold"
