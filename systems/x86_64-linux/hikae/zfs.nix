@@ -14,7 +14,7 @@ let
       map (d: {
         name = d;
         value = {
-          source = d;
+          source = "syncoid@100.86.235.4:${d}";
           target = "backuppool/kaeru/${d}";
           recursive = false;
           sendOptions = "w";
@@ -53,7 +53,6 @@ in
         "--no-sync-snap"
         "--create-bookmark"
         "--compress=none"
-        "--no-privilege-elevation"
       ];
       commands = mkCommands datasets;
       localSourceAllow = [
