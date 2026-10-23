@@ -94,6 +94,15 @@ in
       };
       stirlingpdf.enable = true;
       it-tools.enable = true;
+      forgejo = {
+        enable = true;
+        oauth.enable = true;
+        mail = {
+          enable = true;
+          address = "holyadmin@holypenguin.net";
+          server = "smtp.zoho.eu";
+        };
+      };
       grafana = {
         enable = true;
         smtp.host = "smtp.zoho.eu:465";
