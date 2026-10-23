@@ -64,8 +64,8 @@ in
         lfs.enable = true;
         settings = {
           server = {
-            DOMAIN = cfgS.publicDomain;
-            ROOT_URL = "https://${cfgS.publicDomain}/";
+            DOMAIN = "forgejo.${cfgS.publicDomain}";
+            ROOT_URL = "https://forgejo.${cfgS.publicDomain}/";
             HTTP_PORT = 3012;
             SSH_PORT = head config.services.openssh.ports;
           };
@@ -80,7 +80,8 @@ in
           };
           mailer = mkIf cfg.mail.enable {
             ENABLED = true;
-            SMTP_ADDR = "mail.example.com";
+            SMTP_ADDR = cfg.mail.server;
+            PROTOCOL = "smtps";
             FROM = cfg.mail.address;
             USER = cfg.mail.address;
             PORT = 465;
@@ -89,7 +90,6 @@ in
             REGISTER_EMAIL_CONFIRM = "disable";
             OPENID_CONNECT_SCOPES = "email profile";
             ENABLE_AUTO_REGISTRATION = true;
-            USERNAME = "preferred_username";
             UPDATE_AVATAR = true;
             ACCOUNT_LINKING = "login";
           };
@@ -135,7 +135,7 @@ in
       let
         adminCmd = "${lib.getExe config.services.forgejo.package} admin user";
         pwd = config.sops.secrets."services/forgejo/admin_pw".path;
-        user = "holyladmin";
+        user = "holyadmin";
       in
       ''
         ${adminCmd} create --admin --email "root@localhost" --username ${user} --password "$(tr -d '\n' < ${pwd})" || true
