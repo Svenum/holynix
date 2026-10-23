@@ -6,6 +6,7 @@ let
     "tank/datadir/immich"
     "tank/datadir/postgresql"
     "tank/datadir/nextcloud"
+    "tank/datadir/forgejo"
     "tank/photos"
   ];
   mkCommands =
@@ -16,7 +17,7 @@ let
         value = {
           source = "syncoid@100.86.235.4:${d}";
           target = "backuppool/kaeru/${d}";
-          recursive = false;
+          recursive = true;
           sendOptions = "w";
           recvOptions = "u";
         };
