@@ -90,6 +90,10 @@ in
             ENABLED = true;
             DEFAULT_ACTIONS_URL = "github";
           };
+          migrations = {
+            ALLOWED_DOMAINS = "github.com,*.github.com";
+            ALLOW_LOCALNETWORKS = true;
+          };
           mailer = mkIf cfg.mail.enable {
             ENABLED = true;
             SMTP_ADDR = cfg.mail.server;
