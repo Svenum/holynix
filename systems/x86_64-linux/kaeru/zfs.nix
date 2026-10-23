@@ -84,7 +84,7 @@
         recursive = false;
       };
 
-      "tank/datadir/forgejo/lfs" = {
+      "tank/datadir/forgejo/data/lfs" = {
         useTemplate = [ "standard" ];
         recursive = false;
       };
