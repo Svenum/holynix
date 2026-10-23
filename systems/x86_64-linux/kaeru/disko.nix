@@ -217,6 +217,44 @@ in
               recordsize = "64K";
             };
           };
+          "datadir/forgejo" = {
+            type = "zfs_fs";
+            mountpoint = "/var/lib/forgejo";
+            options = {
+              compression = "zstd";
+              atime = "off";
+              xattr = "sa";
+              acltype = "posixacl";
+            };
+          };
+          "datadir/forgejo/repositories" = {
+            type = "zfs_fs";
+            mountpoint = "/var/lib/forgejo/repositories";
+            options = {
+              recordsize = "128K";
+              compression = "zstd";
+              atime = "off";
+            };
+          };
+          "datadir/forgejo/data" = {
+            type = "zfs_fs";
+            mountpoint = "/var/lib/forgejo/data";
+            options = {
+              recordsize = "16K";
+              compression = "zstd";
+              atime = "off";
+              logbias = "latency";
+            };
+          };
+          "datadir/forgejo/data/lfs" = {
+            type = "zfs_fs";
+            mountpoint = "/var/lib/forgejo/data/lfs";
+            options = {
+              recordsize = "1M";
+              compression = "lz4";
+              atime = "off";
+            };
+          };
           "datadir/immich" = {
             type = "zfs_fs";
             mountpoint = "/var/lib/immich";

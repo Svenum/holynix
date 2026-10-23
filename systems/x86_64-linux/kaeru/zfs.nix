@@ -69,6 +69,26 @@
         recursive = false;
       };
 
+      "tank/datadir/forgejo" = {
+        useTemplate = [ "system" ];
+        recursive = false;
+      };
+
+      "tank/datadir/forgejo/repositories" = {
+        useTemplate = [ "frequent" ];
+        recursive = false;
+      };
+
+      "tank/datadir/forgejo/data" = {
+        useTemplate = [ "frequent" ];
+        recursive = false;
+      };
+
+      "tank/datadir/forgejo/lfs" = {
+        useTemplate = [ "standard" ];
+        recursive = false;
+      };
+
       "tank/datadir/immich" = {
         useTemplate = [ "standard" ];
         recursive = false;
