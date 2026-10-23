@@ -120,6 +120,7 @@ in
           runtimes.host = true;
           settings.runner.labels = [
             "ubuntu-26.04:docker://node:16-bullseye"
+            "nix-unstable:docker://nixpkgs/nix"
           ];
           secrets.server.connections."forgejo".token_url =
             config.sops.secrets."services/forgejo/runner_token".path;
