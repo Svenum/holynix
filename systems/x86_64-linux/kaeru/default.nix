@@ -97,6 +97,10 @@ in
       forgejo = {
         enable = true;
         oauth.enable = true;
+        runner = {
+          enable = true;
+          uuid = "6e631cc6-67b1-4ff4-9903-4c136a131ba6";
+        };
         mail = {
           enable = true;
           address = "holyadmin@holypenguin.net";

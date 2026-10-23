@@ -31,6 +31,18 @@ in
         description = "SMTP server address.";
       };
     };
+    runner = {
+      enable = mkOption {
+        type = bool;
+        default = false;
+        description = "Enable runner.";
+      };
+      uuid = mkOption {
+        type = str;
+        default = "";
+        description = "UUID of runner";
+      };
+    };
     oauth = {
       enable = mkOption {
         type = bool;
@@ -74,7 +86,7 @@ in
             DISABLE_REGISTRATION = false;
             SHOW_REGISTRATION_BUTTON = false;
           };
-          actions = {
+          actions = mkIf cfg.runner.enable {
             ENABLED = true;
             DEFAULT_ACTIONS_URL = "github";
           };
@@ -98,7 +110,7 @@ in
           mailer.PASSWD = config.sops.secrets."services/forgejo/mailer_pw".path;
         };
       };
-      forgejo-runner = {
+      forgejo-runner = mkIf cfg.runner.enable {
         instances.default = {
           enable = true;
           runtimes.host = true;
@@ -108,8 +120,8 @@ in
           secrets.server.connections."forgejo".token_url =
             config.sops.secrets."services/forgejo/runner_token".path;
           settings.server.connections.forgejo = {
-            url = "https://localhost:${toString config.services.forgejo.settings.server.HTTP_PORT}";
-            uuid = "01a167df-4922-7c5a-98f5-40e1699b93f4";
+            url = "http://localhost:${toString config.services.forgejo.settings.server.HTTP_PORT}";
+            uuid = cfg.runner.uuid;
           };
         };
       };
