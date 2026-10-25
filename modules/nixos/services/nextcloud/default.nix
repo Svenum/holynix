@@ -9,7 +9,7 @@ with lib;
 with lib.types;
 let
   cfg = config.holynix.services.nextcloud;
-  #cfgC = config.holynix.services.cloudflared;
+  cfgC = config.holynix.services.cloudflared;
   cfgS = config.holynix.services;
 in
 {
@@ -97,6 +97,22 @@ in
         DeviceAllow = "/dev/dri/renderD128 rw";
         PrivateDevices = mkForce false;
       };
+
+      nextcloud-setup-adminuser =
+        let
+          pwd = config.sops.secrets."services/nextcloud/admin_pass".path;
+        in
+        {
+          path = [
+            config.services.nextcloud.occ
+            pkgs.coreutils
+          ];
+          script = ''
+            export OC_PASS="$(tr -d '\n' < ${pwd})"
+            nextcloud-occ user:add holyadmin 
+            nextcloud-occ group:adduser admin holyadmin 
+          '';
+        };
 
       nextcloud-setup-richdocuments = mkIf cfg.enableRichdocuments {
         path = [
@@ -194,9 +210,8 @@ in
     };
 
     services = {
-      # Important until the PHP2Shell is fixed
-      # cloudflared.tunnels."${cfgC.tunnelId}".ingress."nextcloud.${cfgS.publicDomain}" =
-      #   mkIf cfgC.enable "https://nextcloud.${cfgS.privateDomain}";
+      cloudflared.tunnels."${cfgC.tunnelId}".ingress."nextcloud.${cfgS.publicDomain}" =
+        mkIf cfgC.enable "https://nextcloud.${cfgS.privateDomain}";
       nextcloud = {
         enable = true;
         hostName = "nextcloud.${cfgS.publicDomain}";
@@ -234,13 +249,7 @@ in
           serverid = 1;
           log_type = "systemd";
         };
-        config = {
-          dbtype = "pgsql";
-          # Should contain:
-          # AMDINPASSWORD
-          adminpassFile = config.sops.secrets."services/nextcloud/admin_pass".path;
-          adminuser = "holyadmin";
-        };
+        config.dbtype = "pgsql";
         package = pkgs.nextcloud35;
         extraApps = {
           inherit (config.services.nextcloud.package.packages.apps)

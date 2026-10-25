@@ -237,7 +237,6 @@ in
     initrd = {
       systemd = {
         network = {
-          enable = true;
           networks."10-enp38s0" = {
             matchConfig.Name = "enp38s0";
             address = [ "${ipDMZ}/24" ];

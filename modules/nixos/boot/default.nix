@@ -80,7 +80,6 @@ in
         timeout = mkDefault 0;
       };
 
-      initrd.systemd.enable = true;
       kernelParams = [
         "quiet"
         "udev.log_level=3"
