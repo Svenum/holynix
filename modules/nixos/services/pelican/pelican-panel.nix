@@ -26,6 +26,7 @@ let
     isString
     replaceStrings
     match
+    lists
     ;
 
   artisan = pkgs.writeShellScriptBin "pelican-artisan" ''
@@ -301,11 +302,14 @@ in
           after = [
             "mysql.service"
             "redis-pelican.service"
-          ];
+          ]
+          ++ lists.optional (cfg.database.type == "mariadd") "mysql.service"
+          ++ lists.optional (cfg.database.type == "pgsql") "postgresql.service";
           requires = [
-            "mysql.service"
             "redis-pelican.service"
-          ];
+          ]
+          ++ lists.optional (cfg.database.type == "mariadd") "mysql.service"
+          ++ lists.optional (cfg.database.type == "pgsql") "postgresql.service";
           before = [
             "phpfpm-pelican.service"
             "caddy.service"
