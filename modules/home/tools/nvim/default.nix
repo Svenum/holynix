@@ -426,6 +426,7 @@ in
               minted
               upquote
               makecell
+              multirow
             ]
           );
           settings = {
