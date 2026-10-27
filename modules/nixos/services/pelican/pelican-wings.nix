@@ -109,7 +109,8 @@ in
           User = "root";
           LimitNOFILE = 4096;
           ExecStartPre = pkgs.writeShellScript "wings-pre" ''
-            yq eval-all 'select(fileIndex == 0) * select(fileIndex == 1)' \
+            ${pkgs.coreutils}/bin/install -d -m 0700 /etc/pelican
+            ${pkgs.yq-go}/bin/yq eval-all 'select(fileIndex == 0) * select(fileIndex == 1)' \
               ${storeConfig} ${cfg.secretConfigurationFile} > /etc/pelican/config.yml
           '';
           ExecStart = "${getExe cfg.package} --config /etc/pelican/config.yml";
