@@ -11,7 +11,7 @@ with lib.types;
 
 let
   inherit (inputs) nixVirt;
-  cfg = config.holynix.virtualisation.kvm.virtmanager;
+  cfg = config.holynix.virtualisation.kvm.libvirtd;
   kvmCfg = config.holynix.virtualisation.kvm;
   usersCfg = config.holynix.users;
 
@@ -42,7 +42,7 @@ let
   };
 in
 {
-  options.holynix.virtualisation.kvm.virtmanager = {
+  options.holynix.virtualisation.kvm.libvirtd = {
     enable = mkOption {
       type = bool;
       default = kvmCfg.enable;
@@ -87,7 +87,7 @@ in
       };
     };
 
-    programs.virt-manager.enable = true;
+    programs.virt-manager.enable = mkDefault (!config.holynix.systemType.server.enable);
 
     # Add user to groups
     users.users = lib.mapAttrs mkUser usersCfg;
