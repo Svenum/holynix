@@ -53,11 +53,19 @@ in
 
       caddy = {
         enable = true;
-        virtualHosts."pelican.${cfgS.publicDomain}" = {
-          serverAliases = [ "pelican.${cfgS.privateDomain}" ];
-          extraConfig = ''
-            reverse_proxy localhost:${toString config.services.pelican-panel.port}
-          '';
+        virtualHosts = {
+          "pelican.${cfgS.publicDomain}" = {
+            serverAliases = [ "pelican.${cfgS.privateDomain}" ];
+            extraConfig = ''
+              reverse_proxy localhost:${toString config.services.pelican-panel.port}
+            '';
+          };
+          "wings.pelican.${cfgS.publicDomain}" = {
+            serverAliases = [ "wings.pelican.${cfgS.privateDomain}" ];
+            extraConfig = ''
+              reverse_proxy localhost:${toString config.services.pelican-wings.apiPort}
+            '';
+          };
         };
       };
     };
