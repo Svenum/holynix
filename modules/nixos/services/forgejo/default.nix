@@ -131,6 +131,13 @@ in
         };
       };
 
+      postgresqlBackup = {
+        enable = true;
+        databases = [
+          "forgejo"
+        ];
+      };
+
       caddy = {
         enable = true;
         virtualHosts."forgejo.${cfgS.privateDomain}" = {
