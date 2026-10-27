@@ -18,6 +18,7 @@ let
     recursiveUpdate
     maintainers
     getExe
+    lists
     ;
 in
 {
@@ -91,8 +92,12 @@ in
       in
       {
         description = "Pelican Wings Daemon";
-        after = [ "docker.service" ];
-        requires = [ "docker.service" ];
+        after =
+          lists.optional (cfg.containerBackend == "docker") "docker.service"
+          ++ lists.optional (cfg.containerBackend == "podman") "podman.service";
+        requires =
+          lists.optional (cfg.containerBackend == "docker") "docker.service"
+          ++ lists.optional (cfg.containerBackend == "podman") "podman.service";
         wantedBy = [ "multi-user.target" ];
 
         path = with pkgs; [
