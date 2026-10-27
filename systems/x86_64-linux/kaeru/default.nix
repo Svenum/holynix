@@ -94,6 +94,7 @@ in
       };
       stirlingpdf.enable = true;
       it-tools.enable = true;
+      pelican.enable = true;
       forgejo = {
         enable = true;
         oauth.enable = true;
