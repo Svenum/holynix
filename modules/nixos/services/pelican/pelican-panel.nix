@@ -230,7 +230,6 @@ in
         group = "pelican";
 
         settings = {
-          "listen" = "127.0.0.1:9000";
           "pm" = "dynamic";
           "pm.max_children" = 10;
           "pm.start_servers" = 2;
@@ -240,6 +239,8 @@ in
           "catch_workers_output" = "yes";
           "decorate_workers_output" = "no";
           "env[LOG_CHANNEL]" = "stderr";
+          "listen.owner" = mkDefault config.services.caddy.user;
+          "listen.group" = mkDefault config.services.caddy.group;
         };
 
         phpOptions = {
@@ -263,7 +264,7 @@ in
           root * /var/lib/pelican/www/public
           encode gzip
           file_server
-          php_fastcgi 127.0.0.1:9000
+          php_fastcgi unix//run/phpfpm/pelican.sock
         '';
       };
 
