@@ -55,10 +55,10 @@ in
         configuration = {
           remote = "https://pelican.${cfgS.publicDomain}";
           docker.network = {
-            interface = "10.88.254.1";
+            interface = "10.254.254.1";
             interfaces.v4 = {
-              subnet = "10.88.254.0/24";
-              gateway = "10.88.254.1";
+              subnet = "10.254.254.0/24";
+              gateway = "10.254.254.1";
             };
           };
         };
