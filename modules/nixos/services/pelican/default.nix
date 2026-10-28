@@ -40,7 +40,16 @@ in
       pelican-wings = {
         enable = true;
         containerBackend = "podman";
-        configuration.remote = "https://pelican.${cfgS.publicDomain}";
+        configuration = {
+          remote = "https://pelican.${cfgS.publicDomain}";
+          docker = {
+            interface = "10.88.0.1";
+            interfaces.v4 = {
+              subnet = "10.88.0.0/24";
+              gateway = "10.88.0.1";
+            };
+          };
+        };
         secretConfigurationFile = config.sops.secrets."services/pelican/wings".path;
       };
 

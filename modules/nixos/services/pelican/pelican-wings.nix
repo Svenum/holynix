@@ -85,6 +85,10 @@ in
                   ssl.enabled = false;
                 };
               }
+              // optionalAttrs (cfg.containerBackend == "podman") {
+                system.tmp_directory = "/var/lib/pelican/tmp";
+                docker.log_config.type = "k8s-file";
+              }
             );
         storeConfig = (pkgs.formats.yaml { }).generate "wings-config.yml" (
           recursiveUpdate autoConfig cfg.configuration
