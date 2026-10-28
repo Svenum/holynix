@@ -15,6 +15,14 @@ in
 
   options.holynix.services.pelican = {
     enable = mkEnableOption "Enable pelican.";
+    oauth = {
+      enable = mkEnableOption "Enable oauth.";
+      name = mkOption {
+        type = str;
+        default = "Authentik";
+        description = "Name of the OAuth provider.";
+      };
+    };
   };
 
   config = mkIf cfg.enable {
@@ -34,6 +42,10 @@ in
         domain = "https://pelican.${cfgS.publicDomain}";
         environment = {
           TRUSTED_PROXIES = "127.0.0.1";
+          "OAUTH_${toUpper cfg.oauth.name}_ENABLE" = cfg.oauth.enable;
+          "OAUTH_${toUpper cfg.oauth.name}_DISPLAY_NAME" = cfg.oauth.name;
+          "OAUTH_${toUpper cfg.oauth.name}_SHOULD_CREATE_MISSING_USERS" = true;
+          "OAUTH_${toUpper cfg.oauth.name}_SHOULD_LINK_MISSING_USERS" = false;
         };
         secretEnvironmentFile = config.sops.secrets."services/pelican/panel".path;
       };
@@ -42,11 +54,11 @@ in
         containerBackend = "podman";
         configuration = {
           remote = "https://pelican.${cfgS.publicDomain}";
-          docker = {
-            interface = "10.88.0.1";
+          docker.network = {
+            interface = "10.88.254.1";
             interfaces.v4 = {
-              subnet = "10.88.0.0/24";
-              gateway = "10.88.0.1";
+              subnet = "10.88.254.0/24";
+              gateway = "10.88.254.1";
             };
           };
         };
