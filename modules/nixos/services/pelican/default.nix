@@ -34,7 +34,7 @@ in
 
     services = {
       cloudflared.tunnels."${cfgC.tunnelId}".ingress."pelican.${cfgS.publicDomain}" =
-        mkIf cfgC.enable "https://pelican.${cfgS.privateDomain}";
+        mkIf cfgC.enable "https://pelican.${cfgS.publicDomain}";
 
       pelican-panel = {
         enable = true;
