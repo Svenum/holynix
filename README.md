@@ -15,6 +15,7 @@ My own little nix config to manage multiple systems.
 - **[node1](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/node1/default.nix)**: VM for Kubernetes (k3s)
 - **[node2](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/node2/default.nix)**: VM for Kubernetes (k3s)
 - **[node3](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/node3/default.nix)**: VM for Kubernetes (k3s)
+- **[shohi](https://github.com/Svenum/holynix/blob/main/systems/x86_64-linux/shohi/default.nix)**: VM for testing new modules and pacakges
 
 ## Server
  - **[kage](https://github.com/Svenum/holynix/blob/main/systems/aarch64-linux/kage/default.nix)**: Raspberry Pi 5 8GB RAM as little home-server.
