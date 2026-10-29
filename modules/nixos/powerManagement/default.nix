@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  inputs,
   ...
 }:
 
@@ -11,8 +10,6 @@ let
   cfg = config.holynix.powerManagement;
 in
 {
-  imports = [ inputs.auto-cpufreq.nixosModules.default ];
-
   options.holynix.powerManagement.enable = mkOption {
     type = bool;
     default = false;
@@ -24,25 +21,27 @@ in
       enable = true;
     };
 
-    # Disable powerprofiles
-    services.power-profiles-daemon.enable = mkForce false;
+    services = {
+      # Disable powerprofiles
+      power-profiles-daemon.enable = mkForce false;
 
-    # Disable tlp
-    services.tlp.enable = mkForce false;
+      # Disable tlp
+      tlp.enable = mkForce false;
 
-    # Enable auto-cpufreq
-    programs.auto-cpufreq = {
-      enable = true;
-      settings = {
-        battery = {
-          energy_performance_preference = "power";
-          governor = "powersave";
-          turbo = "never";
-        };
-        charger = {
-          energy_performance_preference = "balance_performance";
-          governor = "performance";
-          turbo = "auto";
+      # Enable auto-cpufreq
+      auto-cpufreq = {
+        enable = true;
+        settings = {
+          battery = {
+            energy_performance_preference = "power";
+            governor = "powersave";
+            turbo = "never";
+          };
+          charger = {
+            energy_performance_preference = "balance_performance";
+            governor = "performance";
+            turbo = "auto";
+          };
         };
       };
     };
