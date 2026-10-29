@@ -61,7 +61,7 @@ in
     };
     # Should contain:
     # CLOUDFLARE_DNS_API_TOKEN=SECRET_KEY
-    sops.secret = mkIf cfg.enabelSSL {
+    sops.secrets = mkIf cfg.enableSSL {
       "services/caddy/cloudflare_dns_api_token".restartUnits = [ "caddy.service" ];
     };
     systemd.services.caddy.serviceConfig.EnvironmentFile = mkIf cfg.enableSSL [
