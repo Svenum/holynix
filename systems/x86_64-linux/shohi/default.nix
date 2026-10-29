@@ -31,7 +31,7 @@ in
       caddy.enableSSL = false;
       pelican = {
         enable = true;
-        oauth.enable = true;
+        oauth.enable = false;
       };
     };
     sops = {
