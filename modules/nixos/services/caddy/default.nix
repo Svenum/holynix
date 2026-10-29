@@ -22,6 +22,11 @@ in
       default = true;
       description = "Enable Caddy";
     };
+    enableSSL = mkOption {
+      type = bool;
+      default = true;
+      description = "Enable ssl via cloudflare.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -33,7 +38,7 @@ in
         ];
         hash = "sha256-eGv+I4CceOEqWrMs5fTWPrTF3DBXtB+0vu3Ndw4yArE=";
       };
-      globalConfig = ''
+      globalConfig = mkIf cfg.enableSSL ''
         acme_dns cloudflare {$CLOUDFLARE_DNS_API_TOKEN}
       '';
       extraConfig = ''
@@ -56,10 +61,10 @@ in
     };
     # Should contain:
     # CLOUDFLARE_DNS_API_TOKEN=SECRET_KEY
-    sops.secrets."services/caddy/cloudflare_dns_api_token" = {
-      restartUnits = [ "caddy.service" ];
+    sops.secret = mkIf cfg.enabelSSL {
+      "services/caddy/cloudflare_dns_api_token".restartUnits = [ "caddy.service" ];
     };
-    systemd.services.caddy.serviceConfig.EnvironmentFile = [
+    systemd.services.caddy.serviceConfig.EnvironmentFile = mkIf cfg.enableSSL [
       config.sops.secrets."services/caddy/cloudflare_dns_api_token".path
     ];
 
