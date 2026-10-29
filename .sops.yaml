@@ -11,7 +11,7 @@ keys:
     - &hikae age10gj4zqgnh7ejxhmwn22ft5adzmm7h5zewf05jhm899cdt264pvfskn7kq9
     - &Zeta age1v2764amlcmt66ehvjs84lxdturesvxeaqvcdyp62vuzvssafl3rq6yl89h
     - &PC-Carmen age19qputpwf6cnptj7emvyk4lhr22m5mp0f070hlk49zttka8rhd46qjdlvk7
-    - &shohi age1u2wtmzc3lx36sgp8dt20sx3hr82dhm99zcsluacfydtf9ke8eysqayfwzj
+    - &shohi age10f2ek4usdq2dhtguhdvteehvhkphh4jyas7hxu25023jpnglqctstetjh4
 
 creation_rules:
   - path_regex: secrets/kube.yaml

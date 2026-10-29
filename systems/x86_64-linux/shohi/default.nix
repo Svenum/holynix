@@ -28,7 +28,7 @@ in
     tools.cliTools.enable = true;
     services = {
       publicDomain = "holypenguin.net";
-      caddy.autoEnable = true;
+      caddy.enableSSL = false;
       pelican = {
         enable = true;
         oauth.enable = true;
