@@ -1,4 +1,9 @@
-{ modulesPath, pkgs, ... }:
+{
+  modulesPath,
+  pkgs,
+  lib,
+  ...
+}:
 let
   myKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDGEUe5V5fMgoSTe1kWfi8OxNhxuYIcd35gIp6Zxzkrv";
 in
@@ -38,6 +43,16 @@ in
     sops = {
       defaultSopsFile = ../../../secrets/hikae/default.yaml;
       enableHostKey = true;
+    };
+  };
+
+  boot = {
+    zfs = {
+      extraPools = [ "backuppool" ];
+      requestEncryptionCredentials = false;
+    };
+    supportedFilesystems = {
+      zfs = lib.mkForce true;
     };
   };
 

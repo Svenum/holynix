@@ -93,7 +93,9 @@ in
     users.users = lib.mapAttrs mkUser usersCfg;
 
     # Connect to QEMU
-    home-manager.users = lib.mapAttrs mkUserConfig usersCfg;
+    home-manager.users = mkIf (!config.holynix.systemType.server.enable) (
+      lib.mapAttrs mkUserConfig usersCfg
+    );
 
     # install package virtdeclare
     environment.systemPackages = with pkgs; [
