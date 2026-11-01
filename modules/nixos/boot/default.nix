@@ -61,7 +61,6 @@ in
       loader = {
         systemd-boot = mkIf cfg.systemdBoot {
           enable = mkIf (!cfg.secureBoot) true;
-          configurationLimit = 15;
           editor = false;
           memtest86 = {
             enable = cfg.memtest;
