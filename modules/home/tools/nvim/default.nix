@@ -196,8 +196,14 @@ in
 
         ];
         servers = {
-          # spelling
-          ltex.enable = cfg.latex;
+          ltex_plus = {
+            enable = true;
+            package = pkgs.ltex-ls-plus;
+            config = {
+              cmd = [ "${pkgs.ltex-ls-plus}/bin/ltex-ls-plus" ];
+              settings.ltex.language = "auto";
+            };
+          };
 
           # C/C++
           clangd.enable = true;
@@ -283,7 +289,10 @@ in
           # Nix
           nixd = {
             enable = true;
-            config.cmd = [ "--inlay-hints" ];
+            config.cmd = [
+              "${lib.getExe pkgs.nixd}"
+              "--inlay-hints"
+            ];
           };
 
           statix.enable = true;
