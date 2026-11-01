@@ -1,6 +1,6 @@
 let
-  os = "/dev/sdc";
-  data1 = "/dev/sda";
+  os = "/dev/sda";
+  data1 = "/dev/sdc";
   data2 = "/dev/sdb";
   data3 = "/dev/sdd";
   data4 = "/dev/sde";
