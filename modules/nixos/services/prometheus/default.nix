@@ -13,7 +13,7 @@ let
 
   hostName = config.networking.hostName;
 
-  hasZfs = lib.any (fs: fs.fsType == "zfs") (lib.attrValues config.fileSystems);
+  hasZfs = config.boot.supportedFilesystems.zfs;
 in
 {
   options.holynix.services.prometheus = {
