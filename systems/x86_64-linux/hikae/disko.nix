@@ -66,7 +66,7 @@
         datasets = {
           "kaeru" = {
             type = "zfs_fs";
-            mountpoint = "/srv/backuppool/kaeru";
+            mountpoint = null;
           };
         };
       };
