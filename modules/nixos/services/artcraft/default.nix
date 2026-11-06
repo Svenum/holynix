@@ -27,7 +27,8 @@ in
 
       caddy = {
         enable = true;
-        virtualHosts."artcraft.${cfgS.privateDomain}" = {
+        virtualHosts."artcraft.${cfgS.publicDomain}" = {
+          serverAliases = [ "artcraft.${cfgS.privateDomain}" ];
           extraConfig = ''
             import authentik
             reverse_proxy localhost:3002
