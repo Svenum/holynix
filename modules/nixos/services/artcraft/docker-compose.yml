@@ -1,0 +1,25 @@
+---
+name: artcraft
+services:
+  craft-apps:
+    image: lscr.io/linuxserver/craft-apps:latest
+    container_name: craft-apps
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - /var/lib/artcraft/config:/config
+    ports:
+      - 3012:3000
+    shm_size: "2gb"
+    devices:
+      - /dev/nvidia-modeset:/dev/nvidia-modeset
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [compute, video, graphics, utility]
+    restart: unless-stopped
