@@ -1,4 +1,5 @@
 /result
+/result-man
 /tmp
 *.qcow2
 .pre-commit-config.yaml
