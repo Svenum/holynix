@@ -3,7 +3,6 @@ name: artcraft
 services:
   craft-apps:
     image: lscr.io/linuxserver/craft-apps:latest
-    container_name: craft-apps
     environment:
       - PUID=1000
       - PGID=1000
@@ -11,7 +10,7 @@ services:
     volumes:
       - /var/lib/artcraft/config:/config
     ports:
-      - 3012:3000
+      - 3002:3000
     shm_size: "2gb"
     devices:
       - /dev/nvidia-modeset:/dev/nvidia-modeset

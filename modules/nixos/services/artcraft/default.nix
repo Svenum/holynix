@@ -30,7 +30,7 @@ in
         virtualHosts."artcraft.${cfgS.privateDomain}" = {
           extraConfig = ''
             import authentik
-            reverse_proxy localhost:3012
+            reverse_proxy localhost:3002
           '';
         };
       };
