@@ -79,6 +79,7 @@ in
       authentik.enable = true;
       iglu.enable = true;
       jellyfin.enable = true;
+      artcraft.enable = true;
       prometheus = {
         enable = true;
         targets = {
