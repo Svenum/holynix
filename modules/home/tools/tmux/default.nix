@@ -31,6 +31,8 @@ in
       ];
       extraConfig = ''
         # TMUX
+        set -as terminal-overrides ',*:indn@'
+
         set -g repeat-time 700
         set -g mouse on
 
