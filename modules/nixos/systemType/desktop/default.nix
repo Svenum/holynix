@@ -21,10 +21,5 @@ in
 
   config = mkIf cfg.enable {
     boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
-    services.scx = {
-      enable = true;
-      scheduler = "scx_lavd";
-      extraArgs = [ "--autopower" ];
-    };
   };
 }
