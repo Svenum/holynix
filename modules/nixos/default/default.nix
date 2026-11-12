@@ -21,6 +21,7 @@ in
     fonts.packages = with pkgs.nerd-fonts; [
       noto
       liberation
+      pkgs.corefonts
     ];
   };
 }
