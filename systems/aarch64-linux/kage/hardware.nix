@@ -16,7 +16,7 @@
 
   fileSystems."/" = {
     label = "NIXOS_SD";
-    fsType = "btrfs";
+    fsType = lib.mkForce "btrfs";
   };
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }
