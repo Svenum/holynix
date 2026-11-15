@@ -8,11 +8,6 @@ let
   cfgS = config.holynix.services;
 in
 {
-  imports = [
-    ./pelican-panel.nix
-    ./pelican-wings.nix
-  ];
-
   options.holynix.services.pelican = {
     enable = mkEnableOption "Enable pelican.";
     oauth = {
@@ -38,8 +33,9 @@ in
 
       pelican-panel = {
         enable = true;
-        database.type = "pgsql";
+        #database.type = "pgsql";
         domain = "https://pelican.${cfgS.publicDomain}";
+        caddy.domain = "https://pelican.${cfgS.publicDomain}";
         environment = {
           TRUSTED_PROXIES = "127.0.0.1";
           "OAUTH_${toUpper cfg.oauth.name}_ENABLE" = cfg.oauth.enable;
@@ -51,7 +47,7 @@ in
       };
       pelican-wings = {
         enable = true;
-        containerBackend = "podman";
+        #containerBackend = "podman";
         configuration = {
           remote = "https://pelican.${cfgS.publicDomain}";
           docker.network = {

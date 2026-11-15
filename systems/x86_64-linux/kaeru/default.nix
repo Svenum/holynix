@@ -96,7 +96,7 @@ in
       stirlingpdf.enable = true;
       it-tools.enable = true;
       pelican = {
-        enable = true;
+        enable = false;
         oauth.enable = true;
       };
       forgejo = {
