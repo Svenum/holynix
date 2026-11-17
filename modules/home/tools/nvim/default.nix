@@ -440,6 +440,7 @@ in
               booktabs
               ltablex
               titlesec
+              tocloft
             ]
           );
           settings = {
