@@ -436,6 +436,8 @@ in
               upquote
               makecell
               multirow
+              xltabular
+              booktabs
             ]
           );
           settings = {
