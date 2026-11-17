@@ -439,6 +439,7 @@ in
               xltabular
               booktabs
               ltablex
+              titlesec
             ]
           );
           settings = {
