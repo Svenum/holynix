@@ -438,6 +438,7 @@ in
               multirow
               xltabular
               booktabs
+              ltablex
             ]
           );
           settings = {
