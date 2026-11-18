@@ -30,8 +30,8 @@ in
     services = {
       cloudflared.tunnels."${cfgC.tunnelId}".ingress = {
         "pelican.${cfgS.publicDomain}" = mkIf cfgC.enable "https://pelican.${cfgS.privateDomain}";
-        "wings.pelican.${cfgS.publicDomain}" =
-          mkIf cfgC.enable "https://wings.pelican.${cfgS.privateDomain}";
+        "pelican-wings.${cfgS.publicDomain}" =
+          mkIf cfgC.enable "https://pelican-wings.${cfgS.privateDomain}";
       };
 
       pelican-panel = {
@@ -77,8 +77,8 @@ in
           "pelican.${cfgS.publicDomain}" = {
             serverAliases = [ "pelican.${cfgS.privateDomain}" ];
           };
-          "wings.pelican.${cfgS.publicDomain}" = {
-            serverAliases = [ "wings.pelican.${cfgS.privateDomain}" ];
+          "pelican-wings.${cfgS.publicDomain}" = {
+            serverAliases = [ "pelican-wings.${cfgS.privateDomain}" ];
             extraConfig = ''
               reverse_proxy localhost:${toString config.services.pelican-wings.apiPort}
             '';
