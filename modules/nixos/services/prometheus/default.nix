@@ -162,6 +162,7 @@ in
                   http:
                     preferred_ip_protocol: "ip4"
                     skip_resolve_phase_with_proxy: true
+                    valid_status_codes: [200, 401]
                 http_post_2xx:
                   prober: http
                   http:
