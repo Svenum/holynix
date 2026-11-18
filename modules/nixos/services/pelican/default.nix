@@ -28,8 +28,11 @@ in
     };
 
     services = {
-      cloudflared.tunnels."${cfgC.tunnelId}".ingress."pelican.${cfgS.publicDomain}" =
-        mkIf cfgC.enable "https://pelican.${cfgS.privateDomain}";
+      cloudflared.tunnels."${cfgC.tunnelId}".ingress = {
+        "pelican.${cfgS.publicDomain}" = mkIf cfgC.enable "https://pelican.${cfgS.privateDomain}";
+        "wings.pelican.${cfgS.publicDomain}" =
+          mkIf cfgC.enable "https://wings.pelican.${cfgS.privateDomain}";
+      };
 
       pelican-panel = {
         enable = true;
@@ -38,7 +41,7 @@ in
         caddy.domain = "pelican.${cfgS.publicDomain}";
         environment = {
           TRUSTED_PROXIES = "127.0.0.1";
-          "OAUTH_${toUpper cfg.oauth.name}_ENABLE" = cfg.oauth.enable;
+          "OAUTH_${toUpper cfg.oauth.name}_ENABLED" = cfg.oauth.enable;
           "OAUTH_${toUpper cfg.oauth.name}_DISPLAY_NAME" = cfg.oauth.name;
           "OAUTH_${toUpper cfg.oauth.name}_SHOULD_CREATE_MISSING_USERS" = true;
           "OAUTH_${toUpper cfg.oauth.name}_SHOULD_LINK_MISSING_USERS" = false;
