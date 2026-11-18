@@ -33,9 +33,9 @@ in
 
       pelican-panel = {
         enable = true;
-        #database.type = "pgsql";
+        database.type = "pgsql";
         domain = "https://pelican.${cfgS.publicDomain}";
-        caddy.domain = "https://pelican.${cfgS.publicDomain}";
+        caddy.domain = "pelican.${cfgS.publicDomain}";
         environment = {
           TRUSTED_PROXIES = "127.0.0.1";
           "OAUTH_${toUpper cfg.oauth.name}_ENABLE" = cfg.oauth.enable;
@@ -47,7 +47,7 @@ in
       };
       pelican-wings = {
         enable = true;
-        #containerBackend = "podman";
+        containerBackend = "podman";
         configuration = {
           remote = "https://pelican.${cfgS.publicDomain}";
           docker.network = {
@@ -64,7 +64,7 @@ in
       postgresqlBackup = {
         enable = true;
         databases = [
-          "panel"
+          "pelican"
         ];
       };
 
@@ -73,9 +73,6 @@ in
         virtualHosts = {
           "pelican.${cfgS.publicDomain}" = {
             serverAliases = [ "pelican.${cfgS.privateDomain}" ];
-            extraConfig = ''
-              reverse_proxy localhost:${toString config.services.pelican-panel.port}
-            '';
           };
           "wings.pelican.${cfgS.publicDomain}" = {
             serverAliases = [ "wings.pelican.${cfgS.privateDomain}" ];
