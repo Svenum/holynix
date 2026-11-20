@@ -26,9 +26,22 @@ in
       stirling-pdf = {
         enable = true;
         environment = {
+          # Server
           SERVER_PORT = 3939;
           SERVER_HOST = "127.0.0.1";
           DISABLE_ADDITIONAL_FEATURES = false;
+
+          # Storage
+          STORAGE_ENABLED = true;
+          STORAGE_PROVIDER = "local";
+          STORAGE_LOCAL_BASEPATH = "/var/lib/stirling-pdf/storage";
+
+          # Optional: sharing
+          STORAGE_SHARING_ENABLED = true;
+          STORAGE_SHARING_LINKENABLED = "true";
+          SYSTEM_FRONTENDURL = "https://pdf.${cfgS.publicDomain}";
+
+          # OAuth
           SYSTEM_BACKENDURL = "https://pdf.${cfgS.publicDomain}";
           SECURITY_OAUTH2_ENABLED = cfg.enableOAuth;
           SECURITY_ENABLELOGIN = cfg.enableOAuth;
