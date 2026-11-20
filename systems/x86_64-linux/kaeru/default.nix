@@ -93,7 +93,10 @@ in
           };
         };
       };
-      stirlingpdf.enable = true;
+      stirlingpdf = {
+        enable = true;
+        enableOAuth = true;
+      };
       it-tools.enable = true;
       pelican = {
         enable = true;
