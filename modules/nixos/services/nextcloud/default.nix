@@ -278,6 +278,13 @@ in
         "listen.group" = config.services.caddy.group;
       };
 
+      postgresql = {
+        settings = {
+          shared_buffers = "256MB";
+          autovacuum_naptime = 30;
+        };
+      };
+
       postgresqlBackup = {
         enable = true;
         databases = [
