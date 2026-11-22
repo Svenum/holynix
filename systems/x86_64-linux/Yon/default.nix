@@ -16,7 +16,7 @@
     boot.secureBoot = true;
     desktop = {
       plasma.enable = true;
-      noctalia.enable = true;
+      noctalia.enable = false;
     };
     shell.zsh.enable = true;
     locale = {
