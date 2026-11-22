@@ -57,6 +57,9 @@ in
 
           # cuda
           "https://cache.nixos-cuda.org"
+
+          # noctalia
+          "https://noctalia.cachix.org"
         ];
         trusted-public-keys = [
           # nix community's cache server public key
@@ -70,6 +73,9 @@ in
 
           # cuda
           "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+
+          # noctalia
+          "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
         ];
 
         # Configure Nix

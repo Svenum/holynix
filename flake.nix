@@ -15,6 +15,9 @@
 
       # raspberry
       "https://nixos-raspberrypi.cachix.org"
+
+      # noctalia
+      "https://noctalia.cachix.org"
     ];
     extra-trusted-public-keys = [
       # nix community's cache server public key
@@ -31,6 +34,9 @@
 
       # raspberry
       "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+
+      # noctalia
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
   };
   inputs = {
@@ -100,6 +106,9 @@
       url = "github:iglu-sh/iglu";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    umbriel.url = "github:noctalia-dev/umbriel";
+    noctalia.url = "github:noctalia-dev/noctalia";
   };
 
   outputs =
@@ -134,6 +143,8 @@
           authentik.nixosModules.default
           laminix.nixosModules.default
           iglu.nixosModules.default
+          umbriel.nixosModules.default
+          noctalia.nixosModules.default
         ];
 
         hosts = {

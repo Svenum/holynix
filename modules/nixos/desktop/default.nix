@@ -26,6 +26,9 @@ in
         noto-fonts-cjk-sans
         noto-fonts-lgc-plus
         gyre-fonts
+        nerd-fonts.noto
+        nerd-fonts.liberation
+        corefonts
       ];
       enableDefaultPackages = true;
     };

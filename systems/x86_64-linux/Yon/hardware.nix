@@ -45,7 +45,7 @@
     # enable fw-fanctrl
     fw-fanctrl = {
       enable = true;
-      config = {
+      settings = {
         defaultStrategy = "school";
         strategyOnDischarging = "school";
         strategies = {
