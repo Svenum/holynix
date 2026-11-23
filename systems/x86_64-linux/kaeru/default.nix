@@ -103,6 +103,13 @@ in
         oauth.enable = true;
       };
       darts.enable = true;
+      jupyterhub = {
+        enable = true;
+        oauth = {
+          enable = true;
+          issuerBaseUrl = "https://authentik.holypenguin.net";
+        };
+      };
       forgejo = {
         enable = true;
         oauth.enable = true;
