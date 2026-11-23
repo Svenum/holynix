@@ -11,7 +11,7 @@ let
   cfg = config.holynix.services.jupyterhub;
   cfgC = config.holynix.services.cloudflared;
   cfgS = config.holynix.services;
-  jupyterhubUrl = "jupyter.${cfgS.publicDomain}";
+  jupyterhubUrl = "https://jupyter.${cfgS.publicDomain}";
 in
 {
 
