@@ -19,6 +19,7 @@ in
     networking = {
       nameservers = [ "127.0.0.1" ];
       firewall = {
+        interfaces."podman0".allowedUDPPorts = [ 53 ];
         allowedTCPPorts = [
           53
           853
