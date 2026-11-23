@@ -90,7 +90,12 @@ in
           # --- Podman spawner (via Docker socket) ---
           c.JupyterHub.hub_ip = "0.0.0.0"
           c.JupyterHub.hub_connect_ip = "127.0.0.1"
+
           c.DockerSpawner.hub_connect_url = "http://10.88.0.1:${toString config.services.jupyterhub.port}/"
+
+          c.DockerSpawner.extra_create_kwargs = {
+              "command": "bash -c 'pip install --no-cache-dir \"jupyter_server_nbmodel[lab]\" && jupyter server extension enable jupyter_server_nbmodel && start-singleuser.sh'"
+          }
 
           c.DockerSpawner.image = "quay.io/jupyter/pytorch-notebook:cuda12-latest"
           c.DockerSpawner.remove = False
