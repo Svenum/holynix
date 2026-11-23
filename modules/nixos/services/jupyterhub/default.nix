@@ -47,6 +47,10 @@ in
 
     hardware.nvidia-container-toolkit.enable = true;
 
+    networking.firewall.interfaces = mkIf config.services.postgresql.enable {
+      "podman0".allowedTCPPorts = [ config.services.jupyterhub.port ];
+    };
+
     services = {
       jupyterhub = {
         enable = true;
@@ -84,10 +88,14 @@ in
           ]
 
           # --- Podman spawner (via Docker socket) ---
+          c.JupyterHub.hub_ip = "0.0.0.0"
+          c.JupyterHub.hub_connect_ip = "127.0.0.1"
+          c.DockerSpawner.hub_connect_url = "http://10.88.0.1:${toString config.services.jupyterhub.port}/"
+
           c.DockerSpawner.image = "quay.io/jupyter/pytorch-notebook:cuda12-latest"
           c.DockerSpawner.remove = False
           c.DockerSpawner.volumes = {
-              "/home/jovyan/work": "/var/lib/jupyterhub/workdirs/{username}"
+              "/var/lib/jupyterhub/workdirs/{username}": "/home/jovyan/work"
           }
           c.DockerSpawner.notebook_dir = "/home/jovyan/work"
           c.DockerSpawner.extra_host_config = {
