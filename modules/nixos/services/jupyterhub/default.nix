@@ -87,6 +87,10 @@ in
               open("${config.sops.secrets."services/jupyterhub/crypt_key".path}").read().strip()
           ]
 
+          c.ServerApp.jpserver_extensions = {
+              "jupyter_server_nbmodel": True
+          }
+
           # --- Podman spawner (via Docker socket) ---
           c.JupyterHub.hub_ip = "0.0.0.0"
           c.JupyterHub.hub_connect_ip = "127.0.0.1"
@@ -94,7 +98,7 @@ in
           c.DockerSpawner.hub_connect_url = "http://10.88.0.1:${toString config.services.jupyterhub.port}/"
 
           c.DockerSpawner.extra_create_kwargs = {
-              "command": "bash -c 'pip install --no-cache-dir \"jupyter_server_nbmodel[lab]\" && jupyter server extension enable jupyter_server_nbmodel && start-singleuser.sh'"
+              "command": "bash -c 'pip install --no-cache-dir \"jupyter_server_nbmodel[lab]\" && start-singleuser.sh'"
           }
 
           c.DockerSpawner.image = "quay.io/jupyter/pytorch-notebook:cuda12-latest"
@@ -104,13 +108,21 @@ in
           }
           c.DockerSpawner.notebook_dir = "/home/jovyan/work"
           c.DockerSpawner.extra_host_config = {
-              "device_requests": [
+              'runtime': 'nvidia',  # Oder weglassen, wenn CDI über --device gesteuert wird
+              'device_requests': [
                   {
-                      "Driver": "nvidia",
-                      "Count": -1,           # all GPUs
-                      "Capabilities": [["gpu"]]
+                      'Driver': 'nvidia',
+                      'Count': -1,  # Alle GPUs nutzen
+                      'Capabilities': [['gpu']]
                   }
               ]
+          }
+          c.DockerSpawner.environment = {
+              'NVIDIA_VISIBLE_DEVICES': 'all',
+              'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility',
+              'PATH': os.environ['PATH'],
+              'LD_LIBRARY_PATH': os.environ['LD_LIBRARY_PATH'],
+              'CUDA_HOME': '/usr/local/cuda'
           }
         '';
         authentication = mkIf cfg.oauth.enable "oauthenticator.generic.GenericOAuthenticator";
