@@ -81,6 +81,7 @@ in
             c.GenericOAuthenticator.logout_redirect_url = "${cfg.oauth.issuerBaseUrl}/application/o/jupyterhub/end-session/"
             c.GenericOAuthenticator.allow_all = True
             c.GenericOAuthenticator.enable_auth_state = True
+            c.GenericOAuthenticator.login_service = "Authentik"
           ''}
 
           c.CryptKeeper.keys = [
@@ -97,32 +98,45 @@ in
 
           c.DockerSpawner.hub_connect_url = "http://10.88.0.1:${toString config.services.jupyterhub.port}/"
 
-          c.DockerSpawner.extra_create_kwargs = {
-              "command": "bash -c 'pip install --no-cache-dir \"jupyter_server_nbmodel[lab]\" && start-singleuser.sh'"
+          c.DockerSpawner.image = "docker.io/cschranz/gpu-jupyter:v1.9_cuda-12.6_ubuntu-24.04_python-only"
+          c.DockerSpawner.environment = {
+            "JUPYTER_ENABLE_LAB": "yes"
           }
-
-          c.DockerSpawner.image = "quay.io/jupyter/pytorch-notebook:cuda12-latest"
           c.DockerSpawner.remove = False
+          c.DockerSpawner.start_timeout = 120
           c.DockerSpawner.volumes = {
-              "/var/lib/jupyterhub/workdirs/{username}": "/home/jovyan/work"
+            "/var/lib/jupyterhub/workdirs/{username}": "/home/jovyan/work",
+            "${pkgs.writeText "20-pip-setup.sh" ''
+              #!/bin/bash
+              # Place in /usr/local/bin/before-notebook.d/ (runs as NB_USER, sourced, so no exit/set -e at top level)
+
+              _pip_setup() (
+                  set -euo pipefail
+
+                  pip config set global.extra-index-url ""
+                  pip install --no-cache-dir "jupyter_server_nbmodel[lab]"
+                  pip install --upgrade --no-cache-dir "jupyterlab>=4.4.5"
+              )
+
+              _pip_setup || echo "[hook] pip setup failed" >&2
+              unset -f _pip_setup
+            ''}": {
+              "bind": "/usr/local/bin/before-notebook.d/20-pip-setup.sh",
+              "mode": "ro"
+            }
           }
           c.DockerSpawner.notebook_dir = "/home/jovyan/work"
+
+          import docker
           c.DockerSpawner.extra_host_config = {
-              'runtime': 'nvidia',  # Oder weglassen, wenn CDI über --device gesteuert wird
-              'device_requests': [
-                  {
-                      'Driver': 'nvidia',
-                      'Count': -1,  # Alle GPUs nutzen
-                      'Capabilities': [['gpu']]
-                  }
-              ]
-          }
-          c.DockerSpawner.environment = {
-              'NVIDIA_VISIBLE_DEVICES': 'all',
-              'NVIDIA_DRIVER_CAPABILITIES': 'compute,utility',
-              'PATH': os.environ['PATH'],
-              'LD_LIBRARY_PATH': os.environ['LD_LIBRARY_PATH'],
-              'CUDA_HOME': '/usr/local/cuda'
+              "devices": ["nvidia.com/gpu=all"],
+              "device_requests": [
+                  docker.types.DeviceRequest(
+                      driver="nvidia",
+                      count=-1,  # -1 = all
+                      capabilities=[["gpu"]],
+                  )
+              ],
           }
         '';
         authentication = mkIf cfg.oauth.enable "oauthenticator.generic.GenericOAuthenticator";
