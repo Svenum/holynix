@@ -102,6 +102,7 @@ in
         enable = true;
         oauth.enable = true;
       };
+      darts.enable = true;
       forgejo = {
         enable = true;
         oauth.enable = true;
