@@ -1,0 +1,9 @@
+---
+name: darts
+services:
+  darts:
+    image: ghcr.io/codethesuff/darts:latest
+    environment:
+      TRUSTED_PROXY: true
+    ports:
+      - 8345:8080
