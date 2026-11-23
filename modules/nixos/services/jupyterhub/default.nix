@@ -42,7 +42,7 @@ in
     };
 
     systemd.tmpfiles.rules = [
-      "d ${config.systemd.services.jupyterhub.serviceConfig.WorkingDirectory}/workdirs 0755 root root -"
+      "d ${config.systemd.services.jupyterhub.serviceConfig.WorkingDirectory}/workdirs 0755 1000 100 -"
     ];
 
     hardware.nvidia-container-toolkit.enable = true;
