@@ -29,9 +29,6 @@ let
     RUN --mount=type=bind,from=docker.io/library/node:22-slim,source=/usr/local,target=/opt/node \
       PATH="/opt/node/bin:$PATH" \
       jupyter lab build --dev-build=False --minimize=False
-
-
-
   '';
 
   tag = "localhost/gpu-jupyter-custom:${
@@ -67,7 +64,7 @@ in
     };
 
     systemd.tmpfiles.rules = [
-      "d ${config.systemd.services.jupyterhub.serviceConfig.WorkingDirectory}/workdirs 0755 1000 100 -"
+      "d /var/lib/${config.services.jupyterhub.stateDirectory}/workdirs 0755 1000 100 -"
     ];
 
     hardware.nvidia-container-toolkit.enable = true;
@@ -121,6 +118,18 @@ in
           c.JupyterHub.hub_ip = "0.0.0.0"
           c.JupyterHub.hub_connect_ip = "127.0.0.1"
 
+
+          def create_dir_hook(spawner):
+            username = spawner.user.name
+            volume_path = f"/var/lib/${config.services.jupyterhub.stateDirectory}/{username}"
+            work_path = f"{volume_path}/work"
+
+            for path in (volume_path, work_path):
+              if not os.path.exists(path):
+                os.makedirs(path, mode=0o755)
+                os.chown(path, 1000, 100)
+          c.Spawner.pre_spawn_hook = create_dir_hook
+
           c.DockerSpawner.hub_connect_url = "http://10.88.0.1:${toString config.services.jupyterhub.port}/"
 
           c.DockerSpawner.image = "${tag}"
@@ -128,10 +137,8 @@ in
             "JUPYTER_ENABLE_LAB": "yes"
           }
           c.DockerSpawner.remove = False
-          c.DockerSpawner.start_timeout = 240
-          c.DockerSpawner.http_timeout = 240
           c.DockerSpawner.volumes = {
-            "/var/lib/jupyterhub/workdirs/{username}": "/home/jovyan/work"
+            "/var/lib/${config.services.jupyterhub.stateDirectory}/workdirs/{username}": "/home/jovyan"
           }
           c.DockerSpawner.notebook_dir = "/home/jovyan/work"
 
