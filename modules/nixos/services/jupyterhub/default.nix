@@ -11,7 +11,32 @@ let
   cfg = config.holynix.services.jupyterhub;
   cfgC = config.holynix.services.cloudflared;
   cfgS = config.holynix.services;
+
   jupyterhubUrl = "https://jupyter.${cfgS.publicDomain}";
+
+  ctx = pkgs.writeTextDir "Containerfile" ''
+    FROM docker.io/cschranz/gpu-jupyter:v1.9_cuda-12.6_ubuntu-24.04_python-only
+
+    RUN pip config set global.extra-index-url "" \
+      && pip install --no-cache-dir -U \
+      jupyterlab notebook \
+      jupyter-collaboration jupyter-docprovider jupyter-server-nbmodel \
+      jupyterlab-git jupyterlab-spellchecker \
+      jupyterlab_widgets ipywidgets ipyleaflet ipympl \
+      nbdime plotly jupyterlab_pygments \
+      && pip check
+
+    RUN --mount=type=bind,from=docker.io/library/node:22-slim,source=/usr/local,target=/opt/node \
+      PATH="/opt/node/bin:$PATH" \
+      jupyter lab build --dev-build=False --minimize=False
+
+
+
+  '';
+
+  tag = "localhost/gpu-jupyter-custom:${
+    builtins.substring 0 12 (builtins.hashString "sha256" (builtins.readFile "${ctx}/Containerfile"))
+  }";
 in
 {
 
@@ -98,32 +123,15 @@ in
 
           c.DockerSpawner.hub_connect_url = "http://10.88.0.1:${toString config.services.jupyterhub.port}/"
 
-          c.DockerSpawner.image = "docker.io/cschranz/gpu-jupyter:v1.9_cuda-12.6_ubuntu-24.04_python-only"
+          c.DockerSpawner.image = "${tag}"
           c.DockerSpawner.environment = {
             "JUPYTER_ENABLE_LAB": "yes"
           }
           c.DockerSpawner.remove = False
-          c.DockerSpawner.start_timeout = 120
+          c.DockerSpawner.start_timeout = 240
+          c.DockerSpawner.http_timeout = 240
           c.DockerSpawner.volumes = {
-            "/var/lib/jupyterhub/workdirs/{username}": "/home/jovyan/work",
-            "${pkgs.writeText "20-pip-setup.sh" ''
-              #!/bin/bash
-              # Place in /usr/local/bin/before-notebook.d/ (runs as NB_USER, sourced, so no exit/set -e at top level)
-
-              _pip_setup() (
-                  set -euo pipefail
-
-                  pip config set global.extra-index-url ""
-                  pip install --no-cache-dir "jupyter_server_nbmodel[lab]"
-                  pip install --upgrade --no-cache-dir "jupyterlab>=4.4.5"
-              )
-
-              _pip_setup || echo "[hook] pip setup failed" >&2
-              unset -f _pip_setup
-            ''}": {
-              "bind": "/usr/local/bin/before-notebook.d/20-pip-setup.sh",
-              "mode": "ro"
-            }
+            "/var/lib/jupyterhub/workdirs/{username}": "/home/jovyan/work"
           }
           c.DockerSpawner.notebook_dir = "/home/jovyan/work"
 
@@ -152,6 +160,50 @@ in
             reverse_proxy http://localhost:${toString config.services.jupyterhub.port}
           '';
         };
+      };
+    };
+
+    systemd.services = {
+      gpu-jupyter-build = {
+        description = "Build gpu-jupyter derived image";
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
+        path = [ pkgs.podman ];
+        # buildah/podman need these helpers when run from a unit
+        environment.PATH = pkgs.lib.mkForce (
+          pkgs.lib.makeBinPath [
+            pkgs.podman
+            pkgs.conmon
+            pkgs.crun
+            pkgs.runc
+            pkgs.netavark
+            pkgs.shadow
+            pkgs.util-linux
+            pkgs.coreutils
+            pkgs.iptables
+            pkgs.fuse-overlayfs
+          ]
+          + ":/run/wrappers/bin"
+        );
+
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          TimeoutStartSec = "1h";
+        };
+
+        script = ''
+          if ! podman image exists ${tag}; then
+            podman build -f ${ctx}/Containerfile -t ${tag} ${ctx}
+          fi
+          podman tag ${tag} localhost/gpu-jupyter-custom:latest
+        '';
+      };
+
+      jupyterhub = {
+        after = [ "gpu-jupyter-build.service" ];
+        requires = [ "gpu-jupyter-build.service" ];
       };
     };
   };
