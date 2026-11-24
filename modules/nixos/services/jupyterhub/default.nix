@@ -21,7 +21,7 @@ let
       && pip install --no-cache-dir -U \
       jupyterlab notebook \
       jupyter-collaboration jupyter-docprovider jupyter-server-nbmodel \
-      jupyterlab-git jupyterlab-spellchecker \
+      jupyterlab-git jupyterlab-spellchecker jupyterlab_execute_time \
       jupyterlab_widgets ipywidgets ipyleaflet ipympl \
       nbdime plotly jupyterlab_pygments \
       && pip check
