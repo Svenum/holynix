@@ -41,7 +41,10 @@ in
           eslint
           ripgrep
         ]
-        ++ optional cfg.latex pkgs.bibtex-tidy;
+        ++ optionals cfg.latex [
+          bibtex-tidy
+          biber
+        ];
 
       nixpkgs.useGlobalPackages = true;
 
@@ -432,7 +435,6 @@ in
               scheme-medium
               citation-style-language
               luatex
-              minted
               upquote
               makecell
               multirow
@@ -441,6 +443,18 @@ in
               ltablex
               titlesec
               tocloft
+
+              # biblatex
+              biblatex
+              biblatex-ieee
+              csquotes
+
+              # minted
+              minted
+              float
+              fancyvrb
+              xstring
+              lineno
             ]
           );
           settings = {
