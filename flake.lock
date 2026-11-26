@@ -32,11 +32,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1794238815,
-        "narHash": "sha256-ITaU80ncGp9K/OqoRBbiuxVgMyFHU5sJ9W4FeU6oyiE=",
+        "lastModified": 1795439478,
+        "narHash": "sha256-hu8+29CQtHdy3tZg1WY4aDsOZ4XX8x2D/xnYrpehmbY=",
         "owner": "nix-community",
         "repo": "authentik-nix",
-        "rev": "6441c8b2b900260ac4e9520ab1ce5be6ff1ff39e",
+        "rev": "92b0574c9290b84fcc1d6c9d6664c9c1023e3d0e",
         "type": "github"
       },
       "original": {
@@ -48,16 +48,16 @@
     "authentik-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1792581414,
-        "narHash": "sha256-gdhGKCfsMUrWyFnf5TaaHM2ZQ1WYgTLOgGg4DlCaUHU=",
+        "lastModified": 1795137590,
+        "narHash": "sha256-SMY+LXVpLTl7gT86Ul0sAreR2o6p+hRQ+iwPw56RVpc=",
         "owner": "goauthentik",
         "repo": "authentik",
-        "rev": "4ec0d19b98da3c329781894cd550da95d3033954",
+        "rev": "98ec4a7684fcb0cccfe78888a12df1df1ad938be",
         "type": "github"
       },
       "original": {
         "owner": "goauthentik",
-        "ref": "version/2026.8.5",
+        "ref": "version/2026.8.6",
         "repo": "authentik",
         "type": "github"
       }
@@ -107,11 +107,11 @@
     "client-ts-generator-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1792605533,
-        "narHash": "sha256-f82MB+n7cgKj62g2aTSW34KosYhE7d/dj1KUhJ5KrTY=",
+        "lastModified": 1793979246,
+        "narHash": "sha256-Amn1ZMOP2lgX203/zBcgsXO3ST1ln9+OruQmJM9Jzmk=",
         "owner": "goauthentik",
         "repo": "client-ts",
-        "rev": "cbdadfa3cb808b6b587e64c5430bf2d70b2d3461",
+        "rev": "e8cb62afd9b86fd54ce1f22d12064465a3f1fec9",
         "type": "github"
       },
       "original": {
@@ -341,11 +341,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791914995,
-        "narHash": "sha256-Zf/xfQEAasnwnmEfHqW/4hjDE/s44yn2hD4RuVIZRjA=",
+        "lastModified": 1794427683,
+        "narHash": "sha256-o7ey9gEilsxaifqJWnBDlYSKbNWYQYtKwDyXeZU2kaU=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "b7a79d3fea1e214f6d668d521cecec0c01e26544",
+        "rev": "cd489559845d81f673a12885576016c65cbe9363",
         "type": "github"
       },
       "original": {
@@ -976,11 +976,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793820911,
-        "narHash": "sha256-cc2EX2rfojnhcvqPQh4JEFGm2Mn/VoJyw5hTJTaw7Wo=",
+        "lastModified": 1794012432,
+        "narHash": "sha256-zBKFTg7tEGApNt+CEKI5+WNNomD5MZqYNBr+r6/Bmdg=",
         "owner": "pyproject-nix",
         "repo": "build-system-pkgs",
-        "rev": "947b2b0c973de462b19577715f04ba8d6f48ed7e",
+        "rev": "bdbc5f8dd2ad6136bb2ccecb14f6ec343965b194",
         "type": "github"
       },
       "original": {
