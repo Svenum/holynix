@@ -456,6 +456,7 @@ in
               fancyvrb
               xstring
               lineno
+              tcolorbox
             ]
           );
           settings = {
