@@ -448,6 +448,7 @@ in
               biblatex
               biblatex-ieee
               csquotes
+              xurl
 
               # minted
               minted
