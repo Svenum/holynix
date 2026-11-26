@@ -457,6 +457,7 @@ in
               xstring
               lineno
               tcolorbox
+              pdfcol
             ]
           );
           settings = {
